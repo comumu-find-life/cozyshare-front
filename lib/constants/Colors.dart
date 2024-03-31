@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+const kBlueColor = Color(0xff4b8bf2);
 const kWhiteBackGroundColor = Color(0xffFFFFFF);
 const kYellowColor = Color(0xffFF9D00);
 const kYellow100Color = Color(0xffFFF8EE);

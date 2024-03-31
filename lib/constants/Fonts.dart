@@ -11,7 +11,7 @@ Widget Body2Text(String text, Color color){
 }
 
 Widget LargeTitleText(String text, Color color){
-  return Text("${text}", style: TextStyle(color : color, fontSize: 40.sp, fontFamily: "LargeTitle" , fontWeight: FontWeight.w900),);
+  return Text("${text}", style: TextStyle(color : color, fontSize: 35.sp, fontFamily: "LargeTitle" , fontWeight: FontWeight.w900),);
 }
 
 Widget PercentageText(String text, Color color){
@@ -55,7 +55,7 @@ Widget ButtonText(String text, Color color){
 }
 
 Widget HelperText(String text, Color color){
-  return Text("${text}", style: TextStyle(color : color, fontSize: 12.sp , fontFamily: "Helper", fontWeight: FontWeight.w500),);
+  return Text("${text}", style: TextStyle(color : color, fontSize: 11.sp , fontFamily: "Helper", fontWeight: FontWeight.w500),);
 }
 
 Widget Helper2Text(String text, Color color){
