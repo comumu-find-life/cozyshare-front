@@ -1,0 +1,16 @@
+
+import 'package:flutter/cupertino.dart';
+
+class ChatDetailView extends StatefulWidget {
+  const ChatDetailView({super.key});
+
+  @override
+  State<ChatDetailView> createState() => _ChatDetailViewState();
+}
+
+class _ChatDetailViewState extends State<ChatDetailView> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}

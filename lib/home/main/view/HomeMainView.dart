@@ -5,10 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/home/main/controller/HomeMainController.dart';
+import 'package:home_and_job/home/main/widgets/HomeListWidget.dart';
 import 'package:home_and_job/home/main/widgets/SelectHomeTypeWidget.dart';
 
 import '../../../constants/Fonts.dart';
 import '../widgets/HomeAppBar.dart';
+import '../widgets/SearchBarWidget.dart';
 
 class HomeMainView extends StatefulWidget {
   const HomeMainView({Key? key}) : super(key: key);
@@ -28,9 +30,9 @@ class _HomeMainView extends State<HomeMainView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildSearchBar(),
+            SearchBarWidget(),
             SelectHomeTypeWidget(_controller),
-            _buildHomeList(),
+            HomeListWidget(_controller)
           ],
         ),
       ),
@@ -108,39 +110,5 @@ class _HomeMainView extends State<HomeMainView> {
             }));
   }
 
-  Widget _buildSearchBar() {
-    return Center(
-      child: Container(
-        margin: EdgeInsets.only(top: 20.h),
-        width: 350.w,
-        height: 50.h,
-        decoration: BoxDecoration(
-            border: Border.all(color: kGrey200Color),
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: TextFormField(
-            controller: _controller.searchController,
-            style: TextStyle(color: Colors.black),
-            // 텍스트 색상을 검정색으로 설정
-            textAlign: TextAlign.left,
 
-            // 텍스트를 왼쪽으로 정렬
-            cursorColor: kTextBlackColor,
-            decoration: InputDecoration(
-              hintText: "search address !",
-              hintStyle: TextStyle(color: kGrey300Color, fontSize: 14.sp),
-              border: InputBorder.none,
-              isDense: true,
-              suffixIcon: Icon(
-                Icons.search,
-                // Use the search icon or any other icon you prefer
-                color: kGrey300Color, // Set the icon color
-              ), // 덴스한 디자인을 사용하여 높이를 줄임
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
