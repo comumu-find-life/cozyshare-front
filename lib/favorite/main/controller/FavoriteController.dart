@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:home_and_job/home/home-detail/view/HomeDetailView.dart';
 
 class FavoriteController extends GetxController {
   Rx<bool> _selectHome = true.obs;
@@ -14,6 +15,14 @@ class FavoriteController extends GetxController {
       _selectHome.value = false;
       _selectJob.value = true;
     }
+  }
+
+  void moveHomePost(){
+    Get.to(() => HomeDetailView());
+  }
+
+  void moveJobPost(){
+
   }
 
   bool get selectHome => _selectHome.value;

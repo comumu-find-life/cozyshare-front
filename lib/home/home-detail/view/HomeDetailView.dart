@@ -5,12 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/home/home-detail/controller/HomeDetailController.dart';
+import 'package:home_and_job/home/home-detail/widgets/HomeDetailBottomBar.dart';
 
 class HomeDetailView extends StatelessWidget {
   const HomeDetailView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    HomeDetailController _controller = HomeDetailController();
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
       appBar: CommonAppBar(
@@ -18,23 +21,7 @@ class HomeDetailView extends StatelessWidget {
         canBack: true,
         title: "",
       ),
-      bottomNavigationBar: BottomAppBar(
-        height: 90.h,
-        color: kWhiteBackGroundColor,
-        child: Center(
-          child: Container(
-            width: 330.w,
-            height: 55.h,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-                color: kBlueColor
-            ),
-
-            child: Center(child: ButtonText("문의하기", kWhiteBackGroundColor)),
-
-          ),
-        ),
-      ),
+      bottomNavigationBar: HomeDetailBottomBar(_controller),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

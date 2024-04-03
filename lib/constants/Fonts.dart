@@ -31,7 +31,7 @@ Widget Title2Text(String text, Color color){
 }
 
 Widget Title3Text(String text, Color color){
-  return Text("${text}",overflow: TextOverflow.ellipsis, style: TextStyle(color : color, fontSize: 18.sp, fontFamily: "Title3", fontWeight: FontWeight.w600),);
+  return Text("${text}",overflow: TextOverflow.ellipsis, style: TextStyle(color : color, fontSize: 14.sp, fontFamily: "Title3", fontWeight: FontWeight.w700),);
 }
 
 Widget SubTitle1Text(String text, Color color){

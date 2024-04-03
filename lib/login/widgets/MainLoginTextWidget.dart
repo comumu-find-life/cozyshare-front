@@ -11,7 +11,7 @@ Widget MainLoginTextWidget(){
     children: [
       Container(
         margin: EdgeInsets.only(top: 100.h),
-        child: LargeTitleText("Home And Job", kGrey700Color),
+        child: Text("Find Life", style: TextStyle(color: kTextBlackColor, fontFamily: "Title3", fontSize: 32.sp, fontWeight: FontWeight.bold),)
       )
     ],
   );

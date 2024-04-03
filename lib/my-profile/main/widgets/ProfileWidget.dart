@@ -27,7 +27,9 @@ class ProfileWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildProfileImage(),
-          _buildInformation(),
+          Container(
+              margin: EdgeInsets.only(left: 7.w),
+              child: _buildInformation()),
         ],
       ),
     ));

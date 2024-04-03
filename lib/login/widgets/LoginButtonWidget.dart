@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,27 +10,34 @@ import '../controller/MainLoginController.dart';
 class LoginButtonWidget extends StatelessWidget {
   MainLoginController controller;
 
-
   LoginButtonWidget(this.controller);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 50.h),
-      width: 330.w,
-      height: 50.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(6)),
-        color: kBlueColor,
-      ),
-      child: InkWell(
-        onTap: (){
-          controller.login();
-        },
-        child: Center(
-          child: ButtonText("Login", kWhiteBackGroundColor),
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 270.h),
+          child: SubTitle2Text("sign up", kTextBlackColor),
         ),
-      ),
+        Container(
+          margin: EdgeInsets.only(top: 15.h),
+          width: 330.w,
+          height: 50.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(6)),
+            color: kBlueColor,
+          ),
+          child: InkWell(
+            onTap: () {
+              controller.login();
+            },
+            child: Center(
+              child: ButtonText("Login", kWhiteBackGroundColor),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

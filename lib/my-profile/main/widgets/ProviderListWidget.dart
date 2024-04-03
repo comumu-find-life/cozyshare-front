@@ -2,8 +2,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/my-profile/register-home/view/RegisterHomeView.dart';
 
 class ProviderListWidget extends StatelessWidget {
   const ProviderListWidget({super.key});
@@ -55,30 +57,35 @@ class ProviderListWidget extends StatelessWidget {
   }
 
   Widget _registerMyHomeItem( ) {
-    return Container(
-      width: 380.w,
-      height: 50.h,
-      margin: EdgeInsets.only(left: 10.w, top: 15.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
+    return InkWell(
+      onTap: (){
+        Get.to(() => RegisterHomeView());
+      },
+      child: Container(
+        width: 380.w,
+        height: 50.h,
+        margin: EdgeInsets.only(left: 10.w, top: 15.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Container(
 
-                child: Icon(Icons.home_filled, color: kGrey600Color, size: 20.sp,),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 10.w),
-                child: Body2Text("내 집 내놓기", kTextBlackColor),
-              )
-            ],
-          ),
+                  child: Icon(Icons.home_filled, color: kGrey600Color, size: 20.sp,),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10.w),
+                  child: Body2Text("내 집 내놓기", kTextBlackColor),
+                )
+              ],
+            ),
 
-          Container(
-            margin: EdgeInsets.only(right: 15.w, top: 15.h),
-            child: Icon(Icons.arrow_forward_ios_outlined, size: 19.sp,),)
-        ],
+            Container(
+              margin: EdgeInsets.only(right: 15.w, top: 15.h),
+              child: Icon(Icons.arrow_forward_ios_outlined, size: 19.sp,),)
+          ],
+        ),
       ),
     );
   }

@@ -23,11 +23,21 @@ class MyProfileView extends StatelessWidget {
 
     return Obx(() => Scaffold(
         backgroundColor: kGrey100Color,
-        appBar: CommonAppBar(canBack: false, title: '마이 프로필', color: kWhiteBackGroundColor,),
+       // appBar: CommonAppBar(canBack: false, title: '마이 프로필', color: kWhiteBackGroundColor,),
         body: SingleChildScrollView(
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+
+                width: 980.h,
+                color: kWhiteBackGroundColor,
+                height: 85.h,
+                child: Container(
+                  margin: EdgeInsets.only(left: 25.w,top: 45.h),
+                  child: Title3Text("MyProfile", kTextBlackColor),
+                ),
+              ),
               ProfileWidget(controller),
               controller.isProvider?ProviderListWidget():Container()
             ],

@@ -20,7 +20,7 @@ class MainSearchBar extends StatelessWidget {
       width: 340.w,
       height: 50.h,
       decoration: BoxDecoration(
-        color: kGrey200Color,
+        color: kGrey100Color,
         borderRadius: BorderRadius.all(Radius.circular(30))
       ),
       child: InkWell(
