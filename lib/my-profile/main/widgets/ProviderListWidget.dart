@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/my-profile/register-home/view/RegisterHomeView.dart';
+import 'package:home_and_job/my-profile/register-home/view/RegisterHomeImageView.dart';
+
+import '../../../common-widgets/button/ButtonWidgets.dart';
 
 class ProviderListWidget extends StatelessWidget {
   const ProviderListWidget({super.key});
@@ -26,6 +28,8 @@ class ProviderListWidget extends StatelessWidget {
       ),
     );
   }
+
+
 
   Widget _myPostItem( ) {
     return Container(
@@ -59,7 +63,9 @@ class ProviderListWidget extends StatelessWidget {
   Widget _registerMyHomeItem( ) {
     return InkWell(
       onTap: (){
-        Get.to(() => RegisterHomeView());
+
+        Get.to(() => RegisterHomeImageView());
+        //Get.to(() => RegisterHomeImageView());
       },
       child: Container(
         width: 380.w,
