@@ -10,6 +10,8 @@ import '../widgets/MainAppBar.dart';
 import '../widgets/MainSearchBar.dart';
 import '../widgets/SelectTypeWidget.dart';
 
+
+
 class MainView extends StatelessWidget {
   const MainView({super.key});
 

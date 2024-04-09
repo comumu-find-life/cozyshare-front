@@ -55,10 +55,10 @@ class SelectTypeWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
+                    width: 50.w,
+                      height: 50.h,
                       margin: EdgeInsets.only(top: 50.h),
-                      child: Icon(
-                        Icons.home_filled,
-                      )),
+                      child: Image.asset("assets/icons/home_icon.png")),
                   Container(
                     margin: EdgeInsets.only(top: 10.h),
                     child: Body1Text("집 알아보기", kTextBlackColor),
@@ -99,10 +99,10 @@ class SelectTypeWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
+                      width: 50.w,
+                      height: 50.h,
                       margin: EdgeInsets.only(top: 50.h),
-                      child: Icon(
-                        Icons.work_outline,
-                      )),
+                      child: Image.asset("assets/icons/job_icon.png")),
                   Container(
                     margin: EdgeInsets.only(top: 10.h),
                     child: Body1Text("일자리 알아보기", kTextBlackColor),
