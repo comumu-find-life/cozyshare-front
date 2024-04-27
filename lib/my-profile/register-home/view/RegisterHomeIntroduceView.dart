@@ -34,9 +34,8 @@ class RegisterHomeIntroduceView extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 20.h, left: 20.w),
               child:
-              Title2Text("Input Home Introduce", kTextBlackColor),
+              Title2Text("집 설명", kTextBlackColor),
             ),
-            _buildInputShortIntroduce(),
             _buildInputIntroduce(),
             _buildButton()
           ],
@@ -90,7 +89,7 @@ class RegisterHomeIntroduceView extends StatelessWidget {
   Widget _buildInputIntroduce(){
     return Container(
       width: 320.w,
-      height: 360.h,
+      height: 430.h,
       decoration: BoxDecoration(
           border: Border.all(color: kGrey200Color),
           borderRadius: BorderRadius.all(Radius.circular(6))),

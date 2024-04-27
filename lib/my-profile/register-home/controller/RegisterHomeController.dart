@@ -2,12 +2,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:multi_image_picker_plus/multi_image_picker_plus.dart';
 
 class RegisterHomeController extends GetxController {
+  RxList _imageList = [].obs;
   Rx<bool> _isRegisterImage = false.obs;
 
   Rx<bool> _isAllInputAddress = true.obs;
-
   Rx<bool> _isRentType = true.obs;
   Rx<bool> _isShareRoomType = false.obs;
 
@@ -21,7 +23,6 @@ class RegisterHomeController extends GetxController {
   TextEditingController _bedRoomCountController = TextEditingController();
   TextEditingController _bathRoomCountController = TextEditingController();
   TextEditingController _bill = TextEditingController();
-  TextEditingController _shortIntroduceController = TextEditingController();
   TextEditingController _introduceController = TextEditingController();
 
   Rx<String> _selectedState = "ACT".obs;
@@ -49,12 +50,18 @@ class RegisterHomeController extends GetxController {
 
   TextEditingController get detailAddressController => _detailAddressController;
 
-  void registerImage(){
-    _isRegisterImage.value = !_isRegisterImage.value;
+  void registerImage() async{
+    List<Asset> resultList = [];
+    resultList =
+    await MultiImagePicker.pickImages();
+    _imageList.value = resultList;
+    if(resultList.length > 0) {
+      _isRegisterImage.value = true;
+    }
   }
 
 
-
+  List get images =>  _imageList.value;
 
   TextEditingController get depositController => _depositController;
 
@@ -72,12 +79,12 @@ class RegisterHomeController extends GetxController {
 
   TextEditingController get bill => _bill;
 
-  TextEditingController get shortIntroduceController =>
-      _shortIntroduceController;
 
   TextEditingController get introduceController => _introduceController;
 
   bool get isShareRoomType => _isShareRoomType.value;
 
   bool get isRentType => _isRentType.value;
+
+
 }

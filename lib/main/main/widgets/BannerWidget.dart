@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/main/main/controller/MainController.dart';
+import 'package:home_and_job/procted-deal-guild/view/ProctedDealGuidView.dart';
 
 class BannerWidget extends StatefulWidget {
   final MainController mainController;
@@ -58,49 +61,78 @@ class _BannerWidgetState extends State<BannerWidget> {
             });
           },
           children: [
-            Container(
-              margin: EdgeInsets.only(right: 10.w),
+            _buildProtectedDealBanner(),
 
-              width: 200.w,
-              height: 100.h,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: kBlueColor
-              ),
-
-              child: Center(
-                child: Body2Text("광고 배너", kWhiteBackGroundColor),
-              ),
-            ),
-
-            Container(
-              margin: EdgeInsets.only(right: 10.w),
-              width: 200.w,
-              height: 100.h,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: kGrey200Color
-              ),
-              child: Center(
-                child: Body2Text("광고 배너", kWhiteBackGroundColor),
-              ),
-
-            ),
-
-            Container(
-              margin: EdgeInsets.only(right: 10.w),
-              width: 200.w,
-              height: 100.h,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: kGrey300Color
-              ),
-              child: Center(
-                child: Body2Text("광고 배너", kWhiteBackGroundColor),
-              ),
-            ),
+            // Container(
+            //   margin: EdgeInsets.only(right: 10.w),
+            //   width: 200.w,
+            //   height: 100.h,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.all(Radius.circular(10)),
+            //       color: kGrey200Color
+            //   ),
+            //   child: Center(
+            //     child: Body2Text("광고 배너", kWhiteBackGroundColor),
+            //   ),
+            //
+            // ),
+            //
+            // Container(
+            //   margin: EdgeInsets.only(right: 10.w),
+            //   width: 200.w,
+            //   height: 100.h,
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.all(Radius.circular(10)),
+            //       color: kGrey300Color
+            //   ),
+            //   child: Center(
+            //     child: Body2Text("광고 배너", kWhiteBackGroundColor),
+            //   ),
+            // ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildProtectedDealBanner(){
+    return InkWell(
+      onTap: (){
+        Get.to(() => ProctedDealGuide());
+      },
+      child: Container(
+          margin: EdgeInsets.only(right: 10.w),
+
+          width: 200.w,
+          height: 100.h,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: kBlueColor
+          ),
+
+          child: Row(
+            children: [
+              Container(
+                width: 90.w,
+                height: 50.h,
+                child: Image.asset("assets/icons/deal_icon.png"),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Body1Text("안전거래란?", kWhiteBackGroundColor),
+                    ),
+                    Container(
+                      child: Body2Text("보증금 사기 걱정없는 언전거래!", kWhiteBackGroundColor),
+                    )
+                  ],
+                ),
+              )
+            ],
+          )
       ),
     );
   }

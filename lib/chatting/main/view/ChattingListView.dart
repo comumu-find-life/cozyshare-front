@@ -15,11 +15,7 @@ class ChattingListView extends StatelessWidget {
     ChattingController _controller = ChattingController();
 
     return Scaffold(
-      appBar: CommonAppBar(
-        canBack: false,
-        title: "메시지",
-        color: kWhiteBackGroundColor,
-      ),
+      appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -30,6 +26,22 @@ class ChattingListView extends StatelessWidget {
 
           ],
         ),
+      ),
+    );
+  }
+  AppBar _buildAppBar(){
+    return AppBar(
+      backgroundColor: kWhiteBackGroundColor,
+      toolbarHeight: 50.h,
+      automaticallyImplyLeading: false,
+      elevation: 0,
+      title: Row(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10.h,left: 10.w),
+            child: Title2Text("메시지", kTextBlackColor),
+          )
+        ],
       ),
     );
   }

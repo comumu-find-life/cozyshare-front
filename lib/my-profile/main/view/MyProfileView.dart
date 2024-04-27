@@ -35,7 +35,7 @@ class MyProfileView extends StatelessWidget {
                 height: 85.h,
                 child: Container(
                   margin: EdgeInsets.only(left: 25.w,top: 45.h),
-                  child: Title3Text("MyProfile", kTextBlackColor),
+                  child: Title2Text("설정", kTextBlackColor),
                 ),
               ),
               ProfileWidget(controller),

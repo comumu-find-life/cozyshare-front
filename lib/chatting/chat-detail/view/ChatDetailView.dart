@@ -123,8 +123,8 @@ class _ChatDetailViewState extends State<ChatDetailView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: kDarkBlue,
-      toolbarHeight: 50,
+      backgroundColor: kBlueColor,
+      toolbarHeight: 55,
       title: Column(
         children: [
           Row(
@@ -157,16 +157,27 @@ class _ChatDetailViewState extends State<ChatDetailView> {
               ),
               InkWell(
                 onTap: (){
-                  // 안전거래 시작 로직
+                  
                 },
                 child: Container(
-                  width: 80.w,
-                  height: 35.h,
+                  margin: EdgeInsets.only(right: 5.w,top: 5.h),
+                  width: 110.w,
+                  height: 45.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    color: kLightBlue
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      color: kDarkBlue
                   ),
-                  child: Center(child: SubTitle2Text("안전거래", kWhiteBackGroundColor)),
+                  child: Center(child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: Icon(Icons.verified_user,color: kWhiteBackGroundColor,),
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(right: 10.w, left: 5.w),
+                          child: Body2Text("안전거래", kWhiteBackGroundColor)),
+                    ],
+                  )),
                 ),
               )
             ],

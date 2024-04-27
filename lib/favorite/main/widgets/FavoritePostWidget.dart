@@ -55,7 +55,7 @@ class FavoritePostWidget extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(right: 7.w),
               width: 120.w,
-              height: 110.h,
+              height: 120.h,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset("assets/images/test/home.png", fit: BoxFit.cover,)
@@ -71,7 +71,7 @@ class FavoritePostWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        child: Title3Text("경기도 안산시 오목로 11길 5", kTextBlackColor),
+                        child: Title3Text("WAS 멜버른 postcode", kTextBlackColor),
                       ),
                       Container(
                         child: Icon(Icons.favorite, size: 15.sp, color: Colors.red,),
@@ -81,11 +81,27 @@ class FavoritePostWidget extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 10.h),
-                  child: Body2Text("방3 화장실1", kGrey500Color),
+                  child: Body2Text("2000\$ / 150\$", kGrey500Color),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 5.h),
-                  child: Body2Text("월세", kGrey600Color),
+                  margin: EdgeInsets.only(right: 15.w,top: 10.h),
+                  width: 110.w,
+                  height: 35.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      color: kDarkBlue
+                  ),
+                  child: Center(child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: Icon(Icons.verified_user,color: kWhiteBackGroundColor, size: 17.sp,),
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(right: 10.w, left: 5.w),
+                          child: Body2Text("안전거래", kWhiteBackGroundColor)),
+                    ],
+                  )),
                 )
               ],
             )

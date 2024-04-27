@@ -23,7 +23,7 @@ class MainView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            MainSearchBar(controller),
+            //MainSearchBar(controller),
             SelectTypeWidget(controller),
             BannerWidget(controller),
             HotPostWidget(controller)

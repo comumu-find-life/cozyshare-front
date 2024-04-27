@@ -46,7 +46,7 @@ class RegisterHomeAddressView extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: 20.h,left: 20.w),
-                    child: Title2Text("Input Address", kTextBlackColor),
+                    child: Title2Text("집 주소 정보", kTextBlackColor),
                   ),
                   Row(
                     children: [
@@ -97,7 +97,7 @@ class RegisterHomeAddressView extends StatelessWidget {
       margin: EdgeInsets.only(top: 20.h, left: 20.w),
       child: TextFormField(
         onChanged: (text) {},
-        controller: _controller.detailAddressController,
+        controller: _controller.cityController,
         style: TextStyle(color: Colors.black),
         // 텍스트 색상을 검정색으로 설정
         textAlign: TextAlign.left,
@@ -106,7 +106,7 @@ class RegisterHomeAddressView extends StatelessWidget {
         cursorColor: kTextBlackColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-          hintText: "City Name ex) Melbourne",
+          hintText: "City 이름 입력",
           hintStyle: TextStyle(
               fontSize: 13.sp,
               color: Colors.grey.shade500,

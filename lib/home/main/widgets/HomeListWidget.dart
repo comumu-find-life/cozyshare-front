@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/home/home-detail/view/HomeDetailView.dart';
+import 'package:home_and_job/model/home/response/HomeResponse.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
@@ -18,25 +19,27 @@ class HomeListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    List<HomeResponse> homes = [homeResponseTest1,homeResponseTest2,homeResponseTest3,homeResponseTest4,homeResponseTest5];
     return Container(
         width: 365.w,
         height: 600.h,
         child: ListView.builder(
             physics: BouncingScrollPhysics(),
-            itemCount: 100,
+            itemCount: homes.length,
             itemBuilder: (BuildContext ctx, int idx) {
-              return _buildHomeItem();
+              return _buildHomeItem(homes[idx]);
             }));
   }
 
-  Widget _buildHomeItem() {
+  Widget _buildHomeItem(HomeResponse homeResponse) {
     return InkWell(
       onTap: () {
-        Get.to(() => HomeDetailView());
+        Get.to(() => HomeDetailView(homeResponse));
       },
       child: Container(
         margin: EdgeInsets.only(top: 10.h),
-        height: 150.h,
+        height: 160.h,
         width: 350.w,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(7)),
@@ -66,26 +69,45 @@ class HomeListWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   Container(
-                    margin: EdgeInsets.only(top: 10.h),
-                    child: HelperText("one room", kTextBlackColor),
+                    width: 250.w
+                    ,
+                    margin: EdgeInsets.only(top: 15.h),
+                    child: Title3Text("WAC 2000 멜버른 Street Name", kTextBlackColor),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 5.h),
-                    child: Title3Text("address here", kTextBlackColor),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 5.h),
+                    margin: EdgeInsets.only(top: 15.h),
                     child:
-                    Body2Text("46.44 m - 2 floor", kGrey800Color),
+                    Body2Text("보증금 : 2000\$", kGrey800Color),
                   ),
                   Container(
                     width: 250.w,
                     margin: EdgeInsets.only(top: 5.h),
                     child: Body2Text(
-                        "this room is clean! and near by subway",
+                        "주세 : 200\$",
                         kTextBlackColor),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(right: 15.w,top: 10.h),
+                    width: 130.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        color: kDarkBlue
+                    ),
+                    child: Center(child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Icon(Icons.verified_user,color: kWhiteBackGroundColor,),
+                        ),
+                        Container(
+                            margin: EdgeInsets.only(right: 10.w, left: 5.w),
+                            child: Body2Text("안전거래", kWhiteBackGroundColor)),
+                      ],
+                    )),
+                  )
                 ],
               ),
             )

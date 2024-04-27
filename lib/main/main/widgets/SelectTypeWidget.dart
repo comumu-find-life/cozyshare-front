@@ -15,7 +15,7 @@ class SelectTypeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 40.h),
+        margin: EdgeInsets.only(top: 20.h),
         width: 340.w,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

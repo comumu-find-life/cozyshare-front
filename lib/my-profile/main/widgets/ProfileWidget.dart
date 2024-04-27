@@ -95,12 +95,12 @@ class ProfileWidget extends StatelessWidget {
 
   Widget _buildProfileImage() {
     return Container(
-      margin: EdgeInsets.only(top: 15.h),
-      width: 100.w,
-      height: 100.h,
-      decoration: BoxDecoration(
-        color: kGrey200Color,
-        shape: BoxShape.circle
+      margin: EdgeInsets.only(top: 10.h,left: 20.w),
+      width: 80.w,
+      height: 80.h,
+      child: CircleAvatar(
+        backgroundColor: kGrey200Color,
+        backgroundImage: AssetImage("assets/images/test/man.png"),
       ),
     );
   }

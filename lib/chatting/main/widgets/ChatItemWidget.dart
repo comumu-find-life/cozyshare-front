@@ -22,6 +22,9 @@ class ChatItemWidget extends StatelessWidget {
         Get.to(() => ChatDetailView(user));
       },
       child: Container(
+        decoration: BoxDecoration(
+
+        ),
         margin: EdgeInsets.only(top: 30.h,left: 20.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +35,7 @@ class ChatItemWidget extends StatelessWidget {
                 Container(
                   child: CircleAvatar(
                     backgroundColor: kGrey200Color,
-                    backgroundImage: AssetImage("assets/images/test/user.png"),
+                    backgroundImage: AssetImage("assets/images/test/man.png"),
                   ),
                 ),
                 Container(
@@ -40,23 +43,28 @@ class ChatItemWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(width: 280.w,
+                      Container(width: 250.w,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              child: Body1Text("사용자 닉네임", kTextBlackColor),
+                              child: Body1Text("신민석", kTextBlackColor),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(left: 10.w),
-                              child: HelperText("02.15", kGrey500Color),
-                            )
+
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: 5.h),
-                        child: Body2Text("방 있나요?", kGrey600Color),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(top: 5.h),
+                            child: Body2Text("방 있나요?", kGrey600Color),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10.w),
+                            child: HelperText("02.15", kGrey500Color),
+                          )
+                        ],
                       )
                     ],
                   ),
@@ -64,19 +72,19 @@ class ChatItemWidget extends StatelessWidget {
 
               ],
             ),
-            // Container(
-            //   margin: EdgeInsets.only(right: 20.w),
-            //   width: 50.w,
-            //   height: 30.h,
-            //   decoration: BoxDecoration(
-            //       color: kErrorColor,
-            //       borderRadius: BorderRadius.all(Radius.circular(10))
-            //   ),
-            //
-            //   child: Center(
-            //     child: Body2Text("안 읽음", kWhiteBackGroundColor),
-            //   ),
-            // )
+            Container(
+              width: 28.w,
+              height: 28.h,
+              margin: EdgeInsets.only(right: 10.w),
+              decoration: BoxDecoration(
+
+                shape: BoxShape.circle,
+                color: kErrorColor
+              ),
+              child: Center(child: ButtonText("1", kWhiteBackGroundColor)),
+            ),
+
+
           ],
         ),
       ),

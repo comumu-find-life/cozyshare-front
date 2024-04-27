@@ -52,11 +52,11 @@ class _MainFrameView extends State<MainFrameView> {
           },
           [
             Icons.home_filled,
-            Icons.favorite_border,
+            Icons.favorite,
             Icons.chat,
             Icons.person_2_outlined
           ],
-          ["홈", "찜목록", "메시지", "프로필"],
+          ["홈", "관심 목록", "메시지", "설정"],
         ),
         body: admin_screens[admin_selectedItem]);
   }

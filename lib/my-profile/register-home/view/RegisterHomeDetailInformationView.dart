@@ -31,7 +31,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(top: 20.h, left: 20.w),
                     child:
-                        Title2Text("Input Home Information", kTextBlackColor),
+                        Title2Text("집 상세 정보", kTextBlackColor),
                   ),
                   buildInputHomeType(),
                   Row(
@@ -77,7 +77,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
                   color: kTextBlackColor,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Rent", kWhiteBackGroundColor),
+                child: Body2Text("렌트", kWhiteBackGroundColor),
               ),
             )
                 : Container(
@@ -87,7 +87,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
                   border: Border.all(color: kGrey400Color),
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Rent", kGrey600Color),
+                child: Body2Text("렌트", kGrey600Color),
               ),
             ),
           ),
@@ -104,7 +104,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
                   color: kTextBlackColor,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Share", kWhiteBackGroundColor),
+                child: Body2Text("쉐어", kWhiteBackGroundColor),
               ),
             )
                 : Container(
@@ -115,7 +115,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
                   border: Border.all(color: kGrey400Color),
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Share", kGrey600Color),
+                child: Body2Text("쉐어", kGrey600Color),
               ),
             ),
           )
@@ -152,7 +152,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
               cursorColor: kTextBlackColor,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-                hintText: "Input Deposit",
+                hintText: "보증금",
                 hintStyle: TextStyle(
                     fontSize: 13.sp,
                     color: Colors.grey.shade500,
@@ -188,7 +188,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
         cursorColor: kTextBlackColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-          hintText: "Input Bill Per Week",
+          hintText: "주세",
           hintStyle: TextStyle(
               fontSize: 13.sp,
               color: Colors.grey.shade500,
@@ -226,7 +226,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
             cursorColor: kTextBlackColor,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-              hintText: "Input Room Count",
+              hintText: "방 개수",
               hintStyle: TextStyle(
                   fontSize: 13.sp,
                   color: Colors.grey.shade500,
@@ -266,7 +266,7 @@ class RegisterHomeDetailInformationView extends StatelessWidget {
             cursorColor: kTextBlackColor,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-              hintText: "Input BathRoom Count",
+              hintText: "화장실 개수",
               hintStyle: TextStyle(
                   fontSize: 13.sp,
                   color: Colors.grey.shade500,

@@ -1,0 +1,3 @@
+enum HomeType{
+  RENT, SHARE
+}

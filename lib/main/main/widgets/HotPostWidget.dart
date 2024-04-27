@@ -178,7 +178,11 @@ class HotPostWidget extends StatelessWidget {
             height: 25.h,
             decoration: BoxDecoration(
                 color: Colors.red,
-                borderRadius: BorderRadius.all(Radius.circular(40)),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
                 border: Border.all(color: Colors.red)),
             child: Center(
               child: Body2Text("HOT", kWhiteBackGroundColor),
