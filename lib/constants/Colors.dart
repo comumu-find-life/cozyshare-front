@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+const kChatPrimaryColor = Color(0xff7C7B9B);
+const kChatBackGround = Color(0xffadb1ba);
+const kLightBlue = Color(0xffabbed9);
+const kDarkBlue = Color(0xff2b548f);
 const kBlueColor = Color(0xff4b8bf2);
 const kWhiteBackGroundColor = Color(0xffFFFFFF);
 const kYellowColor = Color(0xffFF9D00);

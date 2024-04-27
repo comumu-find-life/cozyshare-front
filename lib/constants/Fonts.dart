@@ -46,6 +46,11 @@ Widget HintText(String text, Color color){
   return Text("${text}", style: TextStyle(color : color, fontSize: 14.sp, fontFamily: "Hint", fontWeight: FontWeight.w500),);
 }
 
+
+Widget HintText2(String text, Color color){
+  return Text("${text}", style: TextStyle(color : color, fontSize: 10.sp, fontFamily: "Hint", fontWeight: FontWeight.w100),);
+}
+
 Widget ChipText(String text, Color color){
   return Text("${text}", style: TextStyle(color : color, fontSize: 16.sp, fontFamily: "Chip", fontWeight: FontWeight.w600),);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
@@ -26,9 +27,7 @@ class HomeDetailView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: Image.asset("assets/images/test/home.png"),
-            ),
+            _buildHomeImages(),
             _buildMainText(),
             Container(
               margin: EdgeInsets.only(top: 30.h),
@@ -39,6 +38,30 @@ class HomeDetailView extends StatelessWidget {
             _buildListItem(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildHomeImages() {
+    return Container(
+      height: 200.0,
+      child: PageView(
+        children: [
+          Image.asset(
+            "assets/images/test/home.png",
+            fit: BoxFit.cover,
+          ),
+          Image.asset(
+            "assets/images/test/home1.png",
+            fit: BoxFit.cover,
+          ),
+          Image.asset(
+            "assets/images/test/home2.png",
+            fit: BoxFit.cover,
+          ),
+
+          // 여러 개의 이미지를 추가할 수 있습니다.
+        ],
       ),
     );
   }
@@ -112,21 +135,46 @@ class HomeDetailView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 10.h),
-            child: Body2Text("인천시 남동구 구월동", kTextBlackColor),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: 200.w,
+                margin: EdgeInsets.only(top: 10.h),
+                child: Body2Text("23 prospect road summer hill", kTextBlackColor),
+              ),
+              Container(
+                margin: EdgeInsets.only(right: 10.w),
+                width: 130.w,
+                height: 50.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  color: kBlueColor
+                ),
+                child: Center(child: Body2Text("안전거래 가능 매물", kWhiteBackGroundColor)),
+              )
+            ],
           ),
           Container(
             margin: EdgeInsets.only(top: 10.h),
-            child: Title1Text("월세 20/ 22", kTextBlackColor),
+            child: Title2Text("보증금 1000 \$", kTextBlackColor),
           ),
           Container(
             margin: EdgeInsets.only(top: 5.h),
-            child: Body1Text("관리비 없음", kTextBlackColor),
+            child: Title2Text("주 200 \$", kTextBlackColor),
           ),
           Container(
+            margin: EdgeInsets.only(top: 30.h,right: 10.w),
+            width: 380.w,
+            height: 1.h,
+            color: kGrey200Color,
+          ),
+
+          Container(
+            width: 330.w,
             margin: EdgeInsets.only(top: 15.h),
-            child: Body1Text("집 한줄 소개.....", kTextBlackColor),
+            child: Body2Text("4월 28일부터 이사 가능합니다. \n\n 올워스 5분거리 IGA 1분거리 있습니다. \n\n최소 한달 이상 계약이고, 3배드 2바쓰입니다. 파티룸이 아닌 조용하고 편안한 휴식을 취하실 분들을 위한 집입니다.", kTextBlackColor),
           ),
         ],
       ),

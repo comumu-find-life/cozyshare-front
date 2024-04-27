@@ -1,21 +1,17 @@
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 
-class GetterMapView extends StatefulWidget {
-  const GetterMapView({Key? key}) : super(key: key);
+class SaveDealGuideLineView extends StatelessWidget {
+  const SaveDealGuideLineView({super.key});
 
-  @override
-  _GetterMapViewState createState() => _GetterMapViewState();
-}
-
-class _GetterMapViewState extends State<GetterMapView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(color: kWhiteBackGroundColor, canBack: true, title: "", ),
+      appBar: CommonAppBar(canBack: true,color: kWhiteBackGroundColor,title: "",),
       body: SingleChildScrollView(
         child: Column(
           children: [

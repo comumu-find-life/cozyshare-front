@@ -1,8 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 
-class HomeDetailWidget extends StatelessWidget {
-  const HomeDetailWidget({super.key});
+class HomeImagesWidget extends StatelessWidget {
+  const HomeImagesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
