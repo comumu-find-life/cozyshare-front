@@ -90,8 +90,8 @@ class HomeListWidget extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(right: 15.w,top: 10.h),
-                    width: 130.w,
-                    height: 40.h,
+                    width: 100.w,
+                    height: 35.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                         color: kDarkBlue
@@ -100,11 +100,11 @@ class HomeListWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          child: Icon(Icons.verified_user,color: kWhiteBackGroundColor,),
+                          child: Icon(Icons.verified_user,color: kWhiteBackGroundColor, size: 18.sp,),
                         ),
                         Container(
                             margin: EdgeInsets.only(right: 10.w, left: 5.w),
-                            child: Body2Text("안전거래", kWhiteBackGroundColor)),
+                            child: HintText2("안전거래", kWhiteBackGroundColor)),
                       ],
                     )),
                   )

@@ -121,7 +121,7 @@ class HotPostWidget extends StatelessWidget {
               controller.selectHotPost(1);
             },
             child: Container(
-              width: 90.w,
+              width: 60.w,
               height: 40.h,
               decoration: controller.selectHome
                   ? BoxDecoration(
@@ -133,7 +133,7 @@ class HotPostWidget extends StatelessWidget {
                       color: kWhiteBackGroundColor,
                       border: Border.all(color: kGrey300Color)),
               child: Center(
-                child: Body2Text("집 게시글",controller.selectHome? kWhiteBackGroundColor : kGrey700Color),
+                child: Body2Text("렌트",controller.selectHome? kWhiteBackGroundColor : kGrey700Color),
               ),
             ),
           ),
@@ -155,7 +155,7 @@ class HotPostWidget extends StatelessWidget {
                   color: kWhiteBackGroundColor,
                   border: Border.all(color: kGrey300Color)),
               child: Center(
-                child: Body2Text("알바 게시글", controller.selectJob? kWhiteBackGroundColor : kGrey700Color),
+                child: Body2Text("쉐어 하우스", controller.selectJob? kWhiteBackGroundColor : kGrey700Color),
               ),
             ),
           )

@@ -8,7 +8,8 @@ import '../controller/MainController.dart';
 import '../widgets/HotPostWidget.dart';
 import '../widgets/MainAppBar.dart';
 import '../widgets/MainSearchBar.dart';
-import '../widgets/SelectTypeWidget.dart';
+import '../widgets/PostHomeWidget.dart';
+import '../widgets/SearchHomeWidget.dart';
 
 
 
@@ -19,12 +20,13 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     MainController controller = MainController();
     return Scaffold(
-      appBar: MainAppBar(),
+      //appBar: MainAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             //MainSearchBar(controller),
-            SelectTypeWidget(controller),
+            PostHomeWidget(controller),
+            SearchHomeWidget(controller),
             BannerWidget(controller),
             HotPostWidget(controller)
           ],

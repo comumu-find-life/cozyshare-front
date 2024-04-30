@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
-import 'package:home_and_job/chatting/chat-detail/widgets/MyMessageWidget.dart';
-import 'package:home_and_job/chatting/chat-detail/widgets/OpponentMessageWidget.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
+import '../../procted-deal/provider-deal-generator/view/ProctedDealStartView.dart';
 import '../widgets/ChatComposer.dart';
 import '../widgets/Conversation.dart';
 
@@ -66,7 +66,7 @@ class _ChatDetailViewState extends State<ChatDetailView> {
         ));
   }
 
-  Widget _buildPostInformation(){
+  Widget _buildPostInformation() {
     return Container(
       width: 380.w,
       height: 70.h,
@@ -123,8 +123,8 @@ class _ChatDetailViewState extends State<ChatDetailView> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: kBlueColor,
-      toolbarHeight: 55,
+      backgroundColor: kBackgroundBlue,
+      toolbarHeight: 60,
       title: Column(
         children: [
           Row(
@@ -138,9 +138,10 @@ class _ChatDetailViewState extends State<ChatDetailView> {
                     },
                     child: Container(
                         child: Icon(
-                          Icons.arrow_back_ios,
-                          color: kWhiteBackGroundColor,
-                        )),
+                      Icons.arrow_back_ios,
+                      color: kTextBlackColor,
+                          size: 18.sp,
+                    )),
                   ),
                   Row(
                     children: [
@@ -148,7 +149,9 @@ class _ChatDetailViewState extends State<ChatDetailView> {
                         margin: EdgeInsets.only(left: 3.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [SubTitle1Text("신민석", kWhiteBackGroundColor)],
+                          children: [
+                            SubTitle1Text("신민석", kTextBlackColor)
+                          ],
                         ),
                       ),
                     ],
@@ -156,26 +159,24 @@ class _ChatDetailViewState extends State<ChatDetailView> {
                 ],
               ),
               InkWell(
-                onTap: (){
-                  
+                onTap: () {
+                  Get.to(() => ProtectedDealStartView());
                 },
                 child: Container(
-                  margin: EdgeInsets.only(right: 5.w,top: 5.h),
-                  width: 110.w,
-                  height: 45.h,
+                  margin: EdgeInsets.only(right: 5.w, top: 0.h),
+                  width: 120.w,
+                  height: 40.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
-                      color: kDarkBlue
-                  ),
-                  child: Center(child: Row(
+                      color: kDarkBlue),
+                  child: Center(
+                      child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        child: Icon(Icons.verified_user,color: kWhiteBackGroundColor,),
-                      ),
-                      Container(
                           margin: EdgeInsets.only(right: 10.w, left: 5.w),
-                          child: Body2Text("안전거래", kWhiteBackGroundColor)),
+                          child:
+                              Helper2Text("안전거래 시작하기", kWhiteBackGroundColor)),
                     ],
                   )),
                 ),

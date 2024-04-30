@@ -22,6 +22,11 @@ Widget PretandardText(String text, Color color){
   return Text("${text}", style: TextStyle(color : color, fontSize: 18.sp, fontFamily: "Pretandard", fontWeight: FontWeight.w600),);
 }
 
+
+Widget NumberText(String text, Color color, int fontSize){
+  return Text("${text}", style: TextStyle(color : color, fontSize: fontSize.sp, fontFamily: "Number", fontWeight: FontWeight.w600),);
+}
+
 Widget Title1Text(String text, Color color){
   return Text("${text}", style: TextStyle(color : color, fontSize: 24.sp , fontFamily: "Title1", fontWeight: FontWeight.w900),);
 }
@@ -43,12 +48,16 @@ Widget SubTitle2Text(String text, Color color){
 }
 
 Widget HintText(String text, Color color){
-  return Text("${text}", style: TextStyle(color : color, fontSize: 14.sp, fontFamily: "Hint", fontWeight: FontWeight.w500),);
+  return Text("${text}", style: TextStyle(color : color, fontSize: 20.sp, fontFamily: "Hint", fontWeight: FontWeight.w100),);
 }
 
 
 Widget HintText2(String text, Color color){
-  return Text("${text}", style: TextStyle(color : color, fontSize: 10.sp, fontFamily: "Hint", fontWeight: FontWeight.w100),);
+  return Text("${text}", style: TextStyle(color : color, fontSize: 12.sp, fontFamily: "Hint", fontWeight: FontWeight.w100),);
+}
+
+Widget HintText3(String text, Color color){
+  return Text("${text}", style: TextStyle(color : color, fontSize: 13.sp, fontFamily: "Hint", fontWeight: FontWeight.bold),);
 }
 
 Widget ChipText(String text, Color color){
@@ -60,9 +69,9 @@ Widget ButtonText(String text, Color color){
 }
 
 Widget HelperText(String text, Color color){
-  return Text("${text}", style: TextStyle(color : color, fontSize: 11.sp , fontFamily: "Helper", fontWeight: FontWeight.w500),);
+  return Text("${text}", style: TextStyle(color : color, fontSize: 12.sp , fontFamily: "Helper", fontWeight: FontWeight.w500),);
 }
 
 Widget Helper2Text(String text, Color color){
-  return Text("${text}", style: TextStyle(color : color, fontSize: 14.sp , fontFamily: "Helper2", fontWeight: FontWeight.w500),);
+  return Text("${text}", style: TextStyle(color : color, fontSize: 13.sp , fontFamily: "Helper2", fontWeight: FontWeight.w500),);
 }

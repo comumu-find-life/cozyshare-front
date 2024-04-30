@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:home_and_job/home/home-map/view/GetterMapView.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
@@ -26,9 +28,14 @@ class HomeHeaderWidget extends StatelessWidget {
                 margin: EdgeInsets.only(top: 10.h),
                 child: Title2Text("23 prospect road summer hill", kTextBlackColor),
               ),
-              Container(
-                margin: EdgeInsets.only(right: 20.w),
-                child: Icon(Icons.location_pin, color: kDarkBlue,size: 30.sp,),
+              InkWell(
+                onTap: (){
+                  Get.to(() => HomeMapView());
+                },
+                child: Container(
+                  margin: EdgeInsets.only(right: 20.w),
+                  child: Icon(Icons.location_pin, color: kDarkBlue,size: 30.sp,),
+                ),
               )
             ],
           ),

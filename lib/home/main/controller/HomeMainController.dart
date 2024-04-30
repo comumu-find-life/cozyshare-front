@@ -4,7 +4,7 @@ import 'package:get/get_rx/get_rx.dart';
 
 class HomeMainController extends GetxController {
   Rx<bool> _selectRentHome = true.obs;
-  Rx<bool> _selectShareHome = true.obs;
+  Rx<bool> _selectShareHome = false.obs;
 
   TextEditingController _searchController = TextEditingController();
 

@@ -47,49 +47,51 @@ class _BannerWidgetState extends State<BannerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 40.h),
-      child: SizedBox(
-        height: 75.h,
+    return Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 40.h, left: 10.w),
+        child: SizedBox(
+          height: 75.h,
 
-        width: 320.w,// 배너 높이 조절
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (int page) {
-            setState(() {
-              _currentPage = page;
-            });
-          },
-          children: [
-            _buildProtectedDealBanner(),
+          width: 330.w,// 배너 높이 조절
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (int page) {
+              setState(() {
+                _currentPage = page;
+              });
+            },
+            children: [
+              _buildProtectedDealBanner(),
 
-            // Container(
-            //   margin: EdgeInsets.only(right: 10.w),
-            //   width: 200.w,
-            //   height: 100.h,
-            //   decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.all(Radius.circular(10)),
-            //       color: kGrey200Color
-            //   ),
-            //   child: Center(
-            //     child: Body2Text("광고 배너", kWhiteBackGroundColor),
-            //   ),
-            //
-            // ),
-            //
-            // Container(
-            //   margin: EdgeInsets.only(right: 10.w),
-            //   width: 200.w,
-            //   height: 100.h,
-            //   decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.all(Radius.circular(10)),
-            //       color: kGrey300Color
-            //   ),
-            //   child: Center(
-            //     child: Body2Text("광고 배너", kWhiteBackGroundColor),
-            //   ),
-            // ),
-          ],
+              Container(
+                margin: EdgeInsets.only(right: 10.w),
+                width: 200.w,
+                height: 100.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: kGrey200Color
+                ),
+                child: Center(
+                  child: Body2Text("광고 배너", kWhiteBackGroundColor),
+                ),
+
+              ),
+
+              Container(
+                margin: EdgeInsets.only(right: 10.w),
+                width: 200.w,
+                height: 100.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: kGrey300Color
+                ),
+                child: Center(
+                  child: Body2Text("광고 배너", kWhiteBackGroundColor),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

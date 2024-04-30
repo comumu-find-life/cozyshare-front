@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/home/main/controller/HomeMainController.dart';
+import 'package:home_and_job/home/main/widgets/HomeAddFloatingButton.dart';
 import 'package:home_and_job/home/main/widgets/HomeListWidget.dart';
 import 'package:home_and_job/home/main/widgets/SelectHomeTypeWidget.dart';
 
@@ -25,6 +26,7 @@ class _HomeMainView extends State<HomeMainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: OldGoalFloatingButton(),
       appBar: HomeAppBar(),
 
       body: SingleChildScrollView(
