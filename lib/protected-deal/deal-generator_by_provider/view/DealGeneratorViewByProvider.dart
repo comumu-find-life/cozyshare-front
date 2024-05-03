@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
-import 'package:home_and_job/chatting/procted-deal/provider-deal-generator/controller/ProtectedDealGeneratorController.dart';
-import 'package:home_and_job/chatting/procted-deal/provider-deal-generator/widgets/DealInformationHeaderWidget.dart';
-import 'package:home_and_job/chatting/procted-deal/provider-deal-generator/widgets/ProviderAccountFormWidget.dart';
-import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
-import 'ProtectedDealGeneratorView.dart';
+import '../controller/DealGeneratorController.dart';
+import '../widgets/DealInformationHeaderWidget.dart';
+import '../widgets/ProviderAccountFormWidget.dart';
+import 'DealGeneratorFinalViewByProvider.dart';
 
-class ProtectedDealStartView extends StatelessWidget {
-  ProtectedDealGeneratorController _controller =
-      ProtectedDealGeneratorController();
+/**
+ * Provider 가 안전 거래를 생성하는 화면
+ */
+class DealGeneratorViewByProvider extends StatelessWidget {
+  DealGeneratorController _controller =
+      DealGeneratorController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +59,7 @@ class ProtectedDealStartView extends StatelessWidget {
                     onPressed: () {
                       //_controller.ontapStep1Next();
                       Get.to(
-                        () => ProtectedDealGeneratorView(_controller),
+                        () => DealGeneratorFinalViewByProvider(_controller),
                       );
                     },
                     child: ButtonText("다음", kWhiteBackGroundColor),

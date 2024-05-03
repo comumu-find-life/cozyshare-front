@@ -21,8 +21,6 @@ class ChattingListView extends StatelessWidget {
           children: [
             ChatItemWidget(),
             ChatItemWidget(),
-            ChatItemWidget(),
-            ChatItemWidget(),
 
           ],
         ),

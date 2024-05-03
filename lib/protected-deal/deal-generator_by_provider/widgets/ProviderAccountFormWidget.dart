@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../../constants/Colors.dart';
-import '../controller/ProtectedDealGeneratorController.dart';
+import '../controller/DealGeneratorController.dart';
 
 class ProviderAccountFormWidget extends StatelessWidget {
-  ProtectedDealGeneratorController _controller;
+  DealGeneratorController _controller;
 
 
   ProviderAccountFormWidget(this._controller);

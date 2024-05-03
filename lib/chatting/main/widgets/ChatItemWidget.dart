@@ -12,7 +12,6 @@ import '../../../constants/Fonts.dart';
 class ChatItemWidget extends StatelessWidget {
 
 
-
   @override
   Widget build(BuildContext context) {
 

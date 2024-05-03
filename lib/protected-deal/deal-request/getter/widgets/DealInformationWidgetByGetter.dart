@@ -1,18 +1,19 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../../constants/Colors.dart';
 
-class FinalDealInformationWidget extends StatelessWidget {
-  const FinalDealInformationWidget({super.key});
+class DealInformationWidgetByGetter extends StatelessWidget {
+  const DealInformationWidgetByGetter({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 20.w, top: 30.h),
-      width: 340.w,
-      height: 280.h,
+      margin: EdgeInsets.only(left: 0.w, top: 30.h),
+      width: 350.w,
+      height: 200.h,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           border: Border.all(color: kGrey200Color)),
@@ -20,9 +21,8 @@ class FinalDealInformationWidget extends StatelessWidget {
         children: [
           _buildBond(),
           _buildCharge(),
-          _buildName(),
-          _buildAccountInformation(),
           _buildTotalPrice(),
+
         ],
       ),
     );

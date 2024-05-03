@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:home_and_job/chatting/procted-deal/provider-deal-generator/widgets/FinalDealInformationWidget.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
-import '../controller/ProtectedDealGeneratorController.dart';
+import '../controller/DealGeneratorController.dart';
+import '../widgets/FinalDealInformationWidget.dart';
 
-class ProtectedDealGeneratorView extends StatelessWidget {
-  ProtectedDealGeneratorController _controller;
+class DealGeneratorFinalViewByProvider extends StatelessWidget {
+  DealGeneratorController _controller;
 
-  ProtectedDealGeneratorView(this._controller);
+  DealGeneratorFinalViewByProvider(this._controller);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ProtectedDealGeneratorView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildHeader(),
-            FinalDealInformationWidget(),
+            Center(child: FinalDealInformationWidget()),
           ],
         ),
       ),
@@ -57,6 +57,8 @@ class ProtectedDealGeneratorView extends StatelessWidget {
                   shadowColor: Colors.transparent, // 그림자 없애기
                 ),
                 onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
                   //_controller.ontapStep1Next();
                   // Get.to(() => ChargePointAccountView(), transition: Transition.rightToLeftWithFade);
                 },

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
-class ProtectedDealGeneratorController extends GetxController{
+class DealGeneratorController extends GetxController{
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _bankController = TextEditingController();

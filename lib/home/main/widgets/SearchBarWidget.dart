@@ -42,11 +42,11 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
             cityName == ""
                 ? Container(
                     margin: EdgeInsets.only(left: 10.w),
-                    child: HintText("Search By City Name", kGrey300Color),
+                    child: HintText3("주소 검색", kGrey300Color),
                   )
                 : Container(
                     margin: EdgeInsets.only(left: 10.w),
-                    child: HintText(cityName, kGrey300Color),
+                    child: HintText3(cityName, kGrey300Color),
                   ),
             Container(
               margin: EdgeInsets.only(right: 10.w),

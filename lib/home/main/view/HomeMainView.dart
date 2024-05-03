@@ -26,8 +26,9 @@ class _HomeMainView extends State<HomeMainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: OldGoalFloatingButton(),
+      //floatingActionButton: OldGoalFloatingButton(),
       appBar: HomeAppBar(),
+      backgroundColor: kWhiteBackGroundColor,
 
       body: SingleChildScrollView(
         child: Column(
@@ -41,5 +42,4 @@ class _HomeMainView extends State<HomeMainView> {
       ),
     );
   }
-
 }

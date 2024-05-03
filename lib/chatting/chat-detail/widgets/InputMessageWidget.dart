@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Container buildChatComposer() {
+// 채팅 입력 폼 위젯
+Container InputMessageWidget() {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 20),
     color: Colors.white,
