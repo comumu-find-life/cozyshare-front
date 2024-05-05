@@ -48,6 +48,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   multi_image_picker_plus: ^0.0.4
   flutter_keyboard_visibility: ^6.0.0
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
   assets:
     #    #    - .env
     - assets/images/test/
+    - assets/images/cities/
     - assets/icons/
     - assets/images/common/
     - assets/json/
@@ -92,6 +94,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: FBold
+      fonts:
+        - asset: assets/fonts/FBold.ttf
+    - family: FRegular
+      fonts:
+        - asset: assets/fonts/FRegular.ttf
+    - family: FThin
+      fonts:
+        - asset: assets/fonts/FThin.ttf
     - family: Body1
       fonts:
         - asset: assets/fonts/Body1.otf

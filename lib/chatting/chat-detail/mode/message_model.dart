@@ -70,12 +70,12 @@ final List<Message> messages = [
     text: "",
     isDeal: 2,
   ),
-  Message(
-    sender: addison,
-    // 보낸 사람
-    time: '12:09 AM',
-    avatar: addison.avatar,
-    text: "",
-    isDeal: 3,
-  ),
+  // Message(
+  //   sender: addison,
+  //   // 보낸 사람
+  //   time: '12:09 AM',
+  //   avatar: addison.avatar,
+  //   text: "",
+  //   isDeal: 3,
+  // ),
 ];

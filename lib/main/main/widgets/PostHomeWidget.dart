@@ -17,13 +17,13 @@ class PostHomeWidget extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: EdgeInsets.only(top: 60.h, left: 15.w),
-          child: SubTitle1Text("어떤 집을 찾고 계신가요?", kTextBlackColor),
-        ),
+        // Container(
+        //   margin: EdgeInsets.only(top: 60.h, left: 15.w),
+        //   child: SubTitle1Text("어떤 집을 찾고 계신가요?", kTextBlackColor),
+        // ),
         Container(
 
-          margin: EdgeInsets.only(top: 40.h),
+          margin: EdgeInsets.only(top: 20.h),
           width: 340.w,
           child: _buildRegisterHome(),
         ),

@@ -2,6 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/main/main/widgets/BannerWidget.dart';
 
 import '../controller/MainController.dart';
@@ -20,15 +22,39 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     MainController controller = MainController();
     return Scaffold(
+      backgroundColor: kDarkBlue,
       //appBar: MainAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //MainSearchBar(controller),
-            PostHomeWidget(controller),
-            SearchHomeWidget(controller),
-            BannerWidget(controller),
-            HotPostWidget(controller)
+            Stack(
+              children: [
+                Container(
+                  width: 380.w,
+                  height: 150.h,
+                  color: kDarkBlue,
+                ),
+                Center(child: MainSearchBar(controller)),
+              ],
+            ),
+            Container(
+
+              decoration: BoxDecoration(
+                color: kWhiteBackGroundColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                )
+              ),
+              child: Column(
+                children: [
+                  SearchHomeWidget(controller),
+                  PostHomeWidget(controller),
+                  BannerWidget(controller),
+                  HotPlaceWidget(controller)
+                ],
+              ),
+            )
           ],
         ),
       ),

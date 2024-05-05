@@ -1,31 +1,107 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/constants/Colors.dart';
+import 'package:home_and_job/constants/Fonts.dart';
 
-import 'package:flutter/cupertino.dart';
+class HomeImagesWidget extends StatefulWidget {
+  const HomeImagesWidget({Key? key}) : super(key: key);
 
-class HomeImagesWidget extends StatelessWidget {
-  const HomeImagesWidget({super.key});
+  @override
+  _HomeImagesWidgetState createState() => _HomeImagesWidgetState();
+}
+
+class _HomeImagesWidgetState extends State<HomeImagesWidget> {
+  late PageController _pageController;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!.round();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.0,
-      child: PageView(
+      width: 380.w,
+      height: 400.h,
+      child: Stack(
         children: [
-          Image.asset(
-            "assets/images/test/home.png",
-            fit: BoxFit.cover,
+          PageView(
+            controller: _pageController,
+            children: [
+              _buildImage("assets/images/test/home.png"),
+              _buildImage("assets/images/test/home1.png"),
+              _buildImage("assets/images/test/home2.png"),
+              // Add more images here
+            ],
           ),
-          Image.asset(
-            "assets/images/test/home1.png",
-            fit: BoxFit.cover,
+          Positioned(
+            bottom: 20.h,
+            right: 20.w,
+            child: Container(
+              width: 50.w,
+              height: 40.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                color: kGrey500Color
+              ),
+              child:Center(
+                child: Body2Text(
+                  "${_currentPage + 1}/${3}", // Change 3 to the total number of images
+                  kWhiteBackGroundColor,
+                ),
+              ),
+            )
           ),
-          Image.asset(
-            "assets/images/test/home2.png",
-            fit: BoxFit.cover,
+          Positioned(
+            top: 150.h,
+            left: 10.w,
+            child: IconButton(
+              color: kWhiteBackGroundColor,
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                _pageController.previousPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+            ),
           ),
-
-          // 여러 개의 이미지를 추가할 수 있습니다.
+          Positioned(
+            top: 150.h,
+            right: 10.w,
+            child: IconButton(
+              color: kWhiteBackGroundColor,
+              icon: Icon(Icons.arrow_forward),
+              onPressed: () {
+                _pageController.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _buildImage(String imagePath) {
+    return Image.asset(
+      imagePath,
+      fit: BoxFit.cover,
     );
   }
 }

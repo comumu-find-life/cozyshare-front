@@ -5,12 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/home/home-detail/controller/HomeDetailController.dart';
+import 'package:home_and_job/home/home-detail/widgets/HomeDetailAppbar.dart';
 import 'package:home_and_job/home/home-detail/widgets/HomeDetailBottomBar.dart';
 import 'package:home_and_job/home/home-detail/widgets/HomeHeaderWidget.dart';
 import 'package:home_and_job/home/home-detail/widgets/HomeImagesWidget.dart';
 import 'package:home_and_job/model/home/response/HomeResponse.dart';
 
-import '../widgets/HomeBodyWidget.dart';
+import '../../../chatting/chat-detail/mode/User.dart';
+import '../../../chatting/chat-detail/view/ChatDetailView.dart';
+import '../../../constants/Fonts.dart';
+import '../widgets/HomeOptionsWidget.dart';
+import '../widgets/HomeOverViewWidget.dart';
+import '../widgets/HomePriceWidget.dart';
+import '../widgets/HomeProviderProfileWidget.dart';
 
 class HomeDetailView extends StatelessWidget {
   HomeResponse home;
@@ -23,43 +30,9 @@ class HomeDetailView extends StatelessWidget {
     HomeDetailController _controller = HomeDetailController(home.id);
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: kWhiteBackGroundColor,
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                child: Icon(Icons.arrow_back_ios_new_rounded),
-              ),
-            ),
-            Obx(() => InkWell(
-                onTap: () {
-                  _controller.ontapFavorite(home.id);
-                },
-                child: _controller.isFavorite
-                    ? Container(
-                        child: Icon(
-                          Icons.favorite,
-                          color: kErrorColor,
-                        ),
-                      )
-                    : Container(
-                        child: Icon(
-                          Icons.favorite_border,
-                          color: kGrey400Color,
-                        ),
-                      )))
-          ],
-        ),
-      ),
-      bottomNavigationBar: HomeDetailBottomBar(_controller),
+      bottomSheet: HomeDetailBottomBar(_controller),
+      appBar: HomeDetailAppbar(_controller, home.id, context),
+      //bottomNavigationBar: HomeDetailBottomBar(_controller),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +45,23 @@ class HomeDetailView extends StatelessWidget {
               height: 1.h,
               color: kGrey200Color,
             ),
-            HomeBodyWidget(),
+            HomePriceWidget(),
+            Container(
+              margin: EdgeInsets.only(top: 30.h),
+              width: 380.w,
+              height: 1.h,
+              color: kGrey200Color,
+            ),
+            HomeProviderProfileWidget(),
+
+            HomeOverViewWidget(),
+            Container(
+              margin: EdgeInsets.only(top: 30.h),
+              width: 380.w,
+              height: 1.h,
+              color: kGrey200Color,
+            ),
+            HomeOptionsWidget(),
           ],
         ),
       ),

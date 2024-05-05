@@ -25,7 +25,7 @@ class SearchHomeWidget extends StatelessWidget {
 
   Widget _buildRegisterHome() {
     return Container(
-      margin: EdgeInsets.only(top: 17.h),
+      margin: EdgeInsets.only(top: 40.h),
       child: Column(
         children: [
           InkWell(

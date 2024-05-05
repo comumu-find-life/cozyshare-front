@@ -10,7 +10,15 @@ class MainSearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(canBack: true, title: '검색', color: kWhiteBackGroundColor),
+      backgroundColor: kWhiteBackGroundColor,
+      appBar: CommonAppBar(canBack: true, title: 'Search Filter', color: kWhiteBackGroundColor),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+
+          ],
+        ),
+      ),
     );
   }
 }

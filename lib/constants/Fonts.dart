@@ -2,6 +2,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+Widget FBoldText(String text, Color color, int size){
+  return Text("${text}", style: TextStyle(color : color, fontSize: size.sp, fontFamily: "FBold", fontWeight: FontWeight.w700),);
+}
+
+Widget FRegularText(String text, Color color, int size){
+  return Text("${text}", style: TextStyle(color : color, fontSize: size.sp, fontFamily: "FRegular", fontWeight: FontWeight.w500),);
+}
+
+Widget FThinText(String text, Color color, int size){
+  return Text("${text}", style: TextStyle(color : color, fontSize: size.sp, fontFamily: "FThin", fontWeight: FontWeight.w500),);
+}
+
 Widget Body1Text(String text, Color color){
   return Text("${text}", style: TextStyle(color : color, fontSize: 16.sp, fontFamily: "Body1", fontWeight: FontWeight.w500),);
 }

@@ -7,57 +7,165 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/main/main/controller/MainController.dart';
 
-class HotPostWidget extends StatelessWidget {
+class HotPlaceWidget extends StatelessWidget {
   MainController controller;
 
-  HotPostWidget(this.controller);
+  HotPlaceWidget(this.controller);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
-          children: [
-            _buildText(),
-            _buildSelectType(),
-            controller.selectHome? _buildHotHomePost() : _buildHotJobPost()
-          ],
-        ));
+    return Column(
+      children: [
+        _buildText(),
+        //  _buildSelectType(),
+        _buildCityList(),
+        //controller.selectHome? _buildHotHomePost() : _buildHotJobPost()
+      ],
+    );
   }
 
-  Widget _buildHotHomePost() {
+  Widget _buildCityList() {
     return Container(
-      margin: EdgeInsets.only(top: 30.h, left: 20.w, bottom: 30.h),
-      width: 340.w,
-      height: 200.h,
-      child: SingleChildScrollView(
+      width: 360.w,
+      height: 300.h,
+      margin: EdgeInsets.only(top: 10.w, left: 10.w),
+      child: ListView(
         scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            _homeWidget(),
-            _homeWidget(),
-            _homeWidget(),
-            _homeWidget(),
-
-          ],
-        ),
+        children: [
+          _buildSydney(),
+          _buildMelbourne(),
+          _buildBrisbane(),
+        ],
       ),
     );
   }
 
-  Widget _buildHotJobPost() {
-    return Container(
-      margin: EdgeInsets.only(top: 30.h, left: 20.w, bottom: 30.h),
-      width: 340.w,
-      height: 200.h,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            _jobWidget(),
-            _jobWidget(),
-
-          ],
+  Widget _buildSydney() {
+    return Stack(
+      children: [
+        Container(
+          width: 150.w,
+          height: 240.h,
+          margin: EdgeInsets.only(left: 10.w),
+          child: Container(
+            margin: EdgeInsets.only(right: 7.w),
+            width: 120.w,
+            height: 80.h,
+            child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(8),
+                  bottomLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
+                child: Image.asset(
+                  "assets/images/cities/sydney.jpg",
+                  fit: BoxFit.cover,
+                )),
+          ),
         ),
-      ),
+        Container(
+          margin: EdgeInsets.only(top: 0.w),
+          child: Stack(
+            children: [
+              Container(
+                width: 110.w,
+                child: Image.asset("assets/images/common/tag_normal.png"),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 22.w, bottom: 255.h),
+                child:
+                    Center(child: Body1Text("Sydney", kWhiteBackGroundColor)),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildMelbourne() {
+    return Stack(
+      children: [
+        Container(
+          width: 150.w,
+          height: 240.h,
+          margin: EdgeInsets.only(left: 10.w),
+          child: Container(
+            margin: EdgeInsets.only(right: 7.w),
+            width: 120.w,
+            height: 80.h,
+            child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(8),
+                  bottomLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
+                child: Image.asset(
+                  "assets/images/cities/melbourne.jpg",
+                  fit: BoxFit.cover,
+                )),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 0.w),
+          child: Stack(
+            children: [
+              Container(
+                width: 110.w,
+                child: Image.asset("assets/images/common/tag_normal.png"),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                child:
+                Center(child: Body1Text("Melbourne", kWhiteBackGroundColor)),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildBrisbane() {
+    return Stack(
+      children: [
+        Container(
+          width: 150.w,
+          height: 240.h,
+          margin: EdgeInsets.only(left: 10.w),
+          child: Container(
+            margin: EdgeInsets.only(right: 7.w),
+            width: 120.w,
+            height: 80.h,
+            child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(8),
+                  bottomLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
+                child: Image.asset(
+                  "assets/images/cities/brisbane.jpg",
+                  fit: BoxFit.cover,
+                )),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 0.w),
+          child: Stack(
+            children: [
+              Container(
+                width: 110.w,
+                child: Image.asset("assets/images/common/tag_normal.png"),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                child:
+                Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 
@@ -72,8 +180,10 @@ class HotPostWidget extends StatelessWidget {
             height: 80.h,
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset("assets/images/test/home.png", fit: BoxFit.cover,)
-            ),
+                child: Image.asset(
+                  "assets/images/test/home.png",
+                  fit: BoxFit.cover,
+                )),
           ),
           Container(
             width: 120.h,
@@ -97,8 +207,10 @@ class HotPostWidget extends StatelessWidget {
             height: 80.h,
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset("assets/images/test/home.png", fit: BoxFit.cover,)
-            ),
+                child: Image.asset(
+                  "assets/images/test/home.png",
+                  fit: BoxFit.cover,
+                )),
           ),
           Container(
             width: 120.h,
@@ -133,7 +245,11 @@ class HotPostWidget extends StatelessWidget {
                       color: kWhiteBackGroundColor,
                       border: Border.all(color: kGrey300Color)),
               child: Center(
-                child: Body2Text("렌트",controller.selectHome? kWhiteBackGroundColor : kGrey700Color),
+                child: Body2Text(
+                    "렌트",
+                    controller.selectHome
+                        ? kWhiteBackGroundColor
+                        : kGrey700Color),
               ),
             ),
           ),
@@ -147,15 +263,19 @@ class HotPostWidget extends StatelessWidget {
               height: 40.h,
               decoration: controller.selectJob
                   ? BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: kTextBlackColor,
-                  border: Border.all(color: kGrey300Color))
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: kTextBlackColor,
+                      border: Border.all(color: kGrey300Color))
                   : BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  color: kWhiteBackGroundColor,
-                  border: Border.all(color: kGrey300Color)),
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: kWhiteBackGroundColor,
+                      border: Border.all(color: kGrey300Color)),
               child: Center(
-                child: Body2Text("쉐어 하우스", controller.selectJob? kWhiteBackGroundColor : kGrey700Color),
+                child: Body2Text(
+                    "쉐어 하우스",
+                    controller.selectJob
+                        ? kWhiteBackGroundColor
+                        : kGrey700Color),
               ),
             ),
           )
@@ -170,24 +290,24 @@ class HotPostWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            child: Title2Text("인기 게시글", kTextBlackColor),
+            child: Title2Text("Popular Cities", kTextBlackColor),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 7.w),
-            width: 50.w,
-            height: 25.h,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  topLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-                border: Border.all(color: Colors.red)),
-            child: Center(
-              child: Body2Text("HOT", kWhiteBackGroundColor),
-            ),
-          )
+          // Container(
+          //   margin: EdgeInsets.only(left: 7.w),
+          //   width: 50.w,
+          //   height: 25.h,
+          //   decoration: BoxDecoration(
+          //       color: Colors.red,
+          //       borderRadius: BorderRadius.only(
+          //         topRight: Radius.circular(10),
+          //         topLeft: Radius.circular(10),
+          //         bottomRight: Radius.circular(10),
+          //       ),
+          //       border: Border.all(color: Colors.red)),
+          //   child: Center(
+          //     child: Body2Text("HOT", kWhiteBackGroundColor),
+          //   ),
+          // )
         ],
       ),
     );

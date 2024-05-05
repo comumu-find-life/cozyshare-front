@@ -51,12 +51,12 @@ class _MainFrameView extends State<MainFrameView> {
             });
           },
           [
-            Icons.home_filled,
-            Icons.favorite,
-            Icons.chat,
-            Icons.person_2_outlined
+            Icons.search,
+            Icons.favorite_outline_sharp,
+            Icons.messenger_outline,
+            Icons.account_circle_sharp
           ],
-          ["홈", "관심 목록", "메시지", "설정"],
+          ["Search", "ShortList", "Messages", "Profile"],
         ),
         body: admin_screens[admin_selectedItem]);
   }

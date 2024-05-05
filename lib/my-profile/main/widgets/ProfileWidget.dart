@@ -17,7 +17,7 @@ class ProfileWidget extends StatelessWidget {
     return Container(
       color: kWhiteBackGroundColor,
       width: 380.w,
-      height: 220.h,
+      height: 130.h,
       child: Column(
         children: [
           Row(
@@ -27,7 +27,7 @@ class ProfileWidget extends StatelessWidget {
               _buildInformation(),
             ],
           ),
-          _buildPointInformation(),
+          //_buildPointInformation(),
         ],
       ),
     );
@@ -94,7 +94,7 @@ class ProfileWidget extends StatelessWidget {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 5.h),
+            margin: EdgeInsets.only(top: 10.h),
             child: HintText2("프로필 추가 등록하기", kBlueColor),
           )
         ],

@@ -43,7 +43,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
 
     return Container(
       decoration: BoxDecoration(
-        color: kWhiteColor,
+        color: Colors.grey.shade50,
         border: Border(
           top: BorderSide(width: 1, color: kGrey200Color),
         ),
@@ -64,9 +64,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
           });
         },
         child: Container(
-
-
-          height: 65.h,
+          height: 73.h,
           width: 80.w,
           child: Column(
             children: [
@@ -76,12 +74,12 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
                 margin: EdgeInsets.only(top: 10.h),
                 child:  Icon(
                   icon,
-                  size: 20,
+                  size: 24,
                   color: index == _selectedIndex ? kBlueColor : Colors.grey,
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 7.h),
+                margin: EdgeInsets.only(top: 10.h),
                 child: Center(
                   child: HelperText(
                     title,

@@ -65,4 +65,3 @@ class DealProcessViewByGetter extends StatelessWidget {
   }
 }
 
-class _controller {}

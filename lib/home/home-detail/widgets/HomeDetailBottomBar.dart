@@ -11,26 +11,23 @@ import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 
 Widget HomeDetailBottomBar(HomeDetailController _controller){
-  return BottomAppBar(
-    height: 90.h,
-    color: kWhiteBackGroundColor,
-    child: Center(
-      child: InkWell(
-        onTap: (){
-          Get.to(() => ChatDetailView(currentUser));
-        },
-        child: Container(
-          width: 330.w,
-          height: 55.h,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(6)),
-              color: kBlueColor
-          ),
-
-          child: Center(child: ButtonText("문의하기", kWhiteBackGroundColor)),
-
-        ),
+  return Container(
+    width: double.infinity,
+    color: kBlueColor,
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor:
+        kBlueColor,
+        //padding: EdgeInsets.symmetric(vertical: 14),
+        side: BorderSide.none, // 테두리 없애기
+        shadowColor: Colors.transparent, // 그림자 없애기
       ),
+      onPressed: () {
+        Get.to(() => ChatDetailView(currentUser));
+        //_controller.ontapStep1Next();
+        //_controller.canFinish ? Navigator.pop(context) : null;
+      },
+      child: FRegularText("Send Message", kWhiteBackGroundColor, 16),
     ),
   );
 }
