@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/common-widgets/button/ButtonWidgets.dart';
 import 'package:home_and_job/constants/Colors.dart';
-import '../controller/RegisterHomeController.dart';
-import '../widgets/RegisterHomeImageWidget.dart';
-import 'RegisterHomeAddressView.dart';
+import 'package:home_and_job/register-home/widgets/HomeRegisterProcessBar.dart';
+import '../../controller/RegisterHomeController.dart';
+import '../../widgets/RegisterHomeImageWidget.dart';
+import '../../register-address/view/RegisterHomeAddressView.dart';
 
 
 class RegisterHomeImageView extends StatelessWidget {
@@ -16,16 +17,18 @@ class RegisterHomeImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: _buildButton(),
       appBar: CommonAppBar(
         color: kWhiteBackGroundColor,
         title: "",
         canBack: true,
       ),
+      backgroundColor: kWhiteBackGroundColor,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          HomeRegisterProcessBar(0.2),
           RegisterHomeImageWidget(_controller),
-          _buildButton(),
+          //_buildButton(),
         ],
       ),
     );
@@ -37,7 +40,7 @@ class RegisterHomeImageView extends StatelessWidget {
       child: Obx(() => _controller.isRegisterImage
           ? InkWell(
               onTap: () {
-                Get.to(() => RegisterHomeAddressView(_controller));
+                Get.to(() => RegisterHomeAddressView(_controller), transition: Transition.noTransition);
               },
               child: NextButtonWidget("Next"))
           : NotYetButtonWidget("Next")),

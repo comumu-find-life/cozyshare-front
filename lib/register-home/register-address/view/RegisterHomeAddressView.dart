@@ -4,12 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/register-home/widgets/HomeRegisterProcessBar.dart';
 
-import '../../../common-widgets/app-bar/CommonAppbar.dart';
-import '../../../common-widgets/button/ButtonWidgets.dart';
-import '../../../constants/Colors.dart';
-import '../controller/RegisterHomeController.dart';
-import 'RegisterHomeDetailInformationView.dart';
+import '../../../../common-widgets/app-bar/CommonAppbar.dart';
+import '../../../../common-widgets/button/ButtonWidgets.dart';
+import '../../../../constants/Colors.dart';
+import '../../controller/RegisterHomeController.dart';
+import '../../register-price/view/RegisterHomePriceView.dart';
 
 class RegisterHomeAddressView extends StatelessWidget {
   RegisterHomeController _controller;
@@ -33,6 +34,7 @@ class RegisterHomeAddressView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
+      bottomSheet: _buildButton(),
       appBar: CommonAppBar(
         color: kWhiteBackGroundColor,
         title: "",
@@ -41,12 +43,13 @@ class RegisterHomeAddressView extends StatelessWidget {
       body: Obx(() => SingleChildScrollView(
         child: Column(
             children: [
+              HomeRegisterProcessBar(0.4),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: 20.h,left: 20.w),
-                    child: Title2Text("집 주소 정보", kTextBlackColor),
+                    child: Title3Text("Room Address", kTextBlackColor),
                   ),
                   Row(
                     children: [
@@ -64,7 +67,7 @@ class RegisterHomeAddressView extends StatelessWidget {
                   _buildInputDetailAddress()
                 ],
               ),
-              _buildButton()
+
             ],
 
         ),
@@ -74,11 +77,11 @@ class RegisterHomeAddressView extends StatelessWidget {
 
   Widget _buildButton() {
     return Container(
-      margin: EdgeInsets.only(top: 335.h),
+      margin: EdgeInsets.only(bottom: 15.h),
       child: Obx(() => _controller.isAllInputAddress
           ? InkWell(
           onTap: () {
-            Get.to(() => RegisterHomeDetailInformationView(_controller));
+            Get.to(() => RegisterHomePriceView(_controller), transition: Transition.noTransition);
           },
           child: NextButtonWidget("Next"))
           : NotYetButtonWidget("Next")),
@@ -106,7 +109,7 @@ class RegisterHomeAddressView extends StatelessWidget {
         cursorColor: kTextBlackColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-          hintText: "City 이름 입력",
+          hintText: "City Name",
           hintStyle: TextStyle(
               fontSize: 13.sp,
               color: Colors.grey.shade500,
@@ -138,7 +141,7 @@ class RegisterHomeAddressView extends StatelessWidget {
         cursorColor: kTextBlackColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-          hintText: "Detail Address ex) 401호",
+          hintText: "Detail Address",
           hintStyle: TextStyle(
               fontSize: 13.sp,
               color: Colors.grey.shade500,
@@ -170,7 +173,7 @@ class RegisterHomeAddressView extends StatelessWidget {
         cursorColor: kTextBlackColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-          hintText: "Street Name ex)",
+          hintText: "Street Name ",
           hintStyle: TextStyle(
               fontSize: 13.sp,
               color: Colors.grey.shade500,

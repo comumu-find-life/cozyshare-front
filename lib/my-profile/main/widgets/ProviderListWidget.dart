@@ -8,7 +8,7 @@ import 'package:home_and_job/my-profile/charge-point/view/ChargePointView.dart';
 import 'package:home_and_job/my-profile/my-homes/view/MyHomeListView.dart';
 
 import '../../../common-widgets/button/ButtonWidgets.dart';
-import '../../../register-home/view/RegisterHomeImageView.dart';
+import '../../../register-home/register-image/view/RegisterHomeImageView.dart';
 import '../../exchange-point/main/view/ExchangePointView.dart';
 
 class ProviderListWidget extends StatelessWidget {

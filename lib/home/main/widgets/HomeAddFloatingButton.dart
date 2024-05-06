@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/constants/Colors.dart';
 
 import '../../../constants/Fonts.dart';
-import '../../../register-home/view/RegisterHomeImageView.dart';
+import '../../../register-home/register-image/view/RegisterHomeImageView.dart';
 
 Container OldGoalFloatingButton() {
   return Container(
