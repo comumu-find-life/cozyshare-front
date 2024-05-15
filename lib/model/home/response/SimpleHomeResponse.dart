@@ -1,5 +1,5 @@
 
-class SimpleHomeResponse{
+class SimpleHomeResponse {
   String? address;
   String? mainImage;
   int? bond;

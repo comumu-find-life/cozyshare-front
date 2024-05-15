@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:home_and_job/chatting/main/view/ChattingListView.dart';
 import 'package:home_and_job/common-widgets/app-bar/BottomNavigationBar.dart';
 import 'package:home_and_job/my-profile/main/view/MyProfileView.dart';
+import 'package:home_and_job/search-map/main/view/MainSearchView.dart';
 
 import '../../../favorite/main/view/FavoriteView.dart';
 import '../view/MainView.dart';
@@ -37,6 +38,7 @@ class _MainFrameView extends State<MainFrameView> {
     final admin_screens = [
       MainView(),
       FavoriteView(),
+      MainSearchView(),
       ChattingListView(),
       MyProfileView(),
     ];
@@ -53,10 +55,11 @@ class _MainFrameView extends State<MainFrameView> {
           [
             Icons.search,
             Icons.favorite_outline_sharp,
+            Icons.location_on_outlined,
             Icons.messenger_outline,
             Icons.account_circle_sharp
           ],
-          ["Search", "ShortList", "Messages", "Profile"],
+          ["Main", "ShortList", "Map","Messages", "Profile"],
         ),
         body: admin_screens[admin_selectedItem]);
   }

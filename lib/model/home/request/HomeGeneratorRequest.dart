@@ -14,4 +14,17 @@ class HomeGeneratorRequest{
   Gender? gender;
   HomeType? homeType;
   String? introduce;
+
+  HomeGeneratorRequest({
+    required this.homeAddress,
+    required this.images,
+    required this.userId,
+    required this.roomCount,
+    required this.bathRoomCount,
+    required this.bond,
+    required this.bill,
+    required this.gender,
+    required this.homeType,
+    required this.introduce,
+  });
 }

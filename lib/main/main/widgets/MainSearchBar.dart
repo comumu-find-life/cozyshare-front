@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
-import '../../search/view/MainSearchView.dart';
+import '../../../search-map/main/view/MainSearchView.dart';
 import '../controller/MainController.dart';
 
 class MainSearchBar extends StatelessWidget {
@@ -28,7 +28,9 @@ class MainSearchBar extends StatelessWidget {
       ),
       child: InkWell(
         onTap: (){
-          Get.to(() => MainSearchView(), transition: Transition.upToDown);
+
+          //Get.to(() => MapSample(), transition: Transition.upToDown);
+           Get.to(() => MainSearchView(), transition: Transition.upToDown);
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

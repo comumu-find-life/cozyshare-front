@@ -37,18 +37,14 @@ class FavoritePostWidget extends StatelessWidget {
         _controller.moveHomePost();
       },
       child: Container(
+        height: 150.h,
         margin: EdgeInsets.only(top: 10.h,left: 15.w,right: 15.w),
         decoration: BoxDecoration(
           color: kWhiteBackGroundColor,
-            borderRadius: BorderRadius.all(Radius.circular(6)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.3),
-                blurRadius: 1.5,
-                spreadRadius: 1.3,
-                offset: const Offset(0, 1),
-              )
-            ]
+            border: Border(
+              bottom: BorderSide(color: kGrey200Color)
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(6))
         ),
         child: Row(
           children: [
@@ -66,6 +62,7 @@ class FavoritePostWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
+                  margin: EdgeInsets.only(top: 20.h),
                   width: 200.w,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,26 +80,6 @@ class FavoritePostWidget extends StatelessWidget {
                   margin: EdgeInsets.only(top: 10.h),
                   child: Body2Text("2000\$ / 150\$", kGrey500Color),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 15.w,top: 10.h),
-                  width: 110.w,
-                  height: 35.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      color: kDarkBlue
-                  ),
-                  child: Center(child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: Icon(Icons.verified_user,color: kWhiteBackGroundColor, size: 17.sp,),
-                      ),
-                      Container(
-                          margin: EdgeInsets.only(right: 10.w, left: 5.w),
-                          child: Body2Text("안전거래", kWhiteBackGroundColor)),
-                    ],
-                  )),
-                )
               ],
             )
           ],

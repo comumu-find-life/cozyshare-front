@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:home_and_job/home/home-detail/view/HomeDetailView.dart';
+import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
@@ -50,7 +50,7 @@ Widget _buildMapIcon(){
 Widget _buildHomeInformation(){
   return InkWell(
     onTap: (){
-      Get.to(() => HomeDetailView(homeResponseTest1));
+      Get.to(() => RoomDetailView(homeResponseTest1));
     },
     child: Row(
       children: [

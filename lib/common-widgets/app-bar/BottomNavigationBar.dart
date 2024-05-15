@@ -65,7 +65,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
         },
         child: Container(
           height: 73.h,
-          width: 80.w,
+          width: 70.w,
           child: Column(
             children: [
               Container(

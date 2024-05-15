@@ -1,4 +1,4 @@
 
 const commonImagePath = "assets/common/";
 const providerImagePath = "assets/provider/";
-const getterImagePath = "assets/home/";
+const getterImagePath = "assets/room/";

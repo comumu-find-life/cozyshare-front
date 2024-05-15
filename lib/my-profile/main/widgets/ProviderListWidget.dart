@@ -5,11 +5,9 @@ import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/my-profile/charge-point/view/ChargePointView.dart';
-import 'package:home_and_job/my-profile/my-homes/view/MyHomeListView.dart';
-
-import '../../../common-widgets/button/ButtonWidgets.dart';
 import '../../../register-home/register-image/view/RegisterHomeImageView.dart';
 import '../../exchange-point/main/view/ExchangePointView.dart';
+import '../../my-homes/main/view/MyHomeListView.dart';
 
 class ProviderListWidget extends StatelessWidget {
   const ProviderListWidget({super.key});
@@ -25,8 +23,8 @@ class ProviderListWidget extends StatelessWidget {
         children: [
           _myPostItem(),
           _registerMyHomeItem(),
-          _myPoint(),
-          _withDraw(),
+          //_myPoint(),
+          //_withDraw(),
         ],
       ),
     );
@@ -34,7 +32,7 @@ class ProviderListWidget extends StatelessWidget {
 
   Widget _withDraw() {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.to(() => ExchangePointView());
       },
       child: Container(
@@ -72,49 +70,9 @@ class ProviderListWidget extends StatelessWidget {
     );
   }
 
-  Widget _myPoint() {
-    return InkWell(
-      onTap: (){
-        Get.to(() => ChargePointView());
-      },
-      child: Container(
-        width: 380.w,
-        height: 50.h,
-        margin: EdgeInsets.only(left: 10.w, top: 15.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Container(
-                  child: Icon(
-                    Icons.monetization_on,
-                    color: Colors.green,
-                    size: 17.sp,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10.w),
-                  child: Body2Text("포인트 충전", kTextBlackColor),
-                )
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(right: 15.w, top: 15.h),
-              child: Icon(
-                Icons.arrow_forward_ios_outlined,
-                size: 19.sp,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _myPostItem() {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.to(() => MyHomeListView());
       },
       child: Container(
@@ -124,26 +82,16 @@ class ProviderListWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Container(
-                  child: Icon(
-                    Icons.bookmark,
-                    color: kGrey800Color,
-                    size: 17.sp,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 7.w),
-                  child: Body2Text("내 게시글 관리", kTextBlackColor),
-                )
-              ],
+            Container(
+              margin: EdgeInsets.only(left: 5.w),
+              child: FRegularText("My Rooms", kDarkBlue, 15),
             ),
             Container(
               margin: EdgeInsets.only(right: 15.w, top: 15.h),
               child: Icon(
                 Icons.arrow_forward_ios_outlined,
-                size: 19.sp,
+                size: 15.sp,
+                color: kDarkBlue,
               ),
             )
           ],
@@ -165,26 +113,16 @@ class ProviderListWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Container(
-                  child: Icon(
-                    Icons.home_filled,
-                    color: kBlueColor,
-                    size: 17.sp,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10.w),
-                  child: Body2Text("내 집 내놓기", kTextBlackColor),
-                )
-              ],
+            Container(
+              margin: EdgeInsets.only(left: 5.w),
+              child: FRegularText("Register My Room", kDarkBlue, 15),
             ),
             Container(
               margin: EdgeInsets.only(right: 15.w, top: 15.h),
               child: Icon(
                 Icons.arrow_forward_ios_outlined,
-                size: 19.sp,
+                color: kDarkBlue,
+                size: 15.sp,
               ),
             )
           ],
@@ -193,38 +131,4 @@ class ProviderListWidget extends StatelessWidget {
     );
   }
 
-  Widget _registerMyJobItem() {
-    return Container(
-      width: 380.w,
-      height: 50.h,
-      margin: EdgeInsets.only(left: 10.w, top: 15.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                child: Icon(
-                  Icons.work,
-                  color: kGrey600Color,
-                  size: 20.sp,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 10.w),
-                child: Body2Text("직원 구인하기", kTextBlackColor),
-              )
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(right: 15.w, top: 15.h),
-            child: Icon(
-              Icons.arrow_forward_ios_outlined,
-              size: 19.sp,
-            ),
-          )
-        ],
-      ),
-    );
-  }
 }

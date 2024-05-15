@@ -7,6 +7,8 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/main/main/controller/MainController.dart';
 
+import '../../../room/room-list/view/RoomListView.dart';
+
 class HotPlaceWidget extends StatelessWidget {
   MainController controller;
 
@@ -41,45 +43,50 @@ class HotPlaceWidget extends StatelessWidget {
   }
 
   Widget _buildSydney() {
-    return Stack(
-      children: [
-        Container(
-          width: 150.w,
-          height: 240.h,
-          margin: EdgeInsets.only(left: 10.w),
-          child: Container(
-            margin: EdgeInsets.only(right: 7.w),
-            width: 120.w,
-            height: 80.h,
-            child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
+    return InkWell(
+      onTap: (){
+        Get.to(() => RoomListView("sydney"));
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: 150.w,
+            height: 240.h,
+            margin: EdgeInsets.only(left: 10.w),
+            child: Container(
+              margin: EdgeInsets.only(right: 7.w),
+              width: 120.w,
+              height: 80.h,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+                  child: Image.asset(
+                    "assets/images/cities/sydney.jpg",
+                    fit: BoxFit.cover,
+                  )),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 0.w),
+            child: Stack(
+              children: [
+                Container(
+                  width: 110.w,
+                  child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
-                child: Image.asset(
-                  "assets/images/cities/sydney.jpg",
-                  fit: BoxFit.cover,
-                )),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 0.w),
-          child: Stack(
-            children: [
-              Container(
-                width: 110.w,
-                child: Image.asset("assets/images/common/tag_normal.png"),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 22.w, bottom: 255.h),
-                child:
-                    Center(child: Body1Text("Sydney", kWhiteBackGroundColor)),
-              )
-            ],
-          ),
-        )
-      ],
+                Container(
+                  margin: EdgeInsets.only(left: 22.w, bottom: 255.h),
+                  child:
+                      Center(child: Body1Text("Sydney", kWhiteBackGroundColor)),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 

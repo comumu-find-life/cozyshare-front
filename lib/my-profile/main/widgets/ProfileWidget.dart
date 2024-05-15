@@ -7,6 +7,9 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/my-profile/main/controller/MyProfileController.dart';
 
+import '../../../detail-profile/view/ProfileDetailView.dart';
+
+
 class ProfileWidget extends StatelessWidget {
   MyProfileController _controller;
 
@@ -93,9 +96,14 @@ class ProfileWidget extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            margin: EdgeInsets.only(top: 10.h),
-            child: HintText2("프로필 추가 등록하기", kBlueColor),
+          InkWell(
+            onTap: (){
+              Get.to(() => ProfileDetailView());
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 10.h),
+              child: HintText2("프로필 추가 등록하기", kBlueColor),
+            ),
           )
         ],
       ),

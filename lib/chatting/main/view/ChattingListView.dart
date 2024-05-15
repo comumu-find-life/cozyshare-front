@@ -15,6 +15,7 @@ class ChattingListView extends StatelessWidget {
     ChattingController _controller = ChattingController();
 
     return Scaffold(
+      backgroundColor: kWhiteBackGroundColor,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Column(

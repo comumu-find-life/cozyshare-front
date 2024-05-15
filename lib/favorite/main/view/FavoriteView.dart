@@ -18,11 +18,11 @@ class FavoriteView extends StatelessWidget {
     FavoriteController _controller = FavoriteController();
 
     return Scaffold(
+      backgroundColor: kWhiteBackGroundColor,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SelectFavoriteType(_controller),
             FavoritePostWidget(_controller)
 
           ],
@@ -42,7 +42,7 @@ class FavoriteView extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.only(top: 10.h,left: 10.w),
-            child: Title2Text("관심 게시글", kTextBlackColor),
+            child: Title2Text("Shortlist", kTextBlackColor),
           )
         ],
       ),

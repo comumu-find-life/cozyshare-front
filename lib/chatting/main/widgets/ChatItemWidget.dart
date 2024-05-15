@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,82 +9,79 @@ import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 
 class ChatItemWidget extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
-
     final User user = currentUser;
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.to(() => ChatDetailView(user));
       },
-      child: Container(
-        decoration: BoxDecoration(
-
-        ),
-        margin: EdgeInsets.only(top: 30.h,left: 20.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-
-            Row(
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 30.h, left: 20.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: CircleAvatar(
-                    backgroundColor: kGrey200Color,
-                    backgroundImage: AssetImage("assets/images/test/man.png"),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 15.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(width: 250.w,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Body1Text("신민석", kTextBlackColor),
-                            ),
-
-                          ],
-                        ),
+                Row(
+                  children: [
+                    Container(
+                      child: CircleAvatar(
+                        backgroundColor: kGrey200Color,
+                        backgroundImage: AssetImage("assets/images/test/man.png"),
                       ),
-                      Row(
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 15.w),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 5.h),
-                            child: Body2Text("방 있나요?", kGrey600Color),
+                            width: 250.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Body1Text("신민석", kTextBlackColor),
+                                ),
+                              ],
+                            ),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(left: 10.w),
-                            child: HelperText("02.15", kGrey500Color),
+                          Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 5.h),
+                                child: Body2Text("방 있나요?", kGrey600Color),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 10.w),
+                                child: HelperText("02.15", kGrey500Color),
+                              )
+                            ],
                           )
                         ],
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
-
+                Container(
+                  width: 28.w,
+                  height: 28.h,
+                  margin: EdgeInsets.only(right: 10.w),
+                  decoration:
+                      BoxDecoration(shape: BoxShape.circle, color: kErrorColor),
+                  child: Center(child: ButtonText("1", kWhiteBackGroundColor)),
+                ),
               ],
             ),
-            Container(
-              width: 28.w,
-              height: 28.h,
-              margin: EdgeInsets.only(right: 10.w),
-              decoration: BoxDecoration(
-
-                shape: BoxShape.circle,
-                color: kErrorColor
-              ),
-              child: Center(child: ButtonText("1", kWhiteBackGroundColor)),
-            ),
-
-
-          ],
-        ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20.h),
+            width: 350.w,
+            color: kGrey200Color,
+            height: 1.h,
+          )
+        ],
       ),
     );
   }

@@ -31,10 +31,9 @@ class MainView extends StatelessWidget {
               children: [
                 Container(
                   width: 380.w,
-                  height: 150.h,
+                  height: 60.h,
                   color: kDarkBlue,
                 ),
-                Center(child: MainSearchBar(controller)),
               ],
             ),
             Container(

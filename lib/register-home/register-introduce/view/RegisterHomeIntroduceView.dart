@@ -5,15 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
-import '../../controller/RegisterHomeController.dart';
 import '../../../../common-widgets/button/ButtonWidgets.dart';
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
+import '../../controller/HomeRegisterTotalController.dart';
 import '../../view/FinishRegisterHomeView.dart';
+import '../../widgets/HomeRegisterProcessBar.dart';
 
 class RegisterHomeIntroduceView extends StatelessWidget {
 
-  RegisterHomeController _controller;
+  HomeRegisterTotalController _controller;
 
 
   RegisterHomeIntroduceView(this._controller);
@@ -30,10 +31,11 @@ class RegisterHomeIntroduceView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            HomeRegisterProcessBar(0.8),
             Container(
               margin: EdgeInsets.only(top: 20.h, left: 20.w),
               child:
-              Title2Text("집 설명", kTextBlackColor),
+              Title2Text("Introduce", kTextBlackColor),
             ),
             _buildInputIntroduce(),
             _buildButton()
@@ -45,7 +47,7 @@ class RegisterHomeIntroduceView extends StatelessWidget {
 
   Widget _buildButton() {
     return Container(
-      margin: EdgeInsets.only(top: 130.h),
+      margin: EdgeInsets.only(top: 73.h),
       child: Center(child: InkWell(
           onTap: (){
             Get.to(() => FinishRegisterHomeView());
@@ -65,7 +67,7 @@ class RegisterHomeIntroduceView extends StatelessWidget {
       margin: EdgeInsets.only(top: 20.h, left: 20.w),
       child: TextFormField(
         onChanged: (text) {},
-        controller: _controller.introduceController,
+        controller: null,
         style: TextStyle(color: Colors.black),
         // 텍스트 색상을 검정색으로 설정
         textAlign: TextAlign.left,
@@ -74,7 +76,7 @@ class RegisterHomeIntroduceView extends StatelessWidget {
         cursorColor: kTextBlackColor,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-          hintText: "Input Short Introduce",
+          hintText: "Input Content",
           hintStyle: TextStyle(
               fontSize: 13.sp,
               color: Colors.grey.shade500,
