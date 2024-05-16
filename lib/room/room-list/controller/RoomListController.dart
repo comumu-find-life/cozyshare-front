@@ -15,6 +15,12 @@ class RoomListController extends GetxController {
     _cityName.value = cityName;
   }
 
+  void updateCityName(String newCity){
+    _cityName.value = newCity;
+  }
+
+
+
   void selectHomeType(int type) {
     if (type == 1) {
       _selectRentHome.value = true;
@@ -27,9 +33,6 @@ class RoomListController extends GetxController {
     }
   }
 
-  void updateCityName(String value){
-    _cityName.value = value;
-  }
 
   void search() {}
 

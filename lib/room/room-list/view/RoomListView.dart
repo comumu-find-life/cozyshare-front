@@ -31,14 +31,14 @@ class RoomListView extends StatelessWidget {
 
     return Scaffold(
       //floatingActionButton: OldGoalFloatingButton(),
-      appBar: HomeAppBar(),
+      appBar: HomeAppBar(_controller),
       backgroundColor: kWhiteBackGroundColor,
 
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SearchBarWidget(_controller),
+
             //SelectHomeTypeWidget(_controller),
             Container(
                 width: 380.w,

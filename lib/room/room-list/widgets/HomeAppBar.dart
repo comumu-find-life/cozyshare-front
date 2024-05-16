@@ -6,12 +6,17 @@ import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../controller/RoomListController.dart';
+import 'SearchBarWidget.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+  RoomListController _controller;
 
+
+  HomeAppBar(this._controller);
 
   @override
-  Size get preferredSize => Size.fromHeight(55.h);
+  Size get preferredSize => Size.fromHeight(65.h);
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +35,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Navigator.pop(context);
                 },
                 child: Container(
+                  margin: EdgeInsets.only(top: 5.h),
                   child: Icon(Icons.arrow_back_ios, size: 17.sp,),
                 ),
               ),
-              Center(
-                  child: Container(
-                      margin: EdgeInsets.only(top: 0.h, right: 0.w),
-                      child: Title3Text("", kTextBlackColor))),
+              SearchBarWidget(_controller),
               Container()
             ],
           ),

@@ -17,7 +17,7 @@ class HomeRegisterProcessBar extends StatelessWidget {
       child: new LinearPercentIndicator(
         width: MediaQuery.of(context).size.width - 50,
         animation: false,
-        barRadius: Radius.circular(6),
+        barRadius: Radius.circular(20),
 
         lineHeight: 20.0,
         animationDuration: 2500,
