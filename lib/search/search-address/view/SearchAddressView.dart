@@ -62,6 +62,7 @@ class _SearchAddressViewState extends State<SearchAddressView> {
                                   margin: EdgeInsets.only(left: 20.w),
                                   child: Body2Text(
                                     _controller.filteredAddresses[index],
+
                                     kTextBlackColor,
                                   )),
                             ],

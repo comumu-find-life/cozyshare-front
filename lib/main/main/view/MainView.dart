@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/main/main/widgets/BannerWidget.dart';
 
+import '../../../l10n/AppLocalizations.dart';
 import '../controller/MainController.dart';
 import '../widgets/HotPostWidget.dart';
 import '../widgets/MainAppBar.dart';

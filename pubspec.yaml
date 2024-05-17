@@ -58,6 +58,9 @@ dependencies:
   percent_indicator: ^4.2.3
   flutter_svg: ^1.1.6
   collection: ^1.18.0
+  flutter_localization: ^0.2.0
+  intl: ^0.18.0
+  intl_translation: ^0.20.0
 
 dev_dependencies:
   flutter_test:

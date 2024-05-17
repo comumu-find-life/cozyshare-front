@@ -48,13 +48,14 @@ PreferredSize SearchAddressAppBar(BuildContext context, SearchAddressController 
                   suffixIcon: IconButton(
                     icon: Icon(Icons.search),
                     onPressed: () async {
+                      //_controller.searchAddresses();
                       //await _searchAddresses(_searchController.text);
                     },
                   ),
                 ),
                 onChanged: (query) {
                   _controller.searchAddresses();
-                  _controller.filterAddresses(query);
+                  //_controller.filterAddresses(query);
                 },
               ),
             ),

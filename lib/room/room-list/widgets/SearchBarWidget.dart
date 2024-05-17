@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/search/search-address/model/SearchCityModel.dart';
 import 'package:home_and_job/search/search-address/view/SearchAddressView.dart';
 
 import '../../../constants/Colors.dart';
@@ -26,15 +27,16 @@ class SearchBarWidget extends StatelessWidget {
           child: InkWell(
             onTap: () async {
 // SearchAddressView에서 선택한 city를 받아옴
-              String? selectedCity = await Navigator.push(
+              SearchCityModel? selectedCity = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => SearchAddressView(),
                 ),
+
               );
               if (selectedCity != null) {
                 // 선택한 city를 상태 업데이트 메서드를 통해 업데이트
-                _controller.updateCityName(selectedCity);
+                _controller.updateCityName(selectedCity.cityName);
               }
               // Do something with the selected city
             },
