@@ -65,11 +65,11 @@ class _Deliver_Finish_ScreenState extends State<FinishRegisterHomeView>  with Ti
             children: [
               SizedBox(height: size.height*0.3,),
               Center(
-                child: Title1Text("집 게시글 등록 완료", kTextBlackColor),
+                child: Title1Text("Success Post your Room", kDarkBlue),
               ),
               Container(
                 margin: EdgeInsets.only(top: 40.h, bottom: 15.h),
-                child: Body2Text("화면을 터치하세요!", kTextBlackColor),
+                child: Body2Text("Touch Screen!", kTextBlackColor),
               ),
               SizedBox(height: size.height*0.03,),
               ScaleTransition(

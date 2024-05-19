@@ -8,7 +8,16 @@ class HomePriceController extends GetxController{
   TextEditingController _rentController = TextEditingController();
   TextEditingController _bill = TextEditingController();
 
-  Rx<bool> _isAllInputPrice = true.obs;
+  Rx<bool> _isAllInputPrice = false.obs;
+
+  void validateAllInput(){
+    if(_bondController.text != ""
+        && _rentController.text != ""
+        && _bill.text != ""
+    ){
+      _isAllInputPrice.value = true;
+    }
+  }
 
   bool get isAppInputPrice => _isAllInputPrice.value;
 

@@ -7,9 +7,8 @@ import 'package:home_and_job/common-widgets/button/ButtonWidgets.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/register-home/widgets/HomeRegisterProcessBar.dart';
 import '../../controller/HomeRegisterTotalController.dart';
-import '../controller/RegisterImageController.dart';
+import '../../register-address/main/view/RegisterHomeAddressView.dart';
 import '../widgets/RegisterHomeImageWidget.dart';
-import '../../register-address/view/RegisterHomeAddressView.dart';
 
 class RegisterHomeImageView extends StatelessWidget {
   HomeRegisterTotalController _controller = HomeRegisterTotalController();
@@ -18,15 +17,10 @@ class RegisterHomeImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomSheet: _buildButton(),
-      appBar: CommonAppBar(
-        color: kWhiteBackGroundColor,
-        title: "",
-        canBack: true,
-      ),
+      appBar: HomeRegisterAppBar(context,0.0),
       backgroundColor: kWhiteBackGroundColor,
       body: Column(
         children: [
-          HomeRegisterProcessBar(0.0),
           RegisterHomeImageWidget(_controller.homeImageController),
           //_buildButton(),
         ],

@@ -22,23 +22,18 @@ class RegisterHomeIntroduceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(
-        color: kWhiteBackGroundColor,
-        title: "",
-        canBack: true,
-      ),
+      bottomSheet: _buildButton(),
+      appBar: HomeRegisterAppBar(context,0.9),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeRegisterProcessBar(0.8),
             Container(
               margin: EdgeInsets.only(top: 20.h, left: 20.w),
               child:
               Title2Text("Introduce", kTextBlackColor),
             ),
             _buildInputIntroduce(),
-            _buildButton()
           ],
         ),
       ),
@@ -47,15 +42,19 @@ class RegisterHomeIntroduceView extends StatelessWidget {
 
   Widget _buildButton() {
     return Container(
-      margin: EdgeInsets.only(top: 73.h),
-      child: Center(child: InkWell(
-          onTap: (){
-            Get.to(() => FinishRegisterHomeView());
+      margin: EdgeInsets.only(bottom: 15.h),
+      child: Obx(() => _controller.isAllInput
+          ? InkWell(
+          onTap: () {
+            Get.to(() => FinishRegisterHomeView(),
+                transition: Transition.noTransition);
           },
-          child: NextButtonWidget("Next"))),
+          child: NextButtonWidget("Next"))
+          : NotYetButtonWidget("Next")),
     );
   }
 
+  //FinishRegisterHomeView
 
   Widget _buildInputIntroduce(){
     return Container(
@@ -66,8 +65,10 @@ class RegisterHomeIntroduceView extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(6))),
       margin: EdgeInsets.only(top: 20.h, left: 20.w),
       child: TextFormField(
-        onChanged: (text) {},
-        controller: null,
+        onChanged: (text) {
+          _controller.validateIntroduce();
+        },
+        controller: _controller.introduceController,
         style: TextStyle(color: Colors.black),
         // 텍스트 색상을 검정색으로 설정
         textAlign: TextAlign.left,

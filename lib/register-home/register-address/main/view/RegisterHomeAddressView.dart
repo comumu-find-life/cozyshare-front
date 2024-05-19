@@ -4,15 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/register-home/register-address/controller/HomeAddressController.dart';
-import 'package:home_and_job/register-home/register-address/widgets/InputAddressFormWidget.dart';
 import 'package:home_and_job/register-home/widgets/HomeRegisterProcessBar.dart';
 
-import '../../../../common-widgets/app-bar/CommonAppbar.dart';
 import '../../../../common-widgets/button/ButtonWidgets.dart';
 import '../../../../constants/Colors.dart';
-import '../../controller/HomeRegisterTotalController.dart';
-import '../../register-price/view/RegisterHomePriceView.dart';
+import '../../../controller/HomeRegisterTotalController.dart';
+import '../../../register-price/view/RegisterHomePriceView.dart';
+import '../widgets/InputAddressFormWidget.dart';
 
 class RegisterHomeAddressView extends StatelessWidget {
   HomeRegisterTotalController _controller;
@@ -38,15 +36,10 @@ class RegisterHomeAddressView extends StatelessWidget {
     return Scaffold(
         backgroundColor: kWhiteBackGroundColor,
         bottomSheet: _buildButton(),
-        appBar: CommonAppBar(
-          color: kWhiteBackGroundColor,
-          title: "",
-          canBack: true,
-        ),
+        appBar: HomeRegisterAppBar(context,0.3),
         body: SingleChildScrollView(
               child: Column(
                 children: [
-                  HomeRegisterProcessBar(0.4),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

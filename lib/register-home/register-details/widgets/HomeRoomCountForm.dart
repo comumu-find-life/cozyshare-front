@@ -46,8 +46,11 @@ class HomeRoomCountForm extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(6))),
           margin: EdgeInsets.only(top: 20.h, left: 9.w),
           child: TextFormField(
+
             keyboardType: TextInputType.number,
-            onChanged: (text) {},
+            onChanged: (text) {
+              _controller.validateAllInput();
+            },
             controller: _controller.bedRoomCountController,
             style: TextStyle(color: Colors.black),
             // 텍스트 색상을 검정색으로 설정
@@ -88,7 +91,9 @@ class HomeRoomCountForm extends StatelessWidget {
           margin: EdgeInsets.only(top: 20.h, left: 9.w),
           child: TextFormField(
             keyboardType: TextInputType.number,
-            onChanged: (text) {},
+            onChanged: (text) {
+              _controller.validateAllInput();
+            },
             controller: _controller.bathRoomCountController,
             style: TextStyle(color: Colors.black),
             // 텍스트 색상을 검정색으로 설정

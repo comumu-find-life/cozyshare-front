@@ -1,5 +1,4 @@
 class HomeAddressGeneratorRequest {
-  String? _state;
   String? _city;
   int? _postCode;
   String? _detailAddress;
@@ -7,13 +6,12 @@ class HomeAddressGeneratorRequest {
   int? _streetNumber;
 
   HomeAddressGeneratorRequest({
-    required String state,
     required String city,
     required int postCode,
     required String detailAddress,
     required String streetName,
     required int streetNumber,
-  })   : _state = state,
+  })   :
         _city = city,
         _postCode = postCode,
         _detailAddress = detailAddress,
@@ -30,5 +28,4 @@ class HomeAddressGeneratorRequest {
 
   String? get city => _city;
 
-  String? get state => _state;
 }

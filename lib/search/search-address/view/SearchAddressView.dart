@@ -40,10 +40,6 @@ class _SearchAddressViewState extends State<SearchAddressView> {
                       return InkWell(
                         onTap: () {
                           _controller.selectCityItem(context, index);
-                          // setState(() {
-                          //   _selectCity = filteredAddresses[index];
-                          // });
-                          // Navigator.pop(context, _selectCity); // 선택한 city를 이전 화면으로 전달
                         },
                         child: Container(
                           height: 55.h,

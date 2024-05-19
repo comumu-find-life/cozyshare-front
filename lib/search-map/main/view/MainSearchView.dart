@@ -22,7 +22,6 @@ class MainSearchView extends StatefulWidget {
 class _MainSearchViewState extends State<MainSearchView> {
   MainSearchController _getxController = MainSearchController();
 
-
   @override
   void initState() {
     _getxController.initSet();

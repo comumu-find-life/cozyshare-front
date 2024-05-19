@@ -29,8 +29,9 @@ PreferredSize SearchAddressAppBar(BuildContext context, SearchAddressController 
             ),
             Container(
               margin: EdgeInsets.only(top: 10.h, bottom: 0.h, left: 10.w),
+
               width: 310.w,
-              height: 40.h,
+              height: 43.h,
               decoration: BoxDecoration(
                   border: Border.all(color: kGrey300Color),
                   borderRadius: BorderRadius.all(Radius.circular(20))
@@ -41,7 +42,7 @@ PreferredSize SearchAddressAppBar(BuildContext context, SearchAddressController 
 
                 style: TextStyle(color: Colors.black), // 입력된 텍스트의 색상을 검정색으로 변경
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 10.w, top: 5.w),
+                  contentPadding: EdgeInsets.only(left: 15.w, bottom: 0.w),
                   hintText: 'Search By City',
                   hintStyle: TextStyle(color: kGrey500Color, fontSize: 14, fontFamily: "FRegular" ),
                   border: InputBorder.none,

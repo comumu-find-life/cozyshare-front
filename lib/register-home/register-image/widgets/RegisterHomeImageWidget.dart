@@ -25,7 +25,7 @@ class RegisterHomeImageWidget extends StatelessWidget {
               },
               child: Container(
                 margin: EdgeInsets.only(top: 20.h, left: 30.w),
-                child: Title3Text("Input Room Images", kTextBlackColor),
+                child: Title3Text("Select Room Images", kTextBlackColor),
               ),
             ),
             _controller.images.length == 0
@@ -44,9 +44,9 @@ class RegisterHomeImageWidget extends StatelessWidget {
                             border: Border.all(color: kGrey300Color),
                           ),
                           child: Container(
-                            margin: EdgeInsets.only(left: 20.w),
+                            margin: EdgeInsets.only(left: 0.w),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
                                   margin: EdgeInsets.only(top: 40.h),
@@ -70,7 +70,8 @@ class RegisterHomeImageWidget extends StatelessWidget {
                                         color: kGrey300Color,
                                       ),
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(6))),
+                                          BorderRadius.all(Radius.circular(6))
+                                  ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [

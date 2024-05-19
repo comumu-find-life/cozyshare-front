@@ -26,16 +26,11 @@ class RegisterHomePriceView extends StatelessWidget {
     return Scaffold(
         bottomSheet: _buildButton(),
         backgroundColor: kWhiteBackGroundColor,
-        appBar: CommonAppBar(
-          color: kWhiteBackGroundColor,
-          title: "",
-          canBack: true,
-        ),
+        appBar: HomeRegisterAppBar(context,0.5),
         body: SingleChildScrollView(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeRegisterProcessBar(0.6),
             Container(
               margin: EdgeInsets.only(top: 20.h, left: 20.w, bottom: 20.h),
               child: Title3Text("Room Price", kTextBlackColor),

@@ -47,7 +47,7 @@ class MainSearchController extends GetxController {
           onTap: () {
               cluster.items.forEach((p) => print(p));
           },
-          icon: await _getMarkerBitmap(cluster.isMultiple ? 250 : 180,
+          icon: await _getMarkerBitmap(cluster.isMultiple ? 200 : 120,
               text: cluster.isMultiple ? cluster.count.toString() : "1"),
         );
       };

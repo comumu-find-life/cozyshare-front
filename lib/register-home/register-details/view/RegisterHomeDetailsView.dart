@@ -28,16 +28,11 @@ class RegisterHomeDetailsView extends StatelessWidget {
     return Scaffold(
         bottomSheet: _buildButton(),
         backgroundColor: kWhiteBackGroundColor,
-        appBar: CommonAppBar(
-          color: kWhiteBackGroundColor,
-          title: "",
-          canBack: true,
-        ),
+        appBar: HomeRegisterAppBar(context,0.7),
         body: SingleChildScrollView(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeRegisterProcessBar(0.6),
             HomeTypeSelect(_controller.homeRegisterDetailsController),
             HomeRoomCountForm(_controller.homeRegisterDetailsController),
             HomeOptionSelect(_controller.homeRegisterDetailsController),

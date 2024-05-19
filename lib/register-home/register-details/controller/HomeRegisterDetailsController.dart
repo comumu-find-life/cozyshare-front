@@ -8,15 +8,25 @@ import '../../../model/home/enums/HomeOption.dart';
 class HomeRegisterDetailsController extends GetxController{
   Rx<bool> _isRentType = true.obs;
   Rx<bool> _isShareRoomType = false.obs;
-  Rx<bool> _isNextStep = true.obs;
+  Rx<bool> _isNextStep = false.obs;
 
   TextEditingController _bedRoomCountController = TextEditingController();
   TextEditingController _bathRoomCountController = TextEditingController();
-  TextEditingController _introduceController = TextEditingController();
 
   RxList<HomeOptionType> _selectedOptions = <HomeOptionType>[].obs;
 
   List<HomeOptionType> get selectedOptions => _selectedOptions;
+
+  void validateAllInput(){
+    if(_bedRoomCountController.text != ""
+    && _bathRoomCountController.text != ""
+    )  {
+      _isNextStep.value = true;
+    }else{
+      _isNextStep.value = false;
+    }
+  }
+
 
   void toggleOption(HomeOptionType option) {
     if (_selectedOptions.contains(option)) {
@@ -47,5 +57,4 @@ class HomeRegisterDetailsController extends GetxController{
 
   TextEditingController get bathRoomCountController => _bathRoomCountController;
 
-  TextEditingController get introduceController => _introduceController;
 }

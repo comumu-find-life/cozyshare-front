@@ -1,27 +1,53 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/model/home/request/HomeAddressGeneratorRequest.dart';
 
+import '../../../../search/search-address/model/SearchCityModel.dart';
+import '../../../../search/search-address/view/SearchAddressView.dart';
+
 class HomeAddressController extends GetxController {
-  TextEditingController _cityController = TextEditingController();
+  Rx<String> _cityName = "".obs;
   TextEditingController _detailAddressController = TextEditingController();
   TextEditingController _streetNameController = TextEditingController();
   TextEditingController _streetCodeController = TextEditingController();
   TextEditingController _postCodeController = TextEditingController();
-  Rx<bool> _isAllInputAddress = true.obs;
+  Rx<bool> _isAllInputAddress = false.obs;
 
-  Rx<String> _selectedState = "ACT".obs;
 
-  String get selectedState => _selectedState.value;
+  void validateAllInput() {
+    if(_cityName.value != ""
+        && _detailAddressController.text != ""
+        && _streetNameController.text != ""
+        && _streetCodeController.text != ""
+        && _postCodeController.text != ""
+    ){
+      _isAllInputAddress.value = true;
+    }
 
-  void selectState(String value) {
-    _selectedState.value = value;
+    print(_isAllInputAddress.value);
   }
+
+
+  void searchCity(BuildContext context)async{
+    SearchCityModel? selectedCity = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SearchAddressView(),
+      ),
+
+    );
+    if (selectedCity != null) {
+      // 선택한 city를 상태 업데이트 메서드를 통해 업데이트
+      _cityName.value = selectedCity.cityName;
+    }
+    validateAllInput();
+  }
+
 
   HomeAddressGeneratorRequest generateHomeAddress() {
     return HomeAddressGeneratorRequest(
-        state: _selectedState.value,
-        city: _cityController.text,
+        city: _cityName.value,
         postCode: int.parse(_postCodeController.text),
         detailAddress: _detailAddressController.text,
         streetName: _streetNameController.text,
@@ -32,7 +58,7 @@ class HomeAddressController extends GetxController {
 
   TextEditingController get streetNameController => _streetNameController;
 
-  TextEditingController get cityController => _cityController;
+  String get cityName => _cityName.value;
 
   TextEditingController get detailAddressController => _detailAddressController;
 
