@@ -53,11 +53,18 @@ class _MainFrameView extends State<MainFrameView> {
             });
           },
           [
-            Icons.search,
+            Icons.home,
             Icons.favorite_outline_sharp,
             Icons.location_on_outlined,
-            Icons.messenger_outline,
-            Icons.account_circle_sharp
+            Icons.sms_outlined,
+            Icons.account_circle_outlined
+          ],
+          [
+            Icons.home_filled,
+            Icons.favorite,
+            Icons.location_on,
+            Icons.sms,
+            Icons.account_circle
           ],
           ["Main", "ShortList", "Map","Messages", "Profile"],
         ),

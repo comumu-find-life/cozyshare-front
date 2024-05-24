@@ -22,8 +22,8 @@ class SearchBarWidget extends StatelessWidget {
           height: 40.h,
           width: 310.w,
           decoration: BoxDecoration(
-              border: Border.all(color: kGrey300Color),
-              borderRadius: BorderRadius.all(Radius.circular(20))),
+            color: kLightBlue,
+              borderRadius: BorderRadius.all(Radius.circular(6))),
           child: InkWell(
             onTap: () async {
 // SearchAddressView에서 선택한 city를 받아옴
@@ -47,12 +47,13 @@ class SearchBarWidget extends StatelessWidget {
                     ? Container(
                         margin: EdgeInsets.only(left: 10.w),
                         child:
-                            FRegularText("Search By City", kGrey500Color, 14),
+                            FRegularText("Search By City", kDarkBlue, 14),
                       )
                     : Container(
+
                         margin: EdgeInsets.only(left: 10.w),
                         child:
-                            HintText3("${_controller.cityName}", kGrey600Color),
+                            FBoldText("${_controller.cityName}", kDarkBlue, 14),
                       ),
                 Container(
                   margin: EdgeInsets.only(right: 10.w),

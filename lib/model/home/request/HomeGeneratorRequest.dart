@@ -12,7 +12,7 @@ class HomeGeneratorRequest{
   int? bond;
   int? bill;
   Gender? gender;
-  HomeType? homeType;
+  RoomType? homeType;
   String? introduce;
 
   HomeGeneratorRequest({

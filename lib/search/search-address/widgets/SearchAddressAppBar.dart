@@ -33,8 +33,8 @@ PreferredSize SearchAddressAppBar(BuildContext context, SearchAddressController 
               width: 310.w,
               height: 43.h,
               decoration: BoxDecoration(
-                  border: Border.all(color: kGrey300Color),
-                  borderRadius: BorderRadius.all(Radius.circular(20))
+                color: kLightBlue,
+                  borderRadius: BorderRadius.all(Radius.circular(6))
               ),
               child: TextField(
 
@@ -44,10 +44,10 @@ PreferredSize SearchAddressAppBar(BuildContext context, SearchAddressController 
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(left: 15.w, bottom: 0.w),
                   hintText: 'Search By City',
-                  hintStyle: TextStyle(color: kGrey500Color, fontSize: 14, fontFamily: "FRegular" ),
+                  hintStyle: TextStyle(color: kDarkBlue, fontSize: 15, fontFamily: "FRegular" ),
                   border: InputBorder.none,
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.search),
+                    icon: Icon(Icons.search, color: kDarkBlue,),
                     onPressed: () async {
                       //_controller.searchAddresses();
                       //await _searchAddresses(_searchController.text);

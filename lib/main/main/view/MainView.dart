@@ -10,6 +10,7 @@ import '../../../l10n/AppLocalizations.dart';
 import '../controller/MainController.dart';
 import '../widgets/HotPostWidget.dart';
 import '../widgets/MainAppBar.dart';
+import '../widgets/MainHeaderWidget.dart';
 import '../widgets/MainSearchBar.dart';
 import '../widgets/PostHomeWidget.dart';
 import '../widgets/SearchHomeWidget.dart';
@@ -28,29 +29,21 @@ class MainView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Container(
-                  width: 380.w,
-                  height: 60.h,
-                  color: kDarkBlue,
-                ),
-              ],
-            ),
+            MainHeaderWidget(),
             Container(
 
               decoration: BoxDecoration(
                 color: kWhiteBackGroundColor,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+                  topLeft: Radius.circular(3),
+                  topRight: Radius.circular(3),
                 )
               ),
               child: Column(
                 children: [
                   SearchHomeWidget(controller),
                   PostHomeWidget(controller),
-                  BannerWidget(controller),
+                  //BannerWidget(controller),
                   HotPlaceWidget(controller)
                 ],
               ),

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,69 +14,77 @@ import '../../filter/view/SearchFilterView.dart';
 class MainSearchHeader extends StatelessWidget {
   MainSearchController _getxController;
 
-
   MainSearchHeader(this._getxController);
-
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => Center(
-      child: Container(
-        margin: EdgeInsets.only(top: 30.h),
-        width: 350.w,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildTotalFilter(),
-            InkWell(
-              onTap: ()async{
-                SearchCityModel? selectedCity = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SearchAddressView(),
-                  ),
-                );
-                if (selectedCity != null) {
-                  _getxController.updateCity(selectedCity.cityName);
-                  _getxController.updateCameraPosition(selectedCity.latLng);
-                }
-              },
-              child: Container(
-                width: 310.w,
-                height: 45.h,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    border: Border.all(color: kGrey400Color)),
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 10.w),
-                      child: Icon(
-                        Icons.search,
-                        color: kGrey800Color,
+          child: Container(
+            margin: EdgeInsets.only(top: 30.h),
+            width: 350.w,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildTotalFilter(),
+                InkWell(
+                  onTap: () async {
+                    SearchCityModel? selectedCity = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchAddressView(),
                       ),
+                    );
+                    if (selectedCity != null) {
+                      _getxController.updateCity(selectedCity.cityName);
+                      _getxController.updateCameraPosition(selectedCity.latLng);
+                    }
+                  },
+                  child: Container(
+                    width: 310.w,
+                    height: 43.h,
+                    decoration: BoxDecoration(
+                      color: kLightBlue,
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
                     ),
-                    _getxController.cityName == ""?Container(
-                      margin: EdgeInsets.only(left: 10.w),
-                      child: FRegularText("Search City", kGrey500Color, 14),
-                    ):Container(
-                      margin: EdgeInsets.only(left: 10.w),
-                      child: FRegularText("${_getxController.cityName}", kGrey700Color, 14),
-                    )
-                  ],
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+
+                        _getxController.cityName == ""
+                            ? Container(
+                                margin: EdgeInsets.only(left: 15.w),
+                                child:
+                                    FRegularText("Search City", kDarkBlue, 15),
+                              )
+                            : Container(
+                                margin: EdgeInsets.only(left: 15.w),
+                                child: FRegularText(
+                                    "${_getxController.cityName}",
+                                    kGrey700Color,
+                                    14),
+                              ),
+
+                        Container(
+                          margin: EdgeInsets.only(right: 15.w),
+                          child: Icon(
+                            Icons.search,
+                            color: kGrey800Color,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   Widget _buildTotalFilter() {
     return InkWell(
       onTap: () {
-        Get.to(() => SearchFilterView(), transition: Transition.upToDown);
+        Get.to(() => SearchFilterView(null), transition: Transition.upToDown);
       },
       child: Container(
         height: 35.h,

@@ -9,10 +9,11 @@ class BottomNavigationWidget extends StatefulWidget {
   final int defaultSelectedIndex;
   final Function(int) onChange;
   final List<IconData> iconList;
+  final List<IconData> fillIconList;
   final List<String> titleList;
 
   BottomNavigationWidget(this.defaultSelectedIndex, this.onChange,
-      this.iconList, this.titleList);
+      this.iconList,this.fillIconList, this.titleList);
 
   @override
   _BottomNavigationWidget createState() => _BottomNavigationWidget();
@@ -21,6 +22,7 @@ class BottomNavigationWidget extends StatefulWidget {
 class _BottomNavigationWidget extends State<BottomNavigationWidget> {
   int _selectedIndex = 0;
   List<IconData> _iconList = [];
+  List<IconData> _fillIconList = [];
   List<String> _title = [];
 
   @override
@@ -30,6 +32,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
 
     _selectedIndex = widget.defaultSelectedIndex;
     _iconList = widget.iconList;
+    _fillIconList = widget.fillIconList;
     _title = widget.titleList;
   }
 
@@ -38,7 +41,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
     List<Widget> _navBarItemList = [];
 
     for (var i = 0; i < _iconList.length; i++) {
-      _navBarItemList.add(buildNavBarItem(_title[i], _iconList[i], i));
+      _navBarItemList.add(buildNavBarItem(_title[i], _iconList[i], _fillIconList[i], i));
     }
 
     return Container(
@@ -55,7 +58,7 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
     );
   }
 
-  Widget buildNavBarItem(String title, IconData icon, int index) {
+  Widget buildNavBarItem(String title, IconData icon, IconData tapIcon,  int index) {
     return GestureDetector(
         onTap: () {
           widget.onChange(index);
@@ -73,17 +76,19 @@ class _BottomNavigationWidget extends State<BottomNavigationWidget> {
                 height: 21.h,
                 margin: EdgeInsets.only(top: 10.h),
                 child:  Icon(
-                  icon,
-                  size: 24,
+                  index == _selectedIndex ? tapIcon : icon,
+                  size: 18.sp,
+
                   color: index == _selectedIndex ? kBlueColor : Colors.grey,
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 10.h),
                 child: Center(
-                  child: HelperText(
+                  child: FRegularText(
                     title,
                     index == _selectedIndex ? kGrey800Color : kGrey400Color,
+                    12
                   ),
                 ),
               )

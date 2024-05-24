@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/chatting/main/controller/ChattingController.dart';
 import 'package:home_and_job/chatting/main/widgets/ChatItemWidget.dart';
@@ -8,18 +9,24 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 class ChattingListView extends StatelessWidget {
-  const ChattingListView({super.key});
+
+  ChattingController _controller = ChattingController();
 
   @override
   Widget build(BuildContext context) {
-    ChattingController _controller = ChattingController();
+
 
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Center(child: _buildSearchBar()),
+            SizedBox(
+              height: 30.h,
+            ),
             ChatItemWidget(),
             ChatItemWidget(),
 
@@ -28,6 +35,43 @@ class ChattingListView extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildSearchBar(){
+    return Container(
+      margin: EdgeInsets.only(top: 10.h, bottom: 0.h, left: 0.w),
+
+      width: 330.w,
+      height: 43.h,
+      decoration: BoxDecoration(
+        color: kPrimaryLightColor,
+
+          borderRadius: BorderRadius.all(Radius.circular(6))
+      ),
+      child: TextField(
+
+        controller: _controller.filterController,
+
+        style: TextStyle(color: Colors.black), // 입력된 텍스트의 색상을 검정색으로 변경
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.only(left: 15.w, bottom: 0.w),
+          hintText: 'Search By City',
+          hintStyle: TextStyle(color: kDarkBlue, fontSize: 14, fontFamily: "FRegular" ),
+          border: InputBorder.none,
+          suffixIcon: IconButton(
+            icon: Icon(Icons.search, color: kDarkBlue,),
+            onPressed: () async {
+              //_controller.searchAddresses();
+              //await _searchAddresses(_searchController.text);
+            },
+          ),
+        ),
+        onChanged: (query) {
+          //_controller.filterAddresses(query);
+        },
+      ),
+    );
+  }
+
   AppBar _buildAppBar(){
     return AppBar(
       backgroundColor: kWhiteBackGroundColor,
@@ -35,10 +79,11 @@ class ChattingListView extends StatelessWidget {
       automaticallyImplyLeading: false,
       elevation: 0,
       title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 10.h,left: 10.w),
-            child: Title2Text("메시지", kTextBlackColor),
+            margin: EdgeInsets.only(top: 10.h,left: 0.w),
+            child: FBoldText("Chats", kTextBlackColor, 15)
           )
         ],
       ),

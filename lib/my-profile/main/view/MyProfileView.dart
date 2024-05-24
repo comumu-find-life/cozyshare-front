@@ -39,14 +39,7 @@ class MyProfileView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            color: kWhiteBackGroundColor,
-            height: 85.h,
-            child: Container(
-              margin: EdgeInsets.only(left: 25.w, top: 45.h),
-              child: Title2Text("마이페이지", kTextBlackColor),
-            ),
-          ),
+          Container(),
           InkWell(
             onTap: () {},
             child: Container(

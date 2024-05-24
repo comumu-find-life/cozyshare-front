@@ -32,7 +32,7 @@ Widget DealFinishWidget(){
             height: 35.h,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: kLightBlueBAckGround),
+                color: kLightBlue),
             child: Center(child: Helper2Text("거래 내역", kDarkBlue)),
           ),
         )

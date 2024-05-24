@@ -4,9 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../controller/FilterController.dart';
 
 class PriceFilterWidget extends StatelessWidget {
-  const PriceFilterWidget({super.key});
+  FilterController _controller;
+
+
+  PriceFilterWidget(this._controller);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +74,7 @@ class PriceFilterWidget extends StatelessWidget {
                 Container(
                   width: 130.w,
                   child: TextField(
-                    controller: null,
+                    controller: _controller.minRentController,
                     // onChanged: (value) {
                     //   // Delay filtering to avoid frequent rebuilds
                     //   Future.delayed(Duration(milliseconds: 300), () {
@@ -118,13 +122,9 @@ class PriceFilterWidget extends StatelessWidget {
                 Container(
                   width: 300.w,
                   child: TextField(
-                    controller: null,
-                    // onChanged: (value) {
-                    //   // Delay filtering to avoid frequent rebuilds
-                    //   Future.delayed(Duration(milliseconds: 300), () {
-                    //     filterCities(value);
-                    //   });
-                    // },
+                    keyboardType: TextInputType.number,
+                    controller: _controller.maxBondController,
+                    
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: 'Any',
@@ -166,7 +166,8 @@ class PriceFilterWidget extends StatelessWidget {
                 Container(
                   width: 130.w,
                   child: TextField(
-                    controller: null,
+                    keyboardType: TextInputType.number,
+                    controller: _controller.maxRentController,
                     // onChanged: (value) {
                     //   // Delay filtering to avoid frequent rebuilds
                     //   Future.delayed(Duration(milliseconds: 300), () {

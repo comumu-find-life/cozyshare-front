@@ -4,10 +4,13 @@ import 'package:flutter/cupertino.dart';
 const kChatPrimaryColor = Color(0xff7C7B9B);
 const kChatBackGround = Color(0xffadb1ba);
 const kBackgroundBlue = Color(0xfff2f6fa);
-const kLightBlue = Color(0xffabbed9);
+
+const kLightBlue = Color(0xffECF3F1);
 const kLightBlueBAckGround = Color(0xffe9edf7);
-const kDarkBlue = Color(0xff2b548f);
-const kBlueColor = Color(0xff4b8bf2);
+const kDarkBlue = Color(0xff345e51);
+const kBlueColor = Color(0xff458b74);
+
+
 const kWhiteBackGroundColor = Color(0xffFFFFFF);
 const kYellowColor = Color(0xffFF9D00);
 const kYellow100Color = Color(0xffFFF8EE);
@@ -31,3 +34,7 @@ const kContainerGrey = Color(0xffEEEEEE);
 const kBorderGreyColor = Color(0xffE0E0E0);
 const kBorderGrey300Color = Color(0xffC9C9C9);
 const kTextBlackColor = Color(0xff151515);
+
+const kPrimaryDarkColor = Color(0xff22453A);
+const kPrimaryColor = Color(0xff458b74);
+const kPrimaryLightColor = Color(0xffECF3F1);

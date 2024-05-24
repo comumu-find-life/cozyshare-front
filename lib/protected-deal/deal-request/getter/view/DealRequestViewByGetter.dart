@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
-import '../../../../protected-deal/deal-generator_by_provider/widgets/DealInformationHeaderWidget.dart';
+import '../../../deal-generator/widgets/DealInformationHeaderWidget.dart';
 import '../controller/DealRequestControllerByGetter.dart';
 import '../widgets/DealRequestAgreeWidget.dart';
 import '../widgets/DepositInformationWidgetByGetter.dart';
@@ -15,8 +16,13 @@ import '../widgets/DealInformationWidgetByGetter.dart';
  * Getter 에게 보여줄 입금 요청 View
  */
 class DealRequestViewByGetter extends StatelessWidget {
+
+  ChatDetailController _chatDetailController;
   DealRequestControllerByGetter _controller =
       DealRequestControllerByGetter();
+
+
+  DealRequestViewByGetter(this._chatDetailController);
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +64,10 @@ class DealRequestViewByGetter extends StatelessWidget {
           shadowColor: Colors.transparent, // 그림자 없애기
         ),
         onPressed: () {
-          //_controller.ontapStep1Next();
-          _controller.canNext ? Navigator.pop(context) : null;
+          if(_controller.canNext){
+            _chatDetailController.applyDeposit();
+            Navigator.pop(context);
+          }
         },
         child: ButtonText("입금 신청", kWhiteBackGroundColor),
       ),

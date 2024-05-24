@@ -1,3 +1,3 @@
-enum HomeType{
+enum RoomType{
   RENT, SHARE
 }

@@ -3,23 +3,19 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
 class RoomListController extends GetxController {
-
   Rx<String> _cityName = "".obs;
   Rx<bool> _selectRentHome = true.obs;
   Rx<bool> _selectShareHome = false.obs;
 
   TextEditingController _searchController = TextEditingController();
 
-
-  RoomListController(String cityName){
+  RoomListController(String cityName) {
     _cityName.value = cityName;
   }
 
-  void updateCityName(String newCity){
+  void updateCityName(String newCity) {
     _cityName.value = newCity;
   }
-
-
 
   void selectHomeType(int type) {
     if (type == 1) {
@@ -33,9 +29,7 @@ class RoomListController extends GetxController {
     }
   }
 
-
   void search() {}
-
 
   String get cityName => _cityName.value;
 

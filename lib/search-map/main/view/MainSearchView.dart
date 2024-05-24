@@ -43,6 +43,7 @@ class _MainSearchViewState extends State<MainSearchView> {
                 width: 380.w,
                 height: 570.h,
                 child: GoogleMap(
+                    minMaxZoomPreference: MinMaxZoomPreference(5.0, 40.0),
                     mapType: MapType.normal,
                     initialCameraPosition: _getxController.parisCameraPosition,
                     markers: _getxController.markers,
@@ -58,27 +59,25 @@ class _MainSearchViewState extends State<MainSearchView> {
     );
   }
 
-
   Widget _buildBottomButton() {
     return Obx(() => InkWell(
-      onTap: () {
-        Get.to(() => SearchRoomListByMapView(_getxController.filterHomes));
-      },
-      child: Container(
-        margin: EdgeInsets.only(bottom: 10.h),
-        width: 360.w,
-        height: 45.h,
-
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(6)),
-            color: kDarkBlue),
-        child: Center(
-          child: FBoldText("See  ${_getxController.filterHomes.length} Rooms in the Area",
-              kWhiteBackGroundColor, 14),
-        ),
-      ),
-    ));
+          onTap: () {
+            Get.to(() => SearchRoomListByMapView(_getxController.filterHomes));
+          },
+          child: Container(
+            margin: EdgeInsets.only(bottom: 10.h),
+            width: 360.w,
+            height: 45.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                color: kDarkBlue),
+            child: Center(
+              child: FBoldText(
+                  "See  ${_getxController.filterHomes.length} Rooms in the Area",
+                  kWhiteBackGroundColor,
+                  14),
+            ),
+          ),
+        ));
   }
-
-
 }

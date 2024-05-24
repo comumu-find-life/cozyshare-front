@@ -30,7 +30,7 @@ class HotPlaceWidget extends StatelessWidget {
     return Container(
       width: 360.w,
       height: 300.h,
-      margin: EdgeInsets.only(top: 10.w, left: 10.w),
+      margin: EdgeInsets.only(top: 20.w, left: 20.w),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
@@ -91,88 +91,98 @@ class HotPlaceWidget extends StatelessWidget {
   }
 
   Widget _buildMelbourne() {
-    return Stack(
-      children: [
-        Container(
-          width: 150.w,
-          height: 240.h,
-          margin: EdgeInsets.only(left: 10.w),
-          child: Container(
-            margin: EdgeInsets.only(right: 7.w),
-            width: 120.w,
-            height: 80.h,
-            child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
+    return InkWell(
+      onTap: (){
+        Get.to(() => RoomListView("melbourne"));
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: 150.w,
+            height: 240.h,
+            margin: EdgeInsets.only(left: 10.w),
+            child: Container(
+              margin: EdgeInsets.only(right: 7.w),
+              width: 120.w,
+              height: 80.h,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+                  child: Image.asset(
+                    "assets/images/cities/melbourne.jpg",
+                    fit: BoxFit.cover,
+                  )),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 0.w),
+            child: Stack(
+              children: [
+                Container(
+                  width: 110.w,
+                  child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
-                child: Image.asset(
-                  "assets/images/cities/melbourne.jpg",
-                  fit: BoxFit.cover,
-                )),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 0.w),
-          child: Stack(
-            children: [
-              Container(
-                width: 110.w,
-                child: Image.asset("assets/images/common/tag_normal.png"),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
-                child:
-                Center(child: Body1Text("Melbourne", kWhiteBackGroundColor)),
-              )
-            ],
-          ),
-        )
-      ],
+                Container(
+                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  child:
+                  Center(child: Body1Text("Melbourne", kWhiteBackGroundColor)),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
   Widget _buildBrisbane() {
-    return Stack(
-      children: [
-        Container(
-          width: 150.w,
-          height: 240.h,
-          margin: EdgeInsets.only(left: 10.w),
-          child: Container(
-            margin: EdgeInsets.only(right: 7.w),
-            width: 120.w,
-            height: 80.h,
-            child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(8),
-                  bottomLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
+    return InkWell(
+      onTap: (){
+        Get.to(() => RoomListView("brisbane"));
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: 150.w,
+            height: 240.h,
+            margin: EdgeInsets.only(left: 10.w),
+            child: Container(
+              margin: EdgeInsets.only(right: 7.w),
+              width: 120.w,
+              height: 80.h,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+                  child: Image.asset(
+                    "assets/images/cities/brisbane.jpg",
+                    fit: BoxFit.cover,
+                  )),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 0.w),
+            child: Stack(
+              children: [
+                Container(
+                  width: 110.w,
+                  child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
-                child: Image.asset(
-                  "assets/images/cities/brisbane.jpg",
-                  fit: BoxFit.cover,
-                )),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 0.w),
-          child: Stack(
-            children: [
-              Container(
-                width: 110.w,
-                child: Image.asset("assets/images/common/tag_normal.png"),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
-                child:
-                Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
-              )
-            ],
-          ),
-        )
-      ],
+                Container(
+                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  child:
+                  Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -293,11 +303,12 @@ class HotPlaceWidget extends StatelessWidget {
 
   Widget _buildText() {
     return Container(
-      margin: EdgeInsets.only(top: 30.h, left: 20.w),
+      margin: EdgeInsets.only(top: 30.h, left: 21.w,right: 20.w
+      ),
       child: Row(
         children: [
           Container(
-            child: Title2Text("Popular Cities", kTextBlackColor),
+            child: FBoldText("Popular Cities", kTextBlackColor, 16),
           ),
           // Container(
           //   margin: EdgeInsets.only(left: 7.w),

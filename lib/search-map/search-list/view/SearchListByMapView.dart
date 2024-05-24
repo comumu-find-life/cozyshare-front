@@ -24,6 +24,7 @@ class SearchRoomListByMapView extends StatelessWidget {
           children: [
 
             Container(
+              margin: EdgeInsets.only(left: 10.w, right: 10.w),
                 width: 380.w,
                 height: 730.h,
                 child: ListView.builder(
@@ -42,10 +43,11 @@ class SearchRoomListByMapView extends StatelessWidget {
     return AppBar(
       elevation: 0,
       centerTitle: true,
-      backgroundColor: kWhiteBackGroundColor,
+      backgroundColor: Colors.grey.shade50,
       automaticallyImplyLeading: false,
       title: Container(
         width: 360.w,
+        margin: EdgeInsets.only(bottom: 10.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

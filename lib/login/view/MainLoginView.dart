@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,20 +17,20 @@ class MainLoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     LoginApi api = LoginApi();
     MainLoginController controller = MainLoginController();
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
       body: SingleChildScrollView(
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             MainLoginTextWidget(),
             LoginFormWidget(),
             LoginButtonWidget(controller),
-
           ],
         ),
       ),
@@ -40,9 +41,7 @@ class MainLoginView extends StatelessWidget {
     return Container(
       width: 350.w,
       height: 130.h,
-      decoration: BoxDecoration(
-        color: kGrey200Color
-      ),
+      decoration: BoxDecoration(color: kGrey200Color),
       child: Center(
         child: Body2Text("Getter로 시작하기", kTextBlackColor),
       ),
@@ -55,7 +54,5 @@ class MainLoginView extends StatelessWidget {
 
   Widget _buildMainText() {
     return Container();
+  }
 }
-
-}
-

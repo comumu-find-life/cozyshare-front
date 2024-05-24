@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -23,7 +24,7 @@ class MainSearchController extends GetxController {
   late ClusterManager _manager;
   RxSet<Marker> _markers = <Marker>{}.obs;
   CameraPosition _parisCameraPosition =
-  CameraPosition(target: LatLng(-33.898972, 151.155429), zoom: 12.0);
+  CameraPosition(target: LatLng(-33.898972, 151.155429), zoom: 14.0);
 
   void updateCity(String newCity){
     _cityName.value = newCity;
@@ -35,19 +36,23 @@ class MainSearchController extends GetxController {
 
   ClusterManager _initClusterManager() {
     return ClusterManager<HomeResponse>(items, _updateMarkers,
+        extraPercent: 0.1,
+        stopClusteringZoom: 20.0,
+        levels: [1, 4.25, 4.75, 9.25, 10.5, 13.5, 15.0, 17.5, 18.0],
         markerBuilder: _markerBuilder);
   }
 
   Future<Marker> Function(Cluster<HomeResponse>) get _markerBuilder =>
           (cluster) async {
         return Marker(
+
           markerId: MarkerId(cluster.getId()),
           position: cluster.location,
           infoWindow: InfoWindow(),
           onTap: () {
               cluster.items.forEach((p) => print(p));
           },
-          icon: await _getMarkerBitmap(cluster.isMultiple ? 200 : 120,
+          icon: await _getMarkerBitmap(cluster.isMultiple ? 170 : 90,
               text: cluster.isMultiple ? cluster.count.toString() : "1"),
         );
       };
@@ -118,18 +123,7 @@ class MainSearchController extends GetxController {
     ));
   }
 
-  List<HomeResponse> items = [
-    for (int i = 0; i < 50; i++)
-      HomeResponse(
-        address: "33" + i.toString() + "WAC MEL 1500",
-        latLng: LatLng(-33.898972 - i * 0.001, 151.155429 + i * 0.001),
-        rent: 200,
-        bond: 1000,
-        id: 0,
-        bill: 300,
-        introduce: "introducee",
-      ),
-  ];
+  List<HomeResponse> items = generateRandomData(300);
 
 
 
@@ -144,4 +138,53 @@ class MainSearchController extends GetxController {
   CameraPosition get parisCameraPosition => _parisCameraPosition;
 
   Completer<GoogleMapController> get controller => _controller;
+}
+
+Random _random = Random();
+
+// 인기 지역과 가중치
+List<Map<String, dynamic>> regions = [
+  {
+    'name': 'Sydney',
+    'latRange': [-34.0, -33.5],
+    'lngRange': [150.5, 151.5],
+    'weight': 0.4 // 40% 데이터
+  },
+  {
+    'name': 'Melbourne',
+    'latRange': [-38.2, -37.5],
+    'lngRange': [144.5, 145.5],
+    'weight': 0.3 // 30% 데이터
+  },
+  // 추가 지역 정의
+  {
+    'name': 'Other',
+    'latRange': [-43.6, -10.0],
+    'lngRange': [112.0, 154.0],
+    'weight': 0.3 // 30% 데이터
+  },
+];
+
+List<HomeResponse> generateRandomData(int totalItems) {
+  List<HomeResponse> items = [];
+
+  for (var region in regions) {
+    int regionItemCount = (totalItems * region['weight']).round();
+    for (int i = 0; i < regionItemCount; i++) {
+      double lat = region['latRange'][0] + _random.nextDouble() * (region['latRange'][1] - region['latRange'][0]);
+      double lng = region['lngRange'][0] + _random.nextDouble() * (region['lngRange'][1] - region['lngRange'][0]);
+
+      items.add(HomeResponse(
+        address: "${region['name']} Address $i",
+        latLng: LatLng(lat, lng),
+        rent: 200 + _random.nextInt(1000), // 랜덤 렌트 가격
+        bond: 1000 + _random.nextInt(2000), // 랜덤 보증금
+        id: i,
+        bill: 300 + _random.nextInt(200), // 랜덤 청구서
+        introduce: "소개 $i",
+      ));
+    }
+  }
+
+  return items;
 }

@@ -22,7 +22,7 @@ Widget HomeDetailBottomBar(HomeDetailController _controller){
         shadowColor: Colors.transparent, // 그림자 없애기
       ),
       onPressed: () {
-        Get.to(() => ChatDetailView(currentUser));
+        Get.to(() => ChatDetailView());
         //_controller.ontapStep1Next();
         //_controller.canFinish ? Navigator.pop(context) : null;
       },

@@ -5,13 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
+import '../../../chatting/chat-detail/controller/ChatDetailController.dart';
 import '../controller/DealGeneratorController.dart';
 import '../widgets/FinalDealInformationWidget.dart';
 
 class DealGeneratorFinalViewByProvider extends StatelessWidget {
   DealGeneratorController _controller;
+  ChatDetailController _chatDetailController;
 
-  DealGeneratorFinalViewByProvider(this._controller);
+  DealGeneratorFinalViewByProvider(this._controller, this._chatDetailController);
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
                   shadowColor: Colors.transparent, // 그림자 없애기
                 ),
                 onPressed: () {
+                  _chatDetailController.startProtectedDeal();
                   Navigator.pop(context);
                   Navigator.pop(context);
                   //_controller.ontapStep1Next();

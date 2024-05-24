@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 import '../../../protected-deal/deal-proceeding/getter/view/DealProcessViewByGetter.dart';
+import '../../../protected-deal/deal-proceeding/provider/view/DealProcessViewByProvider.dart';
 
-Widget DealDuringMessageWidget(){
+Widget DealDuringMessageWidget(ChatDetailController controller){
   return Container(
     width: 200.w,
     height: 150.h,
@@ -30,7 +32,9 @@ Widget DealDuringMessageWidget(){
         ),
         InkWell(
           onTap: (){
-            Get.to(() => DealProcessViewByGetter());
+            //todo 변경
+            Get.to(() => DealProcessViewByGetter(controller));
+            //Get.to(() => DealProcessViewByProvider(controller));
           },
           child: Center(
             child: Container(
@@ -39,7 +43,7 @@ Widget DealDuringMessageWidget(){
               height: 35.h,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
-                  color: kLightBlueBAckGround),
+                  color: kLightBlue),
               child: Center(child: Helper2Text("정보 조회", kDarkBlue)),
             ),
           ),

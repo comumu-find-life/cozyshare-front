@@ -20,19 +20,44 @@ class ProfileWidget extends StatelessWidget {
     return Container(
       color: kWhiteBackGroundColor,
       width: 380.w,
-      height: 130.h,
+
+      height: 80.h,
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildProfileImage(),
-              _buildInformation(),
-            ],
+          Container(
+            margin: EdgeInsets.only(top: 0.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildProfileImage(),
+                    _buildInformation(),
+                  ],
+                ),
+                _buildButton(),
+              ],
+            ),
           ),
           //_buildPointInformation(),
         ],
       ),
+    );
+  }
+
+  Widget _buildButton(){
+    return Container(
+      margin: EdgeInsets.only(top: 15.h,right: 20.w),
+      width: 70.w,
+      height: 35.h,
+      decoration: BoxDecoration(
+        //border: Border.all(color: kGrey400Color),
+        color: kGrey100Color,
+        borderRadius: BorderRadius.all(Radius.circular(6))
+      ),
+      child: Center(child: FRegularText("프로필 보기", kTextBlackColor, 12)),
     );
   }
 
@@ -85,26 +110,26 @@ class ProfileWidget extends StatelessWidget {
 
   Widget _buildInformation() {
     return Container(
-      margin: EdgeInsets.only(top: 20.h, left: 6.w),
+      margin: EdgeInsets.only(top: 23.h, left: 6.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Container(
-                child: Title3Text("신민석", kTextBlackColor),
+                child: FBoldText("신민석", kTextBlackColor, 15),
               ),
             ],
           ),
-          InkWell(
-            onTap: (){
-              Get.to(() => ProfileDetailView());
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 10.h),
-              child: HintText2("프로필 추가 등록하기", kBlueColor),
-            ),
-          )
+          // InkWell(
+          //   onTap: (){
+          //     Get.to(() => ProfileDetailView());
+          //   },
+          //   child: Container(
+          //     margin: EdgeInsets.only(top: 10.h),
+          //     child: HintText2("프로필 추가 등록하기", kBlueColor),
+          //   ),
+          // )
         ],
       ),
     );
@@ -113,8 +138,8 @@ class ProfileWidget extends StatelessWidget {
   Widget _buildProfileImage() {
     return Container(
       margin: EdgeInsets.only(top: 10.h, left: 20.w),
-      width: 80.w,
-      height: 80.h,
+      width: 45.w,
+      height: 45.h,
       child: CircleAvatar(
         backgroundColor: kGrey200Color,
         backgroundImage: AssetImage("assets/images/test/man.png"),

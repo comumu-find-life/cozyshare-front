@@ -14,74 +14,82 @@ class ChatItemWidget extends StatelessWidget {
     final User user = currentUser;
     return InkWell(
       onTap: () {
-        Get.to(() => ChatDetailView(user));
+        Get.to(() => ChatDetailView());
       },
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 30.h, left: 20.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      child: CircleAvatar(
-                        backgroundColor: kGrey200Color,
-                        backgroundImage: AssetImage("assets/images/test/man.png"),
+      child: Container(
+        margin: EdgeInsets.only(top: 10.h),
+        width: 330.w,
+        height: 70.h,
+        child: Column(
+          children: [
+            Container(
+              //margin: EdgeInsets.only(top: 30.h, left: 20.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 50.w,
+                        height: 50.h,
+                        child: CircleAvatar(
+                          backgroundColor: kGrey200Color,
+                          backgroundImage: AssetImage("assets/images/test/man.png"),
+                        ),
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 15.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 250.w,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                      Container(
+                        margin: EdgeInsets.only(left: 10.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 220.w,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    child: FBoldText("신민석", kDarkBlue,15),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
                               children: [
                                 Container(
-                                  child: Body1Text("신민석", kTextBlackColor),
+                                  margin: EdgeInsets.only(top: 10.h),
+                                  child: FRegularText("방 있나요?",  kGrey700Color, 13),
                                 ),
+
                               ],
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 5.h),
-                                child: Body2Text("방 있나요?", kGrey600Color),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(left: 10.w),
-                                child: HelperText("02.15", kGrey500Color),
-                              )
-                            ],
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                Container(
-                  width: 28.w,
-                  height: 28.h,
-                  margin: EdgeInsets.only(right: 10.w),
-                  decoration:
-                      BoxDecoration(shape: BoxShape.circle, color: kErrorColor),
-                  child: Center(child: ButtonText("1", kWhiteBackGroundColor)),
-                ),
-              ],
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        child: FRegularText("02.15", kGrey600Color, 12),
+                      ),
+                      Container(
+
+                        width: 28.w,
+                        height: 28.h,
+                        margin: EdgeInsets.only(top: 4.w),
+                        decoration:
+                            BoxDecoration(shape: BoxShape.circle, color: kDarkBlue),
+                        child: Center(child: FBoldText("1", kWhiteBackGroundColor, 14)),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20.h),
-            width: 350.w,
-            color: kGrey200Color,
-            height: 1.h,
-          )
-        ],
+
+          ],
+        ),
       ),
     );
   }
