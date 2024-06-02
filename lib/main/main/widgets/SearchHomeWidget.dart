@@ -25,7 +25,7 @@ class SearchHomeWidget extends StatelessWidget {
 
   Widget _buildRegisterHome() {
     return Container(
-      margin: EdgeInsets.only(top: 40.h),
+      margin: EdgeInsets.only(top: 10.h),
       child: Column(
         children: [
           InkWell(
@@ -33,7 +33,7 @@ class SearchHomeWidget extends StatelessWidget {
               controller.moveToHomeView();
             },
             child: Container(
-              width: 310.w,
+              width: 335.w,
               height: 100.h,
               decoration: BoxDecoration(
                   boxShadow: [
@@ -46,7 +46,7 @@ class SearchHomeWidget extends StatelessWidget {
                   ],
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   border: Border.all(color: kGrey200Color),
-                  color: kWhiteBackGroundColor
+                  color: kPrimaryColor
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,12 +65,12 @@ class SearchHomeWidget extends StatelessWidget {
                           children: [
                             Container(
                               margin: EdgeInsets.only(top: 20.h),
-                              child: Body2Text("집 매물 찾아보기", kGrey700Color),
+                              child: Body2Text("집 매물 찾아보기", kWhiteBackGroundColor),
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 5.h),
                               child: HelperText(
-                                  "쉐어/렌트 가능한 매물을 찾아보세요.", kGrey500Color),
+                                  "쉐어/렌트 가능한 매물을 찾아보세요.", kWhiteBackGroundColor),
                             )
                           ],
                         ),
@@ -78,6 +78,10 @@ class SearchHomeWidget extends StatelessWidget {
                     ],
                   ),
                   Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: kLightBlue
+                    ),
                     margin: EdgeInsets.only(right: 14.w),
                     child: Icon(
                       Icons.keyboard_arrow_right_outlined,

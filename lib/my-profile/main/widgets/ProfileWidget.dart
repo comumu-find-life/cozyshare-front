@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/my-profile/main/controller/MyProfileController.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../../../detail-profile/view/ProfileDetailView.dart';
-
 
 class ProfileWidget extends StatelessWidget {
   MyProfileController _controller;
@@ -18,14 +18,17 @@ class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kWhiteBackGroundColor,
+      decoration: BoxDecoration(
+        color: kDarkBlue,
+        borderRadius: BorderRadius.all(Radius.circular(10))
+      ),
+      margin: EdgeInsets.only(left: 5.w,right: 5.w, top: 20.h),
       width: 380.w,
-
-      height: 80.h,
+      height: 90.h,
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 0.h),
+            margin: EdgeInsets.only(top: 20.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,6 +40,11 @@ class ProfileWidget extends StatelessWidget {
                     _buildInformation(),
                   ],
                 ),
+                Container(
+                  width: 1.w,
+                  height: 40.h,
+                  color: kGrey300Color,
+                ),
                 _buildButton(),
               ],
             ),
@@ -47,16 +55,15 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildButton(){
+  Widget _buildButton() {
     return Container(
-      margin: EdgeInsets.only(top: 15.h,right: 20.w),
+      margin: EdgeInsets.only(top: 15.h, right: 20.w),
       width: 70.w,
       height: 35.h,
       decoration: BoxDecoration(
-        //border: Border.all(color: kGrey400Color),
-        color: kGrey100Color,
-        borderRadius: BorderRadius.all(Radius.circular(6))
-      ),
+          //border: Border.all(color: kGrey400Color),
+          color: kGrey100Color,
+          borderRadius: BorderRadius.all(Radius.circular(6))),
       child: Center(child: FRegularText("프로필 보기", kTextBlackColor, 12)),
     );
   }
@@ -117,7 +124,7 @@ class ProfileWidget extends StatelessWidget {
           Row(
             children: [
               Container(
-                child: FBoldText("신민석", kTextBlackColor, 15),
+                child: FBoldText("신민석", kWhiteBackGroundColor, 15),
               ),
             ],
           ),
@@ -137,13 +144,47 @@ class ProfileWidget extends StatelessWidget {
 
   Widget _buildProfileImage() {
     return Container(
-      margin: EdgeInsets.only(top: 10.h, left: 20.w),
-      width: 45.w,
-      height: 45.h,
-      child: CircleAvatar(
-        backgroundColor: kGrey200Color,
-        backgroundImage: AssetImage("assets/images/test/man.png"),
+      margin: EdgeInsets.only(left: 10.w),
+      width: 60.0.w,
+      height: 60.0.h,
+      child: CircularPercentIndicator(
+        radius: 20.0.w,
+        lineWidth: 6.0.sp,
+        percent: 0,
+        backgroundColor: kLightBlue,
+        circularStrokeCap: CircularStrokeCap.round,
+        center: Container(
+          margin: EdgeInsets.only(top: 0.h),
+          decoration: BoxDecoration(
+            border: Border.all(color: kGrey100Color),
+            shape: BoxShape.circle,
+            color: kLightBlue,
+          ),
+          height: 46.h,
+          width: 46.w,
+          child: CircleAvatar(
+            backgroundColor: kGrey200Color,
+            backgroundImage: AssetImage(
+              "assets/images/test/man.png",
+            ),
+          ),
+        ),
+        progressColor: kPrimaryColor,
       ),
     );
+    // Center(
+    //   child: Container(
+    //     width: 65.w,
+    //     height: 65.h,
+    //     child: Center(
+    //       child: CircleAvatar(
+    //
+    //         backgroundColor: kGrey200Color,
+    //         backgroundImage: AssetImage("assets/images/test/man.png",),
+    //
+    //       ),
+    //     ),
+    //   ),
+    // ),
   }
 }

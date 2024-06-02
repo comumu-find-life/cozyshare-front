@@ -1,21 +1,12 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:home_and_job/constants/Colors.dart';
-import 'package:home_and_job/main/main/widgets/BannerWidget.dart';
 
-import '../../../l10n/AppLocalizations.dart';
 import '../controller/MainController.dart';
 import '../widgets/HotPostWidget.dart';
 import '../widgets/MainAppBar.dart';
 import '../widgets/MainHeaderWidget.dart';
-import '../widgets/MainSearchBar.dart';
 import '../widgets/PostHomeWidget.dart';
 import '../widgets/SearchHomeWidget.dart';
-
-
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -24,30 +15,19 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     MainController controller = MainController();
     return Scaffold(
-      backgroundColor: kDarkBlue,
-      //appBar: MainAppBar(),
+      appBar: MainAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             MainHeaderWidget(),
-            Container(
-
-              decoration: BoxDecoration(
-                color: kWhiteBackGroundColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(3),
-                  topRight: Radius.circular(3),
-                )
-              ),
-              child: Column(
-                children: [
-                  SearchHomeWidget(controller),
-                  PostHomeWidget(controller),
-                  //BannerWidget(controller),
-                  HotPlaceWidget(controller)
-                ],
-              ),
-            )
+            Column(
+              children: [
+                SearchHomeWidget(controller),
+                PostHomeWidget(controller),
+                //BannerWidget(controller),
+                HotPlaceWidget(controller)
+              ],
+            ),
           ],
         ),
       ),

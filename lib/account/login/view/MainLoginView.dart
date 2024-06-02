@@ -10,49 +10,55 @@ import '../api/LoginApi.dart';
 import '../controller/MainLoginController.dart';
 import '../widgets/LoginButtonWidget.dart';
 import '../widgets/LoginFormWidget.dart';
-import '../widgets/MainLoginTextWidget.dart';
+import '../widgets/SignupWidget.dart';
 
 class MainLoginView extends StatelessWidget {
   const MainLoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     LoginApi api = LoginApi();
     MainLoginController controller = MainLoginController();
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
       body: SingleChildScrollView(
-
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MainLoginTextWidget(),
             LoginFormWidget(),
             LoginButtonWidget(controller),
+            _buildLine(),
+            SignupWidget()
           ],
         ),
       ),
     );
   }
 
-  Widget _buildStartGetter() {
+  Widget _buildLine() {
     return Container(
-      width: 350.w,
-      height: 130.h,
-      decoration: BoxDecoration(color: kGrey200Color),
-      child: Center(
-        child: Body2Text("Getter로 시작하기", kTextBlackColor),
+      margin: EdgeInsets.only(top: 30.h),
+      width: 360.w,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 150.w,
+            height: 1.h,
+            color: kGrey300Color,
+          ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(left: 5.w, right: 5.w),
+              child: FRegularText("or", kGrey400Color, 13),
+            ),
+          ),
+          Container(
+            width: 150.w,
+            height: 1.h,
+            color: kGrey300Color,
+          ),
+        ],
       ),
     );
-  }
-
-  Widget _buildStartProvider() {
-    return Container();
-  }
-
-  Widget _buildMainText() {
-    return Container();
   }
 }

@@ -10,7 +10,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 
   @override
-  Size get preferredSize => Size.fromHeight(55.h);
+  Size get preferredSize => Size.fromHeight(40.h);
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +24,12 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Center(
-                child: Container(
-                    margin: EdgeInsets.only(top: 0.h, left: 10.w),
-                    child: Title2Text("Find Life", kTextBlackColor))),
             Container(
               margin: EdgeInsets.only(right: 10.w),
-              child: Icon(size: 20.sp,Icons.notifications_none),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 10.w),
+              child: Icon(size: 21.sp,Icons.notifications),
             )
 
           ],

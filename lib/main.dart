@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-import 'login/view/MainLoginView.dart';
+import 'account/login/view/MainLoginView.dart';
 
 // 앱에서 지원하는 언어 리스트 변수
 final supportedLocales = [

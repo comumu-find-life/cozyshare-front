@@ -303,7 +303,7 @@ class HotPlaceWidget extends StatelessWidget {
 
   Widget _buildText() {
     return Container(
-      margin: EdgeInsets.only(top: 30.h, left: 21.w,right: 20.w
+      margin: EdgeInsets.only(top: 30.h, left: 20.w,right: 20.w
       ),
       child: Row(
         children: [

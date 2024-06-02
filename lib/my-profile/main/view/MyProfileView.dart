@@ -25,6 +25,7 @@ class MyProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildAppBar(),
+
               ProfileWidget(controller),
               ProviderListWidget()
             ],

@@ -14,10 +14,9 @@ class MainHeaderWidget extends StatelessWidget {
     return  Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 15.h),
+          margin: EdgeInsets.only(top: 0.h),
           width: 380.w,
-          height: 120.h,
-          color: kDarkBlue,
+          height: 70.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -25,7 +24,7 @@ class MainHeaderWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 0.h, left: 20.w),
+                      margin: EdgeInsets.only(top: 0.h, left: 15.w,bottom: 20.h),
                       width: 45.w,
                       height: 45.h,
                       child: CircleAvatar(
@@ -33,28 +32,22 @@ class MainHeaderWidget extends StatelessWidget {
                         backgroundImage: AssetImage("assets/images/test/man.png"),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 5.w),
-                      child: FBoldText("Hi, Minseok", kWhiteBackGroundColor, 15),
-                    )
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       Container(
+                         margin: EdgeInsets.only(left: 5.w, top: 3.h),
+                         child: FRegularText("Welcome Find Life", kTextBlackColor, 15),
+                       ),
+                       Container(
+                         margin: EdgeInsets.only(left: 5.w, top: 5.h),
+                         child: FBoldText("Minseok!", kTextBlackColor, 15),
+                       )
+                     ],
+                   )
                   ],
                 ),
               ),
-              Container(
-                width: 35.w,
-                height: 35.h,
-                margin: EdgeInsets.only(right: 15.w),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: kWhiteBackGroundColor)),
-                child: Center(
-                  child: Icon(
-                    Icons.notifications_none_outlined,
-                    color: kWhiteBackGroundColor,
-                    size: 15.sp,
-                  ),
-                ),
-              )
             ],
           ),
         ),

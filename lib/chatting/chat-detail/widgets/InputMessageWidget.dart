@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/constants/Colors.dart';
 
 // 채팅 입력 폼 위젯
 Container InputMessageWidget() {
@@ -37,20 +38,13 @@ Container InputMessageWidget() {
                 ),
                 Icon(
                   Icons.send,
-                  color: Colors.grey[500],
+                  color: kDarkBlue,
                 )
               ],
             ),
           ),
         ),
 
-        // CircleAvatar(
-        //   backgroundColor: MyTheme.kAccentColor,
-        //   child: Icon(
-        //     Icons.mic,
-        //     color: Colors.white,
-        //   ),
-        // )
       ],
     ),
   );

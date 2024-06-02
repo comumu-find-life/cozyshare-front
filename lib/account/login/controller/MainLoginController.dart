@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
 
-import '../../main/main/frame/MainFrameView.dart';
+import '../../../main/main/frame/MainFrameView.dart';
 
 
 class MainLoginController extends GetxController{

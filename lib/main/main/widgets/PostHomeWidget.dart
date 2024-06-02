@@ -17,17 +17,11 @@ class PostHomeWidget extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Container(
-        //   margin: EdgeInsets.only(top: 60.h, left: 15.w),
-        //   child: SubTitle1Text("어떤 집을 찾고 계신가요?", kTextBlackColor),
-        // ),
         Container(
-
           margin: EdgeInsets.only(top: 20.h),
           width: 340.w,
           child: _buildRegisterHome(),
         ),
-
       ],
     ));
   }
@@ -41,7 +35,7 @@ class PostHomeWidget extends StatelessWidget {
               controller.moveToHomeRegisterView();
             },
             child: Container(
-              width: 310.w,
+              width: 335.w,
               height: 100.h,
               decoration: BoxDecoration(
                   boxShadow: [
@@ -53,8 +47,7 @@ class PostHomeWidget extends StatelessWidget {
                     )
                   ],
                   borderRadius: BorderRadius.all(Radius.circular(8)),
-                  border: Border.all(color: kGrey200Color),
-                  color: kWhiteBackGroundColor),
+                  color: kPrimaryColor),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -72,12 +65,13 @@ class PostHomeWidget extends StatelessWidget {
                           children: [
                             Container(
                               margin: EdgeInsets.only(top: 20.h),
-                              child: Body2Text("집 매물을 내놓기", kGrey700Color),
+                              child:
+                                  Body2Text("집 매물을 내놓기", kWhiteBackGroundColor),
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 5.h),
                               child: HelperText(
-                                  "직접 자신의 집 게시글을 올려보세요", kGrey500Color),
+                                  "직접 자신의 집 게시글을 올려보세요", kWhiteBackGroundColor),
                             )
                           ],
                         ),
@@ -85,6 +79,8 @@ class PostHomeWidget extends StatelessWidget {
                     ],
                   ),
                   Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: kLightBlue),
                     margin: EdgeInsets.only(right: 14.w),
                     child: Icon(
                       Icons.keyboard_arrow_right_outlined,

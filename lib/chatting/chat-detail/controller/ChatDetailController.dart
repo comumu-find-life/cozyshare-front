@@ -24,8 +24,8 @@ class ChatDetailController extends GetxController{
 
   RxList _messages = [].obs;
 
-  void checkUserRole(){
-    //자신의 userId 와 homeId 에 있는 userId 가 일치하면 provider true
+  void sendMessage(){
+
   }
 
   // 안전거래 시작 메서드 (only provider)
@@ -40,7 +40,7 @@ class ChatDetailController extends GetxController{
     _messages.add(message);
   }
 
-  // 입금 신청 메서드 (ononly getter)
+  // 입금 신청 메서드 (only getter)
   void applyDeposit(){
     var message = Message(isDeal: 2,
         sender: _getter,
@@ -104,8 +104,6 @@ class ChatDetailController extends GetxController{
 
 
   User get getter => _getter;
-
-  //bool get isProvider => _isProvider.value;
 
   User get provider => _provider;
 

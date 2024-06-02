@@ -38,7 +38,7 @@ class MainSearchController extends GetxController {
     return ClusterManager<HomeResponse>(items, _updateMarkers,
         extraPercent: 0.1,
         stopClusteringZoom: 20.0,
-        levels: [1, 4.25, 4.75, 9.25, 10.5, 13.5, 15.0, 17.5, 18.0],
+        levels: [1, 4.25, 4.75, 9.25, 10.5, 11.5, 12.0, 13.5, 14.0],
         markerBuilder: _markerBuilder);
   }
 

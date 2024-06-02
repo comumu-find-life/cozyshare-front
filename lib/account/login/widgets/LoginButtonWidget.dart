@@ -16,12 +16,9 @@ class LoginButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+
         Container(
-          margin: EdgeInsets.only(top: 270.h),
-          child: SubTitle2Text("sign up", kTextBlackColor),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 15.h),
+          margin: EdgeInsets.only(top: 190.h),
           width: 330.w,
           height: 50.h,
           decoration: BoxDecoration(
