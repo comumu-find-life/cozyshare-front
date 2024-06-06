@@ -5,7 +5,7 @@ import 'package:home_and_job/model/filter/Filter.dart';
 import 'package:home_and_job/model/home/enums/HomeType.dart';
 
 class FilterController extends GetxController{
-  Rx<RoomType> _roomType = RoomType.RENT.obs;
+  Rx<HomeType> _roomType = HomeType.RENT.obs;
   Rx<bool> _isRightRentPrice = true.obs;
   TextEditingController _minRentController = TextEditingController();
   TextEditingController _maxRentController = TextEditingController();
@@ -20,7 +20,7 @@ class FilterController extends GetxController{
     }
   }
 
-  void ontapRoomType(RoomType type){
+  void ontapRoomType(HomeType type){
     _roomType.value = type;
   }
 
@@ -40,7 +40,7 @@ class FilterController extends GetxController{
 
   bool get isRightRentPrice => _isRightRentPrice.value;
 
-  RoomType get roomType => _roomType.value;
+  HomeType get roomType => _roomType.value;
 
   TextEditingController get maxRentController => _maxRentController;
 

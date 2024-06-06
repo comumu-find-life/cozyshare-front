@@ -1,20 +1,46 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
+import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
+import 'package:home_and_job/room/api/RoomApi.dart';
 
 class RoomListController extends GetxController {
+  RxList<HomeOverviewResponse> homes = <HomeOverviewResponse>[].obs;
+  RxList<HomeOverviewResponse> filterCityHomes = <HomeOverviewResponse>[].obs;
+
   Rx<String> _cityName = "".obs;
   Rx<bool> _selectRentHome = true.obs;
   Rx<bool> _selectShareHome = false.obs;
 
   TextEditingController _searchController = TextEditingController();
 
-  RoomListController(String cityName) {
-    _cityName.value = cityName;
+  Future<bool> loadAllHomes(String cityName) async {
+    homes.value = await RoomApi().loadAllReward();
+
+    if(cityName != ""){
+      updateCityName(cityName);
+    }
+    return true;
   }
 
+
+
+
   void updateCityName(String newCity) {
+    print("dasdasdas" + newCity);
+    print("homes" + homes.length.toString());
+
+    filterCityHomes.value = [];
     _cityName.value = newCity;
+
+    for (int i = 0; i < homes.length; i++) {
+      print("ggg");
+      if(homes[i].containCityName(_cityName.value)){
+
+        filterCityHomes.add(homes[i]);
+      }
+    }
+
+    print(filterCityHomes.length);
   }
 
   void selectHomeType(int type) {

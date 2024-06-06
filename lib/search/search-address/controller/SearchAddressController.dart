@@ -23,6 +23,7 @@ class SearchAddressController extends GetxController {
     final data = json.decode(response.body);
 
 
+    print(response.bodyBytes);
     List<String> descriptions = [];
     List<String> placeIds = [];
     for (var prediction in data['predictions']) {

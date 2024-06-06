@@ -22,40 +22,52 @@ class MainSearchView extends StatefulWidget {
 class _MainSearchViewState extends State<MainSearchView> {
   MainSearchController _getxController = MainSearchController();
 
-  @override
-  void initState() {
-    _getxController.initSet();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhiteBackGroundColor,
-      bottomSheet: _buildBottomButton(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            MainSearchHeader(_getxController),
-            Obx(() => Container(
-                margin: EdgeInsets.only(top: 20.h),
-                width: 380.w,
-                height: 570.h,
-                child: GoogleMap(
-                    minMaxZoomPreference: MinMaxZoomPreference(5.0, 40.0),
-                    mapType: MapType.normal,
-                    initialCameraPosition: _getxController.parisCameraPosition,
-                    markers: _getxController.markers,
-                    onMapCreated: (GoogleMapController controller) {
-                      _getxController.controller.complete(controller);
-                      _getxController.manager.setMapId(controller.mapId);
-                    },
-                    onCameraMove: _getxController.manager.onCameraMove,
-                    onCameraIdle: _getxController.manager.updateMap)))
-          ],
-        ),
-      ),
+    return FutureBuilder(
+      future: _getxController.initSet(),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Body2Text("ERROR", kTextBlackColor);
+        } else {
+          return Scaffold(
+            backgroundColor: kWhiteBackGroundColor,
+            bottomSheet: _buildBottomButton(),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+
+                  MainSearchHeader(_getxController),
+                  Obx(() => Container(
+                      margin: EdgeInsets.only(top: 20.h),
+                      width: 380.w,
+                      height: 590.h,
+                      child: GoogleMap(
+                          minMaxZoomPreference: MinMaxZoomPreference(5.0, 40.0),
+                          mapType: MapType.normal,
+                          initialCameraPosition:
+                              _getxController.parisCameraPosition,
+                          markers: _getxController.markers,
+                          onMapCreated: (GoogleMapController controller) {
+                            if (!_getxController.controller.isCompleted) {  // Future가 완료되지 않은 경우에만 완료
+                              _getxController.controller.complete(controller);
+                            }
+                            _getxController.manager.setMapId(controller.mapId);
+                          },
+                          onCameraMove: _getxController.manager.onCameraMove,
+                          onCameraIdle: _getxController.manager.updateMap)))
+                ],
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 

@@ -1,13 +1,13 @@
 import 'package:home_and_job/model/home/enums/HomeType.dart';
 
 class Filter {
-  RoomType _type;
+  HomeType _type;
   int _minRent;
   int _maxRent;
   int _maxBond;
 
   Filter({
-    required RoomType type,
+    required HomeType type,
     required int minRent,
     required int maxRent,
     required int maxBond,
@@ -17,7 +17,7 @@ class Filter {
         _maxBond = maxBond;
 
   // Getter methods
-  RoomType get type => _type;
+  HomeType get type => _type;
   int get minRent => _minRent;
   int get maxRent => _maxRent;
   int get maxBond => _maxBond;

@@ -4,7 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
-import 'package:home_and_job/model/home/response/HomeResponse.dart';
+import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
+import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 
 import '../controller/HomeDetailController.dart';
 import '../widgets/HomeDetailAppbar.dart';
@@ -17,52 +19,66 @@ import '../widgets/HomePriceWidget.dart';
 import '../widgets/HomeProviderProfileWidget.dart';
 
 class RoomDetailView extends StatelessWidget {
-  HomeResponse home;
+  int? homeIdx;
 
-
-  RoomDetailView(this.home);
+  RoomDetailView(this.homeIdx);
 
   @override
   Widget build(BuildContext context) {
-    HomeDetailController _controller = HomeDetailController(home.id);
-    return Scaffold(
-      backgroundColor: kWhiteBackGroundColor,
-      bottomSheet: HomeDetailBottomBar(_controller),
-      appBar: HomeDetailAppbar(_controller, home.id, context),
-      //bottomNavigationBar: HomeDetailBottomBar(_controller),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HomeProviderProfileWidget(),
-            HomeImagesWidget(),
-            HomeHeaderWidget(home),
-            Container(
-              margin: EdgeInsets.only(top: 30.h),
-              width: 380.w,
-              height: 1.h,
-              color: kGrey200Color,
+    HomeDetailController _controller = HomeDetailController();
+    return FutureBuilder(
+      future: _controller.loadHomeInformation(homeIdx),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Body2Text("Error", kTextBlackColor),
+          );
+        } else {
+          return Scaffold(
+            backgroundColor: kWhiteBackGroundColor,
+            bottomSheet: HomeDetailBottomBar(_controller),
+            appBar: HomeDetailAppbar(_controller,
+                _controller.homeInformationResponse!.homeId, context),
+            //bottomNavigationBar: HomeDetailBottomBar(_controller),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HomeProviderProfileWidget(_controller),
+                  HomeImagesWidget(_controller),
+                  HomeHeaderWidget(_controller.homeInformationResponse!),
+                  Container(
+                    margin: EdgeInsets.only(top: 30.h),
+                    width: 380.w,
+                    height: 1.h,
+                    color: kGrey200Color,
+                  ),
+                  HomePriceWidget(_controller.homeInformationResponse!),
+                  Container(
+                    margin: EdgeInsets.only(top: 30.h),
+                    width: 380.w,
+                    height: 1.h,
+                    color: kGrey200Color,
+                  ),
+                  HomeOverViewWidget(_controller),
+                
+                  Container(
+                    margin: EdgeInsets.only(top: 30.h),
+                    width: 380.w,
+                    height: 1.h,
+                    color: kGrey200Color,
+                  ),
+                  HomeOptionsWidget(_controller.homeInformationResponse!),
+                ],
+              ),
             ),
-            HomePriceWidget(),
-            Container(
-              margin: EdgeInsets.only(top: 30.h),
-              width: 380.w,
-              height: 1.h,
-              color: kGrey200Color,
-            ),
-
-
-            HomeOverViewWidget(),
-            Container(
-              margin: EdgeInsets.only(top: 30.h),
-              width: 380.w,
-              height: 1.h,
-              color: kGrey200Color,
-            ),
-            HomeOptionsWidget(),
-          ],
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 

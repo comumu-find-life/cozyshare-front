@@ -7,7 +7,7 @@ import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
-import '../../../model/home/response/HomeResponse.dart';
+import '../../../model/home/response/HomeOverviewResponse.dart';
 
  /**
   * 채팅방 상단에 보여줄 거래 매물 정보 위젯
@@ -50,7 +50,7 @@ Widget _buildMapIcon(){
 Widget _buildHomeInformation(){
   return InkWell(
     onTap: (){
-      Get.to(() => RoomDetailView(homeResponseTest1));
+      Get.to(() => RoomDetailView(null));
     },
     child: Row(
       children: [

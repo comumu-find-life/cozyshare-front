@@ -31,7 +31,7 @@ class HomeEditView extends StatelessWidget {
                 color: kGrey100Color,
               ),
             ),
-            HomePriceWidget(),
+            //HomePriceWidget(),
             HomeEditIntroduceViewWidget(),
             HomeEditOptionsWidget(),
           ],

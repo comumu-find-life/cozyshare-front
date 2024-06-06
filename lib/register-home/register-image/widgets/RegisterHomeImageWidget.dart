@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -30,7 +32,8 @@ class RegisterHomeImageWidget extends StatelessWidget {
             ),
             _controller.images.length == 0
                 ? InkWell(
-                    onTap: () {
+                    onTap: () async{
+                      //await MultiImagePicker.pickImages();
                       _controller.registerImage();
                     },
                     child: Center(
@@ -102,11 +105,10 @@ class RegisterHomeImageWidget extends StatelessWidget {
                       child: PageView.builder(
                         itemCount: _controller.images.length,
                         itemBuilder: (context, index) {
-                          return AssetThumb(
-
-                            asset: _controller.images[index],
-                            width: 320,
-                            height: 260,
+                          return Image.file(
+                            File(_controller.images[index].path),
+                            width: 320.w,
+                            height: 260.h,
                           );
                         },
                       ),

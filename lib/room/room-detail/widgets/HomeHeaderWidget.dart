@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/model/home/response/HomeResponse.dart';
+import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../../../model/home/response/HomeInformationResponse.dart';
 import '../../room-location/view/RoomLocationView.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
-
-  HomeResponse homeResponse;
-
+  HomeInformationResponse homeResponse;
 
   HomeHeaderWidget(this.homeResponse);
 
@@ -25,7 +24,8 @@ class HomeHeaderWidget extends StatelessWidget {
           Row(
             children: [
               Container(
-                child: FBoldText("\$ 2000/150", kTextBlackColor, 17),
+                child: FBoldText("\$ ${homeResponse.bond}/${homeResponse.rent}",
+                    kTextBlackColor, 17),
               ),
               Container(
                 margin: EdgeInsets.only(left: 10.w),
@@ -40,8 +40,8 @@ class HomeHeaderWidget extends StatelessWidget {
               Container(
                 width: 300.w,
                 margin: EdgeInsets.only(top: 15.h),
-                child: FBoldText(
-                    "23 prospect road summer hill", kTextBlackColor, 15),
+                child:
+                    FBoldText("${homeResponse.address}", kTextBlackColor, 15),
               ),
               InkWell(
                 onTap: () {
@@ -58,15 +58,6 @@ class HomeHeaderWidget extends StatelessWidget {
               )
             ],
           ),
-          // Container(
-          //   margin: EdgeInsets.only(top: 20.h),
-          //   width: 100.w,
-          //   height: 40.h,
-          //   decoration: BoxDecoration(
-          //       border: Border.all(color: kGrey300Color),
-          //       borderRadius: BorderRadius.all(Radius.circular(6))),
-          //   child: Center(child: Body2Text("\$2000 / 150", kGrey600Color)),
-          // )
         ],
       ),
     );

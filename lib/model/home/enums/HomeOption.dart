@@ -1,13 +1,18 @@
-
 import 'package:flutter/material.dart';
 
 enum HomeOptionType {
   A_C,
-  Chair,
-  Desk,
-  Washer,
+  CHAIR,
+  DESK,
+  WASHER,
   TV,
-  Lamp,
+  LAMP,
+
+
+}
+
+String parseHomeTypeString(List<HomeOptionType> _selectedOptions) {
+  return _selectedOptions.map((option) => option.toString().split('.').last).join(',');
 }
 
 extension FurnitureTypeExtension on HomeOptionType {
@@ -15,15 +20,15 @@ extension FurnitureTypeExtension on HomeOptionType {
     switch (this) {
       case HomeOptionType.A_C:
         return Icons.air_outlined;
-      case HomeOptionType.Chair:
+      case HomeOptionType.CHAIR:
         return Icons.chair_outlined;
-      case HomeOptionType.Desk:
+      case HomeOptionType.DESK:
         return Icons.desk;
-      case HomeOptionType.Washer:
+      case HomeOptionType.WASHER:
         return Icons.local_laundry_service;
       case HomeOptionType.TV:
         return Icons.tv_outlined;
-      case HomeOptionType.Lamp:
+      case HomeOptionType.LAMP:
         return Icons.lightbulb_outline;
       default:
         return Icons.error; // 에러 처리
@@ -34,18 +39,41 @@ extension FurnitureTypeExtension on HomeOptionType {
     switch (this) {
       case HomeOptionType.A_C:
         return "A/C";
-      case HomeOptionType.Chair:
+      case HomeOptionType.CHAIR:
         return "Chair";
-      case HomeOptionType.Desk:
+      case HomeOptionType.DESK:
         return "Desk";
-      case HomeOptionType.Washer:
+      case HomeOptionType.WASHER:
         return "Washer";
       case HomeOptionType.TV:
         return "TV";
-      case HomeOptionType.Lamp:
+      case HomeOptionType.LAMP:
         return "Lamp";
       default:
         return "Unknown"; // 에러 처리
     }
   }
+
+  static HomeOptionType? fromString(String type) {
+    switch (type) {
+      case "A_C":
+        return HomeOptionType.A_C;
+      case "CHAIR":
+        return HomeOptionType.CHAIR;
+      case "DESK":
+        return HomeOptionType.DESK;
+      case "WASHER":
+        return HomeOptionType.WASHER;
+      case "TV":
+        return HomeOptionType.TV;
+      case "LAMP":
+        return HomeOptionType.LAMP;
+      default:
+        return null; // 에러 처리
+    }
+  }
+}
+
+ List<HomeOptionType> parseHomeOptionTypes(String input) {
+  return input.split(',').map((e) => FurnitureTypeExtension.fromString(e)!).toList();
 }

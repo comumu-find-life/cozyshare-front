@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
+import 'package:home_and_job/utils/SnackBar.dart';
 import '../../../../common-widgets/button/ButtonWidgets.dart';
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
@@ -22,8 +23,9 @@ class RegisterHomeIntroduceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: _buildButton(),
+      bottomSheet: _buildButton(context),
       appBar: HomeRegisterAppBar(context,0.9),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,14 +42,21 @@ class RegisterHomeIntroduceView extends StatelessWidget {
     );
   }
 
-  Widget _buildButton() {
+  Widget _buildButton(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 15.h),
       child: Obx(() => _controller.isAllInput
           ? InkWell(
-          onTap: () {
-            Get.to(() => FinishRegisterHomeView(),
-                transition: Transition.noTransition);
+          onTap: () async{
+            bool response = await _controller.saveHome();
+
+            if(response){
+              Get.offAll(() => FinishRegisterHomeView(),
+                  transition: Transition.noTransition);
+            }else{
+              CustomSnackBar().show(context, "failed to upload");
+            }
+
           },
           child: NextButtonWidget("Next"))
           : NotYetButtonWidget("Next")),

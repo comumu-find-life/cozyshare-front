@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/model/home/response/HomeResponse.dart';
+import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dart';
 
 import '../../../../constants/Colors.dart';
@@ -12,7 +12,7 @@ import '../../../../constants/Fonts.dart';
 
 
 class MyHomeListItem extends StatefulWidget {
-  final HomeResponse home;
+  final HomeOverviewResponse home;
 
   MyHomeListItem(this.home);
 

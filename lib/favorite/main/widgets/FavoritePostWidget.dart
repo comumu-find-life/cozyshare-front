@@ -34,7 +34,7 @@ class FavoritePostWidget extends StatelessWidget {
   Widget _buildPost() {
     return InkWell(
       onTap: (){
-        _controller.moveHomePost();
+        //_controller.moveHomePost();
       },
       child: Container(
         height: 150.h,

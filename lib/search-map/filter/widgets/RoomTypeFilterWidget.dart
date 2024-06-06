@@ -32,24 +32,24 @@ class RoomTypeFilterWidget extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        _controller.ontapRoomType(RoomType.RENT);
+                        _controller.ontapRoomType(HomeType.RENT);
                       },
                       child: Container(
                         width: 70.w,
                         height: 40.h,
                         decoration: BoxDecoration(
-                            color: _controller.roomType == RoomType.RENT
+                            color: _controller.roomType == HomeType.RENT
                                 ? kDarkBlue
                                 : null,
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             border: Border.all(
-                                color: _controller.roomType == RoomType.RENT
+                                color: _controller.roomType == HomeType.RENT
                                     ? kDarkBlue
                                     : kGrey400Color)),
                         child: Center(
                           child: FRegularText(
                               "Rent",
-                              _controller.roomType == RoomType.RENT
+                              _controller.roomType == HomeType.RENT
                                   ? kWhiteBackGroundColor
                                   : kTextBlackColor,
                               14),
@@ -58,25 +58,25 @@ class RoomTypeFilterWidget extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        _controller.ontapRoomType(RoomType.SHARE);
+                        _controller.ontapRoomType(HomeType.SHARE);
                       },
                       child: Container(
                         margin: EdgeInsets.only(left: 6.w),
                         width: 70.w,
                         height: 40.h,
                         decoration: BoxDecoration(
-                            color: _controller.roomType == RoomType.SHARE
+                            color: _controller.roomType == HomeType.SHARE
                                 ? kDarkBlue
                                 : null,
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             border: Border.all(
-                                color: _controller.roomType == RoomType.SHARE
+                                color: _controller.roomType == HomeType.SHARE
                                     ? kDarkBlue
                                     : kGrey400Color)),
                         child: Center(
                           child: FRegularText(
                               "Share",
-                              _controller.roomType == RoomType.SHARE
+                              _controller.roomType == HomeType.SHARE
                                   ? kWhiteBackGroundColor
                                   : kTextBlackColor,
                               14),

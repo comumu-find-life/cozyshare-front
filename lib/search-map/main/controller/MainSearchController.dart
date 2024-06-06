@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
@@ -9,48 +8,53 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:home_and_job/search-map/api/HomeMapApi.dart';
 
 import '../../../constants/Colors.dart';
+import '../../../model/home/response/HomeOverviewResponse.dart';
 import '../../../model/home/response/HomeResponse.dart';
 
 class MainSearchController extends GetxController {
-
   // 검색한 city 이름
   Rx<String> _cityName = "".obs;
 
   //map 관련 필드
+  List<HomeOverviewResponse> items = []; //todo 데이터 로딩
   Completer<GoogleMapController> _controller = Completer();
-  RxList<HomeResponse?> _filterHomes = <HomeResponse>[].obs;
+  RxList<HomeOverviewResponse?> _filterHomes = <HomeOverviewResponse>[].obs;
   late ClusterManager _manager;
   RxSet<Marker> _markers = <Marker>{}.obs;
   CameraPosition _parisCameraPosition =
-  CameraPosition(target: LatLng(-33.898972, 151.155429), zoom: 14.0);
+      CameraPosition(target: LatLng(-33.898972, 151.155429), zoom: 14.0);
 
-  void updateCity(String newCity){
+  void updateCity(String newCity) {
     _cityName.value = newCity;
   }
 
-  void initSet(){
+  Future<bool> initSet() async{
+    items = await HomeMapApi().loadAllHomes();
     _manager = _initClusterManager();
+    return true;
   }
 
+
   ClusterManager _initClusterManager() {
-    return ClusterManager<HomeResponse>(items, _updateMarkers,
+    return ClusterManager<HomeOverviewResponse>(items, _updateMarkers,
         extraPercent: 0.1,
         stopClusteringZoom: 20.0,
         levels: [1, 4.25, 4.75, 9.25, 10.5, 11.5, 12.0, 13.5, 14.0],
         markerBuilder: _markerBuilder);
   }
 
-  Future<Marker> Function(Cluster<HomeResponse>) get _markerBuilder =>
-          (cluster) async {
+  Future<Marker> Function(Cluster<HomeOverviewResponse>) get _markerBuilder =>
+      (cluster) async {
         return Marker(
 
           markerId: MarkerId(cluster.getId()),
           position: cluster.location,
           infoWindow: InfoWindow(),
           onTap: () {
-              cluster.items.forEach((p) => print(p));
+            cluster.items.forEach((p) => print(p));
           },
           icon: await _getMarkerBitmap(cluster.isMultiple ? 170 : 90,
               text: cluster.isMultiple ? cluster.count.toString() : "1"),
@@ -60,13 +64,13 @@ class MainSearchController extends GetxController {
   //맵 초기 화면 marker 정보 가져오는 메서드
   void _updateMarkers(Set<Marker> markers) async {
     _filterHomes.value = await _getHomePlaceModel();
-      this._markers.value = markers;
+    this._markers.value = markers;
   }
 
-  Future<List<HomeResponse>> _getHomePlaceModel() async {
-    List<HomeResponse> answer = [];
-    List<Cluster<HomeResponse>>? res =
-    (await _manager.getMarkers()).cast<Cluster<HomeResponse>>();
+  Future<List<HomeOverviewResponse>> _getHomePlaceModel() async {
+    List<HomeOverviewResponse> answer = [];
+    List<Cluster<HomeOverviewResponse>>? res =
+        (await _manager.getMarkers()).cast<Cluster<HomeOverviewResponse>>();
 
     for (int i = 0; i < res.length; i++) {
       print(res[i].items.map((e) => {answer.add(e)}));
@@ -117,13 +121,14 @@ class MainSearchController extends GetxController {
 
   // 시티 검색 후 카메라 이동 메서드
   void updateCameraPosition(LatLng latLng) async {
+    print("0-----0");
+    print(latLng.latitude);
+    print(latLng.longitude);
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(
       CameraPosition(target: latLng, zoom: 12.0),
     ));
   }
-
-  List<HomeResponse> items = generateRandomData(300);
 
 
 
@@ -131,7 +136,7 @@ class MainSearchController extends GetxController {
 
   ClusterManager get manager => _manager;
 
-  List<HomeResponse?> get filterHomes => _filterHomes.value;
+  List<HomeOverviewResponse?> get filterHomes => _filterHomes.value;
 
   Set<Marker> get markers => _markers.value;
 
@@ -140,7 +145,6 @@ class MainSearchController extends GetxController {
   Completer<GoogleMapController> get controller => _controller;
 }
 
-Random _random = Random();
 
 // 인기 지역과 가중치
 List<Map<String, dynamic>> regions = [
@@ -165,26 +169,4 @@ List<Map<String, dynamic>> regions = [
   },
 ];
 
-List<HomeResponse> generateRandomData(int totalItems) {
-  List<HomeResponse> items = [];
 
-  for (var region in regions) {
-    int regionItemCount = (totalItems * region['weight']).round();
-    for (int i = 0; i < regionItemCount; i++) {
-      double lat = region['latRange'][0] + _random.nextDouble() * (region['latRange'][1] - region['latRange'][0]);
-      double lng = region['lngRange'][0] + _random.nextDouble() * (region['lngRange'][1] - region['lngRange'][0]);
-
-      items.add(HomeResponse(
-        address: "${region['name']} Address $i",
-        latLng: LatLng(lat, lng),
-        rent: 200 + _random.nextInt(1000), // 랜덤 렌트 가격
-        bond: 1000 + _random.nextInt(2000), // 랜덤 보증금
-        id: i,
-        bill: 300 + _random.nextInt(200), // 랜덤 청구서
-        introduce: "소개 $i",
-      ));
-    }
-  }
-
-  return items;
-}

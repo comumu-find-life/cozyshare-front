@@ -27,6 +27,12 @@ class HomeRegisterDetailsController extends GetxController{
     }
   }
 
+  String parseOptions(){
+    return parseHomeTypeString(_selectedOptions);
+  }
+
+
+
 
   void toggleOption(HomeOptionType option) {
     if (_selectedOptions.contains(option)) {
@@ -44,6 +50,13 @@ class HomeRegisterDetailsController extends GetxController{
       _isRentType.value = false;
       _isShareRoomType.value = true;
     }
+  }
+
+  String extrateHomeType(){
+    if(_isRentType.value){
+      return "RENT";
+    }
+    return "SHARE";
   }
 
 

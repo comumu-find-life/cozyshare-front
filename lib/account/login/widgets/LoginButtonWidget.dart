@@ -27,7 +27,7 @@ class LoginButtonWidget extends StatelessWidget {
           ),
           child: InkWell(
             onTap: () {
-              controller.login();
+              controller.login(context);
             },
             child: Center(
               child: ButtonText("Login", kWhiteBackGroundColor),

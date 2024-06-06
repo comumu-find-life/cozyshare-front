@@ -3,8 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
+import '../controller/HomeDetailController.dart';
+
 class HomeImagesWidget extends StatefulWidget {
-  const HomeImagesWidget({Key? key}) : super(key: key);
+  HomeDetailController _controller;
+
+
+  HomeImagesWidget(this._controller);
 
   @override
   _HomeImagesWidgetState createState() => _HomeImagesWidgetState();

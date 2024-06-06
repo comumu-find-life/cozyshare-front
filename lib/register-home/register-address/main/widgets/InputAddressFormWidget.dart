@@ -49,19 +49,19 @@ class AddressFormWidget extends StatelessWidget {
               height: 47.h,
               decoration: BoxDecoration(
                   border: Border.all(
-                      color: _controller.cityName == ""
+                      color: _controller.cityAndState == ""
                           ? kGrey200Color
                           : kDarkBlue),
                   borderRadius: BorderRadius.all(Radius.circular(6))),
               margin: EdgeInsets.only(top: 20.h, left: 20.w),
               child: Container(
                 margin: EdgeInsets.only(top: 0.h, left: 10.w),
-                child: _controller.cityName != ""
+                child: _controller.cityAndState != ""
                     ? Container(
                         child: Container(
                           margin: EdgeInsets.only(left: 5.w, top: 10.h),
                           child: Text(
-                            "${_controller.cityName}",
+                            "${_controller.cityAndState}",
                             style: TextStyle(
                                 fontSize: 13.sp,
                                 color: kDarkBlue,

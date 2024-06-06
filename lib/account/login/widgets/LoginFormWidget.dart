@@ -3,12 +3,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/account/login/controller/MainLoginController.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../constants/Colors.dart';
 
 class LoginFormWidget extends StatefulWidget {
-  const LoginFormWidget({super.key});
+  MainLoginController _controller;
+
+
+  LoginFormWidget(this._controller);
 
   @override
   State<LoginFormWidget> createState() => _LoginFormWidgetState();
@@ -19,8 +23,6 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   bool ischeck = false;
   bool isWrongInformation = false;
   bool _obscurePassword = true;
-  TextEditingController _idController = TextEditingController();
-  TextEditingController _passworController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +63,14 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 // 힌트 텍스트와 입력란 간의 간격 조정
                 child: TextFormField(
-                  controller: _idController,
+                  controller: widget._controller.emailController,
                   style: TextStyle(color: Colors.black),
                   // 텍스트 색상을 검정색으로 설정
                   textAlign: TextAlign.left,
                   // 텍스트를 왼쪽으로 정렬
                   cursorColor: kTextBlackColor,
                   decoration: InputDecoration(
-                    hintText: "ID",
+                    hintText: "email",
                     hintStyle:
                     TextStyle(color: kGrey400Color, fontSize: 14.sp),
                     border: InputBorder.none,
@@ -106,7 +108,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 alignment: Alignment.centerRight,
                 children: [
                   TextFormField(
-                    controller: _passworController,
+                    controller: widget._controller.pwController,
                     obscureText: _obscurePassword,
                     style: TextStyle(color: Colors.black),
                     // 텍스트 색상을 검정색으로 설정

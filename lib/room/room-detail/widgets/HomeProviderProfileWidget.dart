@@ -5,17 +5,21 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/detail-profile/view/ProfileDetailView.dart';
+import 'package:home_and_job/room/room-detail/controller/HomeDetailController.dart';
 
 import '../../../constants/Colors.dart';
 
 class HomeProviderProfileWidget extends StatelessWidget {
-  const HomeProviderProfileWidget({super.key});
+  HomeDetailController _controller;
+
+
+  HomeProviderProfileWidget(this._controller);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Get.to(() => ProfileDetailView());
+        Get.to(() => ProfileDetailView(int.parse(_controller.homeInformationResponse!.providerId!)));
       },
       child: Container(
         width: 360.w,
@@ -38,7 +42,7 @@ class HomeProviderProfileWidget extends StatelessWidget {
                  children: [
                    Container(
                      margin: EdgeInsets.only(left: 10.w, top: 10.h),
-                     child: FRegularText("sinminseok", kGrey800Color, 16),
+                     child: FRegularText("${_controller.homeInformationResponse!.providerName}", kGrey800Color, 16),
                    ),
                  ],
                ),

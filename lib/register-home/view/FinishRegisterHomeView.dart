@@ -47,17 +47,8 @@ class _Deliver_Finish_ScreenState extends State<FinishRegisterHomeView>  with Ti
 
       body: InkWell(
         onTap: (){
-          // Navigator.pushNamedAndRemoveUntil(context, '/frame', (route) => false);
           Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => MainFrameView(0)), (route) => false);
 
-
-          // Navigator.push(
-          //     context,
-          //     PageTransition(
-          //         type: PageTransitionType.fade,
-          //         child: Frame_Screen(Login_method: null,
-          //
-          //         )));
         },
         child: SingleChildScrollView(
           child: Column(

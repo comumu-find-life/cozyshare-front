@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import '../../../model/home/response/HomeResponse.dart';
+import '../../../model/home/response/HomeOverviewResponse.dart';
 import '../../../room/room-list/widgets/HomeListItemWidget.dart';
 
 class SearchRoomListByMapView extends StatelessWidget {
 
-  List<HomeResponse?> itmes;
+  List<HomeOverviewResponse?> itmes;
 
 
   SearchRoomListByMapView(this.itmes);

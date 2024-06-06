@@ -1,30 +1,30 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:home_and_job/model/home/enums/HomeType.dart';
-import 'package:home_and_job/model/home/request/HomeAddressGeneratorRequest.dart';
-import 'package:home_and_job/model/user/enums/Gender.dart';
+import '../../user/enums/gender.dart';
+import '../enums/HomeType.dart';
+import 'HomeAddressGeneratorRequest.dart';
+import 'HomeAddressGeneratorRequest.dart';
 
-class HomeGeneratorRequest{
-  HomeAddressGeneratorRequest? homeAddress;
-  List<String>? images;
-  int? userId;
-  int? roomCount;
-  int? bathRoomCount;
-  int? bond;
-  int? bill;
-  Gender? gender;
-  RoomType? homeType;
-  String? introduce;
+part 'HomeGeneratorRequest.freezed.dart';
+part 'HomeGeneratorRequest.g.dart';
 
-  HomeGeneratorRequest({
-    required this.homeAddress,
-    required this.images,
-    required this.userId,
-    required this.roomCount,
-    required this.bathRoomCount,
-    required this.bond,
-    required this.bill,
-    required this.gender,
-    required this.homeType,
-    required this.introduce,
-  });
+@freezed
+class HomeGeneratorRequest with _$HomeGeneratorRequest {
+  const factory HomeGeneratorRequest({
+    required int userIdx,
+    required HomeAddressGeneratorRequest homeAddress,
+    required int bathRoomCount,
+    required bool dealSavable,
+    required int bedroomCount,
+    required int bond,
+    required String gender,
+    required String type,
+    required String introduce,
+    required int bill,
+    required int rent,
+    required String options,
+  }) = _HomeGeneratorRequest;
+
+  factory HomeGeneratorRequest.fromJson(Map<String, dynamic> json) =>
+      _$HomeGeneratorRequestFromJson(json);
 }

@@ -1,31 +1,29 @@
-class HomeAddressGeneratorRequest {
-  String? _city;
-  int? _postCode;
-  String? _detailAddress;
-  String? _streetName;
-  int? _streetNumber;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  HomeAddressGeneratorRequest({
+part 'HomeAddressGeneratorRequest.freezed.dart';
+part 'HomeAddressGeneratorRequest.g.dart';
+
+@freezed
+class HomeAddressGeneratorRequest with _$HomeAddressGeneratorRequest {
+  const factory HomeAddressGeneratorRequest({
+    required String state,
     required String city,
     required int postCode,
     required String detailAddress,
     required String streetName,
-    required int streetNumber,
-  })   :
-        _city = city,
-        _postCode = postCode,
-        _detailAddress = detailAddress,
-        _streetName = streetName,
-        _streetNumber = streetNumber;
+    required String streetCode,
+  }) = _HomeAddressGeneratorRequest;
 
-  int? get streetNumber => _streetNumber;
+  factory HomeAddressGeneratorRequest.fromJson(Map<String, dynamic> json) =>
+      _$HomeAddressGeneratorRequestFromJson(json);
 
-  String? get streetName => _streetName;
-
-  String? get detailAddress => _detailAddress;
-
-  int? get postCode => _postCode;
-
-  String? get city => _city;
+  Map<String, dynamic> toJson() => {
+    'state': state,
+    'city': city,
+    'postCode': postCode,
+    'detailAddress': detailAddress,
+    'streetName': streetName,
+    'streetCode': streetCode,
+  };
 
 }

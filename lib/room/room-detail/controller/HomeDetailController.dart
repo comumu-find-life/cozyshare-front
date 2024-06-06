@@ -1,12 +1,24 @@
 import 'package:get/get.dart';
+import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
+import 'package:home_and_job/room/api/RoomApi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeDetailController extends GetxController {
+  late HomeInformationResponse? homeInformationResponse;
   Rx<bool> _isFavorite = false.obs;
 
-  HomeDetailController(int? homeId) {
-    // Call checkFacorite method when HomeDetailController is first created
-    checkFacorite(homeId);
+
+  // HomeDetailController(int? homeId) {
+  //   checkFacorite(homeId);
+  // }
+
+  Future<bool> loadHomeInformation(int? homeId) async{
+    homeInformationResponse = (await RoomApi().findById(homeId!))!;
+
+    if(homeInformationResponse != null){
+      return true;
+    }
+    return false;
   }
 
   void checkFacorite(int? homeId) async {

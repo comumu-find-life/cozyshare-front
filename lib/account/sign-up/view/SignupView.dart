@@ -1,125 +1,93 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:home_and_job/account/sign-up/api/SignupApi.dart';
+import 'package:home_and_job/account/sign-up/widgets/PrivacyForm.dart';
+import 'package:home_and_job/account/sign-up/widgets/UserDetailForm.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/user/request/SignupRequest.dart';
 
 import '../controller/SignupController.dart';
+import '../widgets/EmailForm.dart';
+import '../widgets/ProgressBar.dart';
 
 class SignupView extends StatelessWidget {
-  SignupController _controller = SignupController();
-
-
+  final SignupController _controller = SignupController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(canBack: true, title: '', color: kWhiteBackGroundColor,),
+      backgroundColor: kWhiteBackGroundColor,
+      appBar: CommonAppBar(
+        canBack: true,
+        title: '',
+        color: kWhiteBackGroundColor,
+      ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _buildNameForm(),
-            _buildPasswordForm(),
-
-          ],
+        child: Obx(
+          () => Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ProgressBar(_controller),
+              _buildCurrentForm(),
+              _buildActionButton(),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildNameForm(){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-
-        Container(
-          width: 335.w,
-          margin: EdgeInsets.only(top: 10.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 335.w,
-                height: 46.h,
-                margin: EdgeInsets.only(top: 5.h),
-                decoration: BoxDecoration(
-                  color: kGrey100Color,
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  // 힌트 텍스트와 입력란 간의 간격 조정
-                  child: TextFormField(
-                    controller: _controller.nameController,
-                    style: TextStyle(color: Colors.black),
-                    // 텍스트 색상을 검정색으로 설정
-                    textAlign: TextAlign.left,
-                    // 텍스트를 왼쪽으로 정렬
-                    cursorColor: kTextBlackColor,
-                    decoration: InputDecoration(
-                      hintStyle:
-                      TextStyle(color: kGrey400Color, fontSize: 14.sp),
-                      border: InputBorder.none,
-                      isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                    ),
-                  ),
-                ),
-              ),
-
-            ],
-          ),
-        ),
-      ],
-    );
+  Widget _buildCurrentForm() {
+    switch (_controller.step) {
+      case 1:
+        return EmailForm(_controller);
+      case 2:
+        return PrivacyForm(_controller);
+      default:
+        return UserDetailForm(_controller);
+    }
   }
 
-  Widget _buildPasswordForm(){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+  Widget _buildActionButton() {
+    switch (_controller.step) {
+      case 1:
+        return _buildButton(
+          onTap: _controller.checkEmail ? _controller.ontapEmailButton : null,
+          isEnabled: _controller.checkEmail,
+        );
+      case 2:
+        return _buildButton(
+            onTap: _controller.ontapPrivacyButton,
+            isEnabled: _controller.checkPrivacy);
 
-        Container(
+      default:
+        return _buildButton(
+            onTap: _controller.ontapDetailButton,
+            isEnabled: _controller.checkDetail);
+    }
+  }
+
+  Widget _buildButton({required VoidCallback? onTap, bool isEnabled = true}) {
+    return InkWell(
+      onTap: onTap,
+      child: Center(
+        child: Container(
           width: 335.w,
-          margin: EdgeInsets.only(top: 10.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 335.w,
-                height: 46.h,
-                margin: EdgeInsets.only(top: 5.h),
-                decoration: BoxDecoration(
-                  color: kGrey100Color,
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  // 힌트 텍스트와 입력란 간의 간격 조정
-                  child: TextFormField(
-                    controller: _controller.nameController,
-                    style: TextStyle(color: Colors.black),
-                    // 텍스트 색상을 검정색으로 설정
-                    textAlign: TextAlign.left,
-                    // 텍스트를 왼쪽으로 정렬
-                    cursorColor: kTextBlackColor,
-                    decoration: InputDecoration(
-                      hintStyle:
-                      TextStyle(color: kGrey400Color, fontSize: 14.sp),
-                      border: InputBorder.none,
-                      isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
-                    ),
-                  ),
-                ),
-              ),
-
-            ],
+          height: 65.h,
+          decoration: BoxDecoration(
+            color: isEnabled ? kPrimaryColor : kGrey300Color,
+            borderRadius: BorderRadius.all(Radius.circular(6)),
+          ),
+          child: Center(
+            child: FBoldText("Next", kWhiteBackGroundColor, 15),
           ),
         ),
-      ],
+      ),
     );
   }
 }

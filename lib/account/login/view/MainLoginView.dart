@@ -17,14 +17,13 @@ class MainLoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginApi api = LoginApi();
     MainLoginController controller = MainLoginController();
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            LoginFormWidget(),
+            LoginFormWidget(controller),
             LoginButtonWidget(controller),
             _buildLine(),
             SignupWidget()

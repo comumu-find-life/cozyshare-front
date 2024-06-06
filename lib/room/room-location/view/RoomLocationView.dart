@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/home/response/HomeResponse.dart';
+import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
+
+import '../../../model/home/response/HomeInformationResponse.dart';
 
 class RoomLocationView extends StatefulWidget {
-  final HomeResponse? homeResponse;
+  final HomeInformationResponse? homeResponse;
 
   RoomLocationView(this.homeResponse);
 
@@ -61,13 +63,13 @@ class _RoomLocationViewState extends State<RoomLocationView> {
                   mapController = controller;
                 },
                 initialCameraPosition: CameraPosition(
-                  target: widget.homeResponse!.latLng,
+                  target: LatLng(widget.homeResponse!.latitude!, widget.homeResponse!.longitude!),
                   zoom: 14,
                 ),
                 markers: {
                   Marker(
-                    markerId: MarkerId(widget.homeResponse!.id.toString()),
-                    position: widget.homeResponse!.latLng,
+                    markerId: MarkerId(widget.homeResponse!.homeId.toString()),
+                    position: LatLng(widget.homeResponse!.latitude!, widget.homeResponse!.longitude!),
                     icon: markerIcon!, // Set marker icon here
                     infoWindow: InfoWindow(
                       title: widget.homeResponse!.address,
