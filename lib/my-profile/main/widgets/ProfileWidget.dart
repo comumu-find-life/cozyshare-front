@@ -19,10 +19,10 @@ class ProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: kDarkBlue,
-        borderRadius: BorderRadius.all(Radius.circular(10))
+        color: kWhiteBackGroundColor,
+        borderRadius: BorderRadius.all(Radius.circular(6))
       ),
-      margin: EdgeInsets.only(left: 5.w,right: 5.w, top: 20.h),
+      margin: EdgeInsets.only(left: 10.w,right: 10.w, top: 20.h),
       width: 380.w,
       height: 90.h,
       child: Column(
@@ -40,12 +40,8 @@ class ProfileWidget extends StatelessWidget {
                     _buildInformation(),
                   ],
                 ),
-                Container(
-                  width: 1.w,
-                  height: 40.h,
-                  color: kGrey300Color,
-                ),
-                _buildButton(),
+
+                //_buildButton(),
               ],
             ),
           ),
@@ -117,14 +113,14 @@ class ProfileWidget extends StatelessWidget {
 
   Widget _buildInformation() {
     return Container(
-      margin: EdgeInsets.only(top: 23.h, left: 6.w),
+      margin: EdgeInsets.only(top: 20.h, left: 6.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Container(
-                child: FBoldText("신민석", kWhiteBackGroundColor, 15),
+                child: FBoldText("신민석", kTextBlackColor, 14),
               ),
             ],
           ),

@@ -4,17 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
 import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
+import 'package:home_and_job/model/chat/response/DirectMessageRoomListDto.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../../chat-detail/view/TestChatView.dart';
 
 class ChatItemWidget extends StatelessWidget {
+  DirectMessageRoomListDto dmItem;
+
+  ChatItemWidget(this.dmItem);
+
   @override
   Widget build(BuildContext context) {
-    final User user = currentUser;
     return InkWell(
       onTap: () {
-        Get.to(() => ChatDetailView());
+        Get.to(() => ChatScreen());
+//        Get.to(() => ChatDetailView(dmItem.id));
       },
       child: Container(
         margin: EdgeInsets.only(top: 10.h),
@@ -34,7 +40,8 @@ class ChatItemWidget extends StatelessWidget {
                         height: 50.h,
                         child: CircleAvatar(
                           backgroundColor: kGrey200Color,
-                          backgroundImage: AssetImage("assets/images/test/man.png"),
+                          backgroundImage:
+                              AssetImage("assets/images/test/man.png"),
                         ),
                       ),
                       Container(
@@ -48,7 +55,8 @@ class ChatItemWidget extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
-                                    child: FBoldText("신민석", kDarkBlue,15),
+                                    child: FBoldText(
+                                        "${dmItem.userName}", kDarkBlue, 15),
                                   ),
                                 ],
                               ),
@@ -57,9 +65,9 @@ class ChatItemWidget extends StatelessWidget {
                               children: [
                                 Container(
                                   margin: EdgeInsets.only(top: 10.h),
-                                  child: FRegularText("방 있나요?",  kGrey700Color, 13),
+                                  child:
+                                      FRegularText("방 있나요?", kGrey700Color, 13),
                                 ),
-
                               ],
                             )
                           ],
@@ -74,20 +82,19 @@ class ChatItemWidget extends StatelessWidget {
                         child: FRegularText("02.15", kGrey600Color, 12),
                       ),
                       Container(
-
                         width: 28.w,
                         height: 28.h,
                         margin: EdgeInsets.only(top: 4.w),
-                        decoration:
-                            BoxDecoration(shape: BoxShape.circle, color: kDarkBlue),
-                        child: Center(child: FBoldText("1", kWhiteBackGroundColor, 14)),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: kDarkBlue),
+                        child: Center(
+                            child: FBoldText("1", kWhiteBackGroundColor, 14)),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-
           ],
         ),
       ),

@@ -1,12 +1,24 @@
 import 'package:get/get.dart';
+import 'package:home_and_job/favorite/main/api/FavoriteApi.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
 import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
+import 'package:home_and_job/utils/DiskDatabase.dart';
 
 import '../../../model/home/response/HomeOverviewResponse.dart';
 
 class FavoriteController extends GetxController {
+  List<HomeOverviewResponse> _homes = [];
   Rx<bool> _selectHome = true.obs;
   Rx<bool> _selectJob = false.obs;
+
+  Future<bool> loadFavoriteHomes() async{
+    List<String> homeIds = await DiskDatabase().getAllFavoriteHomeIds();
+
+    _homes = await FavoriteApi().loadAllReward(homeIds);
+
+    return true;
+  }
+
 
   void selectType(int type) {
     if (type == 1) {
@@ -21,12 +33,11 @@ class FavoriteController extends GetxController {
   }
 
   void moveHomePost(HomeInformationResponse homeInformationResponse){
-    Get.to(() => RoomDetailView(homeInformationResponse.homeId));
+    Get.to(() => RoomDetailView(homeInformationResponse.homeId!));
   }
 
-  void moveJobPost(){
 
-  }
+  List<HomeOverviewResponse> get homes => _homes;
 
   bool get selectHome => _selectHome.value;
 

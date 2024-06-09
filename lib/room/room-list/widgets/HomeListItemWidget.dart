@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:home_and_job/model/home/enums/HomeType.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 
@@ -81,7 +82,7 @@ class HomeListItemWidget extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.only(top: 10.h),
-                          child: FRegularText("Share House", kGrey600Color, 13),
+                          child: FRegularText("${home!.type.value}", kGrey600Color, 13),
                         )
                       ],
                     ),

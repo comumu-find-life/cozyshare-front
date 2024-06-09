@@ -37,6 +37,9 @@ class HotPlaceWidget extends StatelessWidget {
           _buildSydney(),
           _buildMelbourne(),
           _buildBrisbane(),
+          _buildAdelaide(),
+          _buildGoldCoast(),
+          _buildPerth(),
         ],
       ),
     );
@@ -45,7 +48,7 @@ class HotPlaceWidget extends StatelessWidget {
   Widget _buildSydney() {
     return InkWell(
       onTap: (){
-        Get.to(() => RoomListView("sydney"));
+        Get.to(() => RoomListView("Sydney NSW"));
       },
       child: Stack(
         children: [
@@ -93,7 +96,7 @@ class HotPlaceWidget extends StatelessWidget {
   Widget _buildMelbourne() {
     return InkWell(
       onTap: (){
-        Get.to(() => RoomListView("melbourne"));
+        Get.to(() => RoomListView("Melbourne VIC"));
       },
       child: Stack(
         children: [
@@ -141,7 +144,7 @@ class HotPlaceWidget extends StatelessWidget {
   Widget _buildBrisbane() {
     return InkWell(
       onTap: (){
-        Get.to(() => RoomListView("brisbane"));
+        Get.to(() => RoomListView("Brisbane QLD"));
       },
       child: Stack(
         children: [
@@ -186,114 +189,143 @@ class HotPlaceWidget extends StatelessWidget {
     );
   }
 
-  Widget _homeWidget() {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _buildAdelaide() {
+    return InkWell(
+      onTap: (){
+        Get.to(() => RoomListView("Adelaide SA"));
+      },
+      child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.only(right: 7.w),
-            width: 120.w,
-            height: 80.h,
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  "assets/images/test/home.png",
-                  fit: BoxFit.cover,
-                )),
-          ),
-          Container(
-            width: 120.h,
-            height: 40.h,
-            margin: EdgeInsets.only(top: 5.h),
-            child: Body2Text("호주 멜버른에 위치한 제일 좋은 집", kTextBlackColor),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _jobWidget() {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.only(right: 7.w),
-            width: 120.w,
-            height: 80.h,
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  "assets/images/test/home.png",
-                  fit: BoxFit.cover,
-                )),
-          ),
-          Container(
-            width: 120.h,
-            height: 40.h,
-            margin: EdgeInsets.only(top: 5.h),
-            child: Body2Text("호주 멜버른에 위치한 제일 좋은 집", kTextBlackColor),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSelectType() {
-    return Container(
-      margin: EdgeInsets.only(left: 20.w, top: 15.h),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () {
-              controller.selectHotPost(1);
-            },
+            width: 150.w,
+            height: 240.h,
+            margin: EdgeInsets.only(left: 10.w),
             child: Container(
-              width: 60.w,
-              height: 40.h,
-              decoration: controller.selectHome
-                  ? BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: kTextBlackColor,
-                      border: Border.all(color: kGrey300Color))
-                  : BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: kWhiteBackGroundColor,
-                      border: Border.all(color: kGrey300Color)),
-              child: Center(
-                child: Body2Text(
-                    "렌트",
-                    controller.selectHome
-                        ? kWhiteBackGroundColor
-                        : kGrey700Color),
-              ),
+              margin: EdgeInsets.only(right: 7.w),
+              width: 120.w,
+              height: 80.h,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+                  child: Image.asset(
+                    "assets/images/cities/brisbane.jpg",
+                    fit: BoxFit.cover,
+                  )),
             ),
           ),
-          InkWell(
-            onTap: () {
-              controller.selectHotPost(2);
-            },
+          Container(
+            margin: EdgeInsets.only(top: 0.w),
+            child: Stack(
+              children: [
+                Container(
+                  width: 110.w,
+                  child: Image.asset("assets/images/common/tag_normal.png"),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  child:
+                  Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGoldCoast() {
+    return InkWell(
+      onTap: (){
+        Get.to(() => RoomListView("Gold Coast QLD"));
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: 150.w,
+            height: 240.h,
+            margin: EdgeInsets.only(left: 10.w),
             child: Container(
-              margin: EdgeInsets.only(left: 5.w),
-              width: 90.w,
-              height: 40.h,
-              decoration: controller.selectJob
-                  ? BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: kTextBlackColor,
-                      border: Border.all(color: kGrey300Color))
-                  : BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: kWhiteBackGroundColor,
-                      border: Border.all(color: kGrey300Color)),
-              child: Center(
-                child: Body2Text(
-                    "쉐어 하우스",
-                    controller.selectJob
-                        ? kWhiteBackGroundColor
-                        : kGrey700Color),
-              ),
+              margin: EdgeInsets.only(right: 7.w),
+              width: 120.w,
+              height: 80.h,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+                  child: Image.asset(
+                    "assets/images/cities/brisbane.jpg",
+                    fit: BoxFit.cover,
+                  )),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 0.w),
+            child: Stack(
+              children: [
+                Container(
+                  width: 110.w,
+                  child: Image.asset("assets/images/common/tag_normal.png"),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  child:
+                  Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPerth() {
+    return InkWell(
+      onTap: (){
+        Get.to(() => RoomListView("Perth WA"));
+      },
+      child: Stack(
+        children: [
+          Container(
+            width: 150.w,
+            height: 240.h,
+            margin: EdgeInsets.only(left: 10.w),
+            child: Container(
+              margin: EdgeInsets.only(right: 7.w),
+              width: 120.w,
+              height: 80.h,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
+                  ),
+                  child: Image.asset(
+                    "assets/images/cities/brisbane.jpg",
+                    fit: BoxFit.cover,
+                  )),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 0.w),
+            child: Stack(
+              children: [
+                Container(
+                  width: 110.w,
+                  child: Image.asset("assets/images/common/tag_normal.png"),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  child:
+                  Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+                )
+              ],
             ),
           )
         ],

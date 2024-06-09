@@ -19,7 +19,7 @@ import '../widgets/HomePriceWidget.dart';
 import '../widgets/HomeProviderProfileWidget.dart';
 
 class RoomDetailView extends StatelessWidget {
-  int? homeIdx;
+  final int homeIdx;
 
   RoomDetailView(this.homeIdx);
 
@@ -36,6 +36,7 @@ class RoomDetailView extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Center(
             child: Body2Text("Error", kTextBlackColor),
+
           );
         } else {
           return Scaffold(
@@ -43,7 +44,6 @@ class RoomDetailView extends StatelessWidget {
             bottomSheet: HomeDetailBottomBar(_controller),
             appBar: HomeDetailAppbar(_controller,
                 _controller.homeInformationResponse!.homeId, context),
-            //bottomNavigationBar: HomeDetailBottomBar(_controller),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,6 @@ class RoomDetailView extends StatelessWidget {
                     color: kGrey200Color,
                   ),
                   HomeOverViewWidget(_controller),
-                
                   Container(
                     margin: EdgeInsets.only(top: 30.h),
                     width: 380.w,
@@ -100,8 +99,8 @@ class RoomDetailView extends StatelessWidget {
             ),
           ),
           Obx(() => Container(
-                child: Icon(Icons.favorite_border),
-              ))
+            child: Icon(Icons.favorite_border),
+          ))
         ],
       ),
     );

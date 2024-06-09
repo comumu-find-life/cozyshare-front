@@ -7,6 +7,7 @@ import 'package:home_and_job/model/home/request/HomeAddressGeneratorRequest.dart
 import 'package:home_and_job/model/home/request/HomeGeneratorRequest.dart';
 import 'package:home_and_job/model/home/response/LatLng.dart';
 import 'package:home_and_job/model/user/request/SignupRequest.dart';
+import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,8 +38,7 @@ class HomeRegisterApi {
 
   Future<bool> saveHomeApi(
       HomeGeneratorRequest homeGeneratorRequest, List<String> images) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String accessToken = await prefs.getString("access_token")!;
+    String? accessToken = await DiskDatabase().getAccessToken();
     var imageFiles = <http.MultipartFile>[];
 
     // 각 이미지를 MultipartFile로 변환하여 리스트에 추가

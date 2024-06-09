@@ -46,7 +46,7 @@ class HomeRegisterTotalController extends GetxController {
         dealSavable: true,
         bedroomCount: int.parse(_homeRegisterDetailsController.bedRoomCountController.text),
         bond: int.parse(_homePriceController.bondController.text),
-        gender: "MALE",
+        gender: _homeRegisterDetailsController.extractGenderType(),
         type: _homeRegisterDetailsController.extrateHomeType(),
         introduce: _introduceController.text,
         bill: int.parse(_homePriceController.bill.text),

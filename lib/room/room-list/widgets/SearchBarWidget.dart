@@ -47,13 +47,13 @@ class SearchBarWidget extends StatelessWidget {
                     ? Container(
                         margin: EdgeInsets.only(left: 10.w),
                         child:
-                            FRegularText("Search By City", kDarkBlue, 14),
+                            FRegularText("Search By City", kDarkBlue, 13),
                       )
                     : Container(
 
                         margin: EdgeInsets.only(left: 10.w),
                         child:
-                            FBoldText("${_controller.cityName}", kDarkBlue, 14),
+                        FBoldText("${_controller.cityName}", kTextBlackColor, 13),
                       ),
                 Container(
                   margin: EdgeInsets.only(right: 10.w),

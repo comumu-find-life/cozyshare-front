@@ -50,7 +50,7 @@ Widget _buildMapIcon(){
 Widget _buildHomeInformation(){
   return InkWell(
     onTap: (){
-      Get.to(() => RoomDetailView(null));
+      Get.to(() => RoomDetailView(1));
     },
     child: Row(
       children: [

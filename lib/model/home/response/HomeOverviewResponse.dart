@@ -1,5 +1,6 @@
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:home_and_job/model/home/enums/HomeType.dart';
 
 class HomeOverviewResponse with ClusterItem {
   final int id;
@@ -12,7 +13,7 @@ class HomeOverviewResponse with ClusterItem {
   final int bill;
   final int bedroomCount;
   final int bathRoomCount;
-  final String type;
+  final HomeType type;
   final int userId;
   final String userName;
 
@@ -50,7 +51,7 @@ class HomeOverviewResponse with ClusterItem {
       bill: json['bill'] as int,
       bedroomCount: json['bedroomCount'] as int,
       bathRoomCount: json['bathRoomCount'] as int,
-      type: json['type'] as String,
+      type: HomeTypeExtension.fromString(json['type'] as String),
       userId: json['userId'] as int,
       userName: json['userName'] as String,
     );
@@ -68,7 +69,7 @@ class HomeOverviewResponse with ClusterItem {
       'bill': bill,
       'bedroomCount': bedroomCount,
       'bathRoomCount': bathRoomCount,
-      'type': type,
+      'type': type.value,
       'userId': userId,
       'userName': userName,
     };

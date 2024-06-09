@@ -36,7 +36,6 @@ class RoomApi {
 
     }
 
-    print(rewards.length);
     return rewards;
   }
 

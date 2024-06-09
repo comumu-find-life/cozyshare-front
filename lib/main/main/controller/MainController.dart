@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:home_and_job/register-home/register-image/view/RegisterHomeImageView.dart';
 
+import '../../../register-home/view/StartRegisyerView.dart';
 import '../../../room/room-list/view/RoomListView.dart';
 
 class MainController extends GetxController {
@@ -26,7 +27,7 @@ class MainController extends GetxController {
   }
 
   void moveToHomeRegisterView(){
-    Get.to(() => RegisterHomeImageView());
+    Get.to(() => StartRegisterView());
   }
 
 

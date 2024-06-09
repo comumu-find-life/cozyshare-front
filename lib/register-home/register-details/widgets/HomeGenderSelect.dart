@@ -8,11 +8,11 @@ import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 import '../controller/HomeRegisterDetailsController.dart';
 
-class HomeTypeSelect extends StatelessWidget {
+class HomeGenderSelect extends StatelessWidget {
   HomeRegisterDetailsController _controller;
 
 
-  HomeTypeSelect(this._controller);
+  HomeGenderSelect(this._controller);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class HomeTypeSelect extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: 20.h, left: 20.w),
-          child: Title3Text("Room Type", kTextBlackColor),
+          child: Title3Text("Gender Type", kTextBlackColor),
         ),
         buildInputHomeType(),
       ],
@@ -35,9 +35,9 @@ class HomeTypeSelect extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              _controller.selectHomeType(1);
+              _controller.selectGenderType(1);
             },
-            child: _controller.isRentType
+            child: _controller.isGenderType == 1
                 ? Container(
               width: 80.w,
               height: 35.h,
@@ -45,7 +45,7 @@ class HomeTypeSelect extends StatelessWidget {
                   color: kTextBlackColor,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Rent", kWhiteBackGroundColor),
+                child: Body2Text("Male", kWhiteBackGroundColor),
               ),
             )
                 : Container(
@@ -55,15 +55,15 @@ class HomeTypeSelect extends StatelessWidget {
                   border: Border.all(color: kGrey400Color),
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Rent", kGrey600Color),
+                child: Body2Text("Male", kGrey600Color),
               ),
             ),
           ),
           InkWell(
             onTap: () {
-              _controller.selectHomeType(2);
+              _controller.selectGenderType(2);
             },
-            child: _controller.isShareRoomType
+            child: _controller.isGenderType == 2
                 ? Container(
               margin: EdgeInsets.only(left: 8.w),
               width: 80.w,
@@ -72,7 +72,7 @@ class HomeTypeSelect extends StatelessWidget {
                   color: kTextBlackColor,
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Share", kWhiteBackGroundColor),
+                child: Body2Text("Female", kWhiteBackGroundColor),
               ),
             )
                 : Container(
@@ -83,10 +83,38 @@ class HomeTypeSelect extends StatelessWidget {
                   border: Border.all(color: kGrey400Color),
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Center(
-                child: Body2Text("Share", kGrey600Color),
+                child: Body2Text("Female", kGrey600Color),
               ),
             ),
-          )
+          ),
+          InkWell(
+            onTap: () {
+              _controller.selectGenderType(3);
+            },
+            child:_controller.isGenderType == 3
+                ? Container(
+              margin: EdgeInsets.only(left: 8.w),
+              width: 80.w,
+              height: 35.h,
+              decoration: BoxDecoration(
+                  color: kTextBlackColor,
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Center(
+                child: Body2Text("Anything", kWhiteBackGroundColor),
+              ),
+            )
+                : Container(
+              margin: EdgeInsets.only(left: 8.w),
+              width: 80.w,
+              height: 35.h,
+              decoration: BoxDecoration(
+                  border: Border.all(color: kGrey400Color),
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: Center(
+                child: Body2Text("Anything", kGrey600Color),
+              ),
+            ),
+          ),
         ],
       ),
     ));

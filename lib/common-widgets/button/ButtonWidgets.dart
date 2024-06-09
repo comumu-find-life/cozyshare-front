@@ -6,7 +6,7 @@ import 'package:home_and_job/constants/Fonts.dart';
 
 Widget NextButtonWidget(String title) {
   return Container(
-    width: 320.w,
+    width: 340.w,
     height: 60.h,
     decoration: BoxDecoration(
         color: kBlueColor,
@@ -21,7 +21,7 @@ Widget NextButtonWidget(String title) {
 
 Widget NotYetButtonWidget(String title) {
   return Container(
-    width: 320.w,
+    width: 340.w,
     height: 60.h,
     decoration: BoxDecoration(
         color: kGrey200Color,

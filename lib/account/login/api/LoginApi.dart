@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -22,6 +23,7 @@ class LoginApi with ChangeNotifier {
 
     if (response.statusCode == 200) {
       saveToken(response);
+
       return true;
     }
 
@@ -29,14 +31,11 @@ class LoginApi with ChangeNotifier {
   }
 
   void saveToken(Response response) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
     String accessToken =
-        json.decode(utf8.decode(response.bodyBytes))["accessToken"];
+    json.decode(utf8.decode(response.bodyBytes))["accessToken"];
     String refreshToken =
-        json.decode(utf8.decode(response.bodyBytes))["refreshToken"];
-    prefs.setString("access_token", accessToken);
-    prefs.setString("refresh_token", refreshToken);
-
+    json.decode(utf8.decode(response.bodyBytes))["refreshToken"];
+    await DiskDatabase().setAccessToken(accessToken);
+    await DiskDatabase().setRefreshToken(refreshToken);
   }
 }

@@ -75,5 +75,8 @@ extension FurnitureTypeExtension on HomeOptionType {
 }
 
  List<HomeOptionType> parseHomeOptionTypes(String input) {
+  if(input == ""){
+    return [];
+  }
   return input.split(',').map((e) => FurnitureTypeExtension.fromString(e)!).toList();
 }

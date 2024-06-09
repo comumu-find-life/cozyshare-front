@@ -23,17 +23,12 @@ class RoomListController extends GetxController {
   }
 
 
-
-
   void updateCityName(String newCity) {
-    print("dasdasdas" + newCity);
-    print("homes" + homes.length.toString());
 
     filterCityHomes.value = [];
     _cityName.value = newCity;
 
     for (int i = 0; i < homes.length; i++) {
-      print("ggg");
       if(homes[i].containCityName(_cityName.value)){
 
         filterCityHomes.add(homes[i]);

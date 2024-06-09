@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/my-profile/charge-point/view/ChargePointView.dart';
 import '../../../register-home/register-image/view/RegisterHomeImageView.dart';
+import '../../../register-home/view/StartRegisyerView.dart';
 import '../../exchange-point/main/view/ExchangePointView.dart';
 import '../../my-homes/main/view/MyHomeListView.dart';
 
@@ -14,61 +16,28 @@ class ProviderListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 15.h),
-      width: 380.w,
-      height: 280.h,
-      color: kWhiteBackGroundColor,
-      child: Column(
-        children: [
-          _myPostItem(),
-          _registerMyHomeItem(),
-          //_myPoint(),
-          //_withDraw(),
-        ],
-      ),
-    );
-  }
-
-  Widget _withDraw() {
-    return InkWell(
-      onTap: () {
-        Get.to(() => ExchangePointView());
-      },
+    return Center(
       child: Container(
-        width: 380.w,
-        height: 50.h,
-        margin: EdgeInsets.only(left: 10.w, top: 15.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        margin: EdgeInsets.only(top: 15.h),
+        width: 355.w,
+        height: 275.h,
+        decoration: BoxDecoration(
+          color: kWhiteBackGroundColor,
+          borderRadius: BorderRadius.all(Radius.circular(6))
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Container(
-                  child: Icon(
-                    Icons.currency_exchange,
-                    color: kDarkBlue,
-                    size: 17.sp,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10.w),
-                  child: Body2Text("출금 신청", kTextBlackColor),
-                )
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(right: 15.w, top: 15.h),
-              child: Icon(
-                Icons.arrow_forward_ios_outlined,
-                size: 19.sp,
-              ),
-            )
+            _myPostItem(),
+            _registerMyHomeItem(),
+            _sellHistory(),
+            _buyHistory(),
           ],
         ),
       ),
     );
   }
+
 
   Widget _myPostItem() {
     return InkWell(
@@ -103,7 +72,7 @@ class ProviderListWidget extends StatelessWidget {
   Widget _registerMyHomeItem() {
     return InkWell(
       onTap: () {
-        Get.to(() => RegisterHomeImageView());
+        Get.to(() => StartRegisterView());
         //Get.to(() => RegisterHomeImageView());
       },
       child: Container(
@@ -116,6 +85,68 @@ class ProviderListWidget extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(left: 5.w),
               child: FRegularText("Register My Room", kDarkBlue, 15),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 15.w, top: 15.h),
+              child: Icon(
+                Icons.arrow_forward_ios_outlined,
+                color: kDarkBlue,
+                size: 15.sp,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _sellHistory() {
+    return InkWell(
+      onTap: () {
+        Get.to(() => RegisterHomeImageView());
+        //Get.to(() => RegisterHomeImageView());
+      },
+      child: Container(
+        width: 380.w,
+        height: 50.h,
+        margin: EdgeInsets.only(left: 10.w, top: 15.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 5.w),
+              child: FRegularText("History of Sell Room", kDarkBlue, 15),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 15.w, top: 15.h),
+              child: Icon(
+                Icons.arrow_forward_ios_outlined,
+                color: kDarkBlue,
+                size: 15.sp,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buyHistory() {
+    return InkWell(
+      onTap: () {
+        Get.to(() => StartRegisterView());
+        //Get.to(() => RegisterHomeImageView());
+      },
+      child: Container(
+        width: 380.w,
+        height: 50.h,
+        margin: EdgeInsets.only(left: 10.w, top: 15.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 5.w),
+              child: FRegularText("History of buy Room", kDarkBlue, 15),
             ),
             Container(
               margin: EdgeInsets.only(right: 15.w, top: 15.h),

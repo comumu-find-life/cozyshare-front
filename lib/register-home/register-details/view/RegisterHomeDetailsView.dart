@@ -16,6 +16,7 @@ import '../../../../constants/Colors.dart';
 import '../../controller/HomeRegisterTotalController.dart';
 import '../../register-introduce/view/RegisterHomeIntroduceView.dart';
 import '../controller/HomeRegisterDetailsController.dart';
+import '../widgets/HomeGenderSelect.dart';
 
 class RegisterHomeDetailsView extends StatelessWidget {
   HomeRegisterTotalController _controller;
@@ -34,6 +35,7 @@ class RegisterHomeDetailsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HomeTypeSelect(_controller.homeRegisterDetailsController),
+            HomeGenderSelect(_controller.homeRegisterDetailsController),
             HomeRoomCountForm(_controller.homeRegisterDetailsController),
             HomeOptionSelect(_controller.homeRegisterDetailsController),
             Container(

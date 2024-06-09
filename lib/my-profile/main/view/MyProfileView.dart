@@ -10,6 +10,7 @@ import 'package:home_and_job/my-profile/main/widgets/ProviderListWidget.dart';
 import 'package:home_and_job/my-profile/main/widgets/ProfileWidget.dart';
 
 import '../controller/MyProfileController.dart';
+import '../widgets/CommonList.dart';
 
 class MyProfileView extends StatelessWidget {
   @override
@@ -19,6 +20,7 @@ class MyProfileView extends StatelessWidget {
     return Scaffold(
         backgroundColor: kGrey100Color,
 
+
         // appBar: CommonAppBar(canBack: false, title: '마이 프로필', color: kWhiteBackGroundColor,),
         body: SingleChildScrollView(
           child: Column(
@@ -27,7 +29,8 @@ class MyProfileView extends StatelessWidget {
               _buildAppBar(),
 
               ProfileWidget(controller),
-              ProviderListWidget()
+              ProviderListWidget(),
+              CommonList()
             ],
           ),
         ));
@@ -36,7 +39,7 @@ class MyProfileView extends StatelessWidget {
   Widget _buildAppBar() {
     return Container(
       width: 380.w,
-      color: kWhiteBackGroundColor,
+      color: kGrey100Color,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

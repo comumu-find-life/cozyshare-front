@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/model/home/enums/HomeOption.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
@@ -25,7 +26,7 @@ class HomeOptionsWidget extends StatelessWidget {
             margin: EdgeInsets.only(top: 20.h, left: 20.w),
             child: Title2Text("Options", kTextBlackColor),
           ),
-          Container(
+          options.length == 0?_buildEmpty():Container(
             width: 360.w,
             height: 200.h,
             margin: EdgeInsets.only(left: 10.w, top: 20.h),
@@ -46,6 +47,20 @@ class HomeOptionsWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildEmpty(){
+    return Container(
+      width: 340.w,
+      height: 60.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(6)),
+        border: Border.all(color: kGrey200Color)
+      ),
+      margin: EdgeInsets.only(top: 10.h, left: 20.w
+      ),
+      child: Center(child: FRegularText("Not Options", kGrey400Color, 14)),
     );
   }
 

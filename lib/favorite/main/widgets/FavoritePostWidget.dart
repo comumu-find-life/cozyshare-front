@@ -1,88 +1,117 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 
+import '../../../room/room-detail/view/RoomDetailView.dart';
 import '../controller/FavoriteController.dart';
 
 class FavoritePostWidget extends StatelessWidget {
-  FavoriteController _controller;
+  final HomeOverviewResponse home;
 
-
-  FavoritePostWidget(this._controller);
+  FavoritePostWidget(this.home);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            height: 15.h,
-          ),
-          _buildPost(),
-          _buildPost(),
-          _buildPost(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPost() {
     return InkWell(
-      onTap: (){
-        //_controller.moveHomePost();
+      onTap: () async {
+        await Get.to(() => RoomDetailView(home.id));
+        // Call setState on returning to trigger refresh
+        (context as Element).markNeedsBuild();
       },
       child: Container(
-        height: 150.h,
-        margin: EdgeInsets.only(top: 10.h,left: 15.w,right: 15.w),
+        margin: EdgeInsets.only(top: 10.h),
+        height: 160.h,
+        width: 353.w,
         decoration: BoxDecoration(
-          color: kWhiteBackGroundColor,
-            border: Border(
-              bottom: BorderSide(color: kGrey200Color)
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(6))
+          color: kWhiteColor,
         ),
-        child: Row(
+        child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(right: 7.w),
-              width: 120.w,
-              height: 120.h,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset("assets/images/test/home.png", fit: BoxFit.cover,)
-              ),
-            ),
-            Column(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                _buildImage("assets/images/test/home.png"),
                 Container(
-                  margin: EdgeInsets.only(top: 20.h),
-                  width: 200.w,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  margin: EdgeInsets.only(left: 10.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        child: Title3Text("WAS 멜버른 postcode", kTextBlackColor),
+                        width: 210.w,
+                        margin: EdgeInsets.only(top: 10.h),
+                        child: FBoldText(
+                            "${home.address}", kTextBlackColor, 14),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(top: 15.h),
+                            child: FRegularText(
+                                "\$${home.bond}/${home.rent}",
+                                kGrey800Color, 13),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 17.h, left: 5.w),
+                            child: FRegularText(
+                                "(bond/perweek)", kGrey600Color, 11),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          home.bill == 0
+                              ? Container(
+                            margin: EdgeInsets.only(top: 10.h),
+                            child:
+                            FRegularText("free", kGrey800Color, 13),
+                          )
+                              : Container(
+                            margin: EdgeInsets.only(top: 10.h),
+                            child: FRegularText(
+                                "\$${home.bill}", kGrey800Color, 13),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 13.h, left: 5.w),
+                            child: FRegularText("(Bill)", kGrey600Color, 11),
+                          ),
+                        ],
                       ),
                       Container(
-                        child: Icon(Icons.favorite, size: 15.sp, color: Colors.red,),
+                        margin: EdgeInsets.only(top: 10.h),
+                        child: FRegularText("Share House", kGrey600Color, 13),
                       )
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 10.h),
-                  child: Body2Text("2000\$ / 150\$", kGrey500Color),
-                ),
               ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20.h),
+              width: 340.w,
+              height: 1.h,
+              color: kGrey200Color,
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImage(String imagePath) {
+    return Container(
+      width: 130.w,
+      height: 130.h,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.asset(
+          imagePath,
+          fit: BoxFit.cover,
         ),
       ),
     );

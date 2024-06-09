@@ -1,6 +1,8 @@
 
 
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:home_and_job/chatting/api/ChatApi.dart';
 import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
 
 import '../mode/message_model.dart';
@@ -22,7 +24,14 @@ class ChatDetailController extends GetxController{
   User _provider = User(id: 2, name: 'Minseok', avatar: 'assets/images/test/user.png', isProvider: true);
   late User _currentUser;
 
+  RxList _chatList = [].obs;
   RxList _messages = [].obs;
+
+  Future<bool> loadMessages(int roomId) async {
+    _chatList.value = await ChatApi().loadDmInformation(roomId);
+
+    return true;
+  }
 
   void sendMessage(){
 
