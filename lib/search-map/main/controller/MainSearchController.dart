@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:home_and_job/model/filter/Filter.dart';
+import 'package:home_and_job/model/home/enums/HomeType.dart';
 import 'package:home_and_job/search-map/api/HomeMapApi.dart';
 
 import '../../../constants/Colors.dart';
@@ -16,8 +18,9 @@ import '../../../model/home/response/HomeResponse.dart';
 
 class MainSearchController extends GetxController {
   // 검색한 city 이름
+  Filter? _filter;
   Rx<String> _cityName = "".obs;
-
+  List<HomeOverviewResponse> initHomes = [];
   //map 관련 필드
   List<HomeOverviewResponse> items = []; //todo 데이터 로딩
   Completer<GoogleMapController> _controller = Completer();
@@ -27,16 +30,24 @@ class MainSearchController extends GetxController {
   CameraPosition _parisCameraPosition =
       CameraPosition(target: LatLng(-33.898972, 151.155429), zoom: 14.0);
 
-  void updateCity(String newCity) {
-    _cityName.value = newCity;
-  }
-
-  Future<bool> initSet() async{
+  Future<bool> initSet() async {
     items = await HomeMapApi().loadAllHomes();
+    initHomes = items;
     _manager = _initClusterManager();
     return true;
   }
 
+  void updateCity(String newCity) {
+    _cityName.value = newCity;
+  }
+
+  void updateFilter(Filter updateFilter) async {
+    _filter = updateFilter;
+    await updateFilterItems(updateFilter);
+    _manager.setItems(items);
+    _manager.updateMap();
+    await _manager.updateMarkers;
+  }
 
   ClusterManager _initClusterManager() {
     return ClusterManager<HomeOverviewResponse>(items, _updateMarkers,
@@ -46,10 +57,51 @@ class MainSearchController extends GetxController {
         markerBuilder: _markerBuilder);
   }
 
+  Future<void> updateFilterItems(Filter filter) async {
+
+    //todo 캐싱 필요
+
+
+    List<HomeOverviewResponse> _response = [];
+    for (int i = 0; i < initHomes.length; i++) {
+      HomeOverviewResponse item = initHomes[i];
+      //일단 type 필터만 적용 todo 금액 필터 적용
+      if (applyFilter(filter, item)) {
+        _response.add(item);
+      }
+    }
+    items = _response;
+  }
+
+  bool applyFilter(Filter filter, HomeOverviewResponse home) {
+    // 타입 필터가 null이 아니고 홈의 타입과 일치하지 않는 경우 걸러냅니다.
+    if (filter.type != HomeType.NONE && home.type != filter.type) {
+      print("FFF");
+      return false; // 타입이 일치하지 않으면 걸러냅니다.
+    }
+
+    // 최소 임대료 필터가 null이 아니고 임대료가 최소 임대료보다 작은 경우 걸러냅니다.
+    if (filter.minRent != null && home.rent < filter.minRent!) {
+      return false; // 임대료가 최소 임대료보다 작으면 걸러냅니다.
+    }
+
+    // 최대 임대료 필터가 null이 아니고 임대료가 최대 임대료보다 큰 경우 걸러냅니다.
+    if (filter.maxRent != null && home.rent > filter.maxRent!) {
+      return false; // 임대료가 최대 임대료보다 크면 걸러냅니다.
+    }
+
+    // 최대 보증금 필터가 null이 아니고 보증금이 최대 보증금보다 큰 경우 걸러냅니다.
+    if (filter.maxBond != null && home.bond > filter.maxBond!) {
+      return false; // 보증금이 최대 보증금보다 크면 걸러냅니다.
+    }
+
+    // 모든 조건을 통과하면 해당 홈을 필터된 목록에 포함합니다.
+    return true;
+  }
+
   Future<Marker> Function(Cluster<HomeOverviewResponse>) get _markerBuilder =>
       (cluster) async {
         return Marker(
-
           markerId: MarkerId(cluster.getId()),
           position: cluster.location,
           infoWindow: InfoWindow(),
@@ -121,16 +173,13 @@ class MainSearchController extends GetxController {
 
   // 시티 검색 후 카메라 이동 메서드
   void updateCameraPosition(LatLng latLng) async {
-    print("0-----0");
-    print(latLng.latitude);
-    print(latLng.longitude);
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(
       CameraPosition(target: latLng, zoom: 12.0),
     ));
   }
 
-
+  Filter? get filter => _filter;
 
   String get cityName => _cityName.value;
 
@@ -144,7 +193,6 @@ class MainSearchController extends GetxController {
 
   Completer<GoogleMapController> get controller => _controller;
 }
-
 
 // 인기 지역과 가중치
 List<Map<String, dynamic>> regions = [
@@ -168,5 +216,3 @@ List<Map<String, dynamic>> regions = [
     'weight': 0.3 // 30% 데이터
   },
 ];
-
-

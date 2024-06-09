@@ -44,6 +44,7 @@ class _MainSearchViewState extends State<MainSearchView> {
                 children: [
 
                   MainSearchHeader(_getxController),
+                  
                   Obx(() => Container(
                       margin: EdgeInsets.only(top: 20.h),
                       width: 380.w,

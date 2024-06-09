@@ -11,18 +11,28 @@ import 'package:home_and_job/search-map/filter/controller/FilterController.dart'
 import 'package:home_and_job/search-map/filter/widgets/PriceFilterWidget.dart';
 import 'package:home_and_job/search-map/filter/widgets/RoomTypeFilterWidget.dart';
 
-class SearchFilterView extends StatelessWidget {
-
-  Filter? filter;
-
+class SearchFilterView extends StatefulWidget {
+  Filter? _preFilter;
 
 
-  SearchFilterView(this.filter);
+  SearchFilterView(this._preFilter);
 
+  @override
+  State<SearchFilterView> createState() => _SearchFilterViewState();
+}
+
+class _SearchFilterViewState extends State<SearchFilterView> {
+  FilterController? _controller;
+
+  @override
+  void initState() {
+
+    _controller = FilterController(widget._preFilter);
+  }
   @override
   Widget build(BuildContext context) {
 
-    FilterController _controller = FilterController(filter);
+
 
     return Scaffold(
       appBar: _buildAppBar(context),
@@ -34,28 +44,36 @@ class SearchFilterView extends StatelessWidget {
           children: [
             Column(
               children: [
-                RoomTypeFilterWidget(_controller),
-                PriceFilterWidget(_controller),
+                RoomTypeFilterWidget(_controller!),
+                PriceFilterWidget(_controller!),
               ],
             ),
-            _buildSearchButton(),
+            _buildSearchButton(context, _controller!),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildSearchButton(){
-    return Container(
-      width: 340.w,
-      height: 45.h,
-      margin: EdgeInsets.only(top: 210.h),
-      decoration: BoxDecoration(
-        color: kDarkBlue,
-        borderRadius: BorderRadius.all(Radius.circular(5))
-      ),
-      child: Center(
-        child: FBoldText("Search", kWhiteBackGroundColor, 15),
+
+
+  Widget _buildSearchButton(BuildContext context, FilterController _controller){
+    return InkWell(
+
+      onTap: (){
+        Navigator.pop(context, _controller.createFilter());
+      },
+      child: Container(
+        width: 340.w,
+        height: 45.h,
+        margin: EdgeInsets.only(top: 210.h),
+        decoration: BoxDecoration(
+          color: kDarkBlue,
+          borderRadius: BorderRadius.all(Radius.circular(5))
+        ),
+        child: Center(
+          child: FBoldText("Search", kWhiteBackGroundColor, 15),
+        ),
       ),
     );
   }

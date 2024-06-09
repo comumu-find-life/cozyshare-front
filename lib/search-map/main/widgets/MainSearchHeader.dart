@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:home_and_job/model/filter/Filter.dart';
 import 'package:home_and_job/search-map/main/controller/MainSearchController.dart';
 
 import '../../../constants/Colors.dart';
@@ -25,7 +26,7 @@ class MainSearchHeader extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildTotalFilter(),
+                _buildTotalFilter(context),
                 InkWell(
                   onTap: () async {
                     SearchCityModel? selectedCity = await Navigator.push(
@@ -81,10 +82,23 @@ class MainSearchHeader extends StatelessWidget {
         ));
   }
 
-  Widget _buildTotalFilter() {
+  Widget _buildTotalFilter(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.to(() => SearchFilterView(null), transition: Transition.upToDown);
+      onTap: () async{
+
+        Filter? filter = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SearchFilterView(_getxController.filter),
+
+          ),
+        );
+
+        if(filter != null){
+          _getxController.updateFilter(filter);
+
+        }
+        //Get.to(() => SearchFilterView(null), transition: Transition.upToDown);
       },
       child: Container(
         height: 35.h,

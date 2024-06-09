@@ -1,5 +1,5 @@
 enum HomeType {
-  RENT, SHARE
+  RENT, SHARE, NONE
 }
 
 extension HomeTypeExtension on HomeType {
