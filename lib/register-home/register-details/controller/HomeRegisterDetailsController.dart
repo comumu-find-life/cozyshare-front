@@ -59,9 +59,9 @@ class HomeRegisterDetailsController extends GetxController {
 
   String extrateHomeType() {
     if (_isRentType.value) {
-      return HomeType.RENT.value;
+      return "RENT";
     }
-    return HomeType.SHARE.value;
+    return "SHARE";
   }
 
   String extractGenderType() {

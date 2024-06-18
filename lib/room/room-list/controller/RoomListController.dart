@@ -3,19 +3,35 @@ import 'package:get/get.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:home_and_job/room/api/RoomApi.dart';
 
+import '../../../model/filter/Filter.dart';
+
 class RoomListController extends GetxController {
+  // 필터, city 정보 둘다 없을때 초기 데이터 넣는 리스트
   RxList<HomeOverviewResponse> homes = <HomeOverviewResponse>[].obs;
+  // city 정보로 조회했을때 데이터 넣는 리스트
   RxList<HomeOverviewResponse> filterCityHomes = <HomeOverviewResponse>[].obs;
+  // 펄터 정보가 있을때 데이터 넣는 리스트
+  RxList<HomeOverviewResponse> filterHomes = <HomeOverviewResponse>[].obs;
 
   Rx<String> _cityName = "".obs;
   Rx<bool> _selectRentHome = true.obs;
   Rx<bool> _selectShareHome = false.obs;
 
+
+  List<HomeOverviewResponse> getFilteredHomes() {
+    if (filterHomes.isNotEmpty) {
+      return filterHomes;
+    } else if (_cityName.isNotEmpty) {
+      return filterCityHomes;
+    } else {
+      return homes;
+    }
+  }
+
   TextEditingController _searchController = TextEditingController();
 
   Future<bool> loadAllHomes(String cityName) async {
     homes.value = await RoomApi().loadAllReward();
-
     if(cityName != ""){
       updateCityName(cityName);
     }
@@ -23,6 +39,7 @@ class RoomListController extends GetxController {
   }
 
 
+  //city 이름으로 검색
   void updateCityName(String newCity) {
 
     filterCityHomes.value = [];
@@ -38,19 +55,28 @@ class RoomListController extends GetxController {
     print(filterCityHomes.length);
   }
 
-  void selectHomeType(int type) {
-    if (type == 1) {
-      _selectRentHome.value = true;
-      _selectShareHome.value = false;
+  //필터 적용
+  void updateFilter(Filter filter){
+    filterHomes.value = [];
+
+    if(filterCityHomes.length != 0){
+      for(int i = 0; i<filterCityHomes.length; i++){
+        if(filterCityHomes[i].validateFilter(filter!)){
+          filterHomes.add(filterCityHomes[i]);
+        }
+      }
+    }else{
+      for(int i = 0; i<homes.length; i++){
+        if(homes[i].validateFilter(filter!)){
+          filterHomes.add(homes[i]);
+        }
+      }
     }
 
-    if (type == 2) {
-      _selectRentHome.value = false;
-      _selectShareHome.value = true;
-    }
+    print("LENGTH = " + filterHomes.length.toString());
   }
 
-  void search() {}
+
 
   String get cityName => _cityName.value;
 

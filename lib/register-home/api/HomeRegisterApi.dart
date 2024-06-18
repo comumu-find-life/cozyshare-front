@@ -38,6 +38,7 @@ class HomeRegisterApi {
 
   Future<bool> saveHomeApi(
       HomeGeneratorRequest homeGeneratorRequest, List<String> images) async {
+    print(homeGeneratorRequest.toJson());
     String? accessToken = await DiskDatabase().getAccessToken();
     var imageFiles = <http.MultipartFile>[];
 
@@ -72,6 +73,7 @@ class HomeRegisterApi {
     try {
       var response = await formData.send();
 
+      print(response.statusCode);
       if (response.statusCode == 200) {
         // API 호출 성공
         return true;

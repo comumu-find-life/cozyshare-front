@@ -6,6 +6,8 @@ import 'package:get/get_navigation/src/routes/default_transitions.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../../../model/filter/Filter.dart';
+import '../../../search-map/filter/view/SearchFilterView.dart';
 import '../controller/RoomListController.dart';
 import 'SearchBarWidget.dart';
 
@@ -40,9 +42,45 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               SearchBarWidget(_controller),
-              Container()
+              _buildTotalFilter(context)
             ],
           ),
         ));
   }
+  Widget _buildTotalFilter(BuildContext context) {
+    return InkWell(
+      onTap: () async{
+
+        Filter? filter = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SearchFilterView(null),
+
+          ),
+        );
+
+        if(filter != null){
+          _controller.updateFilter(filter);
+
+        }
+        //Get.to(() => SearchFilterView(null), transition: Transition.upToDown);
+      },
+      child: Container(
+        height: 37.h,
+        width: 37.w,
+        margin: EdgeInsets.only(top: 10.h),
+        decoration: BoxDecoration(
+            border: Border.all(color: kGrey400Color),
+            borderRadius: BorderRadius.all(Radius.circular(6))),
+        child: Center(
+          child: Icon(
+            Icons.tune,
+            size: 19.sp,
+            color: kDarkBlue,
+          ),
+        ),
+      ),
+    );
+  }
+  
 }

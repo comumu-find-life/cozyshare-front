@@ -2,11 +2,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/account/sign-up/view/SignupView.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/main/main/frame/MainFrameView.dart';
 
 class SignupWidget extends StatelessWidget {
   const SignupWidget({super.key});
@@ -15,9 +17,32 @@ class SignupWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _buildOauthIcons(),
         _buildSignupText(),
+          _buildOauthIcons(),
+        //_buildStartGuest(),
+
+
       ],
+    );
+  }
+
+  Widget _buildStartGuest(){
+    return Container(
+      margin: EdgeInsets.only(top: 30.h),
+      width: 330.w,
+      height: 50.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(6)),
+        color: kBlueColor,
+      ),
+      child: InkWell(
+        onTap: () {
+          Get.offAll(() => MainFrameView(0));
+        },
+        child: Center(
+          child: ButtonText("Start to guest", kWhiteBackGroundColor),
+        ),
+      ),
     );
   }
   

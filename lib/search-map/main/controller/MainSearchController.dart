@@ -63,6 +63,7 @@ class MainSearchController extends GetxController {
 
 
     List<HomeOverviewResponse> _response = [];
+    
     for (int i = 0; i < initHomes.length; i++) {
       HomeOverviewResponse item = initHomes[i];
       //일단 type 필터만 적용 todo 금액 필터 적용

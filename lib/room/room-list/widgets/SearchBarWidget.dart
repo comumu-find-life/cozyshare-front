@@ -20,7 +20,7 @@ class SearchBarWidget extends StatelessWidget {
     return Obx(() => Container(
           margin: EdgeInsets.only(top: 10.h, bottom: 0.h),
           height: 40.h,
-          width: 310.w,
+          width: 280.w,
           decoration: BoxDecoration(
             color: kLightBlue,
               borderRadius: BorderRadius.all(Radius.circular(6))),

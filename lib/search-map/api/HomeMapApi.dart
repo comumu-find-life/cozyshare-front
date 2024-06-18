@@ -16,7 +16,6 @@ class HomeMapApi {
   Future<List<HomeOverviewResponse>> loadAllHomes() async {
     List<HomeOverviewResponse> homes = [];
 
-    print(LOAD_ALL_HOME_URL);
     var response = await http.get(
       Uri.parse(LOAD_ALL_HOME_URL),
       headers: {
