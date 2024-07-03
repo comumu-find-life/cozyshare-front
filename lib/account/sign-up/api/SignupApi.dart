@@ -7,41 +7,36 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 class SignupApi with ChangeNotifier {
-  String ROOT_URL = dotenv.get("ROOT_API_URL");
+  static String ROOT_URL = dotenv.get("ROOT_API_URL");
+  static String SIGN_UP_URL = ROOT_URL + "users/sign-up";
 
   Future<bool> signupApi(SignupRequest dto, String? imagePath) async {
     // 파일 생성
-    var file = await http.MultipartFile.fromPath(
-      'image',
-      imagePath!,
-      contentType: MediaType('image', 'jpeg'), // 파일 타입 지정 (이미지인 경우)
-    );
+    var file = imagePath == null
+        ? null
+        : await http.MultipartFile.fromPath(
+            'image',
+            imagePath!,
+            contentType: MediaType('image', 'jpeg'), // 파일 타입 지정 (이미지인 경우)
+          );
 
     // JSON 데이터를 MultipartFile로 변환
     var jsonPart = http.MultipartFile.fromString(
-      'dto',
+      'userSignupRequest',
       json.encode(dto.toJson()),
       contentType: MediaType('application', 'json'), // JSON 타입 지정
     );
 
     // 폼 데이터 생성
-    var formData = http.MultipartRequest('POST', Uri.parse("http://10.0.2.2:8080/v1/api/user/sign-up"));
+    var formData = http.MultipartRequest('POST', Uri.parse(SIGN_UP_URL));
 
     // 파일 및 JSON 데이터 추가
-    formData.files.add(file);
+    file == null ? null : formData.files.add(file!);
     formData.files.add(jsonPart);
 
     // 요청 보내기
     var response = await http.Response.fromStream(await formData.send());
 
-    print(utf8.decode(response.bodyBytes));
-
-    if (response.statusCode == 200) {
-      // 성공 시 true 반환
-      return true;
-    } else {
-      // 실패 시 false 반환
-      return false;
-    }
+    return response.statusCode == 200;
   }
 }

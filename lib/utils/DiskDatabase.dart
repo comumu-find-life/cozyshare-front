@@ -5,6 +5,7 @@ class DiskDatabase {
 
   static const String ACCESS_TOKEN = "access_token";
   static const String REFRESH_TOKEN = "refresh_token";
+  static const String USER_ID = "user_id";
   static const String FAVORITE_HOME_IDS = "favorite_home_ids"; // 새로 추가한 상수
 
   Future<String?> getAccessToken() async {
@@ -15,6 +16,16 @@ class DiskDatabase {
   Future<String?> getRefreshToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(REFRESH_TOKEN);
+  }
+
+  Future<String?> getUserId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(USER_ID);
+  }
+
+  Future<void> setUserId(String userId) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(USER_ID, userId);
   }
 
   Future<void> setAccessToken(String token) async {

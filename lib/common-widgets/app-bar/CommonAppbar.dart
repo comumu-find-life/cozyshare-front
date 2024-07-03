@@ -47,7 +47,6 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
                   InkWell(
                     onTap: () {
                       //여기에 코드 구현
-
                       Navigator.pop(context);
                     },
                     child: Container(

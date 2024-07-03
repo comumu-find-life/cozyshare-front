@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:home_and_job/chatting/api/ChatApi.dart';
+import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
 import 'package:home_and_job/model/chat/DirectMessageApplicationDto.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
 import 'package:home_and_job/room/api/RoomApi.dart';
@@ -20,7 +21,6 @@ class HomeDetailController extends GetxController {
       _isFavorite.value = true;
     }
 
-
     homeInformationResponse = (await RoomApi().findById(homeId!))!;
 
     if(homeInformationResponse != null){
@@ -30,10 +30,11 @@ class HomeDetailController extends GetxController {
   }
 
   void sendMessage()async{
-    int receiverId = int.parse(homeInformationResponse!.providerId!);
-    int? roomId = homeInformationResponse?.homeId;
-    var directMessageApplicationDto = DirectMessageApplicationDto(message: '', receiverId: receiverId, roomId: roomId!);
-    await ChatApi().sendDm(directMessageApplicationDto);
+    Get.to(() => ChatDetailView(int.parse(homeInformationResponse!.providerId!), homeInformationResponse!.homeId!));
+    // int receiverId = int.parse(homeInformationResponse!.providerId!);
+    // int? roomId = homeInformationResponse?.homeId;
+    // var directMessageApplicationDto = DirectMessageApplicationDto(message: '', receiverId: receiverId, roomId: roomId!);
+    // await ChatApi().sendDm(directMessageApplicationDto);
   }
 
   void checkFacorite(int? homeId) async {

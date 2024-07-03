@@ -72,6 +72,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   country_picker: ^2.0.26
   lecle_flutter_absolute_path: ^0.0.2+1
+  stomp_dart_client: ^2.0.0
 
 dev_dependencies:
   flutter_test:

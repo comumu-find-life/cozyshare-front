@@ -9,7 +9,7 @@ import '../../model/home/response/HomeInformationResponse.dart';
 class RoomApi {
   static String ROOT_URL = dotenv.get("ROOT_API_URL");
   static String LOAD_ALL_ROOMS_URL = ROOT_URL + "homes/overview";
-  static String FIND_HOME_BY_ID_URL = ROOT_URL + "home?homeId=";
+  static String FIND_HOME_BY_ID_URL = ROOT_URL + "homes/";
 
   Future<List<HomeOverviewResponse>> loadAllReward() async {
     List<HomeOverviewResponse> rewards = [];
@@ -37,7 +37,8 @@ class RoomApi {
 
     //todo 리팩토링
     var response = await http.get(
-      Uri.parse(ROOT_URL + "home?homeId=" + homeIdx.toString()),
+
+      Uri.parse(FIND_HOME_BY_ID_URL + homeIdx.toString()),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

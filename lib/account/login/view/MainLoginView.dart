@@ -13,11 +13,10 @@ import '../widgets/LoginFormWidget.dart';
 import '../widgets/SignupWidget.dart';
 
 class MainLoginView extends StatelessWidget {
-  const MainLoginView({Key? key}) : super(key: key);
+  MainLoginController controller = MainLoginController();
 
   @override
   Widget build(BuildContext context) {
-    MainLoginController controller = MainLoginController();
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
       body: SingleChildScrollView(

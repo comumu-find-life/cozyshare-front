@@ -15,6 +15,7 @@ class HomeInformationResponse with _$HomeInformationResponse {
     required double? longitude,
     required String? options,
     required int? bond,
+    required int? residentCount,
     required int? homeId,
     required String? providerProfileUrl,
     required String? providerName,

@@ -59,46 +59,47 @@ class MainSearchController extends GetxController {
 
   Future<void> updateFilterItems(Filter filter) async {
 
-    //todo 캐싱 필요
-
-
     List<HomeOverviewResponse> _response = [];
-    
+
     for (int i = 0; i < initHomes.length; i++) {
       HomeOverviewResponse item = initHomes[i];
       //일단 type 필터만 적용 todo 금액 필터 적용
-      if (applyFilter(filter, item)) {
+      print("TYPE = "  + item.type.toString());
+
+
+      print(item.validateFilter(filter));
+      if (item.validateFilter(filter)) {
         _response.add(item);
       }
     }
     items = _response;
   }
 
-  bool applyFilter(Filter filter, HomeOverviewResponse home) {
-    // 타입 필터가 null이 아니고 홈의 타입과 일치하지 않는 경우 걸러냅니다.
-    if (filter.type != HomeType.NONE && home.type != filter.type) {
-      print("FFF");
-      return false; // 타입이 일치하지 않으면 걸러냅니다.
-    }
-
-    // 최소 임대료 필터가 null이 아니고 임대료가 최소 임대료보다 작은 경우 걸러냅니다.
-    if (filter.minRent != null && home.rent < filter.minRent!) {
-      return false; // 임대료가 최소 임대료보다 작으면 걸러냅니다.
-    }
-
-    // 최대 임대료 필터가 null이 아니고 임대료가 최대 임대료보다 큰 경우 걸러냅니다.
-    if (filter.maxRent != null && home.rent > filter.maxRent!) {
-      return false; // 임대료가 최대 임대료보다 크면 걸러냅니다.
-    }
-
-    // 최대 보증금 필터가 null이 아니고 보증금이 최대 보증금보다 큰 경우 걸러냅니다.
-    if (filter.maxBond != null && home.bond > filter.maxBond!) {
-      return false; // 보증금이 최대 보증금보다 크면 걸러냅니다.
-    }
-
-    // 모든 조건을 통과하면 해당 홈을 필터된 목록에 포함합니다.
-    return true;
-  }
+  // bool applyFilter(Filter filter, HomeOverviewResponse home) {
+  //   // 타입 필터가 null이 아니고 홈의 타입과 일치하지 않는 경우 걸러냅니다.
+  //   if (filter.type != HomeType.NONE && home.type != filter.type) {
+  //     print("FFF");
+  //     return false; // 타입이 일치하지 않으면 걸러냅니다.
+  //   }
+  //
+  //   // 최소 임대료 필터가 null이 아니고 임대료가 최소 임대료보다 작은 경우 걸러냅니다.
+  //   if (filter.minRent != null && home.rent < filter.minRent!) {
+  //     return false; // 임대료가 최소 임대료보다 작으면 걸러냅니다.
+  //   }
+  //
+  //   // 최대 임대료 필터가 null이 아니고 임대료가 최대 임대료보다 큰 경우 걸러냅니다.
+  //   if (filter.maxRent != null && home.rent > filter.maxRent!) {
+  //     return false; // 임대료가 최대 임대료보다 크면 걸러냅니다.
+  //   }
+  //
+  //   // 최대 보증금 필터가 null이 아니고 보증금이 최대 보증금보다 큰 경우 걸러냅니다.
+  //   if (filter.maxBond != null && home.bond > filter.maxBond!) {
+  //     return false; // 보증금이 최대 보증금보다 크면 걸러냅니다.
+  //   }
+  //
+  //   // 모든 조건을 통과하면 해당 홈을 필터된 목록에 포함합니다.
+  //   return true;
+  // }
 
   Future<Marker> Function(Cluster<HomeOverviewResponse>) get _markerBuilder =>
       (cluster) async {

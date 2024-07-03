@@ -31,7 +31,6 @@ class HomeMapApi {
           .map((x) => HomeOverviewResponse.fromJson(x)));
     }
 
-    print(homes.length);
     return homes;
   }
 }

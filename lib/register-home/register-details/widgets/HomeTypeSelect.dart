@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../../../model/home/enums/HomeType.dart';
 import '../controller/HomeRegisterDetailsController.dart';
 
 class HomeTypeSelect extends StatelessWidget {
@@ -31,64 +32,37 @@ class HomeTypeSelect extends StatelessWidget {
   Widget buildInputHomeType() {
     return Obx(() => Container(
       margin: EdgeInsets.only(top: 20.h, left: 20.w),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () {
-              _controller.selectHomeType(1);
-            },
-            child: _controller.isRentType
-                ? Container(
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  color: kTextBlackColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Rent", kWhiteBackGroundColor),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal, // 가로 스크롤을 허용
+        child: Row(
+          children: HomeType.values.map((homeType) {
+            String? label = homeType.toString().split('.').last.replaceAll('_', ' ').capitalize;
+            bool isSelected = _controller.selectedHomeType == homeType;
+            return InkWell(
+              onTap: () {
+                _controller.selectHomeType(homeType);
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 8.w), // 버튼 간의 간격 조절
+                //width: 150.w,
+                height: 55.h,
+                decoration: BoxDecoration(
+                  color: isSelected ? kTextBlackColor : kWhiteBackGroundColor,
+                  border: Border.all(color: isSelected ? Colors.transparent : kGrey400Color),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(left: 10.w, right: 10.w),
+                  child: Center(
+                    child: Body2Text(label!, isSelected ? kWhiteBackGroundColor : kGrey600Color),
+                  ),
+                ),
               ),
-            )
-                : Container(
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  border: Border.all(color: kGrey400Color),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Rent", kGrey600Color),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              _controller.selectHomeType(2);
-            },
-            child: _controller.isShareRoomType
-                ? Container(
-              margin: EdgeInsets.only(left: 8.w),
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  color: kTextBlackColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Share", kWhiteBackGroundColor),
-              ),
-            )
-                : Container(
-              margin: EdgeInsets.only(left: 8.w),
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  border: Border.all(color: kGrey400Color),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Share", kGrey600Color),
-              ),
-            ),
-          )
-        ],
+            );
+          }).toList(),
+        ),
       ),
     ));
   }
+
 }

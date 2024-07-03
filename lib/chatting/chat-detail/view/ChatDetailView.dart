@@ -12,9 +12,10 @@ import '../widgets/InputMessageWidget.dart';
 import '../widgets/MessageWidget.dart';
 
 class ChatDetailView extends StatefulWidget {
-  int dmId;
+  int receiverId;
+  int homeId;
 
-  ChatDetailView(this.dmId);
+  ChatDetailView(this.receiverId, this.homeId);
 
   @override
   State<ChatDetailView> createState() => _ChatDetailViewState();
@@ -23,62 +24,41 @@ class ChatDetailView extends StatefulWidget {
 class _ChatDetailViewState extends State<ChatDetailView> {
   ChatDetailController _controller = ChatDetailController();
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: ChatAppBar(
-            context, _controller, _controller.currentUser.isProvider),
-        backgroundColor: kBlueColor,
-        body: Stack(
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 70.h),
-              child: GestureDetector(
-                onTap: () {
-                  FocusScope.of(context).unfocus();
-                },
-                child: Column(
-                  children: [_buildConversation(), InputMessageWidget()],
-                ),
-              ),
-            ),
-            HomePostInformationWidget()
-          ],
-        ));
-    // return FutureBuilder(
-    //   future: _controller.loadMessages(widget.dmId),
-    //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-    //     if (snapshot.connectionState == ConnectionState.waiting) {
-    //       return Center(
-    //         child: CircularProgressIndicator(),
-    //       );
-    //     } else if (snapshot.hasError) {
-    //       return Container();
-    //     }else{
-    //       return Scaffold(
-    //           appBar: ChatAppBar(
-    //               context, _controller, _controller.currentUser.isProvider),
-    //           backgroundColor: kBlueColor,
-    //           body: Stack(
-    //             children: [
-    //               Container(
-    //                 margin: EdgeInsets.only(top: 70.h),
-    //                 child: GestureDetector(
-    //                   onTap: () {
-    //                     FocusScope.of(context).unfocus();
-    //                   },
-    //                   child: Column(
-    //                     children: [_buildConversation(), InputMessageWidget()],
-    //                   ),
-    //                 ),
-    //               ),
-    //               HomePostInformationWidget()
-    //             ],
-    //           ));
-    //     }
-    //   },
-    // );
+    return FutureBuilder(
+      future: _controller.loadInit(widget.receiverId, widget.homeId),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Container();
+        } else {
+          return Scaffold(
+              appBar: ChatAppBar(
+                  context, _controller, true),
+              backgroundColor: kBlueColor,
+              body: Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 70.h),
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                      child: Column(
+                        children: [_buildConversation(), InputMessageWidget(_controller)],
+                      ),
+                    ),
+                  ),
+                  HomePostInformationWidget()
+                ],
+              ));
+        }
+      },
+    );
   }
 
   Widget _buildConversation() {

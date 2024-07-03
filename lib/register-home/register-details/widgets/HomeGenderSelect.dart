@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,8 +8,7 @@ import '../../../constants/Fonts.dart';
 import '../controller/HomeRegisterDetailsController.dart';
 
 class HomeGenderSelect extends StatelessWidget {
-  HomeRegisterDetailsController _controller;
-
+  final HomeRegisterDetailsController _controller;
 
   HomeGenderSelect(this._controller);
 
@@ -23,100 +21,42 @@ class HomeGenderSelect extends StatelessWidget {
           margin: EdgeInsets.only(top: 20.h, left: 20.w),
           child: Title3Text("Gender Type", kTextBlackColor),
         ),
-        buildInputHomeType(),
+        buildInputGenderType(),
       ],
     );
   }
 
-  Widget buildInputHomeType() {
+  Widget buildInputGenderType() {
     return Obx(() => Container(
       margin: EdgeInsets.only(top: 20.h, left: 20.w),
       child: Row(
         children: [
-          InkWell(
-            onTap: () {
-              _controller.selectGenderType(1);
-            },
-            child: _controller.isGenderType == 1
-                ? Container(
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  color: kTextBlackColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Male", kWhiteBackGroundColor),
-              ),
-            )
-                : Container(
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  border: Border.all(color: kGrey400Color),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Male", kGrey600Color),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              _controller.selectGenderType(2);
-            },
-            child: _controller.isGenderType == 2
-                ? Container(
-              margin: EdgeInsets.only(left: 8.w),
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  color: kTextBlackColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Female", kWhiteBackGroundColor),
-              ),
-            )
-                : Container(
-              margin: EdgeInsets.only(left: 8.w),
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  border: Border.all(color: kGrey400Color),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Female", kGrey600Color),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              _controller.selectGenderType(3);
-            },
-            child:_controller.isGenderType == 3
-                ? Container(
-              margin: EdgeInsets.only(left: 8.w),
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  color: kTextBlackColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Anything", kWhiteBackGroundColor),
-              ),
-            )
-                : Container(
-              margin: EdgeInsets.only(left: 8.w),
-              width: 80.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  border: Border.all(color: kGrey400Color),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Center(
-                child: Body2Text("Anything", kGrey600Color),
-              ),
-            ),
-          ),
+          genderTypeButton(1, "Male"),
+          SizedBox(width: 8.w),
+          genderTypeButton(2, "Female"),
+          SizedBox(width: 8.w),
+          genderTypeButton(3, "Anything"),
         ],
       ),
     ));
+  }
+
+  Widget genderTypeButton(int type, String label) {
+    bool isSelected = _controller.isGenderType == type;
+    return InkWell(
+      onTap: () => _controller.selectGenderType(type),
+      child: Container(
+        width: 80.w,
+        height: 35.h,
+        decoration: BoxDecoration(
+          color: isSelected ? kTextBlackColor : kWhiteBackGroundColor,
+          border: Border.all(color: isSelected ? Colors.transparent : kGrey400Color),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        child: Center(
+          child: Body2Text(label, isSelected ? kWhiteBackGroundColor : kGrey600Color),
+        ),
+      ),
+    );
   }
 }

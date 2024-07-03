@@ -38,6 +38,7 @@ class HomeRegisterTotalController extends GetxController {
     HomeAddressGeneratorRequest generateHomeAddress =
         _homeAddressController.generateHomeAddress();
 
+
     HomeGeneratorRequest homeGeneratorRequest = HomeGeneratorRequest(
       //todo 변경
         userIdx: 3,
@@ -47,7 +48,7 @@ class HomeRegisterTotalController extends GetxController {
         bedroomCount: int.parse(_homeRegisterDetailsController.bedRoomCountController.text),
         bond: int.parse(_homePriceController.bondController.text),
         gender: _homeRegisterDetailsController.extractGenderType(),
-        type: _homeRegisterDetailsController.extrateHomeType(),
+        type: _homeRegisterDetailsController.extractHomeType(),
         introduce: _introduceController.text,
         bill: int.parse(_homePriceController.bill.text),
         rent: int.parse(_homePriceController.rentController.text),

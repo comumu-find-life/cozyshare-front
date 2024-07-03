@@ -9,32 +9,20 @@ import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dar
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
+import '../../detail-view/view/MyHomeDetailView.dart';
 
 
-class MyHomeListItem extends StatefulWidget {
+class MyHomeListItem extends StatelessWidget {
   final HomeOverviewResponse home;
 
   MyHomeListItem(this.home);
 
   @override
-  _MyHomeListItemState createState() => _MyHomeListItemState();
-}
-
-class _MyHomeListItemState extends State<MyHomeListItem> {
-  int _currentImageIndex = 0;
-  late CarouselController _carouselController;
-
-  @override
-  void initState() {
-    super.initState();
-    _carouselController = CarouselController();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //Get.to(() => HomeDetailView(widget.room));
+        print("DASD");
+        Get.to(() => MyHomeDetailView(home.id));
       },
       child: Container(
           margin: EdgeInsets.only(top: 10.h),
@@ -62,7 +50,7 @@ class _MyHomeListItemState extends State<MyHomeListItem> {
                       },
                       child: Container(
                         margin: EdgeInsets.only(top: 17.h),
-                        width: 173.w,
+                        width: 203.w,
                         height: 35.h,
                         decoration: BoxDecoration(
                           border: Border.all(color: kGrey300Color),
@@ -98,17 +86,17 @@ class _MyHomeListItemState extends State<MyHomeListItem> {
                 margin: EdgeInsets.only(top: 10.h),
                 width: 100.w,
                 height: 20.h,
-                child: FRegularText("Bond \$2000", kGrey700Color, 14),
+                child: FRegularText("Bond \$${home.bond}", kGrey700Color, 14),
               ),
               Container(
                 margin: EdgeInsets.only(top: 5.h),
                 width: 100.w,
                 height: 20.h,
-                child: FRegularText("Rent \$300", kGrey700Color, 14),
+                child: FRegularText("Rent \$${home.rent}", kGrey700Color, 14),
               ),
             ],
           ),
-       
+
         ],
       ),
     );
@@ -118,8 +106,7 @@ class _MyHomeListItemState extends State<MyHomeListItem> {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       width: 200.w,
-      height: 30.h,
-      child: FBoldText("ACTT Address", kGrey700Color, 15),
+      child: FBoldText("${home.address}", kGrey700Color, 15),
     );
   }
 

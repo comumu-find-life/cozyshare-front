@@ -6,29 +6,24 @@ import 'package:home_and_job/model/home/enums/HomeType.dart';
 import '../../../model/home/enums/HomeOption.dart';
 
 class HomeRegisterDetailsController extends GetxController {
-  //hometype
-  Rx<bool> _isRentType = true.obs;
-  Rx<bool> _isShareRoomType = false.obs;
+  // HomeType
+  final Rx<HomeType> _selectedHomeType = HomeType.NONE.obs;
 
-  //gendertype
-  Rx<int> _isGenderType = 1.obs;
+  // GenderType
+  final Rx<int> _isGenderType = 1.obs;
 
-  Rx<bool> _isNextStep = false.obs;
+  final Rx<bool> _isNextStep = false.obs;
 
-  TextEditingController _bedRoomCountController = TextEditingController();
-  TextEditingController _bathRoomCountController = TextEditingController();
+  final TextEditingController _bedRoomCountController = TextEditingController();
+  final TextEditingController _bathRoomCountController = TextEditingController();
+  final TextEditingController _residentCountController = TextEditingController();
 
-  RxList<HomeOptionType> _selectedOptions = <HomeOptionType>[].obs;
+  final RxList<HomeOptionType> _selectedOptions = <HomeOptionType>[].obs;
 
   List<HomeOptionType> get selectedOptions => _selectedOptions;
 
   void validateAllInput() {
-    if (_bedRoomCountController.text != "" &&
-        _bathRoomCountController.text != "") {
-      _isNextStep.value = true;
-    } else {
-      _isNextStep.value = false;
-    }
+    _isNextStep.value = _bedRoomCountController.text.isNotEmpty && _bathRoomCountController.text.isNotEmpty && _residentCountController.text.isNotEmpty;
   }
 
   String parseOptions() {
@@ -36,53 +31,40 @@ class HomeRegisterDetailsController extends GetxController {
   }
 
   void toggleOption(HomeOptionType option) {
-    if (_selectedOptions.contains(option)) {
-      _selectedOptions.remove(option);
-    } else {
-      _selectedOptions.add(option);
-    }
+    _selectedOptions.contains(option) ? _selectedOptions.remove(option) : _selectedOptions.add(option);
   }
 
-  void selectHomeType(int type) {
-    if (type == 1) {
-      _isRentType.value = true;
-      _isShareRoomType.value = false;
-    } else {
-      _isRentType.value = false;
-      _isShareRoomType.value = true;
-    }
+  void selectHomeType(HomeType type) {
+    _selectedHomeType.value = type;
   }
 
   void selectGenderType(int type) {
     _isGenderType.value = type;
   }
 
-  String extrateHomeType() {
-    if (_isRentType.value) {
-      return "RENT";
-    }
-    return "SHARE";
+  String extractHomeType() {
+    return _selectedHomeType.value.toString().split('.').last;
   }
 
   String extractGenderType() {
-    if (_isGenderType.value == 1) {
-      return "MALE";
+    switch (_isGenderType.value) {
+      case 1:
+        return "MALE";
+      case 2:
+        return "FEMALE";
+      default:
+        return "ANYTHING";
     }
-    if (_isGenderType.value == 2) {
-      return "FEMALE";
-    }
-    return "ANYTHING";
   }
 
+
+
   int get isGenderType => _isGenderType.value;
-
   bool get isNextStep => _isNextStep.value;
-
   TextEditingController get bedRoomCountController => _bedRoomCountController;
-
-  bool get isShareRoomType => _isShareRoomType.value;
-
-  bool get isRentType => _isRentType.value;
-
   TextEditingController get bathRoomCountController => _bathRoomCountController;
+
+  TextEditingController get residentCountController => _residentCountController;
+
+  HomeType get selectedHomeType => _selectedHomeType.value;
 }

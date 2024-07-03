@@ -77,10 +77,8 @@ class HomeOverviewResponse with ClusterItem {
   }
 
   bool validateFilter(Filter filter) {
-
-    if (filter.type != HomeType.NONE && filter.type != this.type) {
+    if (filter.type!.length != 0 && !filter.type!.contains(this.type)) {
       return false;
-
     }
     if (filter.minRent != null && this.rent < filter.minRent!) {
       return false;
@@ -94,7 +92,6 @@ class HomeOverviewResponse with ClusterItem {
 
     return true;
   }
-
 
   @override
   LatLng get location => LatLng(latitude, longitude);

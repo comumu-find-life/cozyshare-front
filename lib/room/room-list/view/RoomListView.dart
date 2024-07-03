@@ -36,19 +36,25 @@ class RoomListView extends StatelessWidget {
           } else {
             return SingleChildScrollView(
               child: Obx(() {
-                List<HomeOverviewResponse> homesToDisplay = _controller.getFilteredHomes();
+                List<HomeOverviewResponse> homesToDisplay =
+                    _controller.getFilteredHomes();
 
                 if (homesToDisplay.isEmpty) {
                   return _buildNotItem();
                 } else {
-                  return Container(
-                    margin: EdgeInsets.only(bottom: 10.h),
-                    width: 380.w,
-                    child: Column(
-                      children: homesToDisplay.map((home) {
-                        return HomeListItemWidget(home);
-                      }).toList(),
-                    ),
+                  return Column(
+                    children: [
+
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10.h),
+                        width: 380.w,
+                        child: Column(
+                          children: homesToDisplay.map((home) {
+                            return HomeListItemWidget(home);
+                          }).toList(),
+                        ),
+                      )
+                    ],
                   );
                 }
               }),

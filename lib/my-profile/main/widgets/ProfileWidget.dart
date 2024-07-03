@@ -22,7 +22,7 @@ class ProfileWidget extends StatelessWidget {
         color: kWhiteBackGroundColor,
         borderRadius: BorderRadius.all(Radius.circular(6))
       ),
-      margin: EdgeInsets.only(left: 10.w,right: 10.w, top: 20.h),
+      margin: EdgeInsets.only(left: 10.w,right: 10.w, top: 40.h),
       width: 380.w,
       height: 90.h,
       child: Column(
@@ -41,7 +41,7 @@ class ProfileWidget extends StatelessWidget {
                   ],
                 ),
 
-                //_buildButton(),
+                _buildButton(),
               ],
             ),
           ),
@@ -53,14 +53,11 @@ class ProfileWidget extends StatelessWidget {
 
   Widget _buildButton() {
     return Container(
-      margin: EdgeInsets.only(top: 15.h, right: 20.w),
+      margin: EdgeInsets.only(top: 10.h, right: 0.w),
       width: 70.w,
       height: 35.h,
-      decoration: BoxDecoration(
           //border: Border.all(color: kGrey400Color),
-          color: kGrey100Color,
-          borderRadius: BorderRadius.all(Radius.circular(6))),
-      child: Center(child: FRegularText("프로필 보기", kTextBlackColor, 12)),
+      child: Icon(Icons.settings)
     );
   }
 

@@ -14,7 +14,6 @@ import 'SearchBarWidget.dart';
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   RoomListController _controller;
 
-
   HomeAppBar(this._controller);
 
   @override
@@ -33,12 +32,15 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 5.h),
-                  child: Icon(Icons.arrow_back_ios, size: 17.sp,),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    size: 17.sp,
+                  ),
                 ),
               ),
               SearchBarWidget(_controller),
@@ -47,23 +49,24 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ));
   }
+
   Widget _buildTotalFilter(BuildContext context) {
     return InkWell(
-      onTap: () async{
-
+      onTap: () async {
         Filter? filter = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SearchFilterView(null),
-
+            builder: (context) => SearchFilterView(
+                _controller.saveFilter.value == null
+                    ? null
+                    : _controller.saveFilter.value),
           ),
         );
 
-        if(filter != null){
+        if (filter != null) {
           _controller.updateFilter(filter);
-
         }
-        //Get.to(() => SearchFilterView(null), transition: Transition.upToDown);
+
       },
       child: Container(
         height: 37.h,
@@ -82,5 +85,4 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-  
 }

@@ -1,9 +1,15 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:home_and_job/chatting/api/ChatApi.dart';
 import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
+import 'package:home_and_job/chatting/chat-detail/view/DirectMessageDto.dart';
+import 'package:home_and_job/detail-profile/api/ProfileDetailApi.dart';
+import 'package:home_and_job/model/user/response/UserProfileResponse.dart';
+import 'package:home_and_job/utils/DiskDatabase.dart';
+import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 import '../mode/message_model.dart';
 
@@ -19,104 +25,88 @@ import '../mode/message_model.dart';
  * (8) "거래 성사" 폼 생성
  */
 class ChatDetailController extends GetxController{
-  //Rx<bool> _isProvider = true.obs;
-  User _getter = User(id: 1, name: 'YoungSol', avatar: 'assets/images/test/user.png', isProvider: false);
-  User _provider = User(id: 2, name: 'Minseok', avatar: 'assets/images/test/user.png', isProvider: true);
-  late User _currentUser;
 
+  late int _homeId;
+  late UserProfileResponse _sender;
+  late UserProfileResponse _receiver;
+  late UserProfileResponse _currentUser;
+  TextEditingController textEditingController = TextEditingController();
   RxList _chatList = [].obs;
   RxList _messages = [].obs;
 
-  Future<bool> loadMessages(int roomId) async {
-    _chatList.value = await ChatApi().loadDmInformation(roomId);
-
+  Future<bool> loadInit(int receiverId, int homeId) async {
+    await loadMessages();
+    await loadUsers(receiverId);
+    _homeId = homeId;
     return true;
   }
 
+  Future<bool> loadMessages() async {
+
+    //ProfileDetailApi().loadUserProfile(userIdx);
+    //_chatList.value = await ChatApi().loadDmInformation(roomId);
+    return true;
+  }
+
+  Future<bool> loadUsers(int receiverId) async {
+    String? senderId = await DiskDatabase().getUserId();
+    _sender = (await ProfileDetailApi().loadUserProfile(int.parse(senderId!)))!;
+    _receiver = (await ProfileDetailApi().loadUserProfile(receiverId))!;
+    _currentUser = _sender;
+
+    return true;
+
+  }
+
   void sendMessage(){
+    DirectMessageDto(senderId: _sender.id, receiverId: _receiver.id, message: textEditingController.text, roomId: _homeId);
+    textEditingController.clear();
+
 
   }
 
   // 안전거래 시작 메서드 (only provider)
   void startProtectedDeal(){
-    var message = Message(isDeal: 1,
-    sender: _provider,
-    time: "12:09 AM",
-      avatar: _provider.avatar,
-      text: ""
-    );
-
-    _messages.add(message);
+    // var message = Message(isDeal: 1,
+    // sender: _receiver,
+    // time: "12:09 AM",
+    //   avatar: _receiver.avatar,
+    //   text: ""
+    // );
+    //
+    // _messages.add(message);
   }
 
   // 입금 신청 메서드 (only getter)
   void applyDeposit(){
-    var message = Message(isDeal: 2,
-        sender: _getter,
-        time: "12:09 AM",
-        avatar: _getter.avatar,
-        text: ""
-    );
-    _messages.add(message);
+    // var message = Message(isDeal: 2,
+    //     sender: _sender,
+    //     time: "12:09 AM",
+    //     avatar: _sender.avatar,
+    //     text: ""
+    // );
+    // _messages.add(message);
   }
 
   // 거래 확정 메서드
   void confirmDeal() {
-    var message = Message(isDeal: 3,
-        sender: _getter,
-        time: "12:09 AM",
-        avatar: _getter.avatar,
-        text: ""
-    );
-    _messages.add(message);
-  }
-
-  void loadInit(){
-    _currentUser = _provider;
-
-    _messages.value = [
-      Message(
-        sender: _getter,
-        // 보낸 사람
-        time: '12:09 AM',
-        avatar: _getter.avatar,
-        text: "집 있나요?",
-        isDeal: 0,
-      ),
-      Message(
-        sender: _provider,
-        // 보낸 사람
-        time: '12:09 AM',
-        avatar: _provider.avatar,
-        text: "네 있어요",
-        isDeal: 0,
-      ),
-      Message(
-        sender: _getter,
-        // 보낸 사람
-        time: '12:09 AM',
-        avatar: _getter.avatar,
-        text: "안전 거래 가능한가요?",
-        isDeal: 0,
-      ),
-
-      Message(
-        sender: _provider,
-        // 보낸 사람
-        time: '12:09 AM',
-        avatar: _provider.avatar,
-        text: "네 가능해요",
-        isDeal: 0,
-      ),
-    ];
+    // var message = Message(isDeal: 3,
+    //     sender: _sender,
+    //     time: "12:09 AM",
+    //     avatar: _sender.avatar,
+    //     text: ""
+    // );
+    // _messages.add(message);
   }
 
 
-  User get getter => _getter;
 
-  User get provider => _provider;
 
-  User get currentUser => _currentUser;
+  UserProfileResponse get getter => _sender;
+
+  UserProfileResponse get provider => _receiver;
+
+  UserProfileResponse get currentUser => _currentUser;
 
   List get messages => _messages.value;
 }

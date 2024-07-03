@@ -33,12 +33,12 @@ Widget DealStartMessageWidget(ChatDetailController controller) {
             padding: EdgeInsets.only(bottom: 15.h),
             child: InkWell(
               onTap: () {
-                if (controller.currentUser.isProvider) {
-                  //todo DealRequestViewByProvider 로 변경
-                  Get.to(() => DealRequestViewByGetter(controller));
-                } else {
-                  Get.to(() => DealRequestViewByGetter(controller));
-                }
+                // if (controller.currentUser.isProvider) {
+                //   //todo DealRequestViewByProvider 로 변경
+                //   Get.to(() => DealRequestViewByGetter(controller));
+                // } else {
+                //   Get.to(() => DealRequestViewByGetter(controller));
+                // }
               },
               child: Container(
                 width: 170.w,
@@ -49,11 +49,25 @@ Widget DealStartMessageWidget(ChatDetailController controller) {
                 ),
                 child: Center(
                   child: Helper2Text(
-                    controller.currentUser.isProvider ? "거래 정보 확인" : "입금 하기",
+                    "입금 하기",
                     kDarkBlue,
                   ),
                 ),
               ),
+              // child: Container(
+              //   width: 170.w,
+              //   height: 35.h,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.all(Radius.circular(8)),
+              //     color: kLightBlue,
+              //   ),
+              //   child: Center(
+              //     child: Helper2Text(
+              //       controller.currentUser.isProvider ? "거래 정보 확인" : "입금 하기",
+              //       kDarkBlue,
+              //     ),
+              //   ),
+              // ),
             ),
           ),
         ),

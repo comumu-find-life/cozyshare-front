@@ -26,12 +26,10 @@ class _SearchFilterViewState extends State<SearchFilterView> {
 
   @override
   void initState() {
-
     _controller = FilterController(widget._preFilter);
   }
   @override
   Widget build(BuildContext context) {
-
 
 
     return Scaffold(
