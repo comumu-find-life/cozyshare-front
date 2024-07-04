@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
+import '../../model/chat/request/DirectMessageDto.dart';
+
 class ChatPage extends StatefulWidget {
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -10,7 +12,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   late StompClient stompClient;
-  List<String> messages = [];
+  List<DirectMessageDto> messages = [];
 
   @override
   void initState() {
@@ -35,7 +37,16 @@ class _ChatPageState extends State<ChatPage> {
       destination: '/sub/chat/room/1', // 채팅방 구독
       callback: (frame) {
         setState(() {
-          messages.add(frame.body!);
+          print("DDDDD");
+          print(frame.body!.runtimeType);
+          print(frame.body);
+          // Decode the JSON string to a Map<String, dynamic>
+          Map<String, dynamic> jsonData = jsonDecode(frame.body!);
+
+          // Use the fromJson factory to create an instance of DirectMessageDto
+          DirectMessageDto message = DirectMessageDto.fromJson(jsonData);
+
+          messages.add(message!);
         });
       },
     );
@@ -69,13 +80,14 @@ class _ChatPageState extends State<ChatPage> {
         title: Text('STOMP Chat'),
       ),
       body: Column(
+
         children: [
           Expanded(
             child: ListView.builder(
               itemCount: messages.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(messages[index]),
+                  title: Text(messages[index].message),
                 );
               },
             ),

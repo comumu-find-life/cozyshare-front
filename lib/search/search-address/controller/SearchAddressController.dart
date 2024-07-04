@@ -8,7 +8,8 @@ import 'package:home_and_job/search/search-address/model/SearchCityModel.dart';
 import 'package:http/http.dart' as http;
 
 class SearchAddressController extends GetxController {
-  final apiKey = 'AIzaSyDiCJBIUrDSpEKeGIWFKC01_7-fWQhM1bg';
+  //final apiKey = 'AIzaSyDiCJBIUrDSpEKeGIWFKC01_7-fWQhM1bg';
+  final apiKey = 'AIzaSyD1vqgptIQgYusty2ot4ofOabWD6Zpfnf0';
   String _selectCity = "";
   TextEditingController _searchController = TextEditingController();
   List<String> _addresses = [];
@@ -16,14 +17,12 @@ class SearchAddressController extends GetxController {
   RxList _filterPlaceIds = [].obs;
 
   Future<void> searchAddresses() async {
-
-
     final response = await http.get(Uri.parse(
         'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${_searchController.text}&types=(cities)&key=${apiKey}&region=au'));
     final data = json.decode(response.body);
 
 
-    print(response.bodyBytes);
+    print(utf8.decode(response.bodyBytes));
     List<String> descriptions = [];
     List<String> placeIds = [];
     for (var prediction in data['predictions']) {

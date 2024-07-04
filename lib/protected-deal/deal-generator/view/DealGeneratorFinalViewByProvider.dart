@@ -70,3 +70,4 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
             )));
   }
 }
+

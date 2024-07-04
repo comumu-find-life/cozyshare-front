@@ -9,6 +9,7 @@ import 'package:home_and_job/model/chat/response/DirectMessageRoomListDto.dart';
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 import '../../chat-detail/view/TestChatView.dart';
+import '../../test/TestChatView.dart';
 
 class ChatItemWidget extends StatelessWidget {
   DirectMessageRoomListDto dmItem;
@@ -19,7 +20,7 @@ class ChatItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ChatScreen());
+        //Get.to(() => ChatPage());
 //        Get.to(() => ChatDetailView(dmItem.id));
       },
       child: Container(

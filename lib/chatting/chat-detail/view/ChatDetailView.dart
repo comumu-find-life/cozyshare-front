@@ -7,13 +7,13 @@ import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailControlle
 import 'package:home_and_job/chatting/chat-detail/widgets/ChatAppBar.dart';
 import 'package:home_and_job/chatting/chat-detail/widgets/HomePostInformationWidget.dart';
 import 'package:home_and_job/constants/Colors.dart';
-
+import 'package:home_and_job/constants/Fonts.dart';
 import '../widgets/InputMessageWidget.dart';
 import '../widgets/MessageWidget.dart';
 
 class ChatDetailView extends StatefulWidget {
-  int receiverId;
-  int homeId;
+  final int receiverId;
+  final int homeId;
 
   ChatDetailView(this.receiverId, this.homeId);
 
@@ -22,7 +22,7 @@ class ChatDetailView extends StatefulWidget {
 }
 
 class _ChatDetailViewState extends State<ChatDetailView> {
-  ChatDetailController _controller = ChatDetailController();
+  final ChatDetailController _controller = ChatDetailController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,32 +30,41 @@ class _ChatDetailViewState extends State<ChatDetailView> {
       future: _controller.loadInit(widget.receiverId, widget.homeId),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Container();
         } else {
           return Scaffold(
-              appBar: ChatAppBar(
-                  context, _controller, true),
-              backgroundColor: kBlueColor,
-              body: Stack(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 70.h),
-                    child: GestureDetector(
-                      onTap: () {
-                        FocusScope.of(context).unfocus();
-                      },
-                      child: Column(
-                        children: [_buildConversation(), InputMessageWidget(_controller)],
-                      ),
+            appBar: ChatAppBar(context, _controller, true),
+            backgroundColor: kBlueColor,
+            body: Stack(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 70.h),
+                  child: GestureDetector(
+                    onTap: () {
+                      FocusScope.of(context).unfocus();
+                    },
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            print(_controller.messages.length);
+                          },
+                          child: Container(
+                            child: Body2Text("DASD", kTextBlackColor),
+                          ),
+                        ),
+                        _buildConversation(),
+                        InputMessageWidget(_controller),
+                      ],
                     ),
                   ),
-                  HomePostInformationWidget()
-                ],
-              ));
+                ),
+                HomePostInformationWidget(),
+              ],
+            ),
+          );
         }
       },
     );
@@ -64,16 +73,21 @@ class _ChatDetailViewState extends State<ChatDetailView> {
   Widget _buildConversation() {
     return Expanded(
       child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          color: kWhiteBackGroundColor,
-          child: Obx(() => ListView.builder(
-                reverse: false,
-                itemCount: _controller.messages.length,
-                itemBuilder: (context, int index) {
-                  final message = _controller.messages[index];
-                  return MessageWidget(message, _controller);
-                },
-              ))),
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        color: kWhiteBackGroundColor,
+        child: Obx(() {
+          // Debugging
+          print("Messages length: ${_controller.messages.length}");
+          return ListView.builder(
+            reverse: false,
+            itemCount: _controller.messages.length,
+            itemBuilder: (context, int index) {
+              final message = _controller.messages[index];
+              return MessageWidget(message, _controller);
+            },
+          );
+        }),
+      ),
     );
   }
 }

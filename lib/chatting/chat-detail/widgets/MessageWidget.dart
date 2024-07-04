@@ -6,6 +6,7 @@ import 'package:home_and_job/chatting/chat-detail/deal-message-widget/DealFinish
 import 'package:home_and_job/chatting/chat-detail/deal-message-widget/DealStartMessageWidget.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import '../../../model/chat/request/DirectMessageDto.dart';
 import '../controller/ChatDetailController.dart';
 import '../mode/User.dart';
 import '../mode/message_model.dart';
@@ -15,15 +16,15 @@ import '../deal-message-widget/DealDuringMessageWidget.dart';
  * 채팅 내용 뿌려주는 위젯
  */
 class MessageWidget extends StatelessWidget {
-  final Message message;
+  final DirectMessageDto message;
   final ChatDetailController controller;
 
   MessageWidget(this.message, this.controller);
 
   @override
   Widget build(BuildContext context) {
-    bool isMe = message.sender?.id == controller.currentUser.id;
-    int isDeal = message.isDeal;
+    bool isMe = message.senderId == controller.currentUser.id;
+    int isDeal = 0;
 
     return Container(
       margin: EdgeInsets.only(top: 10),
@@ -41,13 +42,13 @@ class MessageWidget extends StatelessWidget {
               SizedBox(width: 10),
               MessageBubble(
                 isMe: isMe,
-                text: message.text,
+                text: message.message,
                 isDeal: isDeal,
                 controller: controller,
               ),
             ],
           ),
-          MessageTime(isMe: isMe, time: message.time!),
+          MessageTime(isMe: isMe, time: "12:00"),
         ],
       ),
     );
