@@ -59,9 +59,8 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
                   shadowColor: Colors.transparent, // 그림자 없애기
                 ),
                 onPressed: () {
-                  _chatDetailController.startProtectedDeal();
-                  Navigator.pop(context);
-                  Navigator.pop(context);
+                  _controller.createDeal(context, _chatDetailController);
+                  //_chatDetailController.startProtectedDeal();
                   //_controller.ontapStep1Next();
                   // Get.to(() => ChargePointAccountView(), transition: Transition.rightToLeftWithFade);
                 },

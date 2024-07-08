@@ -14,7 +14,6 @@ class ChattingController extends GetxController {
 
   Future<bool> loadAllDmList() async {
     _chatItems = await ChatApi().loadDmList();
-
     return true;
   }
 

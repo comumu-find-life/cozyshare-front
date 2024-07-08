@@ -18,20 +18,15 @@ class ProfileDetailApi {
 
   Future<UserProfileResponse?> loadUserProfile(int userIdx) async {
     var response = await http.get(
-
-
       Uri.parse(LOAD_USER_PROFILE_URL+userIdx.toString()),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
     );
-
-
     if (response.statusCode == 200) {
       return UserProfileResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
     }
-
     return null;
   }
 }

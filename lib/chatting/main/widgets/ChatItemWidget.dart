@@ -2,16 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
 import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
 import 'package:home_and_job/model/chat/response/DirectMessageRoomListDto.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
-import '../../chat-detail/view/TestChatView.dart';
-import '../../test/TestChatView.dart';
 
 class ChatItemWidget extends StatelessWidget {
+
   DirectMessageRoomListDto dmItem;
 
   ChatItemWidget(this.dmItem);
@@ -20,8 +18,7 @@ class ChatItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        //Get.to(() => ChatPage());
-//        Get.to(() => ChatDetailView(dmItem.id));
+        Get.to(() => ChatDetailView(receiverId: dmItem.userId, roomId: dmItem.id, homeId: dmItem.progressHomeId,));
       },
       child: Container(
         margin: EdgeInsets.only(top: 10.h),
@@ -57,7 +54,7 @@ class ChatItemWidget extends StatelessWidget {
                                 children: [
                                   Container(
                                     child: FBoldText(
-                                        "${dmItem.userName}", kDarkBlue, 15),
+                                        "${dmItem.userNickname}", kDarkBlue, 15),
                                   ),
                                 ],
                               ),
@@ -67,7 +64,7 @@ class ChatItemWidget extends StatelessWidget {
                                 Container(
                                   margin: EdgeInsets.only(top: 10.h),
                                   child:
-                                      FRegularText("방 있나요?", kGrey700Color, 13),
+                                      FRegularText("${dmItem.lastMessage}", kGrey700Color, 13),
                                 ),
                               ],
                             )

@@ -12,7 +12,7 @@ class RoomApi {
   static String FIND_HOME_BY_ID_URL = ROOT_URL + "homes/";
 
   Future<List<HomeOverviewResponse>> loadAllReward() async {
-    List<HomeOverviewResponse> rewards = [];
+    List<HomeOverviewResponse> homes = [];
 
     var response = await http.get(
       Uri.parse(LOAD_ALL_ROOMS_URL),
@@ -25,16 +25,15 @@ class RoomApi {
     print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {
-      rewards = List<HomeOverviewResponse>.from(json
+      homes = List<HomeOverviewResponse>.from(json
           .decode(utf8.decode(response.bodyBytes))["data"]
           .map((x) => HomeOverviewResponse.fromJson(x)));
     }
 
-    return rewards;
+    return homes;
   }
 
   Future<HomeInformationResponse?> findById(int homeIdx) async {
-
     //todo 리팩토링
     var response = await http.get(
 

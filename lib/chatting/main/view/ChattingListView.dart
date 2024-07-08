@@ -26,6 +26,7 @@ class ChattingListView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
+
             return Container();
           } else {
             return Column(
@@ -35,11 +36,13 @@ class ChattingListView extends StatelessWidget {
                 SizedBox(
                   height: 30.h,
                 ),
-                _controller.chatItems.length == 0?EmptyChatWidget(): Column(
-                  children: _controller.chatItems.map((chatItem) {
-                    return ChatItemWidget(chatItem);
-                  }).toList(),
-                ),
+                _controller.chatItems.length == 0
+                    ? EmptyChatWidget()
+                    : Column(
+                        children: _controller.chatItems.map((chatItem) {
+                          return ChatItemWidget(chatItem);
+                        }).toList(),
+                      ),
               ],
             );
           }

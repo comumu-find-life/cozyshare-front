@@ -11,7 +11,6 @@ import '../widgets/ProfileDetailHeader.dart';
 
 class ProfileDetailView extends StatelessWidget {
   int userIdx;
-
   ProfileDetailView(this.userIdx);
 
   @override

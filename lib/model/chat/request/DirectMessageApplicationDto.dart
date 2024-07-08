@@ -4,13 +4,13 @@ part 'DirectMessageApplicationDto.freezed.dart';
 part 'DirectMessageApplicationDto.g.dart';
 
 @freezed
-class DirectMessageApplicationDto with _$DirectMessageApplicationDto {
-  factory DirectMessageApplicationDto({
+class DirectMessageApplicationRequest with _$DirectMessageApplicationRequest{
+  factory DirectMessageApplicationRequest({
     required String message,
     required int receiverId,
     required int roomId,
   }) = _DirectMessageApplicationDto;
 
-  factory DirectMessageApplicationDto.fromJson(Map<String, dynamic> json) =>
-      _$DirectMessageApplicationDtoFromJson(json);
+  factory DirectMessageApplicationRequest.fromJson(Map<String, dynamic> json) =>
+      _$DirectMessageApplicationRequestFromJson(json);
 }

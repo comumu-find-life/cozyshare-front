@@ -6,13 +6,18 @@ import 'package:home_and_job/constants/Colors.dart';
 import '../controller/ChatDetailController.dart';
 
 
-class InputMessageWidget extends StatelessWidget {
+class InputMessageWidget extends StatefulWidget {
 
   ChatDetailController _controller;
 
 
   InputMessageWidget(this._controller);
 
+  @override
+  State<InputMessageWidget> createState() => _InputMessageWidgetState();
+}
+
+class _InputMessageWidgetState extends State<InputMessageWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +42,7 @@ class InputMessageWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextField(
-                      controller: _controller.textEditingController,
+                      controller: widget._controller.textEditingController,
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -48,7 +53,7 @@ class InputMessageWidget extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: (){
-                      _controller.sendMessage();
+                      widget._controller.sendMessage();
                     },
                     child: Icon(
                       Icons.send,

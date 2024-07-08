@@ -2,67 +2,28 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
-import '../../model/chat/DirectMessageApplicationDto.dart';
+import '../../model/chat/request/DirectMessageApplicationDto.dart';
+import '../../model/chat/response/DirectMessageDto.dart';
 import '../../model/chat/response/DirectMessageRoomInfoDto.dart';
 import '../../model/chat/response/DirectMessageRoomListDto.dart';
 
 class ChatApi {
-  StompClient? stompClient;
+  static String ROOT_URL = dotenv.get("ROOT_API_URL");
+  final String SEND_INIT_DM_URL = ROOT_URL + "dm";
+  final String LOAD_BY_USERS_HOME = ROOT_URL + "homes/dm";
 
-
-
-  Future<bool> connectStomp() async {
+  Future<int> sendDm(DirectMessageApplicationRequest dm) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
-
-    stompClient = StompClient(
-      config: StompConfig(
-        url: 'http://10.0.2.2:8082/dm',
-        onConnect: onStompConnect,
-        beforeConnect: () async {
-          print('Waiting to connect...');
-          await Future.delayed(Duration(milliseconds: 200));
-          print('Connecting...');
-        },
-        onWebSocketError: (dynamic error) => print('WebSocket Error: $error'),
-        onStompError: (dynamic error) => print('Stomp Error: $error'),
-        stompConnectHeaders: {
-          'Authorization': 'Bearer $accessToken',
-        },
-        webSocketConnectHeaders: {
-          'Authorization': 'Bearer $accessToken',
-        },
-        onDisconnect: (frame) => print('Disconnected'),
-      ),
-    );
-
-    stompClient!.activate();
-    return true;
-  }
-
-  void onStompConnect(StompFrame frame) {
-    print('Connected to STOMP');
-
-    stompClient!.subscribe(
-      destination: '/topic/messages',
-      callback: (frame) {
-        print('Received message: ${frame.body}');
-      },
-    );
-  }
-
-
-  Future<bool> sendDm(DirectMessageApplicationDto dm) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String accessToken = await prefs.getString("access_token")!;
-
     Response response = await http.post(
-      Uri.parse("http://10.0.2.2:8080/" + "/api/dm"),
+
+      Uri.parse("http://10.0.2.2:8080/v1/api/dm"),
       headers: {
         'Authorization': 'Bearer ${accessToken}',
         'Content-Type': 'application/json',
@@ -71,11 +32,41 @@ class ChatApi {
     );
     // 서버 응답 출력
 
+
     if (response.statusCode == 200) {
-      return true;
+      var responseBody = json.decode(utf8.decode(response.bodyBytes));
+      int roomId = responseBody["data"];
+      return roomId;
     }
 
-    return false;
+    return -1;
+  }
+
+  Future<List<DirectMessageResponse>> loadDmMessages(int user1Id, int user2Id) async {
+    List<DirectMessageResponse> items = [];
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString("access_token");
+
+    final response = await http.get(
+      Uri.parse("http://10.0.2.2:8082/api/dm/history?user1Id=${user1Id}&user2Id=${user2Id}"),
+      headers: {
+        'Authorization': 'Bearer $accessToken',
+        'Content-Type': 'application/json',
+      },
+    );
+
+
+    print("LOAD DM");
+    print(utf8.decode(response.bodyBytes));
+    if (response.statusCode == 200) {
+      List<dynamic> jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      items = jsonResponse
+          .map((json) => DirectMessageResponse.fromJson(json))
+          .toList();
+    }
+    print(items.length);
+    return items;
   }
 
   Future<List<DirectMessageRoomListDto>> loadDmList() async {
@@ -93,9 +84,8 @@ class ChatApi {
       },
     );
 
-
     if (response.statusCode == 200) {
-      List<dynamic> jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      List<dynamic> jsonResponse = jsonDecode(utf8.decode(response.bodyBytes))["data"];
       items = jsonResponse
           .map((json) => DirectMessageRoomListDto.fromJson(json))
           .toList();
@@ -104,33 +94,27 @@ class ChatApi {
     return items;
   }
 
-  Future<List<DirectMessageRoomInfoDto>> loadDmInformation(int dmRoomId) async {
-    List<DirectMessageRoomInfoDto> items = [];
+  Future<List<HomeOverviewResponse>> loadHomes() async {
+    List<HomeOverviewResponse> homes = [];
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
 
     final response = await http.get(
-      Uri.parse("http://10.0.2.2:8080/v1/api/dm/dm-rooms/" + dmRoomId.toString()),
+      Uri.parse(LOAD_BY_USERS_HOME),
       headers: {
         'Authorization': 'Bearer $accessToken',
         'Content-Type': 'application/json',
       },
     );
 
-
-    if (response.statusCode == 200) {
-      // List<dynamic> jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
-      // print(jsonResponse);
-      // print("dasdasdas");
-      //
-      // items = jsonResponse
-      //     .map((json) => DirectMessageRoomInfoDto.fromJson(json))
-      //     .toList();
+    if(response.statusCode == 200){
+      homes = List<HomeOverviewResponse>.from(json
+          .decode(utf8.decode(response.bodyBytes))["data"]
+          .map((x) => HomeOverviewResponse.fromJson(x)));
     }
+    return homes;
 
-
-    return items;
   }
 }

@@ -20,7 +20,7 @@ class FavoritePostWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        await Get.to(() => RoomDetailView(home.id));
+        await Get.to(() => RoomDetailView(home.id, false));
         // Call setState on returning to trigger refresh
         (context as Element).markNeedsBuild();
       },

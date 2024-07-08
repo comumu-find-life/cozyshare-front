@@ -33,7 +33,7 @@ class FavoriteController extends GetxController {
   }
 
   void moveHomePost(HomeInformationResponse homeInformationResponse){
-    Get.to(() => RoomDetailView(homeInformationResponse.homeId!));
+    Get.to(() => RoomDetailView(homeInformationResponse.homeId!, false));
   }
 
 

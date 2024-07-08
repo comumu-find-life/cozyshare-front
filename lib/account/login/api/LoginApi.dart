@@ -21,8 +21,6 @@ class LoginApi with ChangeNotifier {
       body: json.encode({'email': email, 'password': password}),
     );
 
-
-
     if (response.statusCode == 200) {
       saveToken(response);
       String accessToken = json.decode(utf8.decode(response.bodyBytes))["data"]["accessToken"];
@@ -34,11 +32,15 @@ class LoginApi with ChangeNotifier {
   }
 
   void checkUserId(String accessToken) async {
-    String? userId = await DiskDatabase().getUserId();
-    if (userId == null) {
-      String? id = await loadUserId(accessToken);
-      await DiskDatabase().setUserId(id!);
-    }
+
+    String? id = await loadUserId(accessToken);
+    await DiskDatabase().setUserId(id!);
+    //todo 변경
+    // String? userId = await DiskDatabase().getUserId();
+    // if (userId == null) {
+    //   String? id = await loadUserId(accessToken);
+    //   await DiskDatabase().setUserId(id!);
+    // }
   }
 
   Future<String?> loadUserId(String accessToken) async {

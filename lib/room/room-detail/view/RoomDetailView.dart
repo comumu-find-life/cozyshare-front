@@ -20,8 +20,9 @@ import '../widgets/HomeProviderProfileWidget.dart';
 
 class RoomDetailView extends StatelessWidget {
   final int homeIdx;
+  final bool byChat;
 
-  RoomDetailView(this.homeIdx);
+  RoomDetailView(this.homeIdx, this.byChat);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class RoomDetailView extends StatelessWidget {
         } else {
           return Scaffold(
             backgroundColor: kWhiteBackGroundColor,
-            bottomSheet: HomeDetailBottomBar(_controller),
+            bottomSheet: !byChat?HomeDetailBottomBar(_controller, context):null,
             appBar: HomeDetailAppbar(_controller,
                 _controller.homeInformationResponse!.homeId, context),
             body: SingleChildScrollView(

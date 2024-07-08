@@ -19,7 +19,7 @@ class HomeListItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => RoomDetailView(home!.id));
+        Get.to(() => RoomDetailView(home!.id, false));
       },
       child: Container(
           margin: EdgeInsets.only(top: 10.h),
