@@ -38,7 +38,7 @@ class DealGeneratorViewByProvider extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DealInformationHeaderWidget(),
+            DealInformationHeaderWidget(_chatController.home),
             ProviderAccountFormWidget(_controller),
           ],
         ),

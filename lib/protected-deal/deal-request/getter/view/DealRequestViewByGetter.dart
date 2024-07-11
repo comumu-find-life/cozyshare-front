@@ -34,9 +34,9 @@ class DealRequestViewByGetter extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //매물 정보
-            DealInformationHeaderWidget(),
+            DealInformationHeaderWidget(_chatDetailController.home),
             //거래 정보
-            Center(child: DealInformationWidgetByGetter()),
+            Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!)),
             //입금 계좌
             DepositInformationWidgetByGetter(),
             //이용약관 도으이
@@ -63,9 +63,10 @@ class DealRequestViewByGetter extends StatelessWidget {
           side: BorderSide.none, // 테두리 없애기
           shadowColor: Colors.transparent, // 그림자 없애기
         ),
-        onPressed: () {
+        onPressed: () async{
           if(_controller.canNext){
-            _chatDetailController.applyDeposit();
+            await _controller.requestDeposit(_chatDetailController.dealResponse!.id);
+             _chatDetailController.applyDeposit();
             Navigator.pop(context);
           }
         },

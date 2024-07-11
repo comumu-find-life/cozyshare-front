@@ -13,7 +13,8 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
   DealGeneratorController _controller;
   ChatDetailController _chatDetailController;
 
-  DealGeneratorFinalViewByProvider(this._controller, this._chatDetailController);
+  DealGeneratorFinalViewByProvider(
+      this._controller, this._chatDetailController);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildHeader(),
-            Center(child: FinalDealInformationWidget()),
+            Center(child: FinalDealInformationWidget(_controller)),
           ],
         ),
       ),
@@ -58,8 +59,9 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
                   side: BorderSide.none, // 테두리 없애기
                   shadowColor: Colors.transparent, // 그림자 없애기
                 ),
-                onPressed: () {
-                  _controller.createDeal(context, _chatDetailController);
+                onPressed: () async {
+                  await _controller.createDeal(context, _chatDetailController);
+                  _chatDetailController.startProtectedDeal();
                   //_chatDetailController.startProtectedDeal();
                   //_controller.ontapStep1Next();
                   // Get.to(() => ChargePointAccountView(), transition: Transition.rightToLeftWithFade);
@@ -69,4 +71,3 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
             )));
   }
 }
-

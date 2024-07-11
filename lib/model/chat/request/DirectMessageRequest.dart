@@ -12,7 +12,7 @@ class DirectMessageRequest with _$DirectMessageRequest {
     required String roomId,
     required int receiverId,
     required String message,
-    required bool isDeal,
+    required int isDeal,
     required String? dealState
   }) = _DirectMessageRequest;
 

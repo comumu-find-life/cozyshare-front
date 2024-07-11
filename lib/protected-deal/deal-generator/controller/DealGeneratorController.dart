@@ -35,20 +35,28 @@ class DealGeneratorController extends GetxController {
     _finishAccountInformation.value = allFilled;
   }
 
-  void createDeal(BuildContext context,ChatDetailController _chatController) async{
+  Future<bool> createDeal(
+      BuildContext context, ChatDetailController _chatController) async {
     ProtectedDealGeneratorRequest protectedDealGeneratorRequest =
         ProtectedDealGeneratorRequest(
             getterId: _chatController.receiver.id,
             providerId: _chatController.sender.id,
             homeId: _chatController.home.homeId!,
             dmId: _chatController.roomId,
-            bond: int.parse(_bondController.text));
-    
-    bool response = await ProtectedDealApi().startDeal(protectedDealGeneratorRequest);
-    if(response){
+            deposit: int.parse(_bondController.text),
+            accountHolder: _nameController.text,
+            account: _accountController.text,
+            bankName:  _bankController.text);
+
+    bool response =
+        await ProtectedDealApi().startDeal(protectedDealGeneratorRequest);
+
+    if (response) {
       Get.to(() => DealGeneratorFinishView());
-    }else{
+      return true;
+    } else {
       CustomSnackBar().show(context, "failed");
+      return false;
     }
   }
 

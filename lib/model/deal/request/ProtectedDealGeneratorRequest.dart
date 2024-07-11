@@ -11,7 +11,11 @@ class ProtectedDealGeneratorRequest with _$ProtectedDealGeneratorRequest {
     required int providerId,
     required int homeId,
     required int dmId,
-    required int bond,
+    required int deposit,
+    required String accountHolder,
+    required String account,
+    required String bankName,
+
   }) = _ProtectedDealGeneratorRequest;
 
   factory ProtectedDealGeneratorRequest.fromJson(Map<String, dynamic> json) =>

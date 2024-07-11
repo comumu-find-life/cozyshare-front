@@ -59,7 +59,8 @@ class _ChatDetailViewState extends State<ChatDetailView> {
                       children: [
                         InkWell(
                             onTap: (){
-                              print(_controller.sender.id);
+                              print(_controller.getterId);
+                              print(_controller.providerId);
                             },
                             child: Body2Text("das", kTextBlackColor)),
                         _buildConversation(),

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,7 @@ import '../../model/chat/request/DirectMessageApplicationDto.dart';
 import '../../model/chat/response/DirectMessageDto.dart';
 import '../../model/chat/response/DirectMessageRoomInfoDto.dart';
 import '../../model/chat/response/DirectMessageRoomListDto.dart';
+import '../../model/deal/request/ProtectedDealFindRequest.dart';
 
 class ChatApi {
   static String ROOT_URL = dotenv.get("ROOT_API_URL");
@@ -117,4 +119,40 @@ class ChatApi {
     return homes;
 
   }
+
+  Future<ProtectedDealResponse?> loadProtectedDeal(ProtectedDealFindRequest request) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString("access_token");
+
+    final response = await http.post(
+      Uri.parse(ROOT_URL + "deal/read"),
+      headers: {
+        'Authorization': 'Bearer $accessToken',
+        'Content-Type': 'application/json',
+      },
+      body: json.encode(request.toJson())
+    );
+
+    if(response.statusCode == 200 && json.decode(utf8.decode(response.bodyBytes))["data"] != null){
+      return ProtectedDealResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+    }
+    return null;
+
+  }
+
+  // Future<void> applyDealByGetter(int dealId) async{
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? accessToken = prefs.getString("access_token");
+  //
+  //   final response = await http.post(
+  //       Uri.parse(ROOT_URL + "deal/request/deposit/" + dealId.toString()),
+  //       headers: {
+  //         'Authorization': 'Bearer $accessToken',
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: json.encode(request.toJson())
+  //   );
+  //
+  //   if(response == true){
+  // }
 }

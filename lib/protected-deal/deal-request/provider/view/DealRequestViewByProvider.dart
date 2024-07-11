@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
+import 'package:home_and_job/constants/Colors.dart';
+import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../deal-generator/widgets/DealInformationHeaderWidget.dart';
 import '../../getter/widgets/DealInformationWidgetByGetter.dart';
@@ -27,14 +29,17 @@ class DealRequestViewByProvider extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //매물 정보
-            DealInformationHeaderWidget(),
+            DealInformationHeaderWidget(_chatDetailController.home),
             //거래 정보
-            Center(child: DealInformationWidgetByGetter()),
+            Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!)),
             //입금 계좌
-            DepositInformationWidgetByProvider(),
+            DepositInformationWidgetByProvider(_chatDetailController.dealResponse!),
             //이용약관 도으이
-            Container(
-              height: 130.h,
+            Center(
+              child: Container(
+                margin: EdgeInsets.only(top: 30.h, bottom: 50.h),
+                child: Body2Text("입금은 세입자만 할 수 있습니다.", kGrey500Color),
+              ),
             )
           ],
         ),

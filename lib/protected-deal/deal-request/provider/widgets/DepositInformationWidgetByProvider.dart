@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
@@ -11,7 +12,10 @@ import '../../getter/poopup/DepositNamePopup.dart';
  * provider 가 조회할 계약금/내 계좌 정보
  */
 class DepositInformationWidgetByProvider extends StatelessWidget {
-  const DepositInformationWidgetByProvider({super.key});
+  ProtectedDealResponse _protectedDealResponse;
+
+
+  DepositInformationWidgetByProvider(this._protectedDealResponse);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +80,7 @@ class DepositInformationWidgetByProvider extends StatelessWidget {
             ],
           ),
           Container(
-            child: NumberText("DASE!@#", kTextBlackColor, 14),
+            child: NumberText("${_protectedDealResponse.accountHolder}", kTextBlackColor, 14),
           ),
 
         ],
@@ -95,7 +99,7 @@ class DepositInformationWidgetByProvider extends StatelessWidget {
             child: Body2Text("입금 계좌", kGrey600Color),
           ),
           Container(
-            child: NumberText("941602-00748799", kTextBlackColor, 14),
+            child: NumberText("${_protectedDealResponse.bankName}" +" " + "${_protectedDealResponse.account}", kTextBlackColor, 14),
           ),
 
         ],

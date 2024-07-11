@@ -11,6 +11,7 @@ import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 import '../../../model/home/response/HomeOverviewResponse.dart';
+import '../../../protected-deal/deal-generator/view/DealGeneratorViewByProvider.dart';
 
 /**
  * 채팅방 상단에 보여줄 거래 매물 정보 위젯
@@ -71,7 +72,8 @@ class HomePostInformationWidget extends StatelessWidget {
   Widget _buildStartDeal() {
     return InkWell(
       onTap: () {
-        _controller.startProtectedDeal();
+        Get.to(() => DealGeneratorViewByProvider(_controller));
+        //_controller.startProtectedDeal();
       },
       child: Container(
           width: 80.w,

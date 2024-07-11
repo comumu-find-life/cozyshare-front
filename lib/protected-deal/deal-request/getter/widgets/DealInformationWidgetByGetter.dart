@@ -4,12 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../../constants/Colors.dart';
+import '../../../../model/deal/response/ProtectedDealResponse.dart';
 
 /**
  * 거래 정보 (계약금/보증금)
  */
 class DealInformationWidgetByGetter extends StatelessWidget {
-  const DealInformationWidgetByGetter({super.key});
+  ProtectedDealResponse _protectedDealResponse;
+
+
+  DealInformationWidgetByGetter(this._protectedDealResponse);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +84,7 @@ class DealInformationWidgetByGetter extends StatelessWidget {
             child: Body2Text("계약금/보증금", kGrey600Color),
           ),
           Container(
-            child: NumberText("2000 \$", kTextBlackColor, 14),
+            child: NumberText("${_protectedDealResponse.deposit} \$", kTextBlackColor, 14),
           )
         ],
       ),
@@ -98,46 +102,12 @@ class DealInformationWidgetByGetter extends StatelessWidget {
             child: Body2Text("수수료 (세입자 부담)", kGrey600Color),
           ),
           Container(
-            child: NumberText("15 \$", kTextBlackColor, 14),
+            child: NumberText("추후 협의 \$", kTextBlackColor, 14),
           )
         ],
       ),
     );
   }
 
-  Widget _buildName() {
-    return Container(
-      margin: EdgeInsets.only(top: 20.h),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            child: Body2Text("예금주", kGrey600Color),
-          ),
-          Container(
-            child: NumberText("신민석", kTextBlackColor, 14),
-          )
-        ],
-      ),
-    );
-  }
 
-  Widget _buildAccountInformation() {
-    return Container(
-      margin: EdgeInsets.only(top: 20.h),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            child: Body2Text("계좌", kGrey600Color),
-          ),
-          Container(
-            child: NumberText("국민은행 94160200748799", kTextBlackColor, 13),
-          )
-        ],
-      ),
-    );
-  }
 }

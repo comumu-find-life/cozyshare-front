@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/deal/enums/DealState.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 
 /**
  * step 1 : 입금 확인 중
@@ -9,6 +11,7 @@ import 'package:home_and_job/constants/Fonts.dart';
  * step 3: 거래 완료
  */
 Widget DealProcessWidget(int step) {
+
   return Center(
     child: Container(
       child: Column(

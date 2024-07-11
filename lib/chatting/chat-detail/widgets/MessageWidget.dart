@@ -16,18 +16,17 @@ import '../deal-message-widget/DealDuringMessageWidget.dart';
  * 채팅 내용 뿌려주는 위젯
  */
 class MessageWidget extends StatelessWidget {
-  final DirectMessageResponse message;
+  final DirectMessageResponse directMessageResponse;
   final ChatDetailController controller;
 
-  MessageWidget(this.message, this.controller);
+  MessageWidget(this.directMessageResponse, this.controller);
 
   @override
   Widget build(BuildContext context) {
-    bool isMe = message.senderId == controller.currentUser.id;
-    int isDeal = 0;
+    bool isMe = directMessageResponse.senderId == controller.currentUser.id;
 
     return InkWell(
-      onTap: (){
+      onTap: () {
         print("isMe = " + isMe.toString());
       },
       child: Container(
@@ -35,7 +34,8 @@ class MessageWidget extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+              mainAxisAlignment:
+                  isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 if (!isMe)
@@ -46,13 +46,13 @@ class MessageWidget extends StatelessWidget {
                 SizedBox(width: 10),
                 MessageBubble(
                   isMe: isMe,
-                  text: message.message,
-                  isDeal: isDeal,
+                  text: directMessageResponse.message,
                   controller: controller,
+                  directMessageResponse: directMessageResponse,
                 ),
               ],
             ),
-            MessageTime(isMe: isMe, time: message.formatTime()),
+            MessageTime(isMe: isMe, time: directMessageResponse.formatTime()),
           ],
         ),
       ),
@@ -65,26 +65,26 @@ class MessageWidget extends StatelessWidget {
  */
 class MessageBubble extends StatelessWidget {
   final ChatDetailController controller;
+  final DirectMessageResponse directMessageResponse;
   final bool isMe;
-  final int isDeal;
   final String? text;
 
   MessageBubble({
     required this.controller,
-    required this.isMe,
+    required this.directMessageResponse,
     required this.text,
-    required this.isDeal,
+    required this.isMe,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isDeal != 0
+    return directMessageResponse.isDeal != 0
         ? _buildDealMessage()
         : _buildTextMessage(context);
   }
 
   Widget _buildDealMessage() {
-    switch (isDeal) {
+    switch (directMessageResponse.isDeal) {
       case 1:
         return DealStartMessageWidget(controller);
       case 2:
@@ -138,7 +138,8 @@ class MessageTime extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: Row(
-        mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment:
+            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!isMe) SizedBox(width: 40.w),
           HintText2("${time}", kGrey500Color),

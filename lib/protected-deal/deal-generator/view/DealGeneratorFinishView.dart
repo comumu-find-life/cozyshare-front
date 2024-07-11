@@ -50,6 +50,7 @@ class _DealGeneratorFinishView extends State<DealGeneratorFinishView>  with Tick
         onTap: (){
           Navigator.pop(context);
           Navigator.pop(context);
+          Navigator.pop(context);
 
         },
         child: SingleChildScrollView(

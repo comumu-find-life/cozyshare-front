@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:home_and_job/chatting/api/ChatApi.dart';
-import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
 import 'package:home_and_job/detail-profile/api/ProfileDetailApi.dart';
 import 'package:home_and_job/model/chat/request/DirectMessageRequest.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
+import 'package:home_and_job/model/deal/request/ProtectedDealFindRequest.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
 import 'package:home_and_job/model/user/response/UserProfileResponse.dart';
 import 'package:home_and_job/protected-deal/deal-generator/view/DealGeneratorViewByProvider.dart';
@@ -31,6 +32,9 @@ import '../mode/message_model.dart';
  */
 class ChatDetailController extends GetxController {
   late int _roomId;
+  late int _providerId;
+  late int _getterId;
+  late ProtectedDealResponse? dealResponse;
   late HomeInformationResponse _home;
   late UserProfileResponse _sender;
   late UserProfileResponse _receiver;
@@ -44,13 +48,33 @@ class ChatDetailController extends GetxController {
     await loadUsers(receiverId);
     await loadMessages();
     await loadHomeInformation(homeId);
+    await loadProtectedDeal();
     connectToStomp();
     return true;
   }
 
+  bool isProvider() {
+    return _currentUser.id.toString() == _home.providerId.toString();
+  }
+
+  Future<bool> loadProtectedDeal() async {
+    var protectedDealFindRequest = ProtectedDealFindRequest(
+        getterId: isProvider() ? _receiver.id : _sender.id,
+        providerId: int.parse(_home.providerId!),
+        homeId: _home.homeId!,
+        dmId: _roomId);
+    dealResponse = await ChatApi().loadProtectedDeal(protectedDealFindRequest);
+    return true;
+  }
+
+  int getGetterId() {
+    if (_home.providerId == _sender.id) {
+      return _receiver.id;
+    }
+    return _sender.id;
+  }
 
   void connectToStomp() {
-    print("Connecting to Stomp...");
     stompClient = StompClient(
       config: StompConfig(
         url: 'ws://10.0.2.2:8082/dm/websocket',
@@ -70,7 +94,8 @@ class ChatDetailController extends GetxController {
       destination: '/sub/chat/room/${_roomId}', // 채팅방 구독
       callback: (frame) {
         Map<String, dynamic> jsonData = jsonDecode(frame.body!);
-        DirectMessageResponse message = DirectMessageResponse.fromJson(jsonData);
+        DirectMessageResponse message =
+            DirectMessageResponse.fromJson(jsonData);
         _messages.add(message!);
       },
     );
@@ -78,6 +103,9 @@ class ChatDetailController extends GetxController {
 
   Future<bool> loadHomeInformation(int homeId) async {
     _home = (await RoomApi().findById(homeId))!;
+    _providerId = isProvider() ? _currentUser.id : _receiver.id;
+    _getterId = isProvider() ? _receiver.id : _currentUser.id;
+
     return true;
   }
 
@@ -90,7 +118,6 @@ class ChatDetailController extends GetxController {
 
   Future<bool> loadUsers(int receiverId) async {
     String? senderId = await DiskDatabase().getUserId();
-
     _sender = (await ProfileDetailApi().loadUserProfile(int.parse(senderId!)))!;
     _receiver = (await ProfileDetailApi().loadUserProfile(receiverId))!;
     _currentUser = _sender;
@@ -102,7 +129,9 @@ class ChatDetailController extends GetxController {
       senderId: _sender.id,
       receiverId: _receiver.id,
       message: textEditingController.text,
-      roomId: _roomId.toString(), isDeal: false, dealState: DealState.NONE.name,
+      roomId: _roomId.toString(),
+      isDeal: 0,
+      dealState: DealState.NONE.name,
     );
     textEditingController.clear();
     stompClient.send(
@@ -112,27 +141,44 @@ class ChatDetailController extends GetxController {
   }
 
   // 안전거래 시작 메서드 (only provider)
-  void startProtectedDeal() {
-    Get.to(() => DealGeneratorViewByProvider(this));
-    // var message = Message(isDeal: 1,
-    // sender: _receiver,
-    // time: "12:09 AM",
-    //   avatar: _receiver.avatar,
-    //   text: ""
-    // );
-    //
-    // _messages.add(message);
+  void startProtectedDeal() async {
+    await loadProtectedDeal();
+    var directMessageRequest = DirectMessageRequest(
+      receiverId: _getterId,
+      //getter Id
+      message: "DEAL MESSAGE",
+      // provider id
+      roomId: _roomId.toString(),
+
+      isDeal: 1,
+      dealState: DealState.BEFORE_DEPOSIT.name,
+      senderId: _providerId,
+    );
+
+    stompClient.send(
+      destination: '/pub/chat/message',
+      body: jsonEncode(directMessageRequest.toJson()),
+    );
   }
 
   // 입금 신청 메서드 (only getter)
   void applyDeposit() {
-    // var message = Message(isDeal: 2,
-    //     sender: _sender,
-    //     time: "12:09 AM",
-    //     avatar: _sender.avatar,
-    //     text: ""
-    // );
-    // _messages.add(message);
+    var directMessageRequest = DirectMessageRequest(
+      receiverId: _providerId,
+      //getter Id
+      message: "DEAL MESSAGE",
+      // provider id
+      roomId: _roomId.toString(),
+
+      isDeal: 2,
+      dealState: DealState.DURING_DEPOSIT.name,
+      senderId: _getterId,
+    );
+
+    stompClient.send(
+      destination: '/pub/chat/message',
+      body: jsonEncode(directMessageRequest.toJson()),
+    );
   }
 
   // 거래 확정 메서드
@@ -152,7 +198,6 @@ class ChatDetailController extends GetxController {
     super.onClose();
   }
 
-
   HomeInformationResponse get home => _home;
 
   UserProfileResponse get getter => _sender;
@@ -167,5 +212,9 @@ class ChatDetailController extends GetxController {
 
   UserProfileResponse get sender => _sender;
 
+  int get providerId => _providerId;
+
   int get roomId => _roomId;
+
+  int get getterId => _getterId;
 }

@@ -6,11 +6,13 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 
 import '../../../protected-deal/deal-request/getter/view/DealRequestViewByGetter.dart';
 import '../../../protected-deal/deal-request/provider/view/DealRequestViewByProvider.dart';
 
 Widget DealStartMessageWidget(ChatDetailController controller) {
+  ProtectedDealResponse? dealResponse = controller.dealResponse;
   return Container(
     width: 200.w,
     decoration: BoxDecoration(
@@ -25,20 +27,21 @@ Widget DealStartMessageWidget(ChatDetailController controller) {
           child: Title3Text("보증금/계약금 입금 요청", kTextBlackColor),
         ),
         Padding(
+
           padding: EdgeInsets.only(top: 3.h, left: 13.w, bottom: 20.h),
-          child: Helper2Text("계약금/보증금 : 4000 \$", kGrey400Color),
+          child: Helper2Text("계약금/보증금 : ${dealResponse?.deposit} \$", kGrey400Color),
         ),
         Center(
           child: Padding(
             padding: EdgeInsets.only(bottom: 15.h),
             child: InkWell(
               onTap: () {
-                // if (controller.currentUser.isProvider) {
-                //   //todo DealRequestViewByProvider 로 변경
-                //   Get.to(() => DealRequestViewByGetter(controller));
-                // } else {
-                //   Get.to(() => DealRequestViewByGetter(controller));
-                // }
+                if (controller.isProvider()) {
+                  //todo DealRequestViewByProvider 로 변경
+                  Get.to(() => DealRequestViewByProvider(controller));
+                } else {
+                  Get.to(() => DealRequestViewByGetter(controller));
+                }
               },
               child: Container(
                 width: 170.w,

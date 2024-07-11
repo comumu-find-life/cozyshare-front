@@ -21,7 +21,6 @@ class ProviderAccountFormWidget extends StatelessWidget {
         _buildBond(),
         _buildMainText(),
         _buildInputName(),
-
         _buildBankName(),
         _buildAccount()
       ],

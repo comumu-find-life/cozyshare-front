@@ -3,14 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../../constants/Colors.dart';
+import '../controller/DealGeneratorController.dart';
 
 class FinalDealInformationWidget extends StatelessWidget {
-  const FinalDealInformationWidget({super.key});
+  DealGeneratorController _controller;
+
+
+  FinalDealInformationWidget(this._controller);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 15.w, top: 30.h),
+      margin: EdgeInsets.only(left: 5.w, top: 30.h),
       width: 350.w,
       height: 280.h,
       decoration: BoxDecoration(
@@ -47,7 +51,7 @@ class FinalDealInformationWidget extends StatelessWidget {
                 child: Body2Text("총 요청금액", kGrey600Color),
               ),
               Container(
-                child: NumberText("2015 \$", kTextBlackColor, 14),
+                child: NumberText("추후 협의 \$", kTextBlackColor, 14),
               )
             ],
           ),
@@ -67,7 +71,7 @@ class FinalDealInformationWidget extends StatelessWidget {
             child: Body2Text("계약금/보증금", kGrey600Color),
           ),
           Container(
-            child: NumberText("2000 \$", kTextBlackColor, 14),
+            child: NumberText("${_controller.bondController.text} \$", kTextBlackColor, 14),
           )
         ],
       ),
@@ -85,7 +89,7 @@ class FinalDealInformationWidget extends StatelessWidget {
             child: Body2Text("수수료 (세입자 부담)", kGrey600Color),
           ),
           Container(
-            child: NumberText("15 \$", kTextBlackColor, 14),
+            child: NumberText("추후 협의", kTextBlackColor, 14),
           )
         ],
       ),
@@ -103,7 +107,7 @@ class FinalDealInformationWidget extends StatelessWidget {
             child: Body2Text("예금주", kGrey600Color),
           ),
           Container(
-            child: NumberText("신민석", kTextBlackColor, 14),
+            child: NumberText("${_controller.nameController.text}", kTextBlackColor, 14),
           )
         ],
       ),
@@ -121,7 +125,7 @@ class FinalDealInformationWidget extends StatelessWidget {
             child: Body2Text("계좌", kGrey600Color),
           ),
           Container(
-            child: NumberText("국민은행 94160200748799", kTextBlackColor, 13),
+            child: NumberText("${_controller.bankController.text} ${_controller.accountController.text}", kTextBlackColor, 13),
           )
         ],
       ),
