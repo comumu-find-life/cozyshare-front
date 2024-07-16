@@ -5,10 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/my-profile/charge-point/view/ChargePointView.dart';
 import '../../../register-home/register-image/view/RegisterHomeImageView.dart';
 import '../../../register-home/view/StartRegisyerView.dart';
-import '../../exchange-point/main/view/ExchangePointView.dart';
 import '../../my-homes/main/view/MyHomeListView.dart';
 
 class ProviderListWidget extends StatelessWidget {
@@ -19,11 +17,9 @@ class ProviderListWidget extends StatelessWidget {
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 15.h),
-        width: 355.w,
         height: 275.h,
         decoration: BoxDecoration(
           color: kWhiteBackGroundColor,
-          borderRadius: BorderRadius.all(Radius.circular(6))
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

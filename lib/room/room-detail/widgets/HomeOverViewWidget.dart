@@ -14,10 +14,6 @@ Widget HomeOverViewWidget(HomeDetailController controller) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      // Container(
-      //   margin: EdgeInsets.only(top: 20.h, left: 20.w),
-      //   child: Title2Text("OverView", kTextBlackColor),
-      // ),
       Container(
         margin: EdgeInsets.only(top: 40.h,left: 20.w),
         width: 340.w,
@@ -35,21 +31,3 @@ Widget HomeOverViewWidget(HomeDetailController controller) {
   );
 }
 
-const String textt = """
-Ideal for Employed Working Holiday Visa Holders
-Close to Cairns CBD - 10 minute walk to Coles & Woolies; Cairns Base & Cairns Private Hospitals
-5 minute walk to Domino's Pizza.
-24-hour servo just around the corner for middle-of-the-night snacks.
-Large kitchen with 2 X 4-burner cook-tops
-multiple showers/toilets. Unisex as well as separate boys/girls
-Coin-operated laundry.
-Quiet: 10 pm Quiet-Zone Rule. No visitors allowed.
-Lush tropical gardens. Large open spaces
-Salt-water Swimming pool.
-Large outdoor entertainment area with recliners
-Free on-street parking. Off-street secure parking available for a small fee
-Free Wi-fi in most areas. Some rooms may not receive signal.
-Free Tea Coffee in Lounge room.
-Minimum 4 weeks; Maximum *3 months; 1 week notice to leave.
-* = extension after 3 months of stay is negotiable.
-""";

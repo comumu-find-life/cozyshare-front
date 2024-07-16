@@ -92,7 +92,7 @@ class HomePostInformationWidget extends StatelessWidget {
   Widget _buildHomeInformation(bool isProvider) {
     return InkWell(
       onTap: () {
-        Get.to(() => RoomDetailView(1, true));
+        Get.to(() => RoomDetailView(_controller.home.homeId!, true));
       },
       child: Row(
         children: [

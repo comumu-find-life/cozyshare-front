@@ -33,7 +33,13 @@ Widget DealDuringMessageWidget(ChatDetailController controller){
         InkWell(
           onTap: (){
             //todo 변경
-            Get.to(() => DealProcessViewByGetter(controller));
+            if(controller.isProvider()){
+              Get.to(() => DealProcessViewByProvider(controller));
+            }else{
+              Get.to(() => DealProcessViewByGetter(controller));
+
+            }
+
             //Get.to(() => DealProcessViewByProvider(controller));
           },
           child: Center(

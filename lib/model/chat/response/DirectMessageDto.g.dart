@@ -17,7 +17,6 @@ _$DirectMessageDtoImpl _$$DirectMessageDtoImplFromJson(
       dealState: $enumDecodeNullable(_$DealStateEnumMap, json['dealState']),
     );
 
-
 Map<String, dynamic> _$$DirectMessageDtoImplToJson(
         _$DirectMessageDtoImpl instance) =>
     <String, dynamic>{
@@ -34,6 +33,7 @@ const _$DealStateEnumMap = {
   DealState.BEFORE_DEPOSIT: 'BEFORE_DEPOSIT',
   DealState.DURING_DEPOSIT: 'DURING_DEPOSIT',
   DealState.DONE_DEPOSIT: 'DONE_DEPOSIT',
+  DealState.FAIL_DEPOSIT: 'FAIL_DEPOSIT',
   DealState.FINISH: 'FINISH',
   DealState.CANCEL: 'CANCEL',
 };

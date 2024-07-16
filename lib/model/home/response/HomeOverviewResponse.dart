@@ -3,6 +3,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:home_and_job/model/filter/Filter.dart';
 import 'package:home_and_job/model/home/enums/HomeType.dart';
 
+import '../enums/HomeStatus.dart';
+
 class HomeOverviewResponse with ClusterItem {
   final int id;
   final String address;
@@ -17,9 +19,11 @@ class HomeOverviewResponse with ClusterItem {
   final HomeType type;
   final int userIdx;
   final String userName;
+  final String homeStatus;
 
   HomeOverviewResponse({
     required this.id,
+    required this.homeStatus,
     required this.address,
     required this.latitude,
     required this.longitude,
@@ -54,7 +58,7 @@ class HomeOverviewResponse with ClusterItem {
       bathRoomCount: json['bathRoomCount'] as int,
       type: HomeTypeExtension.fromString(json['type'] as String),
       userIdx: json['userIdx'] as int,
-      userName: json['userName'] as String,
+      userName: json['userName'] as String, homeStatus: json['homeStatus'] as String,
     );
   }
 

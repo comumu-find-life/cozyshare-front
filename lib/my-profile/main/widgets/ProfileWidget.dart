@@ -41,7 +41,6 @@ class ProfileWidget extends StatelessWidget {
                   ],
                 ),
 
-                _buildButton(),
               ],
             ),
           ),
@@ -110,7 +109,7 @@ class ProfileWidget extends StatelessWidget {
 
   Widget _buildInformation() {
     return Container(
-      margin: EdgeInsets.only(top: 20.h, left: 6.w),
+      margin: EdgeInsets.only(top: 10.h, left: 6.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -121,15 +120,14 @@ class ProfileWidget extends StatelessWidget {
               ),
             ],
           ),
-          // InkWell(
-          //   onTap: (){
-          //     Get.to(() => ProfileDetailView());
-          //   },
-          //   child: Container(
-          //     margin: EdgeInsets.only(top: 10.h),
-          //     child: HintText2("프로필 추가 등록하기", kBlueColor),
-          //   ),
-          // )
+          InkWell(
+            onTap: (){
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 6.h),
+              child: HintText2("Look my profile", kBlueColor),
+            ),
+          )
         ],
       ),
     );

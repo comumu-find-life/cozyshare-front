@@ -16,6 +16,7 @@ _$SignupRequestImpl _$$SignupRequestImplFromJson(Map<String, dynamic> json) =>
       role: json['role'] as String,
       job: json['job'] as String,
       nationality: json['nationality'] as String,
+      signupType: json['signupType'] as String,
     );
 
 Map<String, dynamic> _$$SignupRequestImplToJson(_$SignupRequestImpl instance) =>
@@ -28,4 +29,5 @@ Map<String, dynamic> _$$SignupRequestImplToJson(_$SignupRequestImpl instance) =>
       'role': instance.role,
       'job': instance.job,
       'nationality': instance.nationality,
+      'signupType': instance.signupType,
     };

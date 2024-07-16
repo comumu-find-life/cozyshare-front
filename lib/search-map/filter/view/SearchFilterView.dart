@@ -64,7 +64,7 @@ class _SearchFilterViewState extends State<SearchFilterView> {
       child: Container(
         width: 340.w,
         height: 45.h,
-        margin: EdgeInsets.only(top: 210.h),
+        margin: EdgeInsets.only(top: 20.h, bottom: 30.h),
         decoration: BoxDecoration(
           color: kDarkBlue,
           borderRadius: BorderRadius.all(Radius.circular(5))

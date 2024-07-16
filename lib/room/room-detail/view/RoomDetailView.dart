@@ -5,8 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
-import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 
 import '../controller/HomeDetailController.dart';
 import '../widgets/HomeDetailAppbar.dart';

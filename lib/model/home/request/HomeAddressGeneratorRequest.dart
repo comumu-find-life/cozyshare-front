@@ -26,4 +26,5 @@ class HomeAddressGeneratorRequest with _$HomeAddressGeneratorRequest {
     'streetCode': streetCode,
   };
 
+
 }

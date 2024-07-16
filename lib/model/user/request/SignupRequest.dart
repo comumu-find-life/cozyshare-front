@@ -14,6 +14,7 @@ class SignupRequest with _$SignupRequest {
     required String role,
     required String job,
     required String nationality,
+    required String signupType,
   }) = _SignupRequest;
 
   factory SignupRequest.fromJson(Map<String, dynamic> json) =>

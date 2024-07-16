@@ -1,47 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/model/home/request/HomeAddressGeneratorRequest.dart';
 
+import '../../../../model/home/request/HomeAddressGeneratorRequest.dart';
 import '../../../../model/home/response/LatLng.dart';
+import '../../../../register-home/api/HomeRegisterApi.dart';
 import '../../../../search/search-address/model/SearchCityModel.dart';
 import '../../../../search/search-address/view/SearchAddressView.dart';
-import '../../../api/HomeRegisterApi.dart';
 
-class HomeAddressController extends GetxController {
-  Rx<bool> _isValidateAddress = false.obs;
+class HomeAddressEditController extends GetxController {
   Rx<String> _cityAndState = "".obs;
-
-
+  Rx<bool> _isValidateAddress = false.obs;
   TextEditingController _detailAddressController = TextEditingController();
   TextEditingController _streetNameController = TextEditingController();
   TextEditingController _streetCodeController = TextEditingController();
   TextEditingController _postCodeController = TextEditingController();
   Rx<bool> _isAllInputAddress = false.obs;
-
-  void validateAllInput() {
-    if (_cityAndState.value != "" &&
-        _detailAddressController.text != "" &&
-        _streetNameController.text != "" &&
-        _streetCodeController.text != "" &&
-        _postCodeController.text != "") {
-      _isValidateAddress.value = false;
-      _isAllInputAddress.value = true;
-    }else{
-      _isValidateAddress.value = false;
-      _isAllInputAddress.value = false;
-    }
-
-  }
-
-  void checkAddress(){
-    _isValidateAddress.value = true;
-  }
-
-  Future<CustomLatLng?> validateAddress() async {
-    HomeAddressGeneratorRequest addressGeneratorRequest = generateHomeAddress();
-    return await HomeRegisterApi().validateLatLng(addressGeneratorRequest);
-  }
 
   void searchCity(BuildContext context) async {
     SearchCityModel? selectedCity = await Navigator.push(
@@ -55,6 +29,29 @@ class HomeAddressController extends GetxController {
       _cityAndState.value = selectedCity.cityName;
     }
     validateAllInput();
+  }
+
+  void validateAllInput() {
+    if (_cityAndState.value != "" &&
+        _detailAddressController.text != "" &&
+        _streetNameController.text != "" &&
+        _streetCodeController.text != "" &&
+        _postCodeController.text != "") {
+      _isValidateAddress.value = false;
+      _isAllInputAddress.value = true;
+    } else {
+      _isValidateAddress.value = false;
+      _isAllInputAddress.value = false;
+    }
+  }
+
+  void checkAddress() {
+    _isValidateAddress.value = true;
+  }
+
+  Future<CustomLatLng?> validateAddress() async {
+    HomeAddressGeneratorRequest addressGeneratorRequest = generateHomeAddress();
+    return await HomeRegisterApi().validateLatLng(addressGeneratorRequest);
   }
 
   HomeAddressGeneratorRequest generateHomeAddress() {
@@ -74,16 +71,15 @@ class HomeAddressController extends GetxController {
 
   bool get isAllInputAddress => _isAllInputAddress.value;
 
-  TextEditingController get streetNameController => _streetNameController;
-
-  String get cityAndState => _cityAndState.value;
-
-
-  bool get isValidateAddress => _isValidateAddress.value;
-
-  TextEditingController get detailAddressController => _detailAddressController;
+  TextEditingController get postCodeController => _postCodeController;
 
   TextEditingController get streetCodeController => _streetCodeController;
 
-  TextEditingController get postCodeController => _postCodeController;
+  TextEditingController get streetNameController => _streetNameController;
+
+  TextEditingController get detailAddressController => _detailAddressController;
+
+  bool get isValidateAddress => _isValidateAddress.value;
+
+  String get cityAndState => _cityAndState.value;
 }

@@ -2,10 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
-import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/my-profile/main/widgets/ProviderListWidget.dart';
 import 'package:home_and_job/my-profile/main/widgets/ProfileWidget.dart';
 
@@ -18,7 +15,7 @@ class MyProfileView extends StatelessWidget {
     MyProfileController controller = MyProfileController();
 
     return Scaffold(
-        backgroundColor: kGrey100Color,
+        backgroundColor: Colors.grey.shade100,
 
 
         // appBar: CommonAppBar(canBack: false, title: '마이 프로필', color: kWhiteBackGroundColor,),
@@ -28,8 +25,9 @@ class MyProfileView extends StatelessWidget {
             children: [
 
               ProfileWidget(controller),
+              CommonList(),
               ProviderListWidget(),
-              CommonList()
+
             ],
           ),
         ));

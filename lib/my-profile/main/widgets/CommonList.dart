@@ -2,9 +2,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../constants/Colors.dart';
+import '../../my-deals/main/view/MyDealListView.dart';
+import '../../my-friends/view/MyFriendView.dart';
+import '../../my-homes/main/view/MyHomeListView.dart';
 
 class CommonList extends StatelessWidget {
   const CommonList({super.key});
@@ -13,20 +18,19 @@ class CommonList extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Center(
       child: Container(
-        margin: EdgeInsets.only(top: 15.h),
-        width: 355.w,
-        height: 150.h,
+        margin: EdgeInsets.only(top: 20.h),
+        height: 120.h,
         decoration: BoxDecoration(
             color: kWhiteBackGroundColor,
-            borderRadius: BorderRadius.all(Radius.circular(6))
         ),
         child: Container(
-          margin: EdgeInsets.only(top: 30.h),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          margin: EdgeInsets.only(top: 15.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              _buildMyRooms(),
               _buildProtectedDeal(),
-            //  _buildCustomerCenter(),
+              _buildMyFriends(),
             //  _buildCustomerCenter(),
             ],
           ),
@@ -38,39 +42,7 @@ class CommonList extends StatelessWidget {
   Widget _buildProtectedDeal() {
     return InkWell(
       onTap: (){
-
-      },
-      child: Container(
-        margin: EdgeInsets.only(),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 35.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                  color: kPrimaryColor,
-                  shape: BoxShape.circle
-              ),
-              child: Center(
-                child: Icon(Icons.health_and_safety_rounded, color: kWhiteBackGroundColor,),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 0.h,left: 5.w),
-              child: Center(
-                child: FRegularText("Safe Deal", kTextBlackColor, 14),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-  Widget _buildCustomerCenter() {
-    return InkWell(
-      onTap: (){
-
+        Get.to(() => MyDealListView());
       },
       child: Container(
         margin: EdgeInsets.only(),
@@ -78,20 +50,104 @@ class CommonList extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 40.w,
-              height: 40.h,
+              width: 60.w,
+              height: 60.h,
               decoration: BoxDecoration(
-                  color: kPrimaryColor,
-                  shape: BoxShape.circle
+                color: kGrey100Color,
+                borderRadius: BorderRadius.all(Radius.circular(10))
               ),
-              child: Center(
-                child: Icon(Icons.health_and_safety_rounded, color: kWhiteBackGroundColor,),
+              child: Container(
+                decoration: BoxDecoration(
+                    // color: kPrimaryColor,
+                    // shape: BoxShape.circle
+                ),
+                child: Center(
+                  child: Icon(Icons.health_and_safety_rounded, color: kTextBlackColor,size: 29.sp,),
+                ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 10.h),
+              margin: EdgeInsets.only(top: 10.h,left: 0.w),
               child: Center(
-                child: FRegularText("Safe Deal", kTextBlackColor, 14),
+                child: FRegularText("My Deals", kTextBlackColor, 14),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _buildMyRooms() {
+    return InkWell(
+
+      onTap: (){
+        Get.to(() => MyHomeListView());
+      },
+      child: Container(
+        margin: EdgeInsets.only(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 60.w,
+              height: 60.h,
+              decoration: BoxDecoration(
+                  color: kGrey100Color,
+                  borderRadius: BorderRadius.all(Radius.circular(10))
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  // color: kPrimaryColor,
+                  // shape: BoxShape.circle
+                ),
+                child: Center(
+                  child: Icon(Icons.home_filled, color: kTextBlackColor,size: 29.sp,),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10.h,left: 0.w),
+              child: Center(
+                child: FRegularText("My Rooms", kTextBlackColor, 14),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMyFriends() {
+    return InkWell(
+      onTap: (){
+        Get.to(() => MyFriendView());
+      },
+      child: Container(
+        margin: EdgeInsets.only(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 60.w,
+              height: 60.h,
+              decoration: BoxDecoration(
+                  color: kGrey100Color,
+                  borderRadius: BorderRadius.all(Radius.circular(10))
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  // color: kPrimaryColor,
+                  // shape: BoxShape.circle
+                ),
+                child: Center(
+                  child: Icon(Icons.people, color: kTextBlackColor,size: 29.sp,),
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10.h,left: 0.w),
+              child: Center(
+                child: FRegularText("Friends", kTextBlackColor, 14),
               ),
             )
           ],

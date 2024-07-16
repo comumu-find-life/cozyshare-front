@@ -28,6 +28,7 @@ mixin _$SignupRequest {
   String get role => throw _privateConstructorUsedError;
   String get job => throw _privateConstructorUsedError;
   String get nationality => throw _privateConstructorUsedError;
+  String get signupType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +50,8 @@ abstract class $SignupRequestCopyWith<$Res> {
       String gender,
       String role,
       String job,
-      String nationality});
+      String nationality,
+      String signupType});
 }
 
 /// @nodoc
@@ -73,6 +75,7 @@ class _$SignupRequestCopyWithImpl<$Res, $Val extends SignupRequest>
     Object? role = null,
     Object? job = null,
     Object? nationality = null,
+    Object? signupType = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -107,6 +110,10 @@ class _$SignupRequestCopyWithImpl<$Res, $Val extends SignupRequest>
           ? _value.nationality
           : nationality // ignore: cast_nullable_to_non_nullable
               as String,
+      signupType: null == signupType
+          ? _value.signupType
+          : signupType // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -127,7 +134,8 @@ abstract class _$$SignupRequestImplCopyWith<$Res>
       String gender,
       String role,
       String job,
-      String nationality});
+      String nationality,
+      String signupType});
 }
 
 /// @nodoc
@@ -149,6 +157,7 @@ class __$$SignupRequestImplCopyWithImpl<$Res>
     Object? role = null,
     Object? job = null,
     Object? nationality = null,
+    Object? signupType = null,
   }) {
     return _then(_$SignupRequestImpl(
       email: null == email
@@ -183,6 +192,10 @@ class __$$SignupRequestImplCopyWithImpl<$Res>
           ? _value.nationality
           : nationality // ignore: cast_nullable_to_non_nullable
               as String,
+      signupType: null == signupType
+          ? _value.signupType
+          : signupType // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -198,7 +211,8 @@ class _$SignupRequestImpl implements _SignupRequest {
       required this.gender,
       required this.role,
       required this.job,
-      required this.nationality});
+      required this.nationality,
+      required this.signupType});
 
   factory _$SignupRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SignupRequestImplFromJson(json);
@@ -219,10 +233,12 @@ class _$SignupRequestImpl implements _SignupRequest {
   final String job;
   @override
   final String nationality;
+  @override
+  final String signupType;
 
   @override
   String toString() {
-    return 'SignupRequest(email: $email, password: $password, nickname: $nickname, phoneNumber: $phoneNumber, gender: $gender, role: $role, job: $job, nationality: $nationality)';
+    return 'SignupRequest(email: $email, password: $password, nickname: $nickname, phoneNumber: $phoneNumber, gender: $gender, role: $role, job: $job, nationality: $nationality, signupType: $signupType)';
   }
 
   @override
@@ -241,13 +257,15 @@ class _$SignupRequestImpl implements _SignupRequest {
             (identical(other.role, role) || other.role == role) &&
             (identical(other.job, job) || other.job == job) &&
             (identical(other.nationality, nationality) ||
-                other.nationality == nationality));
+                other.nationality == nationality) &&
+            (identical(other.signupType, signupType) ||
+                other.signupType == signupType));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, email, password, nickname,
-      phoneNumber, gender, role, job, nationality);
+      phoneNumber, gender, role, job, nationality, signupType);
 
   @JsonKey(ignore: true)
   @override
@@ -272,7 +290,8 @@ abstract class _SignupRequest implements SignupRequest {
       required final String gender,
       required final String role,
       required final String job,
-      required final String nationality}) = _$SignupRequestImpl;
+      required final String nationality,
+      required final String signupType}) = _$SignupRequestImpl;
 
   factory _SignupRequest.fromJson(Map<String, dynamic> json) =
       _$SignupRequestImpl.fromJson;
@@ -293,6 +312,8 @@ abstract class _SignupRequest implements SignupRequest {
   String get job;
   @override
   String get nationality;
+  @override
+  String get signupType;
   @override
   @JsonKey(ignore: true)
   _$$SignupRequestImplCopyWith<_$SignupRequestImpl> get copyWith =>

@@ -8,6 +8,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/state_manager.dart';
 import 'package:home_and_job/account/login/view/MainLoginView.dart';
 import 'package:home_and_job/account/sign-up/api/SignupApi.dart';
+import 'package:home_and_job/model/user/enums/SignupType.dart';
 import 'package:home_and_job/model/user/request/SignupRequest.dart';
 import 'package:home_and_job/utils/SnackBar.dart';
 
@@ -54,17 +55,15 @@ class SignupController extends GetxController {
         gender: 'MALE',
         role: 'PROVIDER',
         job: _jobController.text,
-        nationality: _selectCountry);
-
+        nationality: _selectCountry,
+        signupType: SignupType.EMAIL.name);
 
     bool response = await SignupApi()
         .signupApi(signupRequest, _profileUrl == "" ? null : _profileUrl);
 
     if (response) {
       Get.to(() => SuccessSignupView());
-    } else {
-
-    }
+    } else {}
   }
 
   // 이메일 검증 메서드

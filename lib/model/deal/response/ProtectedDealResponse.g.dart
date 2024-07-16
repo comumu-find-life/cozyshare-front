@@ -39,6 +39,7 @@ const _$DealStateEnumMap = {
   DealState.BEFORE_DEPOSIT: 'BEFORE_DEPOSIT',
   DealState.DURING_DEPOSIT: 'DURING_DEPOSIT',
   DealState.DONE_DEPOSIT: 'DONE_DEPOSIT',
+  DealState.FAIL_DEPOSIT: 'FAIL_DEPOSIT',
   DealState.FINISH: 'FINISH',
   DealState.CANCEL: 'CANCEL',
 };

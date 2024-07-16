@@ -117,25 +117,6 @@ class SendChatPopup {
                               ),
                             ),
                           ),
-
-
-                          // InkWell(
-                          //     onTap: (){
-                          //       Navigator.pop(context);
-                          //
-                          //     },
-                          //     child: Center(
-                          //       child: Container(
-                          //           margin: EdgeInsets.only(bottom: 20.h),
-                          //           width: 150.w,
-                          //           height: 30.h,
-                          //           decoration: BoxDecoration(
-                          //               color: kButtonColor,
-                          //               borderRadius: BorderRadius.all(Radius.circular(20))
-                          //           ),
-                          //
-                          //           child: Center(child: Text("완료",style: TextStyle(color: kTextWhiteColor),))),
-                          //     ))
                         ],
                       ),
                     )

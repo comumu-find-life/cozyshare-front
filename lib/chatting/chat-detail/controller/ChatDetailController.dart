@@ -43,6 +43,10 @@ class ChatDetailController extends GetxController {
   RxList<DirectMessageResponse> _messages = <DirectMessageResponse>[].obs;
   late StompClient stompClient;
 
+
+  /**
+   * 초기값 조회
+   */
   Future<bool> loadInit(int receiverId, int roomId, int homeId) async {
     _roomId = roomId;
     await loadUsers(receiverId);
@@ -57,6 +61,9 @@ class ChatDetailController extends GetxController {
     return _currentUser.id.toString() == _home.providerId.toString();
   }
 
+  /**
+   * 안전거래 조회 메서드
+   */
   Future<bool> loadProtectedDeal() async {
     var protectedDealFindRequest = ProtectedDealFindRequest(
         getterId: isProvider() ? _receiver.id : _sender.id,
@@ -85,7 +92,6 @@ class ChatDetailController extends GetxController {
         onDisconnect: (frame) => print('Disconnected'),
       ),
     );
-
     stompClient.activate();
   }
 
@@ -162,7 +168,7 @@ class ChatDetailController extends GetxController {
   }
 
   // 입금 신청 메서드 (only getter)
-  void applyDeposit() {
+  void applyDeposit() async{
     var directMessageRequest = DirectMessageRequest(
       receiverId: _providerId,
       //getter Id
@@ -179,17 +185,29 @@ class ChatDetailController extends GetxController {
       destination: '/pub/chat/message',
       body: jsonEncode(directMessageRequest.toJson()),
     );
+
+    await loadProtectedDeal();
+
   }
 
   // 거래 확정 메서드
-  void confirmDeal() {
-    // var message = Message(isDeal: 3,
-    //     sender: _sender,
-    //     time: "12:09 AM",
-    //     avatar: _sender.avatar,
-    //     text: ""
-    // );
-    // _messages.add(message);
+  void confirmDeal() async{
+    var directMessageRequest = DirectMessageRequest(
+      receiverId: _providerId,
+      //getter Id
+      message: "DEAL MESSAGE",
+      // provider id
+      roomId: _roomId.toString(),
+
+      isDeal: 3,
+      dealState: DealState.FINISH.name,
+      senderId: _getterId,
+    );
+    stompClient.send(
+      destination: '/pub/chat/message',
+      body: jsonEncode(directMessageRequest.toJson()),
+    );
+    await loadProtectedDeal();
   }
 
   @override

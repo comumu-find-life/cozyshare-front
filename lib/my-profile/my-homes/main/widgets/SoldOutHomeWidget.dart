@@ -4,25 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:home_and_job/model/home/enums/HomeStatus.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
+import 'package:home_and_job/my-profile/my-homes/api/MyHomeApi.dart';
+import 'package:home_and_job/my-profile/my-homes/edit-home/popup/AskReUploadPopup.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
 import '../../detail-view/view/MyHomeDetailView.dart';
+import '../controller/MyHomeListController.dart';
 
 
-class MyHomeListItem extends StatelessWidget {
+class SoldOutHomeWidget extends StatelessWidget {
   final HomeOverviewResponse home;
+  final MyHomeListController _controller;
 
-  MyHomeListItem(this.home);
+  SoldOutHomeWidget(this.home, this._controller);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print("DASD");
-        Get.to(() => MyHomeDetailView(home.id));
       },
       child: Container(
           margin: EdgeInsets.only(top: 10.h),
@@ -46,19 +49,19 @@ class MyHomeListItem extends StatelessWidget {
                     _buildPrice(),
                     InkWell(
                       onTap: (){
-                        Get.to(() => HomeEditView(), transition: Transition.noTransition);
+                        AskReuploadPopup().showDialog(home.id, _controller, context);
                       },
                       child: Container(
                         margin: EdgeInsets.only(top: 17.h),
                         width: 203.w,
                         height: 35.h,
                         decoration: BoxDecoration(
-                          border: Border.all(color: kGrey300Color),
-                          color: kGrey100Color,
-                          borderRadius: BorderRadius.all(Radius.circular(4))
+                            border: Border.all(color: kGrey300Color),
+                            color: kGrey100Color,
+                            borderRadius: BorderRadius.all(Radius.circular(4))
                         ),
                         child: Center(
-                          child: Body2Text("Edit ", kGrey700Color),
+                          child: Body2Text("Re Upload ", kGrey700Color),
                         ),
                       ),
                     )
@@ -73,9 +76,9 @@ class MyHomeListItem extends StatelessWidget {
   Widget _buildPrice() {
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          //top: BorderSide(color: kGrey200Color)
-        )
+          border: Border(
+            //top: BorderSide(color: kGrey200Color)
+          )
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

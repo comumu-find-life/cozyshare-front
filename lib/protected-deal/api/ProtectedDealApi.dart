@@ -18,6 +18,7 @@ class ProtectedDealApi {
   static String ROOT_URL = dotenv.get("ROOT_API_URL");
   final String START_DEAL_URL = ROOT_URL + "deal";
   final String REQUEST_DEPOSIT_GETTER_URL = ROOT_URL +"deal/request/deposit/";
+  final String REQUEST_DEAL_FINISH_URL = ROOT_URL + "deal/done/";
 
   Future<bool> startDeal(
       ProtectedDealGeneratorRequest dealGeneratorRequest) async {
@@ -59,6 +60,28 @@ class ProtectedDealApi {
 
     return false;
   }
+
+  Future<bool> requestDealFinish(
+      int dealId) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String accessToken = await prefs.getString("access_token")!;
+    Response response = await http.patch(
+      Uri.parse(REQUEST_DEAL_FINISH_URL + dealId.toString()),
+      headers: {
+        'Authorization': 'Bearer ${accessToken}',
+        'Content-Type': 'application/json',
+      },
+    );
+    // 서버 응답 출력
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+
+    return false;
+  }
+
+
 
 
 }

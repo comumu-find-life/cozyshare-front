@@ -57,12 +57,7 @@ class _ChatDetailViewState extends State<ChatDetailView> {
                     },
                     child: Column(
                       children: [
-                        InkWell(
-                            onTap: (){
-                              print(_controller.getterId);
-                              print(_controller.providerId);
-                            },
-                            child: Body2Text("das", kTextBlackColor)),
+        
                         _buildConversation(),
                         InputMessageWidget(_controller),
                       ],

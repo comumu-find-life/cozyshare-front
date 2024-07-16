@@ -27,10 +27,11 @@ Widget DealInformationHeaderWidget(HomeInformationResponse homeInformationRespon
             width: 350.w,
             height: 100.h,
             decoration: BoxDecoration(
-                color: kBackgroundBlue,
+                color: kPrimaryLightColor,
               borderRadius: BorderRadius.all(Radius.circular(6)),
               border: Border.all(color: kGrey100Color)
             ),
+
 
             margin: EdgeInsets.only(top: 15.h, left: 0.w),
             child: Row(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
+import 'package:home_and_job/model/deal/enums/DealState.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
@@ -26,21 +27,23 @@ class DealRequestViewByGetter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool _canRequestDeposit = _chatDetailController.dealResponse!.dealState == DealState.BEFORE_DEPOSIT?true: false;
     return Scaffold(
-      bottomSheet: _buildStepOneButton(context),
+      bottomSheet: _canRequestDeposit?_buildStepOneButton(context):null,
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //매물 정보
-            DealInformationHeaderWidget(_chatDetailController.home),
+
+                 DealInformationHeaderWidget(_chatDetailController.home),
             //거래 정보
             Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!)),
             //입금 계좌
             DepositInformationWidgetByGetter(),
             //이용약관 도으이
-            DealRequestAgreeWidget(controller: _controller),
+            if(_canRequestDeposit) DealRequestAgreeWidget(controller: _controller),
             Container(
               height: 130.h,
             )
