@@ -1,6 +1,6 @@
 
 import 'package:get/get.dart';
-import 'package:home_and_job/detail-profile/api/ProfileDetailApi.dart';
+import 'package:home_and_job/rest-api/user-api/ProfileDetailApi.dart';
 import 'package:home_and_job/model/user/response/UserProfileResponse.dart';
 
 class ProfileDetailController extends GetxController{

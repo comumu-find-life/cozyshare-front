@@ -6,7 +6,7 @@ import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailControlle
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
-import 'package:home_and_job/protected-deal/api/ProtectedDealApi.dart';
+import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import '../../../../constants/Fonts.dart';
 import '../../../../model/deal/enums/DealState.dart';
 import '../../../../protected-deal/deal-request/getter/widgets/DepositInformationWidgetByGetter.dart';

@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
 enum Gender {
-  male,
-  female,
+  MALE,
+  FEMALE,
+  ANYTHING
 }
 
 class GenderConverter implements JsonConverter<Gender, String> {
@@ -12,9 +13,9 @@ class GenderConverter implements JsonConverter<Gender, String> {
   Gender fromJson(String json) {
     switch (json) {
       case 'male':
-        return Gender.male;
+        return Gender.MALE;
       case 'female':
-        return Gender.female;
+        return Gender.FEMALE;
       default:
         throw ArgumentError('Unknown gender: $json');
     }

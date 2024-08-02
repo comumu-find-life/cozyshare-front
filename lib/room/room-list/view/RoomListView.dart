@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/room/api/RoomApi.dart';
+import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
 import '../../../model/home/response/HomeOverviewResponse.dart';
 import '../controller/RoomListController.dart';
 import '../widgets/HomeAppBar.dart';

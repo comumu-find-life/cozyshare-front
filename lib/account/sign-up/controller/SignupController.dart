@@ -7,7 +7,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/state_manager.dart';
 import 'package:home_and_job/account/login/view/MainLoginView.dart';
-import 'package:home_and_job/account/sign-up/api/SignupApi.dart';
+import 'package:home_and_job/rest-api/user-api/SignupApi.dart';
 import 'package:home_and_job/model/user/enums/SignupType.dart';
 import 'package:home_and_job/model/user/request/SignupRequest.dart';
 import 'package:home_and_job/utils/SnackBar.dart';

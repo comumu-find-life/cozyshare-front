@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/chatting/api/ChatApi.dart';
+import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
 import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/model/chat/request/DirectMessageApplicationDto.dart';
@@ -93,7 +93,7 @@ class SendChatPopup {
                                   CustomSnackBar().show(context, "Type your message");
                                 }else{
                                   DirectMessageApplicationRequest directMessageApplicationDto = DirectMessageApplicationRequest(message: _contentController.text, receiverId: receiverId, roomId: homeId);
-                                  int response = await ChatApi().sendDm(directMessageApplicationDto);
+                                  int response = await DmApi().sendInitDm(directMessageApplicationDto);
 
                                   if(response != -1){
                                     Navigator.pop(context);

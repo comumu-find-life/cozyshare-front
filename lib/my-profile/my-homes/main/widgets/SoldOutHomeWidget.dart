@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/model/home/enums/HomeStatus.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
-import 'package:home_and_job/my-profile/my-homes/api/MyHomeApi.dart';
+import 'package:home_and_job/rest-api/home-api/MyHomeApi.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/popup/AskReUploadPopup.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dart';
 

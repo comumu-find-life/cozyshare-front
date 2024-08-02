@@ -7,7 +7,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:home_and_job/model/home/enums/HomeOption.dart';
 import 'package:home_and_job/model/home/request/HomeAddressGeneratorRequest.dart';
 import 'package:home_and_job/model/home/response/LatLng.dart';
-import 'package:home_and_job/register-home/api/HomeRegisterApi.dart';
+import 'package:home_and_job/rest-api/home-api/HomeRegisterApi.dart';
 import 'package:home_and_job/register-home/register-details/widgets/HomeOptionSelect.dart';
 import 'package:home_and_job/register-home/register-image/controller/RegisterImageController.dart';
 import 'package:home_and_job/register-home/register-price/controller/HomePriceController.dart';

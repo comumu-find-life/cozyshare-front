@@ -8,6 +8,7 @@ import 'package:home_and_job/chatting/main/widgets/EmpyyChatWidget.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/utils/ApiUrls.dart';
 
 class ChattingListView extends StatelessWidget {
   ChattingController _controller = ChattingController();
@@ -32,6 +33,14 @@ class ChattingListView extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                InkWell(
+                  onTap: (){
+                    print(ApiUrls.DM_HISTORY);
+                  },
+                  child: Container(
+                    child: Body2Text("dasdasd", kTextBlackColor),
+                  ),
+                ),
                 Center(child: _buildSearchBar()),
                 SizedBox(
                   height: 30.h,

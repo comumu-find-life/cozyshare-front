@@ -6,26 +6,49 @@ import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:stomp_dart_client/stomp_dart_client.dart';
 
-import '../../model/chat/request/DirectMessageApplicationDto.dart';
-import '../../model/chat/response/DirectMessageDto.dart';
-import '../../model/chat/response/DirectMessageRoomInfoDto.dart';
-import '../../model/chat/response/DirectMessageRoomListDto.dart';
+import '../../model/deal/request/ProtectedDealFindRequest.dart';
 import '../../model/deal/request/ProtectedDealGeneratorRequest.dart';
+import '../../model/deal/response/ProtectedDealResponse.dart';
+import '../../utils/ApiUrls.dart';
+import '../../utils/RestApiUtils.dart';
 
 class ProtectedDealApi {
-  static String ROOT_URL = dotenv.get("ROOT_API_URL");
-  final String START_DEAL_URL = ROOT_URL + "deal";
-  final String REQUEST_DEPOSIT_GETTER_URL = ROOT_URL +"deal/request/deposit/";
-  final String REQUEST_DEAL_FINISH_URL = ROOT_URL + "deal/done/";
+  final RestApiUtils apiUtils = RestApiUtils();
 
+
+  /**
+   * 안전거래 단일 조회 API
+   */
+  Future<ProtectedDealResponse?> loadProtectedDeal(ProtectedDealFindRequest request) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString("access_token");
+
+    final response = await http.post(
+        Uri.parse(ApiUrls.DEAL_READ),
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(request.toJson())
+    );
+
+    if(response.statusCode == 200 && json.decode(utf8.decode(response.bodyBytes))["data"] != null){
+      return ProtectedDealResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+    }
+    return null;
+
+  }
+
+  /**
+   * 안전 거래 시작 API (Provider 가 사용)
+   */
   Future<bool> startDeal(
       ProtectedDealGeneratorRequest dealGeneratorRequest) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
     Response response = await http.post(
-      Uri.parse(START_DEAL_URL),
+      Uri.parse(ApiUrls.DEAL_START_URL),
       headers: {
         'Authorization': 'Bearer ${accessToken}',
         'Content-Type': 'application/json',
@@ -33,6 +56,7 @@ class ProtectedDealApi {
       body: json.encode(dealGeneratorRequest.toJson()),
     );
     // 서버 응답 출력
+    print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {
       return true;
@@ -41,12 +65,15 @@ class ProtectedDealApi {
     return false;
   }
 
+  /**
+   * 입금 신청 API (Getter 가 사용)
+   */
   Future<bool> requestDepositByGetter(
       int dealId) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
     Response response = await http.post(
-      Uri.parse(REQUEST_DEPOSIT_GETTER_URL + dealId.toString()),
+      Uri.parse(ApiUrls.DEAL_REQUEST_DEPOSIT_URL + dealId.toString()),
       headers: {
         'Authorization': 'Bearer ${accessToken}',
         'Content-Type': 'application/json',
@@ -66,7 +93,7 @@ class ProtectedDealApi {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
     Response response = await http.patch(
-      Uri.parse(REQUEST_DEAL_FINISH_URL + dealId.toString()),
+      Uri.parse(ApiUrls.DEAL_REQUEST_FINISH_URL + dealId.toString()),
       headers: {
         'Authorization': 'Bearer ${accessToken}',
         'Content-Type': 'application/json',

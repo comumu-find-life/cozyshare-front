@@ -2,19 +2,19 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 
+import '../../utils/ApiUrls.dart';
+
 class LoginApi with ChangeNotifier {
-  static String ROOT_URL = dotenv.get("ROOT_API_URL");
-  static String LOGIN_URL = ROOT_URL + "users/login";
-  static String FIND_USER_ID_URL = ROOT_URL + "users/me/userId";
+
 
   Future<bool> login(String email, String password) async {
+    print(ApiUrls.USER_LOGIN_URL);
     Response response = await http.post(
-      Uri.parse(LOGIN_URL),
+      Uri.parse(ApiUrls.USER_LOGIN_URL),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -45,7 +45,7 @@ class LoginApi with ChangeNotifier {
 
   Future<String?> loadUserId(String accessToken) async {
     Response response = await http.get(
-      Uri.parse(FIND_USER_ID_URL),
+      Uri.parse(ApiUrls.USER_ID_FIND_URL),
       headers: {
         'Authorization': 'Bearer $accessToken',
         'Content-Type': 'application/json',

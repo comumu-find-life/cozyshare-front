@@ -8,6 +8,7 @@ import 'package:home_and_job/model/home/request/HomeGeneratorRequest.dart';
 import 'package:home_and_job/model/home/response/LatLng.dart';
 import 'package:home_and_job/model/user/request/SignupRequest.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
+import 'package:home_and_job/utils/RestApiUtils.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,31 +17,46 @@ class HomeRegisterApi {
   static String ROOT_URL = dotenv.get("ROOT_API_URL");
   final String VALIDATE_ADDRESS_URL = ROOT_URL + "homes/address/validate";
   final String SAVE_HOME_URL = ROOT_URL + "homes";
+  final RestApiUtils apiUtils = RestApiUtils();
+  // Future<CustomLatLng?> validateLatLng(
+  //     HomeAddressGeneratorRequest homeAddressGeneratorRequest) async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String accessToken = await prefs.getString("access_token")!;
+  //
+  //
+  //   // var response = await http.post(
+  //   //     Uri.parse(VALIDATE_ADDRESS_URL),
+  //   //     headers: {
+  //   //       'Authorization': 'Bearer $accessToken',
+  //   //       'Content-Type': 'application/json',
+  //   //     },
+  //   //     body: json.encode(homeAddressGeneratorRequest.toJson()));
+  //   RestApiUtils().postResponse(VALIDATE_ADDRESS_URL, );
+  //
+  //   if(response.statusCode == 200){
+  //     return CustomLatLng.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+  //   }
+  //   return null;
+  // }
 
-  Future<CustomLatLng?> validateLatLng(
-      HomeAddressGeneratorRequest homeAddressGeneratorRequest) async {
+  Future<CustomLatLng?> validateLatLng(HomeAddressGeneratorRequest homeAddressGeneratorRequest) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String accessToken = await prefs.getString("access_token")!;
+    String? accessToken = prefs.getString("access_token");
 
+    var response = await apiUtils.postResponse(
+      VALIDATE_ADDRESS_URL,
+      homeAddressGeneratorRequest.toJson(),
+      accessToken: accessToken,
+    );
 
-    var response = await http.post(
-        Uri.parse(VALIDATE_ADDRESS_URL),
-        headers: {
-          'Authorization': 'Bearer $accessToken',
-          'Content-Type': 'application/json',
-        },
-        body: json.encode(homeAddressGeneratorRequest.toJson()));
-
-
-    if(response.statusCode == 200){
-      return CustomLatLng.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+    if (apiUtils.isValidResponse(response)) {
+      return CustomLatLng.fromJson(apiUtils.decodeResponse(response));
     }
     return null;
   }
 
   Future<bool> saveHomeApi(
       HomeGeneratorRequest homeGeneratorRequest, List<String> images) async {
-    print(homeGeneratorRequest.toJson());
     String? accessToken = await DiskDatabase().getAccessToken();
     var imageFiles = <http.MultipartFile>[];
 

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:home_and_job/favorite/main/api/FavoriteApi.dart';
+import 'package:home_and_job/rest-api/home-api/FavoriteApi.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
 import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';

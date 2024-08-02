@@ -2,7 +2,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:home_and_job/protected-deal/api/ProtectedDealApi.dart';
+import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 
 class DealRequestControllerByGetter extends GetxController{
   Rx<bool> _canNext = false.obs;

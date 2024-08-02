@@ -48,7 +48,7 @@ class HomeEditView extends StatelessWidget {
                   _buildLine(),
                   HomeEditIntroduceViewWidget(_controller),
                   _buildLine(),
-                  HomeEditOptionsWidget(),
+                  HomeEditOptionsWidget(_controller),
                 ],
               ),
             ),

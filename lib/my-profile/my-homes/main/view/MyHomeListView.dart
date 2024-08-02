@@ -7,7 +7,7 @@ import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/model/home/enums/HomeStatus.dart';
-import 'package:home_and_job/my-profile/my-homes/api/MyHomeApi.dart';
+import 'package:home_and_job/rest-api/home-api/MyHomeApi.dart';
 import 'package:home_and_job/my-profile/my-homes/main/widgets/SelectStatusWidget.dart';
 import 'package:home_and_job/my-profile/my-homes/main/widgets/SellStopHomeWidget.dart';
 import 'package:home_and_job/my-profile/my-homes/main/widgets/SoldOutHomeWidget.dart';

@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
-import 'package:home_and_job/chatting/api/ChatApi.dart';
-import 'package:home_and_job/detail-profile/api/ProfileDetailApi.dart';
+import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
+import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
+import 'package:home_and_job/rest-api/user-api/ProfileDetailApi.dart';
 import 'package:home_and_job/model/chat/request/DirectMessageRequest.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/model/deal/request/ProtectedDealFindRequest.dart';
@@ -12,7 +13,7 @@ import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
 import 'package:home_and_job/model/user/response/UserProfileResponse.dart';
 import 'package:home_and_job/protected-deal/deal-generator/view/DealGeneratorViewByProvider.dart';
-import 'package:home_and_job/room/api/RoomApi.dart';
+import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
@@ -70,7 +71,7 @@ class ChatDetailController extends GetxController {
         providerId: int.parse(_home.providerId!),
         homeId: _home.homeId!,
         dmId: _roomId);
-    dealResponse = await ChatApi().loadProtectedDeal(protectedDealFindRequest);
+    dealResponse = await ProtectedDealApi().loadProtectedDeal(protectedDealFindRequest);
     return true;
   }
 
@@ -108,16 +109,17 @@ class ChatDetailController extends GetxController {
   }
 
   Future<bool> loadHomeInformation(int homeId) async {
-    _home = (await RoomApi().findById(homeId))!;
+    _home = (await RoomApi().loadRoomById(homeId))!;
     _providerId = isProvider() ? _currentUser.id : _receiver.id;
     _getterId = isProvider() ? _receiver.id : _currentUser.id;
 
+    print("---d-asd-as-das-d-");
     return true;
   }
 
   Future<bool> loadMessages() async {
     List<DirectMessageResponse> initMessages =
-        await ChatApi().loadDmMessages(_sender.id, _receiver.id);
+        await DmApi().loadDmHistory(_sender.id, _receiver.id);
     _messages.value = initMessages;
     return true;
   }

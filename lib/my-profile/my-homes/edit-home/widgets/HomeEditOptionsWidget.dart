@@ -1,12 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:home_and_job/my-profile/my-homes/edit-home/controller/HomeEditController.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
+import '../../../../model/home/enums/HomeOption.dart';
 
 
 class HomeEditOptionsWidget extends StatelessWidget {
+  HomeEditController _controller;
+
+
+  HomeEditOptionsWidget(this._controller);
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +28,21 @@ class HomeEditOptionsWidget extends StatelessWidget {
           ),
           Container(
             width: 360.w,
-            height: 200.h,
-            margin: EdgeInsets.only(left: 10.w, top: 20.h),
+            height: 230.h,
+            margin: EdgeInsets.only(left: 0.w, top: 20.h),
             child: GridView.builder(
 
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 4.h),
+                    (MediaQuery.of(context).size.height / 2.6.h),
               ),
-              itemCount: 6, // 아이템 수
+              itemCount: HomeOptionType.values.length, // 아이템 수
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(), // 스크롤 비활성화
               itemBuilder: (context, index) {
                 // 아이템 빌드
-                return _buildOptionItem(index);
+                return _buildOptionItem(HomeOptionType.values[index]);
               },
             ),
           ),
@@ -44,40 +51,38 @@ class HomeEditOptionsWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildOptionItem(int index) {
-    // 각 옵션에 대한 아이콘과 텍스트 설정
-    List<Map<String, dynamic>> options = [
-      {"icon": Icons.air_outlined, "text": "A/C"},
-      {"icon": Icons.chair_outlined, "text": "Chair"},
-      {"icon": Icons.desk, "text": "Desk"},
-      {"icon": Icons.local_laundry_service, "text": "Washer"},
-      {"icon": Icons.tv_outlined, "text": "TV"},
-      {"icon": Icons.lightbulb_outline, "text": "Lamp"},
-    ];
+  //옵션 선택 아이템
+  Widget _buildOptionItem(HomeOptionType type) {
 
-    return Container(
-      margin: EdgeInsets.all(5),
-      width: 100.w,
-      height: 50.h, // 높이 조정
-      decoration: BoxDecoration(
-        border: Border.all(color: kGrey300Color),
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-      ),
+    return Obx(() => InkWell(
+      onTap: () {
+        _controller.toggleOption(type);
+      },
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 5.h),
-            child: Icon(
-              options[index]["icon"],
-              color: kGrey700Color,
+            margin: EdgeInsets.all(5),
+            width: 70.w,
+            height: 70.h, // 높이 조정
+            decoration: BoxDecoration(
+              border: Border.all(color: _controller.selectedOptions.contains(type) ? kBlueColor :kGrey300Color),
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              color:  Colors.transparent, // 선택된 아이템의 색상을 파란색으로 변경
+            ),
+            child: Container(
+              margin: EdgeInsets.only(top: 5.h),
+              child: Icon(
+                type.icon,
+                color: _controller.selectedOptions.contains(type) ? kBlueColor :kGrey700Color,
+              ),
             ),
           ),
           Container(
             margin: EdgeInsets.only(top: 5.h),
-            child: FRegularText(options[index]["text"], kGrey700Color, 13),
+            child: FRegularText(type.text, _controller.selectedOptions.contains(type) ? kBlueColor :kGrey700Color, 13),
           )
         ],
       ),
-    );
+    ));
   }
 }

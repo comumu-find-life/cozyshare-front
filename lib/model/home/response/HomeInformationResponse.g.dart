@@ -65,6 +65,6 @@ const _$HomeTypeEnumMap = {
 };
 
 const _$GenderEnumMap = {
-  Gender.male: 'male',
-  Gender.female: 'female',
+  Gender.MALE: 'MALE',
+  Gender.FEMALE: 'FEMALE',
 };

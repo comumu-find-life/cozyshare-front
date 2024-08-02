@@ -6,7 +6,7 @@ import 'package:home_and_job/model/home/request/HomeAddressGeneratorRequest.dart
 import '../../../../model/home/response/LatLng.dart';
 import '../../../../search/search-address/model/SearchCityModel.dart';
 import '../../../../search/search-address/view/SearchAddressView.dart';
-import '../../../api/HomeRegisterApi.dart';
+import '../../../../rest-api/home-api/HomeRegisterApi.dart';
 
 class HomeAddressController extends GetxController {
   Rx<bool> _isValidateAddress = false.obs;

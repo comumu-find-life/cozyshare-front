@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:home_and_job/model/deal/request/ProtectedDealGeneratorRequest.dart';
-import 'package:home_and_job/protected-deal/api/ProtectedDealApi.dart';
+import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/protected-deal/deal-generator/view/DealGeneratorFinishView.dart';
 import 'package:home_and_job/utils/SnackBar.dart';
 

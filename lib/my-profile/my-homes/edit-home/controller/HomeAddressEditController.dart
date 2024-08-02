@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../model/home/request/HomeAddressGeneratorRequest.dart';
 import '../../../../model/home/response/LatLng.dart';
-import '../../../../register-home/api/HomeRegisterApi.dart';
+import '../../../../rest-api/home-api/HomeRegisterApi.dart';
 import '../../../../search/search-address/model/SearchCityModel.dart';
 import '../../../../search/search-address/view/SearchAddressView.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/chatting/api/ChatApi.dart';
+import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
 import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
 import 'package:home_and_job/chatting/popup/SendChatPopup.dart';
 import 'package:home_and_job/model/chat/request/DirectMessageApplicationDto.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
-import 'package:home_and_job/room/api/RoomApi.dart';
+import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +23,7 @@ class HomeDetailController extends GetxController {
       _isFavorite.value = true;
     }
 
-    homeInformationResponse = (await RoomApi().findById(homeId!))!;
+    homeInformationResponse = (await RoomApi().loadRoomById(homeId!))!;
 
     if (homeInformationResponse != null) {
       return true;

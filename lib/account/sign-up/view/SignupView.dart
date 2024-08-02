@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/account/sign-up/api/SignupApi.dart';
+import 'package:home_and_job/rest-api/user-api/SignupApi.dart';
 import 'package:home_and_job/account/sign-up/widgets/PrivacyForm.dart';
 import 'package:home_and_job/account/sign-up/widgets/UserDetailForm.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';

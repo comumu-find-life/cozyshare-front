@@ -2,7 +2,7 @@
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:home_and_job/model/home/enums/HomeStatus.dart';
-import 'package:home_and_job/my-profile/my-homes/api/MyHomeApi.dart';
+import 'package:home_and_job/rest-api/home-api/MyHomeApi.dart';
 
 import '../../../../model/home/response/HomeOverviewResponse.dart';
 import '../../edit-home/detail-view/view/FinishView.dart';

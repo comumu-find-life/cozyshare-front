@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
-import 'package:home_and_job/room/api/RoomApi.dart';
+import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
 
 import '../../../model/filter/Filter.dart';
 
@@ -34,7 +34,7 @@ class RoomListController extends GetxController {
   TextEditingController _searchController = TextEditingController();
 
   Future<bool> loadAllHomes(String cityName) async {
-    homes.value = await RoomApi().loadAllReward();
+    homes.value = await RoomApi().loadAllRooms();
     if (cityName != "") {
       updateCityName(cityName);
     }

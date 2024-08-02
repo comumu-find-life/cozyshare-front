@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/chatting/api/ChatApi.dart';
+import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
 
 import '../../../model/chat/response/DirectMessageRoomListDto.dart';
 
@@ -13,7 +13,7 @@ class ChattingController extends GetxController {
   List<DirectMessageRoomListDto> _chatItems = [];
 
   Future<bool> loadAllDmList() async {
-    _chatItems = await ChatApi().loadDmList();
+    _chatItems = await DmApi().loadDmList();
     return true;
   }
 

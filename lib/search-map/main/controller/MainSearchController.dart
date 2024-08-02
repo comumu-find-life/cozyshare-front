@@ -10,7 +10,7 @@ import 'package:google_maps_cluster_manager/google_maps_cluster_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:home_and_job/model/filter/Filter.dart';
 import 'package:home_and_job/model/home/enums/HomeType.dart';
-import 'package:home_and_job/search-map/api/HomeMapApi.dart';
+import 'package:home_and_job/rest-api/home-api/HomeMapApi.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../model/home/response/HomeOverviewResponse.dart';

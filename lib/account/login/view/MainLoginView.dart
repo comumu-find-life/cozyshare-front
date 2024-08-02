@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
-import '../api/LoginApi.dart';
+import '../../../rest-api/user-api/LoginApi.dart';
 import '../controller/MainLoginController.dart';
 import '../widgets/LoginButtonWidget.dart';
 import '../widgets/LoginFormWidget.dart';
