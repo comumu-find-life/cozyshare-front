@@ -13,6 +13,7 @@ import 'package:home_and_job/my-profile/my-homes/main/widgets/SellStopHomeWidget
 import 'package:home_and_job/my-profile/my-homes/main/widgets/SoldOutHomeWidget.dart';
 
 import '../../../../model/home/response/HomeOverviewResponse.dart';
+import '../../../main/widgets/EmptyListWidget.dart';
 import '../controller/MyHomeListController.dart';
 import '../widgets/IntroduceProfileWidget.dart';
 import '../widgets/SellHomeWidget.dart';
@@ -51,7 +52,7 @@ class MyHomeListView extends StatelessWidget {
                     //IntroduceProfileWidget(),
                     //todo HomeOverviewResponse 로 대입
                     Obx(() => _controller.myHomes.length == 0
-                        ? _buildEmptyContainer()
+                        ? EmptyContainer()
                         : Container(
                             width: 380.w,
                             height: 710.h,
@@ -77,22 +78,7 @@ class MyHomeListView extends StatelessWidget {
         ));
   }
 
-  Widget _buildEmptyContainer() {
-    return Center(
-      child: Container(
-        margin: EdgeInsets.only(top: 20.h
-        ),
-        width: 350.w,
-        height: 600.h,
-        decoration: BoxDecoration(
-            border: Border.all(color: kGrey300Color),
-            borderRadius: BorderRadius.all(Radius.circular(7))),
-        child: Center(
-          child: FRegularText("Empty", kGrey300Color, 15),
-        ),
-      ),
-    );
-  }
+
 
   Widget _buildEmptyHome() {
     return Center(

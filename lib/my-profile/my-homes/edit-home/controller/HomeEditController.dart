@@ -7,6 +7,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:home_and_job/model/home/enums/HomeStatus.dart';
 import 'package:home_and_job/model/home/request/HomeUpdateRequest.dart';
 import 'package:home_and_job/model/user/enums/Gender.dart';
+import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditFinishView.dart';
 import 'package:home_and_job/rest-api/home-api/MyHomeApi.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/detail-view/view/FinishView.dart';
 import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
@@ -103,7 +104,7 @@ class HomeEditController extends GetxController {
     _selectedHomeType.value = type;
   }
 
-  Future<bool> updateHomeInformation() async {
+  void updateHomeInformation() async {
     //todo 이미지 업데이트
 
     //todo 정보 업데이트
@@ -122,8 +123,10 @@ class HomeEditController extends GetxController {
         options: parseHomeTypeString(_selectedOptions),
         homeAddress: _newAddress != null ? _newAddress : null);
     print(homeUpdateRequest.toJson());
-    await MyHomeApi().updateHomeInformation(homeUpdateRequest);
-    return true;
+    var response = await MyHomeApi().updateHomeInformation(homeUpdateRequest);
+    if(response){
+      Get.to(() => HomeEditFinishView());
+    }
   }
 
   String get homeAddress => _homeAddress.value;

@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
-import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
 import 'package:home_and_job/chatting/popup/SendChatPopup.dart';
-import 'package:home_and_job/model/chat/request/DirectMessageApplicationDto.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
 import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';

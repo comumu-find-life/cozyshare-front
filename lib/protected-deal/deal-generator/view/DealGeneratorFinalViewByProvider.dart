@@ -5,13 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
-import '../../../chatting/chat-detail/controller/ChatDetailController.dart';
+import '../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../controller/DealGeneratorController.dart';
 import '../widgets/FinalDealInformationWidget.dart';
 
 class DealGeneratorFinalViewByProvider extends StatelessWidget {
   DealGeneratorController _controller;
-  ChatDetailController _chatDetailController;
+  ChatProviderDetailController _chatDetailController;
 
   DealGeneratorFinalViewByProvider(
       this._controller, this._chatDetailController);

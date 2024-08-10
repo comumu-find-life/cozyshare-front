@@ -1,19 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
+import 'package:home_and_job/protected-deal/deal-proceeding/provider/widgets/DealAccountByProviderWidget.dart';
+import '../../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../../../../constants/Fonts.dart';
 import '../../../../model/deal/enums/DealState.dart';
-import '../../../../protected-deal/deal-request/getter/widgets/DepositInformationWidgetByGetter.dart';
-import '../../../deal-request/getter/widgets/DealInformationWidgetByGetter.dart';
+import '../../../../utils/Converter.dart';
+import '../../../common/DealInformationWidgetByGetter.dart';
 import '../../common/widgets/DealProcessWidget.dart';
-import '../../common/widgets/DepositGuideWidget.dart';
 
 class DealProcessViewByProvider extends StatelessWidget {
-  final ChatDetailController _chatDetailController;
+  final ChatProviderDetailController _chatDetailController;
 
   DealProcessViewByProvider(this._chatDetailController);
 
@@ -34,12 +33,31 @@ class DealProcessViewByProvider extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Center(child: DealProcessWidget(step)),
-            InkWell(
-                onTap: (){
-                  print(step);
-                },
-                child: Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!))),
+            // Center(child: DealProcessWidget(step)),
+            Container(
+              margin: EdgeInsets.only(top: 20.h,left: 15.w),
+              child: Title2Text("거래 현황", kTextBlackColor),
+            ),
+            Center(
+              child: DealProcessWidget(
+                step: step,
+                dealStartDateTime: ConverterUtil()
+                    .formatKoreanDateTime(dealResponse!.dealStartDateTime),
+                depositRequestDateTime: ConverterUtil()
+                    .formatKoreanDateTime(dealResponse!.depositRequestDateTime),
+                depositCompletionDateTime: ConverterUtil().formatKoreanDateTime(
+                    dealResponse!.depositCompletionDateTime),
+                dealCompletionRequestDateTime: ConverterUtil()
+                    .formatKoreanDateTime(
+                    dealResponse!.dealCompletionRequestDateTime),
+                dealCompletionDateTime: ConverterUtil()
+                    .formatKoreanDateTime(dealResponse!.dealCompletionDateTime),
+                dealCancellationDateTime: ConverterUtil().formatKoreanDateTime(
+                    dealResponse!.dealCancellationDateTime),
+              ),
+            ),
+            Center(child: DealPriceWidget(deposit: dealResponse!.deposit, fee: dealResponse.fee,)),
+            DealAccountByProviderWidget(dealResponse)
           ],
         ),
       ),
@@ -48,35 +66,14 @@ class DealProcessViewByProvider extends StatelessWidget {
 
   int _getStep(DealState? dealState) {
     switch (dealState) {
-      case DealState.DURING_DEPOSIT:
+      case DealState.REQUEST_DEPOSIT:
         return 1;
-      case DealState.DONE_DEPOSIT:
+      case DealState.COMPLETE_DEPOSIT:
         return 2;
       default:
         return 3;
     }
   }
 
-  Container _buildStepOneButton(BuildContext context, int step) {
-    final isFinishable = step == 2 ? true : false;
-    return Container(
-      width: double.infinity,
-      color: isFinishable ? kBlueColor : kGrey200Color,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: isFinishable ? kBlueColor : kGrey200Color,
-          side: BorderSide.none,
-          shadowColor: Colors.transparent,
-        ),
-        onPressed:
-        isFinishable ? () => _onFinishButtonPressed(context) : null,
-        child: ButtonText("거래 확정", kWhiteBackGroundColor),
-      ),
-    );
-  }
 
-  void _onFinishButtonPressed(BuildContext context) {
-    _chatDetailController.confirmDeal();
-    Navigator.pop(context);
-  }
 }

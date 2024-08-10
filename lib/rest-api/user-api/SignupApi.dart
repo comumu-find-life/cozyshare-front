@@ -1,14 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:home_and_job/model/user/request/SignupRequest.dart';
+import 'package:home_and_job/utils/ApiUrls.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 class SignupApi with ChangeNotifier {
-  static String ROOT_URL = dotenv.get("ROOT_API_URL");
-  static String SIGN_UP_URL = ROOT_URL + "users/sign-up";
 
   Future<bool> signupApi(SignupRequest dto, String? imagePath) async {
     // 파일 생성
@@ -28,7 +26,7 @@ class SignupApi with ChangeNotifier {
     );
 
     // 폼 데이터 생성
-    var formData = http.MultipartRequest('POST', Uri.parse(SIGN_UP_URL));
+    var formData = http.MultipartRequest('POST', Uri.parse(ApiUrls.USER_SIGN_UP_URL));
 
     // 파일 및 JSON 데이터 추가
     file == null ? null : formData.files.add(file!);

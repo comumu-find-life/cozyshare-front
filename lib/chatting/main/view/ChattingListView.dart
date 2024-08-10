@@ -49,7 +49,7 @@ class ChattingListView extends StatelessWidget {
                     ? EmptyChatWidget()
                     : Column(
                         children: _controller.chatItems.map((chatItem) {
-                          return ChatItemWidget(chatItem);
+                          return ChatItemWidget(chatItem, _controller.myUserId);
                         }).toList(),
                       ),
               ],

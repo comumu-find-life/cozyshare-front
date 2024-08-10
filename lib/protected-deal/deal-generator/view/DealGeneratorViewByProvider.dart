@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
+import '../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../controller/DealGeneratorController.dart';
 import '../widgets/DealInformationHeaderWidget.dart';
 import '../widgets/ProviderAccountFormWidget.dart';
@@ -16,7 +16,7 @@ import 'DealGeneratorFinalViewByProvider.dart';
  * Provider 가 안전 거래를 생성하는 화면
  */
 class DealGeneratorViewByProvider extends StatelessWidget {
-  ChatDetailController _chatController;
+  ChatProviderDetailController _chatController;
   DealGeneratorController _controller =
       DealGeneratorController();
 

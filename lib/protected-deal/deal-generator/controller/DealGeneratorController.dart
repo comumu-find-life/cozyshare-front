@@ -6,7 +6,8 @@ import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/protected-deal/deal-generator/view/DealGeneratorFinishView.dart';
 import 'package:home_and_job/utils/SnackBar.dart';
 
-import '../../../chatting/chat-detail/controller/ChatDetailController.dart';
+import '../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
+
 
 class DealGeneratorController extends GetxController {
   TextEditingController _nameController = TextEditingController();
@@ -36,7 +37,7 @@ class DealGeneratorController extends GetxController {
   }
 
   Future<bool> createDeal(
-      BuildContext context, ChatDetailController _chatController) async {
+      BuildContext context, ChatProviderDetailController _chatController) async {
     ProtectedDealGeneratorRequest protectedDealGeneratorRequest =
         ProtectedDealGeneratorRequest(
             getterId: _chatController.receiver.id,

@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
+import '../../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../../../deal-generator/widgets/DealInformationHeaderWidget.dart';
-import '../../getter/widgets/DealInformationWidgetByGetter.dart';
+import '../../../common/DealInformationWidgetByGetter.dart';
 import '../widgets/DepositInformationWidgetByProvider.dart';
 
 /**
@@ -15,7 +14,7 @@ import '../widgets/DepositInformationWidgetByProvider.dart';
  */
 class DealRequestViewByProvider extends StatelessWidget {
 
-  ChatDetailController _chatDetailController;
+  ChatProviderDetailController _chatDetailController;
 
 
   DealRequestViewByProvider(this._chatDetailController);
@@ -31,7 +30,9 @@ class DealRequestViewByProvider extends StatelessWidget {
             //매물 정보
             DealInformationHeaderWidget(_chatDetailController.home),
             //거래 정보
-            Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!)),
+
+            Center(child: DealPriceWidget(deposit: _chatDetailController.dealResponse!.deposit, fee: _chatDetailController.dealResponse!.fee,)),
+            //Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!)),
             //입금 계좌
             DepositInformationWidgetByProvider(_chatDetailController.dealResponse!),
             //이용약관 도으이

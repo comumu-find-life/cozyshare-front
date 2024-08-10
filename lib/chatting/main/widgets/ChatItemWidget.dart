@@ -2,23 +2,35 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
+import 'package:home_and_job/chatting/chat-detail-getter/view/ChatGetterDetailView.dart';
 import 'package:home_and_job/model/chat/response/DirectMessageRoomListDto.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../../../model/home/response/HomeInformationResponse.dart';
+import '../../../rest-api/home-api/RoomApi.dart';
+import '../../chat-detail-provider/view/ChatProviderDetailView.dart';
 
 class ChatItemWidget extends StatelessWidget {
 
   DirectMessageRoomListDto dmItem;
+  String myUserId;
 
-  ChatItemWidget(this.dmItem);
+  ChatItemWidget(this.dmItem, this.myUserId);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.to(() => ChatDetailView(receiverId: dmItem.userId, roomId: dmItem.id, homeId: dmItem.progressHomeId,));
+      onTap: () async{
+        //provider 인지 getter 인지 판별
+        HomeInformationResponse _home = (await RoomApi().loadRoomById(dmItem.progressHomeId))!;
+        if(_home.providerId == myUserId){
+          Get.to(() => ChatProviderDetailView(receiverId: dmItem.userId, roomId: dmItem.id, homeId: dmItem.progressHomeId,));
+        }else{
+          Get.to(() => ChatGetterDetailView(receiverId: dmItem.userId, roomId: dmItem.id, homeId: dmItem.progressHomeId,));
+        }
+
+
       },
       child: Container(
         margin: EdgeInsets.only(top: 10.h),

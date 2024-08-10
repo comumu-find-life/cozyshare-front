@@ -1,17 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
-import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
-import 'package:home_and_job/my-profile/my-homes/main/view/MyHomeListView.dart';
-import 'package:home_and_job/utils/DiskDatabase.dart';
-import 'package:home_and_job/utils/SnackBar.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
 import '../controller/HomeEditController.dart';
-import '../popup/AskSoldOutPopup.dart';
 
 
 Widget HomeEditBottomWidget(HomeEditController _controller, BuildContext context){
@@ -28,10 +21,6 @@ Widget HomeEditBottomWidget(HomeEditController _controller, BuildContext context
       ),
       onPressed: () async{
         _controller.updateHomeInformation();
-        // await _controller.soldOut();
-        // Navigator.pop(context);
-        // Get.to(() => MyHomeListView());
-        //
       },
       child: FRegularText("Edit", kWhiteBackGroundColor, 16),
     ),

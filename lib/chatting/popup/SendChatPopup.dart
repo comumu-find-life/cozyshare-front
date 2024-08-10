@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
-import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/model/chat/request/DirectMessageApplicationDto.dart';
 import 'package:home_and_job/utils/SnackBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../chat-detail-getter/view/ChatGetterDetailView.dart';
+import '../chat-detail-provider/view/ChatProviderDetailView.dart';
 
 
 class SendChatPopup {
@@ -97,7 +99,7 @@ class SendChatPopup {
 
                                   if(response != -1){
                                     Navigator.pop(context);
-                                    Get.to(() => ChatDetailView(receiverId: receiverId, roomId: response, homeId: homeId,));
+                                    Get.to(() => ChatGetterDetailView(receiverId: receiverId, roomId: response, homeId: homeId,));
                                   }else{
                                     CustomSnackBar().show(context, "Error");
                                   }

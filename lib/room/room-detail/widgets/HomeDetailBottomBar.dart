@@ -1,9 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/mode/User.dart';
-import 'package:home_and_job/chatting/chat-detail/view/ChatDetailView.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:home_and_job/utils/SnackBar.dart';
 

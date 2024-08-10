@@ -1,97 +1,200 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/deal/enums/DealState.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 
 /**
  * step 1 : 입금 확인 중
  * step 2: 입금 확인
  * step 3: 거래 완료
  */
-Widget DealProcessWidget(int step) {
-
-  return Center(
-    child: Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildProcessBarCircle(step),
-          _buildProcessText(step),
-        ],
+Widget DealProcessWidget({
+  required int step,
+  required String? dealStartDateTime,
+  required String? depositRequestDateTime,
+  required String? depositCompletionDateTime,
+  required String? dealCompletionRequestDateTime,
+  required String? dealCompletionDateTime,
+  required String? dealCancellationDateTime,
+}) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      SizedBox(
+        height: 20.h,
       ),
-    ),
+     _buildDealStartDateTime(dealStartDateTime!),
+      _buildDepositRequestDateTime(depositRequestDateTime),
+      _buildDepositCompletionDateTime(depositCompletionDateTime),
+      _buildDealCompletionRequestDateTime(dealCompletionRequestDateTime),
+      _buildDealCompletionDateTime(dealCompletionDateTime),
+      // _buildProcessBarCircle(step),
+      // _buildProcessText(step),
+    ],
   );
 }
 
-Widget _buildProcessText(int step) {
+Widget _buildDealStartDateTime(String time) {
   return Container(
-    margin: EdgeInsets.only(top: 10.h),
-    width: 315.w,
+    width: 340.w,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          child: Body2Text("입금 확인 중", kDarkBlue),
+        Row(
+          children: [
+            Container(
+              width: 35.w,
+              height: 35.h,
+              child: Icon(
+                Icons.check_circle,
+                color: kPrimaryColor,
+              ),
+            ),
+            Container(
+              child: Body2Text("입금 전", kTextBlackColor),
+            ),
+          ],
         ),
+
         Container(
-          child: Body2Text("입금 확인", step >= 2 ? kDarkBlue : kGrey400Color),
-        ),
-        Container(
-          margin: EdgeInsets.only(right: 10.w),
-          child: Body2Text("거래 완료", step >= 3 ? kDarkBlue : kGrey400Color),
-        ),
+          child: Body2Text("${time}", kGrey800Color),
+        )
       ],
     ),
   );
 }
 
-Widget _buildProcessBarCircle(int step) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Row(
-        children: [
-          Container(
-            width: 20.w,
-            height: 20.h,
-            decoration: BoxDecoration(shape: BoxShape.circle, color: kDarkBlue),
-          ),
-          _buildLine(step >= 2 ? true : false)
-        ],
-      ),
-      Row(
-        children: [
-          Container(
-            width: 20.w,
-            height: 20.h,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: step >= 2 ? kDarkBlue : kGrey400Color),
-          ),
-          _buildLine(step >= 3 ? true : false)
-        ],
-      ),
-      Row(
-        children: [
-          Container(
-            width: 20.w,
-            height: 20.h,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: step >= 3 ? kDarkBlue : kGrey400Color),
-          ),
-        ],
-      ),
-    ],
+Widget _buildDepositRequestDateTime(String? dateTime) {
+  bool isNull = dateTime == null ? true : false;
+  return Container(
+    margin: EdgeInsets.only(top: 10.h),
+    width: 340.w,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 35.w,
+              height: 35.h,
+              child: Icon(
+                Icons.check_circle,
+                color: isNull ? kGrey500Color : kPrimaryColor,
+              ),
+            ),
+            Container(
+              child: Body2Text("입금 신청", kTextBlackColor),
+            ),
+          ],
+        ),
+        isNull
+            ? Container()
+            : Container(
+                child: Body2Text("${dateTime}", kGrey800Color),
+              )
+      ],
+    ),
   );
 }
 
-Widget _buildLine(bool state) {
+Widget _buildDepositCompletionDateTime(String? dateTime) {
+  bool isNull = dateTime == null ? true : false;
   return Container(
-    width: 100.w,
-    height: 1.5.h,
-    color: state ? kDarkBlue : kGrey300Color,
+    margin: EdgeInsets.only(top: 10.h),
+    width: 340.w,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 35.w,
+              height: 35.h,
+              child: Icon(
+                Icons.check_circle,
+                color: isNull ? kGrey500Color : kPrimaryColor,
+              ),
+            ),
+            Container(
+              child: Body2Text("입금 완료", kTextBlackColor),
+            ),
+          ],
+        ),
+        isNull
+            ? Container()
+            : Container(
+                child: Body2Text("${dateTime}", kGrey800Color),
+              )
+      ],
+    ),
   );
 }
+
+Widget _buildDealCompletionRequestDateTime(String? dateTime) {
+  bool isNull = dateTime == null ? true : false;
+  return Container(
+    margin: EdgeInsets.only(top: 10.h),
+    width: 340.w,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 35.w,
+              height: 35.h,
+              child: Icon(
+                Icons.check_circle,
+                color: isNull ? kGrey500Color : kPrimaryColor,
+              ),
+            ),
+            Container(
+              child: Body2Text("거래 완료 신청", kTextBlackColor),
+            ),
+          ],
+        ),
+        isNull
+            ? Container()
+            : Container(
+                child: Body2Text("${dateTime}", kGrey800Color),
+              )
+      ],
+    ),
+  );
+}
+
+Widget _buildDealCompletionDateTime(String? dateTime) {
+  bool isNull = dateTime == null ? true : false;
+  return Container(
+    margin: EdgeInsets.only(top: 10.h,),
+    width: 340.w,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 35.w,
+              height: 35.h,
+              child: Icon(
+                Icons.check_circle,
+                color: isNull ? kGrey500Color : kPrimaryColor,
+              ),
+            ),
+            Container(
+              child: Body2Text("거래 완료", kTextBlackColor),
+            ),
+          ],
+        ),
+        isNull
+            ? Container()
+            : Container(
+                child: Body2Text("${dateTime}", kGrey800Color),
+              )
+      ],
+    ),
+  );
+}
+
+

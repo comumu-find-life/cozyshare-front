@@ -1,23 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:home_and_job/chatting/chat-detail/controller/ChatDetailController.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
+import 'package:home_and_job/utils/Converter.dart';
+import '../../../../chatting/chat-detail-getter/controller/ChatProviderDetailController.dart';
+import '../../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../../../../constants/Fonts.dart';
 import '../../../../model/deal/enums/DealState.dart';
 import '../../../../protected-deal/deal-request/getter/widgets/DepositInformationWidgetByGetter.dart';
-import '../../../deal-request/getter/widgets/DealInformationWidgetByGetter.dart';
+import '../../../common/DealInformationWidgetByGetter.dart';
 import '../controller/DealProcessControllerByGetter.dart';
 import '../widgets/DealFinishAgreeWidget.dart';
 import '../../common/widgets/DealProcessWidget.dart';
 import '../../common/widgets/DepositGuideWidget.dart';
 
 class DealProcessViewByGetter extends StatelessWidget {
-  final ChatDetailController _chatDetailController;
+  final ChatGetterDetailController _chatDetailController;
   final DealProcessControllerByGetter _controller =
       DealProcessControllerByGetter();
 
@@ -26,11 +27,12 @@ class DealProcessViewByGetter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dealResponse = _chatDetailController.dealResponse;
-    final step = _getStep(dealResponse?.dealState);
+    final step = 4;
+    //final step = _getStep(dealResponse?.dealState);
 
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
-      bottomSheet: step==3?null:_buildStepOneButton(context, step),
+      bottomSheet: _filterButton(step, context),
       appBar: CommonAppBar(
         color: kWhiteBackGroundColor,
         canBack: true,
@@ -40,16 +42,39 @@ class DealProcessViewByGetter extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            Center(child: DealProcessWidget(step)),
             InkWell(
-                onTap: (){
-                  print(step);
-                },
-                child: Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!))),
-            DepositInformationWidgetByGetter(),
+              onTap: (){
+                print(dealResponse!.dealState);
+              },
+              child: Container(
+                margin: EdgeInsets.only(top: 30.h, left: 20.w),
+                child: Title2Text("거래 현황", kTextBlackColor),
+              ),
+            ),
+            Center(
+              child: DealProcessWidget(
+                step: step,
+                dealStartDateTime: ConverterUtil()
+                    .formatKoreanDateTime(dealResponse!.dealStartDateTime),
+                depositRequestDateTime: ConverterUtil()
+                    .formatKoreanDateTime(dealResponse!.depositRequestDateTime),
+                depositCompletionDateTime: ConverterUtil().formatKoreanDateTime(
+                    dealResponse!.depositCompletionDateTime),
+                dealCompletionRequestDateTime: ConverterUtil()
+                    .formatKoreanDateTime(
+                        dealResponse!.dealCompletionRequestDateTime),
+                dealCompletionDateTime: ConverterUtil()
+                    .formatKoreanDateTime(dealResponse!.dealCompletionDateTime),
+                dealCancellationDateTime: ConverterUtil().formatKoreanDateTime(
+                    dealResponse!.dealCancellationDateTime),
+              ),
+            ),
+            Center(child: DealPriceWidget(deposit: dealResponse.deposit, fee: dealResponse.fee,)),
+            DepositInformationWidgetByGetter(_chatDetailController.dealResponse!),
             if (step == 2) DealFinishAgreeWidget(_controller),
-            if(step == 3) _buildFinishDealWidget()
+            SizedBox(
+              height: 130.h,
+            )
           ],
         ),
       ),
@@ -58,43 +83,101 @@ class DealProcessViewByGetter extends StatelessWidget {
 
   int _getStep(DealState? dealState) {
     switch (dealState) {
-      case DealState.DURING_DEPOSIT:
+      //입금 전
+      case DealState.BEFORE_DEPOSIT:
         return 1;
-      case DealState.DONE_DEPOSIT:
+      // 입금 신청
+      case DealState.REQUEST_DEPOSIT:
         return 2;
-      default:
+      // 입금 완료
+      case DealState.COMPLETE_DEPOSIT:
         return 3;
+      //거래 완료 신청
+      case DealState.REQUEST_COMPLETE_DEAL:
+        return 4;
+      // 입금 완료
+      default:
+        return 5;
     }
   }
 
-  Container _buildFinishDealWidget(){
-    return Container(
-      margin: EdgeInsets.only(top: 20.h, left: 20.w),
-      child: Title2Text("거래가 완료 됐습니다.", kTextBlackColor),
-    );
+  // Container _buildFinishDealWidget() {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 20.h, left: 20.w),
+  //     child: Title2Text("거래가 완료 됐습니다.", kTextBlackColor),
+  //   );
+  // }
+
+  Container _filterButton(int step, BuildContext context) {
+    switch (step){
+      case 1:
+        return _buildRequestDepositButton(context);
+      case 2:
+        return _buildNotTapButton("거래 완료 신청");
+      case 3:
+        return _buildRequestCompleteRequestButton(context);
+      default:
+        return Container(
+          height: 1.h,
+        );
+    }
   }
 
-  Container _buildStepOneButton(BuildContext context, int step) {
-    final isFinishable = step == 2 ? true : false;
+  Container _buildNotTapButton(String text) {
     return Container(
       width: double.infinity,
-      color: isFinishable ? kBlueColor : kGrey200Color,
+      color: kGrey200Color,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: isFinishable ? kBlueColor : kGrey200Color,
+          backgroundColor: kGrey200Color,
           side: BorderSide.none,
           shadowColor: Colors.transparent,
         ),
-        onPressed:
-        isFinishable ? () => _onFinishButtonPressed(context) : null,
+        onPressed: () async {},
+        child: ButtonText("${text}", kWhiteBackGroundColor),
+      ),
+    );
+  }
+
+  Container _buildRequestCompleteRequestButton(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: kPrimaryColor,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kPrimaryColor,
+          side: BorderSide.none,
+          shadowColor: Colors.transparent,
+        ),
+        onPressed: () async {
+          await ProtectedDealApi()
+              .requestDealFinish(_chatDetailController.dealResponse!.id);
+          _chatDetailController.confirmDeal();
+          Navigator.pop(context);
+        },
         child: ButtonText("거래 확정", kWhiteBackGroundColor),
       ),
     );
   }
 
-  void _onFinishButtonPressed(BuildContext context) async{
-    await ProtectedDealApi().requestDealFinish(_chatDetailController.dealResponse!.id);
-    _chatDetailController.confirmDeal();
-    Navigator.pop(context);
+  Container _buildRequestDepositButton(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: kPrimaryColor,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kPrimaryColor,
+          side: BorderSide.none,
+          shadowColor: Colors.transparent,
+        ),
+        onPressed: () async {
+          await ProtectedDealApi()
+              .requestDepositByGetter(_chatDetailController.dealResponse!.id);
+          _chatDetailController.confirmDeal();
+          Navigator.pop(context);
+        },
+        child: ButtonText("입금 신청", kWhiteBackGroundColor),
+      ),
+    );
   }
 }

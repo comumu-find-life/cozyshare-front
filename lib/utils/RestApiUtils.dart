@@ -22,6 +22,21 @@ class RestApiUtils {
     );
   }
 
+  Future<http.Response> patchWithBodyResponse(String url,dynamic? body, {String? accessToken}) async {
+    return await http.patch(
+        Uri.parse(url),
+        headers: getHeaders(accessToken: accessToken),
+        body: json.encode(body)
+    );
+  }
+
+  Future<http.Response> patchResponse(String url, {String? accessToken}) async {
+    return await http.patch(
+        Uri.parse(url),
+        headers: getHeaders(accessToken: accessToken),
+    );
+  }
+
   Future<http.Response> postResponse(String url, dynamic body, {String? accessToken}) async {
     return await http.post(
       Uri.parse(url),

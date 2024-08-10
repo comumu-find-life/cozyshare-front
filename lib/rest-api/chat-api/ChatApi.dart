@@ -70,6 +70,7 @@ class DmApi {
 
     var response = await apiUtils.getResponse(ApiUrls.DM_ROOMS, accessToken: accessToken);
 
+    print(utf8.decode(response.bodyBytes));
 
     if (apiUtils.isValidResponse(response)) {
       List<dynamic> jsonResponse = apiUtils.decodeResponse(response);

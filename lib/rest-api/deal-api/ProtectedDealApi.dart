@@ -1,14 +1,12 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../model/deal/request/ProtectedDealFindRequest.dart';
 import '../../model/deal/request/ProtectedDealGeneratorRequest.dart';
+import '../../model/deal/response/ProtectedDealByProviderResponse.dart';
 import '../../model/deal/response/ProtectedDealResponse.dart';
 import '../../utils/ApiUrls.dart';
 import '../../utils/RestApiUtils.dart';
@@ -18,14 +16,14 @@ class ProtectedDealApi {
 
 
   /**
-   * 안전거래 단일 조회 API
+   * 안전거래 단일 조회 by Provider (In Chatting)
    */
-  Future<ProtectedDealResponse?> loadProtectedDeal(ProtectedDealFindRequest request) async {
+  Future<ProtectedDealByProviderResponse?> loadProtectedDealByProvider(ProtectedDealFindRequest request) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
     final response = await http.post(
-        Uri.parse(ApiUrls.DEAL_READ),
+        Uri.parse(ApiUrls.DEAL_PROVIDER_READ),
         headers: {
           'Authorization': 'Bearer $accessToken',
           'Content-Type': 'application/json',
@@ -33,8 +31,34 @@ class ProtectedDealApi {
         body: json.encode(request.toJson())
     );
 
+
     if(response.statusCode == 200 && json.decode(utf8.decode(response.bodyBytes))["data"] != null){
-      return ProtectedDealResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+      return ProtectedDealByProviderResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+    }
+    return null;
+
+  }
+
+  /**
+   * 안전거래 단일 조회 by Getter (In Chatting)
+   */
+  Future<ProtectedDealByGetterResponse?> loadProtectedDealByGetter(ProtectedDealFindRequest request) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? accessToken = prefs.getString("access_token");
+
+    print(ApiUrls.DEAL_PROVIDER_READ);
+    final response = await http.post(
+        Uri.parse(ApiUrls.DEAL_GETTER_READ),
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(request.toJson())
+    );
+
+
+    if(response.statusCode == 200 && json.decode(utf8.decode(response.bodyBytes))["data"] != null){
+      return ProtectedDealByGetterResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
     }
     return null;
 

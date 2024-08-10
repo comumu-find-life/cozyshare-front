@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 
 import '../poopup/DepositNamePopup.dart';
 
@@ -11,7 +12,10 @@ import '../poopup/DepositNamePopup.dart';
  * 가상 계좌 (Getter 만 보여줌)
  */
 class DepositInformationWidgetByGetter extends StatelessWidget {
-  const DepositInformationWidgetByGetter({super.key});
+  ProtectedDealByGetterResponse dealByGetterResponse;
+
+
+  DepositInformationWidgetByGetter(this.dealByGetterResponse);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +80,8 @@ class DepositInformationWidgetByGetter extends StatelessWidget {
             ],
           ),
           Container(
-            child: NumberText("DASE!@#", kTextBlackColor, 14),
+            width: 210.w,
+            child: NumberText("${dealByGetterResponse.randomDepositorName}", kTextBlackColor, 14),
           ),
 
         ],
@@ -95,7 +100,7 @@ class DepositInformationWidgetByGetter extends StatelessWidget {
             child: Body2Text("입금 계좌", kGrey600Color),
           ),
           Container(
-            child: NumberText("941602-00748799", kTextBlackColor, 14),
+            child: NumberText("123123123123", kTextBlackColor, 14),
           ),
 
         ],

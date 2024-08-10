@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
@@ -12,7 +12,7 @@ import '../../getter/poopup/DepositNamePopup.dart';
  * provider 가 조회할 계약금/내 계좌 정보
  */
 class DepositInformationWidgetByProvider extends StatelessWidget {
-  ProtectedDealResponse _protectedDealResponse;
+  ProtectedDealByProviderResponse _protectedDealResponse;
 
 
   DepositInformationWidgetByProvider(this._protectedDealResponse);

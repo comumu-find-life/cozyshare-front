@@ -27,12 +27,10 @@ Widget DealInformationHeaderWidget(HomeInformationResponse homeInformationRespon
             width: 350.w,
             height: 100.h,
             decoration: BoxDecoration(
-                color: kPrimaryLightColor,
+                color: kGrey100Color,
               borderRadius: BorderRadius.all(Radius.circular(6)),
               border: Border.all(color: kGrey100Color)
             ),
-
-
             margin: EdgeInsets.only(top: 15.h, left: 0.w),
             child: Row(
               children: [
@@ -53,13 +51,15 @@ Widget DealInformationHeaderWidget(HomeInformationResponse homeInformationRespon
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        child: SubTitle2Text("${homeInformationResponse.bond} \$", kTextBlackColor),
-                      ),
-                      Container(
+                        width: 240.w,
                         margin: EdgeInsets.only(top: 3.h),
                         child: Helper2Text(
-                            "${homeInformationResponse.address}", kGrey500Color),
+                            "${homeInformationResponse.address}", kTextBlackColor),
                       )
+                      // Container(
+                      //   child: SubTitle2Text("${homeInformationResponse.bond} \$", kTextBlackColor),
+                      // ),
+
                     ],
                   ),
                 )
