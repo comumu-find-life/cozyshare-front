@@ -27,7 +27,7 @@ class DealProcessViewByGetter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dealResponse = _chatDetailController.dealResponse;
-    final step = 4;
+    final step = _getStep(dealResponse?.dealState);
     //final step = _getStep(dealResponse?.dealState);
 
     return Scaffold(
@@ -44,7 +44,7 @@ class DealProcessViewByGetter extends StatelessWidget {
           children: [
             InkWell(
               onTap: (){
-                print(dealResponse!.dealState);
+                print(step);
               },
               child: Container(
                 margin: EdgeInsets.only(top: 30.h, left: 20.w),
@@ -155,7 +155,7 @@ class DealProcessViewByGetter extends StatelessWidget {
           _chatDetailController.confirmDeal();
           Navigator.pop(context);
         },
-        child: ButtonText("거래 확정", kWhiteBackGroundColor),
+        child: ButtonText("거래 완료 신청", kWhiteBackGroundColor),
       ),
     );
   }

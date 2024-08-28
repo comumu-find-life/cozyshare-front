@@ -47,9 +47,7 @@ class MyHomeListView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     SelectStatusWidget(_controller),
-                    //IntroduceProfileWidget(),
                     //todo HomeOverviewResponse 로 대입
                     Obx(() => _controller.myHomes.length == 0
                         ? EmptyContainer()

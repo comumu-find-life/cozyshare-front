@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/my-profile/edit-profile/view/EditProfileView.dart';
 import 'package:home_and_job/my-profile/main/controller/MyProfileController.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -116,16 +117,17 @@ class ProfileWidget extends StatelessWidget {
           Row(
             children: [
               Container(
-                child: FBoldText("신민석", kTextBlackColor, 14),
+                child: FBoldText("${_controller.userProfileResponse.nickname}", kTextBlackColor, 14),
               ),
             ],
           ),
           InkWell(
             onTap: (){
+              Get.to(() => EditProfileView());
             },
             child: Container(
               margin: EdgeInsets.only(top: 6.h),
-              child: HintText2("Look my profile", kBlueColor),
+              child: HintText2("Edit my profile", kBlueColor),
             ),
           )
         ],

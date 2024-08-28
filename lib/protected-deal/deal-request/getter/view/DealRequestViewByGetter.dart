@@ -39,6 +39,7 @@ class DealRequestViewByGetter extends StatelessWidget {
                  DealInformationHeaderWidget(_chatDetailController.home),
             //거래 정보
             Center(child: DealPriceWidget(deposit: _chatDetailController.dealResponse!.deposit, fee: _chatDetailController.dealResponse!.fee,)),
+
             //입금 계좌
             DepositInformationWidgetByGetter(_chatDetailController.dealResponse!),
             //이용약관 도으이

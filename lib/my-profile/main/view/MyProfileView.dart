@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
-import 'package:home_and_job/my-profile/main/widgets/ProviderListWidget.dart';
+import 'package:home_and_job/my-profile/main/widgets/SettingListWidget.dart';
 import 'package:home_and_job/my-profile/main/widgets/ProfileWidget.dart';
 
+import '../../../constants/Fonts.dart';
 import '../controller/MyProfileController.dart';
 import '../widgets/CommonList.dart';
 
@@ -16,22 +17,44 @@ class MyProfileView extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
-
-
-        // appBar: CommonAppBar(canBack: false, title: '마이 프로필', color: kWhiteBackGroundColor,),
-        body: SingleChildScrollView(
+        body: FutureBuilder(future: controller.loadUserProfile(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (snapshot.hasError) {
+        return Container(
+          child: Body2Text("Network Error", kTextBlackColor),
+        );
+      } else {
+        return   SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               ProfileWidget(controller),
-              CommonList(),
-              ProviderListWidget(),
-
+              //CommonList(),
+              SettingListWidget(),
+              Center(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 40.h, bottom: 40.h),
+                        child: Body2Text("@copyright comumu", kGrey400Color),
+                      )
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
-        ));
+        );
+      }
+        },));
   }
+
+
 
   Widget _buildAppBar() {
     return Container(

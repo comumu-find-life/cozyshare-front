@@ -1,3 +1,4 @@
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
-import 'package:home_and_job/my-profile/my-deals/cancel-detail/DealCancelView.dart';
+import 'package:home_and_job/my-profile/my-deals/done-detail/view/DealDoneDetailView.dart';
 import 'package:home_and_job/my-profile/my-deals/during-detail/view/DealDuringDetailView.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/popup/AskSoldOutPopup.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dart';
@@ -16,30 +17,30 @@ import '../../../../constants/Fonts.dart';
 import '../../../main/widgets/EmptyListWidget.dart';
 import '../controller/MyDealListController.dart';
 
-class DuringDealWidget extends StatelessWidget {
+class DoneDealWidget extends StatelessWidget {
   MyDealListController _controller;
 
-  DuringDealWidget(this._controller);
+  DoneDealWidget(this._controller);
 
   @override
   Widget build(BuildContext context) {
-    return _controller.duringDeals.length == 0
+    return _controller.doneDeals.length == 0
         ? EmptyContainer()
         : Container(
-            width: 380.w,
-            height: 710.h,
-            child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: _controller.duringDeals.length,
-                itemBuilder: (BuildContext ctx, int idx) {
-                  return _buildDealWidget();
-                }));
+        width: 380.w,
+        height: 710.h,
+        child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: _controller.doneDeals.length,
+            itemBuilder: (BuildContext ctx, int idx) {
+              return _buildDealWidget();
+            }));
   }
 
   Widget _buildDealWidget() {
     return InkWell(
       onTap: () {
-        Get.to(() => DealCancelDetailView());
+        Get.to(() => DealDoneDetailView());
       },
       child: Center(
         child: Container(
@@ -73,7 +74,7 @@ class DuringDealWidget extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(6))),
                     child: Center(
                       child:
-                          FBoldText("Detailed Information", kPrimaryColor, 14),
+                      FBoldText("Detailed Information", kPrimaryColor, 14),
                     ),
                   ),
                 )
@@ -110,8 +111,8 @@ class DuringDealWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-              //top: BorderSide(color: kGrey200Color)
-              )),
+            //top: BorderSide(color: kGrey200Color)
+          )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -121,7 +122,7 @@ class DuringDealWidget extends StatelessWidget {
                 margin: EdgeInsets.only(top: 0.h),
                 height: 20.h,
                 child:
-                    FBoldText("Transaction in progress", kTextBlackColor, 13),
+                FBoldText("Transaction in progress", kTextBlackColor, 13),
               ),
             ],
           ),
@@ -134,8 +135,8 @@ class DuringDealWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-              //top: BorderSide(color: kGrey200Color)
-              )),
+            //top: BorderSide(color: kGrey200Color)
+          )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -166,11 +167,11 @@ class DuringDealWidget extends StatelessWidget {
             child: FBoldText("2024.10.31", kTextBlackColor, 14),
           ),
           Container(
-              // child: Icon(
-              //   Icons.arrow_forward_ios,
-              //   size: 14.sp,
-              // ),
-              )
+            // child: Icon(
+            //   Icons.arrow_forward_ios,
+            //   size: 14.sp,
+            // ),
+          )
         ],
       ),
     );

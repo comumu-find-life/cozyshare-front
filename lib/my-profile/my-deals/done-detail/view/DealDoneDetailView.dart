@@ -6,6 +6,7 @@ import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/my-profile/my-deals/widgets/DealPaymentInformationWidget.dart';
+import 'package:home_and_job/my-profile/my-deals/widgets/DealRoomInformationWidget.dart';
 import 'package:home_and_job/protected-deal/deal-proceeding/common/widgets/DealProcessWidget.dart';
 
 /**
@@ -28,7 +29,7 @@ class DealDoneDetailView extends StatelessWidget {
           children: [
             _buildTimeInformation(),
             DealPaymentInformationWidget(),
-            _buildHomeInformation(),
+            DealRoomInformationWidget(),
             Container(
               color: kWhiteBackGroundColor,
               height: 150.h,
@@ -48,10 +49,10 @@ class DealDoneDetailView extends StatelessWidget {
         children: [
           Container(
               margin: EdgeInsets.only(top: 20.h, left: 20.w),
-              child: FBoldText("거래 완료", kTextBlackColor, 18)),
+              child: FBoldText("Transaction Completed", kTextBlackColor, 18)),
           Container(
-              margin: EdgeInsets.only(top: 10.w, left: 20.w),
-              child: FRegularText("이용해 주셔서 감사합니다.", kGrey800Color, 14)),
+              margin: EdgeInsets.only(top: 18.w, left: 20.w),
+              child: FRegularText("Thank you for using our service.", kGrey800Color, 14)),
           Container(
             margin: EdgeInsets.only(left: 20.w, top: 30.h),
             width: 330.w,
@@ -69,7 +70,7 @@ class DealDoneDetailView extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 5.w),
-                      child: FRegularText("입금 완료", kTextBlackColor, 15),
+                      child: FRegularText("Deposit Time", kTextBlackColor, 15),
                     ),
                   ],
                 ),
@@ -96,7 +97,7 @@ class DealDoneDetailView extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 5.w),
-                      child: FRegularText("거래 완료", kTextBlackColor, 15),
+                      child: FRegularText("Completed Time", kTextBlackColor, 14),
                     ),
                   ],
                 ),

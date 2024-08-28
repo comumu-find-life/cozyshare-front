@@ -16,21 +16,21 @@ import '../../../../constants/Fonts.dart';
 import '../../../main/widgets/EmptyListWidget.dart';
 import '../controller/MyDealListController.dart';
 
-class DuringDealWidget extends StatelessWidget {
+class CancelDealWidget extends StatelessWidget {
   MyDealListController _controller;
 
-  DuringDealWidget(this._controller);
+  CancelDealWidget(this._controller);
 
   @override
   Widget build(BuildContext context) {
-    return _controller.duringDeals.length == 0
+    return _controller.cancelDeals.length == 0
         ? EmptyContainer()
         : Container(
             width: 380.w,
             height: 710.h,
             child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                itemCount: _controller.duringDeals.length,
+                itemCount: _controller.cancelDeals.length,
                 itemBuilder: (BuildContext ctx, int idx) {
                   return _buildDealWidget();
                 }));
@@ -39,7 +39,7 @@ class DuringDealWidget extends StatelessWidget {
   Widget _buildDealWidget() {
     return InkWell(
       onTap: () {
-        Get.to(() => DealCancelDetailView());
+        Get.to(() => DealDuringDetailView());
       },
       child: Center(
         child: Container(
@@ -62,7 +62,7 @@ class DuringDealWidget extends StatelessWidget {
                 _buildBody(),
                 InkWell(
                   onTap: () {
-                    Get.to(() => DealDuringDetailView());
+                    Get.to(() => DealCancelDetailView());
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: 20.h),

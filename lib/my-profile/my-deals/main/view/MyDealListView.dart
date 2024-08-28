@@ -4,9 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
+import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/my-profile/my-deals/cancel-detail/DealCancelView.dart';
 import 'package:home_and_job/my-profile/my-deals/done-detail/view/DealDoneDetailView.dart';
 import 'package:home_and_job/my-profile/my-deals/main/controller/MyDealListController.dart';
+import 'package:home_and_job/my-profile/my-deals/main/widgets/CancelDealWidget.dart';
+import 'package:home_and_job/my-profile/my-deals/main/widgets/DoneDealWidegt.dart';
 import 'package:home_and_job/my-profile/my-deals/main/widgets/DuringDealWidget.dart';
 
 import '../../../../constants/Fonts.dart';
@@ -19,38 +22,36 @@ class MyDealListView extends StatelessWidget {
   Widget build(BuildContext context) {
     MyDealListController _controller = MyDealListController();
     return Scaffold(
-      backgroundColor: kWhiteBackGroundColor,
-      appBar: CommonAppBar(
-        canBack: true,
-        title: '',
-        color: kWhiteBackGroundColor,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SelectDealTypeWidget(_controller),
-            DuringDealWidget(),
-            InkWell(
-              onTap: (){
-                Get.to(() => DealDoneDetailView());
-              },
-              child: Container(
-                child: Body2Text("DealDoneDetailView", kTextBlackColor),
-              ),
-            ),
-
-            InkWell(
-              onTap: (){
-                Get.to(() => DealCancelDetailView());
-              },
-              child: Container(
-                child: Body2Text("CANCEL", kTextBlackColor),
-              ),
-            )
-          ],
+        backgroundColor: kWhiteBackGroundColor,
+        appBar: CommonAppBar(
+          canBack: true,
+          title: '',
+          color: kWhiteBackGroundColor,
         ),
-      ),
-    );
+        body: FutureBuilder(
+            future: _controller.loadInit(),
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.hasError) {
+                return Container(
+                  child: Body2Text("Networ Error", kTextBlackColor),
+                );
+              } else {
+                return Obx(() => SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SelectDealTypeWidget(_controller),
+                      if(_controller.dealStatus == DealState.BEFORE_DEPOSIT)DuringDealWidget(_controller),
+                      if(_controller.dealStatus == DealState.COMPLETE_DEAL)DoneDealWidget(_controller),
+                      if(_controller.dealStatus == DealState.CANCEL_DEAL)CancelDealWidget(_controller),
+                    ],
+                  ),
+                ));
+              }
+            }));
   }
 }

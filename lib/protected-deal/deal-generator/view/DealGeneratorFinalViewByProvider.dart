@@ -62,9 +62,6 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
                 onPressed: () async {
                   await _controller.createDeal(context, _chatDetailController);
                   _chatDetailController.startProtectedDeal();
-                  //_chatDetailController.startProtectedDeal();
-                  //_controller.ontapStep1Next();
-                  // Get.to(() => ChargePointAccountView(), transition: Transition.rightToLeftWithFade);
                 },
                 child: ButtonText("완료", kWhiteBackGroundColor),
               ),

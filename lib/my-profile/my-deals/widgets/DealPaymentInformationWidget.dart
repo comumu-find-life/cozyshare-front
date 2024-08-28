@@ -14,7 +14,7 @@ Widget DealPaymentInformationWidget() {
       children: [
         Container(
           margin: EdgeInsets.only(top: 30.h, left: 20.w),
-          child: FBoldText("결제 정보", kTextBlackColor, 14),
+          child: FBoldText("Payment Information", kTextBlackColor, 14),
         ),
         Center(
           child: Container(
@@ -34,7 +34,7 @@ Widget DealPaymentInformationWidget() {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        child: FRegularText("거래 금액", kGrey700Color, 14),
+                        child: FRegularText("Deposit", kGrey700Color, 14),
                       ),
                       Container(
                         child: FBoldText("4000", kTextBlackColor, 14),
@@ -49,7 +49,7 @@ Widget DealPaymentInformationWidget() {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        child: FRegularText("수수료", kGrey700Color, 14),
+                        child: FRegularText("Fee", kGrey700Color, 14),
                       ),
                       Container(
                         child: FBoldText("100", kTextBlackColor, 14),
@@ -70,7 +70,7 @@ Widget DealPaymentInformationWidget() {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        child: FRegularText("총 결제 금액", kGrey700Color, 14),
+                        child: FRegularText("Total Price", kGrey700Color, 14),
                       ),
                       Container(
                         child: FBoldText("4100", kTextBlackColor, 14),

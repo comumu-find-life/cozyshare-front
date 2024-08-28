@@ -29,6 +29,13 @@ class DepositInformationWidgetByGetter extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(left: 20.w, top: 20.h),
           child: HintText2("아래 계좌는 Find Life 가상 계좌입니다.\n\n입금된 보증금/계약금은 거래 성사 후 집주인에게 전달됩니다.", kGrey500Color),
+
+        ),
+
+        Container(
+          margin: EdgeInsets.only(left: 20.w, top: 20.h),
+          child: HintText2("아래 '입금자 이름'으로 변경 후 송금을 해야 정상적으로 처리 됩니다. ", kErrorColor),
+
         ),
         Center(
           child: Container(

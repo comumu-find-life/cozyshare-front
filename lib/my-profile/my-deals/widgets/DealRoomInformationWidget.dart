@@ -14,7 +14,7 @@ Widget DealRoomInformationWidget() {
       children: [
         Container(
           margin: EdgeInsets.only(top: 30.h, left: 20.w),
-          child: FBoldText("매물 정보", kTextBlackColor, 14),
+          child: FBoldText("Home Information", kTextBlackColor, 14),
         ),
         Center(
           child: Container(
@@ -52,6 +52,12 @@ Widget DealRoomInformationWidget() {
                         margin: EdgeInsets.only(top: 20.h),
                         child: FBoldText("Rent : 5000", kTextBlackColor, 13),
                       ),
+                      Container(
+                        width: 170.w,
+                        margin: EdgeInsets.only(top: 20.h),
+                        child: FBoldText("Bond : 500 ", kTextBlackColor, 13),
+                      ),
+
                       Container(
                         width: 170.w,
                         margin: EdgeInsets.only(top: 20.h),

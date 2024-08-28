@@ -14,11 +14,9 @@ import '../../model/home/response/HomeInformationResponse.dart';
 import '../../model/user/response/UserProfileResponse.dart';
 
 class ProfileDetailApi {
-  // static String ROOT_URL = dotenv.get("ROOT_API_URL");
-  // final String LOAD_USER_PROFILE_URL = ROOT_URL + "/users/profile/";
+
 
   Future<UserProfileResponse?> loadUserProfile(int userIdx) async {
-    print(ApiUrls.USER_PROFILE_URL+"/" + userIdx.toString());
     var response = await http.get(
       Uri.parse(ApiUrls.USER_PROFILE_URL+"/" + userIdx.toString()),
       headers: {
@@ -26,6 +24,9 @@ class ProfileDetailApi {
         'Accept': 'application/json',
       },
     );
+
+    print("dasdasd");
+    print(utf8.decode(response.bodyBytes));
     if (response.statusCode == 200) {
       return UserProfileResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
     }

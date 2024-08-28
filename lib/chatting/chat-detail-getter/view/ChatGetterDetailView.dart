@@ -7,11 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/chatting/chat-detail-getter/controller/ChatProviderDetailController.dart';
 
 import '../../../constants/Colors.dart';
-import '../../../constants/Fonts.dart';
 import '../../chat-common/widgets/ChatAppBar.dart';
-import '../../chat-detail-provider/widgets/ProviderMessageWidget.dart';
-import '../../chat-detail-provider/widgets/ProviderHomePostInformationWidget.dart';
-import '../../chat-detail-provider/widgets/ProviderInputMessageWidget.dart';
 import '../widgets/GetterHomePostInformationWidget.dart';
 import '../widgets/GetterInputMessageWidget.dart';
 import '../widgets/GetterMessageWidget.dart';
@@ -60,9 +56,6 @@ class _ChatGetterDetailViewState extends State<ChatGetterDetailView> {
                     },
                     child: Column(
                       children: [
-                        Container(
-                          child: Body2Text("Getter View", kTextBlackColor),
-                        ),
                         _buildConversation(),
                         GetterInputMessageWidget(_controller),
                       ],

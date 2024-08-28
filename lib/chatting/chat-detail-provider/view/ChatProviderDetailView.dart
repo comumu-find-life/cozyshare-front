@@ -57,9 +57,7 @@ class _ChatProviderDetailViewState extends State<ChatProviderDetailView> {
                     },
                     child: Column(
                       children: [
-                        Container(
-                          child: Body2Text("Provider View", kTextBlackColor),
-                        ),
+
                         _buildConversation(),
                         ProviderInputMessageWidget(_controller),
                       ],

@@ -1,39 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
+import '../../model/user/response/UserProfileResponse.dart';
+
 class ProfileDetailBody extends StatelessWidget {
-  const ProfileDetailBody({super.key});
+  UserProfileResponse _userProfileResponse;
+
+
+  ProfileDetailBody(this._userProfileResponse);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 380.w,
       color: kWhiteBackGroundColor,
-      margin: EdgeInsets.only(left: 0.w, top: 180.h),
+      margin: EdgeInsets.only(left: 0.w, top: 0.h),
       child: Container(
-        margin: EdgeInsets.only(left: 20.w, top: 100.h),
+        margin: EdgeInsets.only(left: 20.w, top: 30.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            _buildLine(),
             _buildNationality(),
 
             _buildGender(),
             _buildJob(),
-            _buildSns(),
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(top: 10.h, bottom: 10.h, right: 20.w),
-                width: 340.w,
-                height: 1.h,
-                color: kGrey300Color,
-              ),
-            ),
+            //_buildSns(),
+            _buildLine(),
             _buildAboutMe(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildLine() {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.only(top: 10.h, bottom: 10.h, right: 20.w),
+        width: 340.w,
+        height: 1.h,
+        color: kGrey300Color,
       ),
     );
   }
@@ -80,7 +91,7 @@ class ProfileDetailBody extends StatelessWidget {
             child: FBoldText("Nationality", kTextBlackColor, 14),
           ),
           Container(
-            child: FRegularText("Korean", kTextBlackColor, 14),
+            child: FRegularText("${_userProfileResponse.nationality}", kTextBlackColor, 14),
           )
         ],
       ),
@@ -98,7 +109,7 @@ class ProfileDetailBody extends StatelessWidget {
             child: FBoldText("Gender", kTextBlackColor, 14),
           ),
           Container(
-            child: FRegularText("Male", kTextBlackColor, 14),
+            child: FRegularText("${_userProfileResponse.gender}", kTextBlackColor, 14),
           )
         ],
       ),
@@ -117,7 +128,7 @@ class ProfileDetailBody extends StatelessWidget {
             child: FBoldText("Job", kTextBlackColor, 14),
           ),
           Container(
-            child: FRegularText("Student", kTextBlackColor, 14),
+            child: FRegularText("${_userProfileResponse.job}", kTextBlackColor, 14),
           )
         ],
       ),
@@ -135,14 +146,13 @@ class ProfileDetailBody extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 20.h, bottom: 30.h),
           width: 340.w,
-          height: 250.h,
           decoration: BoxDecoration(
               border: Border.all(color: kGrey300Color),
               borderRadius: BorderRadius.all(Radius.circular(6))),
           child: Container(
               margin: EdgeInsets.all(10),
               child: FRegularText(
-                  "Introduce Myself My job is student\n Introduce Myself My job is studentIntroduce Myself My job is studentIntroduce Myself My job is studentIntroduce Myself My job is studentIntroduce Myself My job is studentIntroduce Myself My job is studentIntroduce Myself My job is studentIntroduce Myself My job is studentIntroduce Myself My job is student",
+                  "${_userProfileResponse.introduce}",
                   kTextBlackColor,
                   14)),
         )

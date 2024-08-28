@@ -253,7 +253,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
         Center(
           child: Container(
             width: 335.w,
-            margin: EdgeInsets.only(top: 25.h,left: 10.w),
+            margin: EdgeInsets.only(top: 25.h,left: 10.w, bottom: 70.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

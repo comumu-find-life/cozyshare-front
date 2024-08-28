@@ -51,7 +51,7 @@ class FinalDealInformationWidget extends StatelessWidget {
                 child: Body2Text("총 요청금액", kGrey600Color),
               ),
               Container(
-                child: NumberText("추후 협의 \$", kTextBlackColor, 14),
+                child: NumberText("${_controller.bondController.text} \$", kTextBlackColor, 14),
               )
             ],
           ),
@@ -89,7 +89,7 @@ class FinalDealInformationWidget extends StatelessWidget {
             child: Body2Text("수수료 (세입자 부담)", kGrey600Color),
           ),
           Container(
-            child: NumberText("추후 협의", kTextBlackColor, 14),
+            child: NumberText("Free", kTextBlackColor, 14),
           )
         ],
       ),

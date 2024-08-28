@@ -112,6 +112,9 @@ class ProtectedDealApi {
     return false;
   }
 
+  /**
+   * 거래 완료 신청 API (GETTER 가 사용)
+   */
   Future<bool> requestDealFinish(
       int dealId) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

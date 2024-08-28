@@ -8,8 +8,6 @@ class ProfileDetailController extends GetxController{
 
   Future<bool> loadUserProfile(int userIdx) async{
      userProfileResponse = (await ProfileDetailApi().loadUserProfile(userIdx))!;
-
-     print(userProfileResponse.nickname);
      return true;
   }
 }

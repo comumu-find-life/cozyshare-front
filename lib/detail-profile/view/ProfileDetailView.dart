@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 
 import '../../constants/Fonts.dart';
@@ -25,18 +24,15 @@ class ProfileDetailView extends StatelessWidget {
         return Body2Text("ERROR", kTextBlackColor);
       }else{
         return Scaffold(
-          backgroundColor: kDarkBlue,
+          backgroundColor: kWhiteBackGroundColor,
           appBar: _buildAppbar(context),
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Stack(
-                  children: [
-                    ProfileDetailBody(),
-                    ProfileDetailHeader(),
-                  ],
-                )
+                ProfileDetailHeader(_controller.userProfileResponse),
+                ProfileDetailBody(_controller.userProfileResponse),
+
               ],
             ),
           ),
@@ -50,7 +46,7 @@ class ProfileDetailView extends StatelessWidget {
     return AppBar(
       elevation: 0,
       centerTitle: true,
-      backgroundColor: kDarkBlue,
+      backgroundColor: kWhiteBackGroundColor,
       automaticallyImplyLeading: false,
       title: Container(
         width: 360.w,
@@ -68,7 +64,7 @@ class ProfileDetailView extends StatelessWidget {
                   height: 19.h,
                   child: Icon(
                     Icons.arrow_back_ios,
-                    color: kWhiteBackGroundColor,
+                    color: kTextBlackColor,
                   )),
             ),
             Container()
