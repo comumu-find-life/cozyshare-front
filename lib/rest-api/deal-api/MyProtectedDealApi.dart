@@ -18,7 +18,6 @@ class MyProtectedDealApi {
 
     var response = await apiUtils.getResponse(ApiUrls.DEAL_MY_READ_URL +  userId!, accessToken: accessToken);
 
-
     if (response.statusCode == 200) {
       var decodedResponse = json.decode(utf8.decode(response.bodyBytes));
 

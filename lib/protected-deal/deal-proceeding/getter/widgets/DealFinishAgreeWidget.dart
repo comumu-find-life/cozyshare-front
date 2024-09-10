@@ -60,7 +60,7 @@ class DealFinishAgreeWidget extends StatelessWidget {
                 ),
                 Container(
                     margin: EdgeInsets.only(left: 8.w),
-                    child: ButtonText("이용약관 동의", kGrey700Color)
+                    child: ButtonText("Terms and Conditions Agreement", kGrey700Color)
                 ),
               ],
             ),

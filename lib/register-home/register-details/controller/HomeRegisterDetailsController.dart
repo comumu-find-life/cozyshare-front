@@ -12,7 +12,10 @@ class HomeRegisterDetailsController extends GetxController {
   // GenderType
   final Rx<int> _isGenderType = 1.obs;
 
+  final Rx<bool> _canParking = true.obs;
+
   final Rx<bool> _isNextStep = false.obs;
+
 
   final TextEditingController _bedRoomCountController = TextEditingController();
   final TextEditingController _bathRoomCountController = TextEditingController();
@@ -21,6 +24,11 @@ class HomeRegisterDetailsController extends GetxController {
   final RxList<HomeOptionType> _selectedOptions = <HomeOptionType>[].obs;
 
   List<HomeOptionType> get selectedOptions => _selectedOptions;
+
+  void onTapParking(bool request){
+    _canParking.value = request;
+    print(_canParking.value);
+  }
 
   void validateAllInput() {
     _isNextStep.value = _bedRoomCountController.text.isNotEmpty && _bathRoomCountController.text.isNotEmpty && _residentCountController.text.isNotEmpty;
@@ -58,6 +66,7 @@ class HomeRegisterDetailsController extends GetxController {
   }
 
 
+  bool get canParking => _canParking.value;
 
   int get isGenderType => _isGenderType.value;
   bool get isNextStep => _isNextStep.value;

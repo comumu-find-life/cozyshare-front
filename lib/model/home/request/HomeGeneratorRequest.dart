@@ -15,6 +15,7 @@ class HomeGeneratorRequest with _$HomeGeneratorRequest {
     required HomeAddressGeneratorRequest homeAddress,
     required int bathRoomCount,
     required bool dealSavable,
+    required bool canParking,
     required int bedroomCount,
     required int bond,
     required String gender,

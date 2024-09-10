@@ -24,11 +24,11 @@ class DepositInformationWidgetByProvider extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(left: 20.w, top: 30.h),
-          child: Title2Text("내 계좌 정보", kTextBlackColor),
+          child: Title2Text("My account information", kTextBlackColor),
         ),
         Container(
-          margin: EdgeInsets.only(left: 20.w, top: 20.h),
-          child: HintText2("거래 성사 후 아래 계좌를 통해 보증금/계약금이 입금됩니다.", kGrey500Color),
+          margin: EdgeInsets.only(left: 20.w, top: 20.h, right: 20.w),
+          child: HintText2("After the transaction is completed, the down payment will be deposited into the account below.", kGrey500Color),
         ),
         Center(
           child: Container(
@@ -61,7 +61,7 @@ class DepositInformationWidgetByProvider extends StatelessWidget {
           Row(
             children: [
               Container(
-                child: Body2Text("이름", kGrey600Color),
+                child: Body2Text("Account Holder", kGrey600Color),
               ),
               InkWell(
                 onTap: () {
@@ -96,7 +96,7 @@ class DepositInformationWidgetByProvider extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Body2Text("입금 계좌", kGrey600Color),
+            child: Body2Text("Account Number", kGrey600Color),
           ),
           Container(
             child: NumberText("${_protectedDealResponse.bankName}" +" " + "${_protectedDealResponse.account}", kTextBlackColor, 14),

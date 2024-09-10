@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class HomePriceController extends GetxController{
   //집 가격
+  Rx<bool> _isBill = false.obs;
   TextEditingController _bondController = TextEditingController();
   TextEditingController _rentController = TextEditingController();
   TextEditingController _bill = TextEditingController();

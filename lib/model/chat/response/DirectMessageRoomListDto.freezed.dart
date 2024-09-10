@@ -14,46 +14,50 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DirectMessageRoomListDto _$DirectMessageRoomListDtoFromJson(
+DirectMessageRoomListResponse _$DirectMessageRoomListResponseFromJson(
     Map<String, dynamic> json) {
   return _DirectMessageRoomListDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DirectMessageRoomListDto {
+mixin _$DirectMessageRoomListResponse {
   int get id => throw _privateConstructorUsedError;
-  int get userId => throw _privateConstructorUsedError;
+  int get otherUserId => throw _privateConstructorUsedError;
   String get userNickname => throw _privateConstructorUsedError;
   String? get userProfileUrl => throw _privateConstructorUsedError;
   int get progressHomeId => throw _privateConstructorUsedError;
   String get lastMessage => throw _privateConstructorUsedError;
+  DateTime get lastSendDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DirectMessageRoomListDtoCopyWith<DirectMessageRoomListDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DirectMessageRoomListResponseCopyWith<DirectMessageRoomListResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DirectMessageRoomListDtoCopyWith<$Res> {
-  factory $DirectMessageRoomListDtoCopyWith(DirectMessageRoomListDto value,
-          $Res Function(DirectMessageRoomListDto) then) =
-      _$DirectMessageRoomListDtoCopyWithImpl<$Res, DirectMessageRoomListDto>;
+abstract class $DirectMessageRoomListResponseCopyWith<$Res> {
+  factory $DirectMessageRoomListResponseCopyWith(
+          DirectMessageRoomListResponse value,
+          $Res Function(DirectMessageRoomListResponse) then) =
+      _$DirectMessageRoomListResponseCopyWithImpl<$Res,
+          DirectMessageRoomListResponse>;
   @useResult
   $Res call(
       {int id,
-      int userId,
+      int otherUserId,
       String userNickname,
       String? userProfileUrl,
       int progressHomeId,
-      String lastMessage});
+      String lastMessage,
+      DateTime lastSendDateTime});
 }
 
 /// @nodoc
-class _$DirectMessageRoomListDtoCopyWithImpl<$Res,
-        $Val extends DirectMessageRoomListDto>
-    implements $DirectMessageRoomListDtoCopyWith<$Res> {
-  _$DirectMessageRoomListDtoCopyWithImpl(this._value, this._then);
+class _$DirectMessageRoomListResponseCopyWithImpl<$Res,
+        $Val extends DirectMessageRoomListResponse>
+    implements $DirectMessageRoomListResponseCopyWith<$Res> {
+  _$DirectMessageRoomListResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -64,20 +68,21 @@ class _$DirectMessageRoomListDtoCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
+    Object? otherUserId = null,
     Object? userNickname = null,
     Object? userProfileUrl = freezed,
     Object? progressHomeId = null,
     Object? lastMessage = null,
+    Object? lastSendDateTime = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      otherUserId: null == otherUserId
+          ? _value.otherUserId
+          : otherUserId // ignore: cast_nullable_to_non_nullable
               as int,
       userNickname: null == userNickname
           ? _value.userNickname
@@ -95,13 +100,17 @@ class _$DirectMessageRoomListDtoCopyWithImpl<$Res,
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      lastSendDateTime: null == lastSendDateTime
+          ? _value.lastSendDateTime
+          : lastSendDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$DirectMessageRoomListDtoImplCopyWith<$Res>
-    implements $DirectMessageRoomListDtoCopyWith<$Res> {
+    implements $DirectMessageRoomListResponseCopyWith<$Res> {
   factory _$$DirectMessageRoomListDtoImplCopyWith(
           _$DirectMessageRoomListDtoImpl value,
           $Res Function(_$DirectMessageRoomListDtoImpl) then) =
@@ -110,16 +119,17 @@ abstract class _$$DirectMessageRoomListDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      int userId,
+      int otherUserId,
       String userNickname,
       String? userProfileUrl,
       int progressHomeId,
-      String lastMessage});
+      String lastMessage,
+      DateTime lastSendDateTime});
 }
 
 /// @nodoc
 class __$$DirectMessageRoomListDtoImplCopyWithImpl<$Res>
-    extends _$DirectMessageRoomListDtoCopyWithImpl<$Res,
+    extends _$DirectMessageRoomListResponseCopyWithImpl<$Res,
         _$DirectMessageRoomListDtoImpl>
     implements _$$DirectMessageRoomListDtoImplCopyWith<$Res> {
   __$$DirectMessageRoomListDtoImplCopyWithImpl(
@@ -131,20 +141,21 @@ class __$$DirectMessageRoomListDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
+    Object? otherUserId = null,
     Object? userNickname = null,
     Object? userProfileUrl = freezed,
     Object? progressHomeId = null,
     Object? lastMessage = null,
+    Object? lastSendDateTime = null,
   }) {
     return _then(_$DirectMessageRoomListDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      otherUserId: null == otherUserId
+          ? _value.otherUserId
+          : otherUserId // ignore: cast_nullable_to_non_nullable
               as int,
       userNickname: null == userNickname
           ? _value.userNickname
@@ -162,6 +173,10 @@ class __$$DirectMessageRoomListDtoImplCopyWithImpl<$Res>
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      lastSendDateTime: null == lastSendDateTime
+          ? _value.lastSendDateTime
+          : lastSendDateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -171,11 +186,12 @@ class __$$DirectMessageRoomListDtoImplCopyWithImpl<$Res>
 class _$DirectMessageRoomListDtoImpl implements _DirectMessageRoomListDto {
   _$DirectMessageRoomListDtoImpl(
       {required this.id,
-      required this.userId,
+      required this.otherUserId,
       required this.userNickname,
       required this.userProfileUrl,
       required this.progressHomeId,
-      required this.lastMessage});
+      required this.lastMessage,
+      required this.lastSendDateTime});
 
   factory _$DirectMessageRoomListDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$DirectMessageRoomListDtoImplFromJson(json);
@@ -183,7 +199,7 @@ class _$DirectMessageRoomListDtoImpl implements _DirectMessageRoomListDto {
   @override
   final int id;
   @override
-  final int userId;
+  final int otherUserId;
   @override
   final String userNickname;
   @override
@@ -192,10 +208,12 @@ class _$DirectMessageRoomListDtoImpl implements _DirectMessageRoomListDto {
   final int progressHomeId;
   @override
   final String lastMessage;
+  @override
+  final DateTime lastSendDateTime;
 
   @override
   String toString() {
-    return 'DirectMessageRoomListDto(id: $id, userId: $userId, userNickname: $userNickname, userProfileUrl: $userProfileUrl, progressHomeId: $progressHomeId, lastMessage: $lastMessage)';
+    return 'DirectMessageRoomListResponse(id: $id, otherUserId: $otherUserId, userNickname: $userNickname, userProfileUrl: $userProfileUrl, progressHomeId: $progressHomeId, lastMessage: $lastMessage, lastSendDateTime: $lastSendDateTime)';
   }
 
   @override
@@ -204,7 +222,8 @@ class _$DirectMessageRoomListDtoImpl implements _DirectMessageRoomListDto {
         (other.runtimeType == runtimeType &&
             other is _$DirectMessageRoomListDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.otherUserId, otherUserId) ||
+                other.otherUserId == otherUserId) &&
             (identical(other.userNickname, userNickname) ||
                 other.userNickname == userNickname) &&
             (identical(other.userProfileUrl, userProfileUrl) ||
@@ -212,13 +231,15 @@ class _$DirectMessageRoomListDtoImpl implements _DirectMessageRoomListDto {
             (identical(other.progressHomeId, progressHomeId) ||
                 other.progressHomeId == progressHomeId) &&
             (identical(other.lastMessage, lastMessage) ||
-                other.lastMessage == lastMessage));
+                other.lastMessage == lastMessage) &&
+            (identical(other.lastSendDateTime, lastSendDateTime) ||
+                other.lastSendDateTime == lastSendDateTime));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, userNickname,
-      userProfileUrl, progressHomeId, lastMessage);
+  int get hashCode => Object.hash(runtimeType, id, otherUserId, userNickname,
+      userProfileUrl, progressHomeId, lastMessage, lastSendDateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -235,14 +256,17 @@ class _$DirectMessageRoomListDtoImpl implements _DirectMessageRoomListDto {
   }
 }
 
-abstract class _DirectMessageRoomListDto implements DirectMessageRoomListDto {
+abstract class _DirectMessageRoomListDto
+    implements DirectMessageRoomListResponse {
   factory _DirectMessageRoomListDto(
-      {required final int id,
-      required final int userId,
-      required final String userNickname,
-      required final String? userProfileUrl,
-      required final int progressHomeId,
-      required final String lastMessage}) = _$DirectMessageRoomListDtoImpl;
+          {required final int id,
+          required final int otherUserId,
+          required final String userNickname,
+          required final String? userProfileUrl,
+          required final int progressHomeId,
+          required final String lastMessage,
+          required final DateTime lastSendDateTime}) =
+      _$DirectMessageRoomListDtoImpl;
 
   factory _DirectMessageRoomListDto.fromJson(Map<String, dynamic> json) =
       _$DirectMessageRoomListDtoImpl.fromJson;
@@ -250,7 +274,7 @@ abstract class _DirectMessageRoomListDto implements DirectMessageRoomListDto {
   @override
   int get id;
   @override
-  int get userId;
+  int get otherUserId;
   @override
   String get userNickname;
   @override
@@ -259,6 +283,8 @@ abstract class _DirectMessageRoomListDto implements DirectMessageRoomListDto {
   int get progressHomeId;
   @override
   String get lastMessage;
+  @override
+  DateTime get lastSendDateTime;
   @override
   @JsonKey(ignore: true)
   _$$DirectMessageRoomListDtoImplCopyWith<_$DirectMessageRoomListDtoImpl>

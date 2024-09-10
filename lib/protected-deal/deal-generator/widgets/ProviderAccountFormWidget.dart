@@ -39,7 +39,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  child: HintText3("계약금", kGrey600Color),
+                  child: HintText3("Deposit", kGrey600Color),
                 ),
                 Container(
                   width: 320.w,
@@ -65,7 +65,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
                       },
                       cursorColor: kTextBlackColor,
                       decoration: InputDecoration(
-                        hintText: "가격",
+                        hintText: "price",
                         hintStyle: TextStyle(color: kGrey300Color),
                         // labelText: controller.text.isEmpty ? "이름" : "이름",
                         //labelStyle: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 13.sp, fontWeight: FontWeight.bold),
@@ -90,7 +90,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            child: Title2Text("계좌 정보 입력", kTextBlackColor),
+            child: Title2Text("Enter account information", kTextBlackColor),
           ),
           InkWell(
             onTap: () {},
@@ -114,7 +114,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            child: Title2Text("계약금액", kTextBlackColor),
+            child: Title2Text("Contract amount", kTextBlackColor),
           ),
           InkWell(
             onTap: () {},
@@ -144,7 +144,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  child: HintText3("예금주", kGrey600Color),
+                  child: HintText3("Account holder", kGrey600Color),
                 ),
                 Container(
                   width: 320.w,
@@ -170,7 +170,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
                       },
                       cursorColor: kTextBlackColor,
                       decoration: InputDecoration(
-                        hintText: "이름",
+                        hintText: "name",
                         hintStyle: TextStyle(color: kGrey300Color),
                        // labelText: controller.text.isEmpty ? "이름" : "이름",
                         //labelStyle: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 13.sp, fontWeight: FontWeight.bold),
@@ -202,7 +202,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  child: HintText3("은행", kGrey600Color),
+                  child: HintText3("Bank", kGrey600Color),
                 ),
                 Container(
                   width: 320.w,
@@ -227,7 +227,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
                       textAlign: TextAlign.left,
                       cursorColor: kTextBlackColor,
                       decoration: InputDecoration(
-                        hintText: "이름",
+                        hintText: "bank name",
                         hintStyle: TextStyle(color: kGrey300Color),
                         // labelText: controller.text.isEmpty ? "이름" : "이름",
                         //labelStyle: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 13.sp, fontWeight: FontWeight.bold),
@@ -258,7 +258,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  child: HintText3("계좌번호", kGrey600Color),
+                  child: HintText3("Account number", kGrey600Color),
                 ),
                 Container(
                   width: 320.w,
@@ -283,7 +283,7 @@ class ProviderAccountFormWidget extends StatelessWidget {
                       textAlign: TextAlign.left,
                       cursorColor: kTextBlackColor,
                       decoration: InputDecoration(
-                        hintText: "입력하세요.",
+                        hintText: "number",
                         hintStyle: TextStyle(color: kGrey300Color),
                         // labelText: controller.text.isEmpty ? "이름" : "이름",
                         //labelStyle: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 13.sp, fontWeight: FontWeight.bold),

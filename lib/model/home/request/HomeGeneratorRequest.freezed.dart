@@ -25,6 +25,7 @@ mixin _$HomeGeneratorRequest {
       throw _privateConstructorUsedError;
   int get bathRoomCount => throw _privateConstructorUsedError;
   bool get dealSavable => throw _privateConstructorUsedError;
+  bool get canParking => throw _privateConstructorUsedError;
   int get bedroomCount => throw _privateConstructorUsedError;
   int get bond => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $HomeGeneratorRequestCopyWith<$Res> {
       HomeAddressGeneratorRequest homeAddress,
       int bathRoomCount,
       bool dealSavable,
+      bool canParking,
       int bedroomCount,
       int bond,
       String gender,
@@ -81,6 +83,7 @@ class _$HomeGeneratorRequestCopyWithImpl<$Res,
     Object? homeAddress = null,
     Object? bathRoomCount = null,
     Object? dealSavable = null,
+    Object? canParking = null,
     Object? bedroomCount = null,
     Object? bond = null,
     Object? gender = null,
@@ -106,6 +109,10 @@ class _$HomeGeneratorRequestCopyWithImpl<$Res,
       dealSavable: null == dealSavable
           ? _value.dealSavable
           : dealSavable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      canParking: null == canParking
+          ? _value.canParking
+          : canParking // ignore: cast_nullable_to_non_nullable
               as bool,
       bedroomCount: null == bedroomCount
           ? _value.bedroomCount
@@ -165,6 +172,7 @@ abstract class _$$HomeGeneratorRequestImplCopyWith<$Res>
       HomeAddressGeneratorRequest homeAddress,
       int bathRoomCount,
       bool dealSavable,
+      bool canParking,
       int bedroomCount,
       int bond,
       String gender,
@@ -193,6 +201,7 @@ class __$$HomeGeneratorRequestImplCopyWithImpl<$Res>
     Object? homeAddress = null,
     Object? bathRoomCount = null,
     Object? dealSavable = null,
+    Object? canParking = null,
     Object? bedroomCount = null,
     Object? bond = null,
     Object? gender = null,
@@ -218,6 +227,10 @@ class __$$HomeGeneratorRequestImplCopyWithImpl<$Res>
       dealSavable: null == dealSavable
           ? _value.dealSavable
           : dealSavable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      canParking: null == canParking
+          ? _value.canParking
+          : canParking // ignore: cast_nullable_to_non_nullable
               as bool,
       bedroomCount: null == bedroomCount
           ? _value.bedroomCount
@@ -263,6 +276,7 @@ class _$HomeGeneratorRequestImpl implements _HomeGeneratorRequest {
       required this.homeAddress,
       required this.bathRoomCount,
       required this.dealSavable,
+      required this.canParking,
       required this.bedroomCount,
       required this.bond,
       required this.gender,
@@ -284,6 +298,8 @@ class _$HomeGeneratorRequestImpl implements _HomeGeneratorRequest {
   @override
   final bool dealSavable;
   @override
+  final bool canParking;
+  @override
   final int bedroomCount;
   @override
   final int bond;
@@ -302,7 +318,7 @@ class _$HomeGeneratorRequestImpl implements _HomeGeneratorRequest {
 
   @override
   String toString() {
-    return 'HomeGeneratorRequest(userIdx: $userIdx, homeAddress: $homeAddress, bathRoomCount: $bathRoomCount, dealSavable: $dealSavable, bedroomCount: $bedroomCount, bond: $bond, gender: $gender, type: $type, introduce: $introduce, bill: $bill, rent: $rent, options: $options)';
+    return 'HomeGeneratorRequest(userIdx: $userIdx, homeAddress: $homeAddress, bathRoomCount: $bathRoomCount, dealSavable: $dealSavable, canParking: $canParking, bedroomCount: $bedroomCount, bond: $bond, gender: $gender, type: $type, introduce: $introduce, bill: $bill, rent: $rent, options: $options)';
   }
 
   @override
@@ -317,6 +333,8 @@ class _$HomeGeneratorRequestImpl implements _HomeGeneratorRequest {
                 other.bathRoomCount == bathRoomCount) &&
             (identical(other.dealSavable, dealSavable) ||
                 other.dealSavable == dealSavable) &&
+            (identical(other.canParking, canParking) ||
+                other.canParking == canParking) &&
             (identical(other.bedroomCount, bedroomCount) ||
                 other.bedroomCount == bedroomCount) &&
             (identical(other.bond, bond) || other.bond == bond) &&
@@ -337,6 +355,7 @@ class _$HomeGeneratorRequestImpl implements _HomeGeneratorRequest {
       homeAddress,
       bathRoomCount,
       dealSavable,
+      canParking,
       bedroomCount,
       bond,
       gender,
@@ -368,6 +387,7 @@ abstract class _HomeGeneratorRequest implements HomeGeneratorRequest {
       required final HomeAddressGeneratorRequest homeAddress,
       required final int bathRoomCount,
       required final bool dealSavable,
+      required final bool canParking,
       required final int bedroomCount,
       required final int bond,
       required final String gender,
@@ -388,6 +408,8 @@ abstract class _HomeGeneratorRequest implements HomeGeneratorRequest {
   int get bathRoomCount;
   @override
   bool get dealSavable;
+  @override
+  bool get canParking;
   @override
   int get bedroomCount;
   @override

@@ -167,7 +167,7 @@ class PriceFormWidget extends StatelessWidget {
                   cursorColor: kTextBlackColor,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
-                    hintText: "Bill",
+                    hintText: "Maintenance fee ",
                     hintStyle: TextStyle(
                         fontSize: 13.sp,
                         color: kGrey600Color,

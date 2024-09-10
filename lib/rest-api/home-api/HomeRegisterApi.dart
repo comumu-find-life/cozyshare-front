@@ -30,6 +30,7 @@ class HomeRegisterApi {
         accessToken: accessToken,
       );
 
+
       if (apiUtils.isValidResponse(response)) {
         return CustomLatLng.fromJson(apiUtils.decodeResponse(response));
       }

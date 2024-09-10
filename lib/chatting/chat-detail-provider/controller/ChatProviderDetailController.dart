@@ -57,6 +57,21 @@ class ChatProviderDetailController extends GetxController {
   }
 
   /**
+   * 초기 파라미터
+   * - homeId
+   * - otherId
+   * -
+   */
+
+  /**
+   * (1) getter 프로필 조회
+   * (2) provider 프로필 조회
+   * (3) 집 게시글 정보 조회
+   * (4) 채팅에 포함된 안전거래 조회
+   * (5) STOMP 서버 커넥션
+   */
+
+  /**
    * 안전거래 조회 메서드
    */
   Future<bool> loadProtectedDeal() async {

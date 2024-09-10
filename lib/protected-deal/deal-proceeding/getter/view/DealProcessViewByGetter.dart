@@ -48,24 +48,24 @@ class DealProcessViewByGetter extends StatelessWidget {
               },
               child: Container(
                 margin: EdgeInsets.only(top: 30.h, left: 20.w),
-                child: Title2Text("거래 현황", kTextBlackColor),
+                child: Title2Text("Transaction Status", kTextBlackColor),
               ),
             ),
             Center(
               child: DealProcessWidget(
                 step: step,
                 dealStartDateTime: ConverterUtil()
-                    .formatKoreanDateTime(dealResponse!.dealStartDateTime),
+                    .formatEnglishDateTime(dealResponse!.dealStartDateTime),
                 depositRequestDateTime: ConverterUtil()
-                    .formatKoreanDateTime(dealResponse!.depositRequestDateTime),
-                depositCompletionDateTime: ConverterUtil().formatKoreanDateTime(
+                    .formatEnglishDateTime(dealResponse!.depositRequestDateTime),
+                depositCompletionDateTime: ConverterUtil().formatEnglishDateTime(
                     dealResponse!.depositCompletionDateTime),
                 dealCompletionRequestDateTime: ConverterUtil()
-                    .formatKoreanDateTime(
+                    .formatEnglishDateTime(
                         dealResponse!.dealCompletionRequestDateTime),
                 dealCompletionDateTime: ConverterUtil()
-                    .formatKoreanDateTime(dealResponse!.dealCompletionDateTime),
-                dealCancellationDateTime: ConverterUtil().formatKoreanDateTime(
+                    .formatEnglishDateTime(dealResponse!.dealCompletionDateTime),
+                dealCancellationDateTime: ConverterUtil().formatEnglishDateTime(
                     dealResponse!.dealCancellationDateTime),
               ),
             ),
@@ -113,7 +113,7 @@ class DealProcessViewByGetter extends StatelessWidget {
       case 1:
         return _buildRequestDepositButton(context);
       case 2:
-        return _buildNotTapButton("거래 완료 신청");
+        return _buildNotTapButton("Transaction Completion Request");
       case 3:
         return _buildRequestCompleteRequestButton(context);
       default:

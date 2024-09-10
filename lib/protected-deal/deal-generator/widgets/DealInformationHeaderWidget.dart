@@ -16,7 +16,7 @@ Widget DealInformationHeaderWidget(HomeInformationResponse homeInformationRespon
     children: [
       Container(
         margin: EdgeInsets.only(left: 20.w, top: 15.h),
-        child: Title2Text("거래 매물", kTextBlackColor),
+        child: Title2Text("Transaction room information", kTextBlackColor),
       ),
       InkWell(
         onTap: (){

@@ -28,7 +28,7 @@ class ApiUrls {
    * 안전거래 관련 API URLS
    */
   static String DEAL_START_URL = "$ROOT_URL/deals";
-  static String DEAL_MY_READ_URL = "$ROOT_URL/deals/";
+  static String DEAL_MY_READ_URL = "$ROOT_URL/deals/users/";
   static String DEAL_PROVIDER_READ = "$ROOT_URL/deals/read/provider";
   static String DEAL_GETTER_READ = "$ROOT_URL/deals/read/getter";
   static String DEAL_REQUEST_DEPOSIT_URL = "$ROOT_URL/deals/request/deposit/";
@@ -40,8 +40,7 @@ class ApiUrls {
    *
    */
   static String DM_INIT_SEND_URL = "$ROOT_URL/dm";
-  static String DM_HOMES_URL = "$ROOT_URL/homes/dm";
   static String DM_HISTORY = "http://10.0.2.2:8082/api/dm/history";
-  static String DM_ROOMS = "$ROOT_URL/dm/dm-rooms";
+  static String DM_ROOMS = "$ROOT_URL/dm/dm-rooms/users/";
 
 }

@@ -67,7 +67,7 @@ class DealGeneratorViewByProvider extends StatelessWidget {
                         () => DealGeneratorFinalViewByProvider(_controller, _chatController),
                       );
                     },
-                    child: ButtonText("다음", kWhiteBackGroundColor),
+                    child: ButtonText("Next", kWhiteBackGroundColor),
                   ),
                 )
               : null),
@@ -83,7 +83,7 @@ class DealGeneratorViewByProvider extends StatelessWidget {
         children: [
           Container(),
           Container(
-            child: Body2Text("안전결제란?", kBlueColor),
+            child: Body2Text("What is safe transaction ?", kBlueColor),
           )
         ],
       ),

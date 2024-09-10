@@ -12,7 +12,7 @@ import '../controller/ChatProviderDetailController.dart';
 
 Widget GetterDealDuringMessageWidget(ChatGetterDetailController controller){
   return Container(
-    width: 200.w,
+    width: 220.w,
     height: 150.h,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -24,36 +24,24 @@ Widget GetterDealDuringMessageWidget(ChatGetterDetailController controller){
       children: [
         Container(
             margin: EdgeInsets.only(top: 18.h, left: 13.w),
-            child: Title3Text("거래 진행 중", kDarkBlue)),
+            child: Title3Text("Transaction in Progress", kDarkBlue)),
         Container(
           margin: EdgeInsets.only(top: 3.h, left: 13.w),
-          child: Helper2Text("상태 : ${controller.dealResponse!.dealState.description}", kGrey600Color),
+          child: Helper2Text("State : ${controller.dealResponse!.dealState.description}", kGrey600Color),
         ),
         InkWell(
           onTap: (){
-            //print(controller.dealResponse);
             Get.to(() => DealProcessViewByGetter(controller));
-
-
-            // //todo 변경
-            // if(controller.isProvider()){
-//               Get.to(() => DealProcessViewByProvider(controller));
-            // }else{
-            //   Get.to(() => DealProcessViewByGetter(controller));
-            //
-            // }
-
-            //Get.to(() => DealProcessViewByProvider(controller));
           },
           child: Center(
             child: Container(
               margin: EdgeInsets.only(top: 20.h),
-              width: 170.w,
+              width: 200.w,
               height: 35.h,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   color: kLightBlue),
-              child: Center(child: Helper2Text("정보 조회", kDarkBlue)),
+              child: Center(child: Helper2Text("Check", kDarkBlue)),
             ),
           ),
         )

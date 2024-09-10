@@ -71,7 +71,7 @@ class DealRequestViewByGetter extends StatelessWidget {
             Navigator.pop(context);
           }
         },
-        child: ButtonText("입금 신청", kWhiteBackGroundColor),
+        child: ButtonText("Deposit Request", kWhiteBackGroundColor),
       ),
     ));
   }

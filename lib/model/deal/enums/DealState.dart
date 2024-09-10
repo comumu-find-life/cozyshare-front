@@ -1,14 +1,15 @@
 enum DealState {
   NONE("없음"),
-  BEFORE_DEPOSIT("입금 전"), // 1
-  REQUEST_DEPOSIT("입금 신청"), // 2
-  COMPLETE_DEPOSIT("입금 완료"), // 3
-  CANCEL_DEPOSIT("입금 취소"),
-  REQUEST_COMPLETE_DEAL("거래 완료 신청"), // 4
-  COMPLETE_DEAL("거래 완료"), //5
-  CANCEL_DEAL("거래 취소");
+  BEFORE_DEPOSIT("Before Deposit"), // 1
+  REQUEST_DEPOSIT("Deposit Request"), // 2
+  COMPLETE_DEPOSIT("Deposit Completed"), // 3
+  CANCEL_DEPOSIT("Deposit Cancellation"), // 4
+  REQUEST_COMPLETE_DEAL("Request for Transaction Completion"), // 5
+  COMPLETE_DEAL("Transaction Completed"), // 6
+  CANCEL_DEAL("Transaction Cancelled"); // 7
 
   final String description;
 
   const DealState(this.description);
+
 }

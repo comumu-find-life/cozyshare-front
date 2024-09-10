@@ -48,7 +48,7 @@ class FinalDealInformationWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                child: Body2Text("총 요청금액", kGrey600Color),
+                child: Body2Text("Total Price", kGrey600Color),
               ),
               Container(
                 child: NumberText("${_controller.bondController.text} \$", kTextBlackColor, 14),
@@ -68,7 +68,7 @@ class FinalDealInformationWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Body2Text("계약금/보증금", kGrey600Color),
+            child: Body2Text("Deposit", kGrey600Color),
           ),
           Container(
             child: NumberText("${_controller.bondController.text} \$", kTextBlackColor, 14),
@@ -86,7 +86,7 @@ class FinalDealInformationWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Body2Text("수수료 (세입자 부담)", kGrey600Color),
+            child: Body2Text("Fee (paid by the tenant)", kGrey600Color),
           ),
           Container(
             child: NumberText("Free", kTextBlackColor, 14),
@@ -104,7 +104,7 @@ class FinalDealInformationWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Body2Text("예금주", kGrey600Color),
+            child: Body2Text("Account Holder", kGrey600Color),
           ),
           Container(
             child: NumberText("${_controller.nameController.text}", kTextBlackColor, 14),
@@ -122,7 +122,7 @@ class FinalDealInformationWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Body2Text("계좌", kGrey600Color),
+            child: Body2Text("Account Number", kGrey600Color),
           ),
           Container(
             child: NumberText("${_controller.bankController.text} ${_controller.accountController.text}", kTextBlackColor, 13),

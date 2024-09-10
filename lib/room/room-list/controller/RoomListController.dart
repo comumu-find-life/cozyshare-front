@@ -50,6 +50,9 @@ class RoomListController extends GetxController {
         filterCityHomes.add(homes[i]);
       }
     }
+
+    print("0000");
+    print(homes);
   }
 
   //필터 적용

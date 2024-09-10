@@ -52,7 +52,7 @@ Widget _buildDealStartDateTime(String time) {
               ),
             ),
             Container(
-              child: Body2Text("입금 전", kTextBlackColor),
+              child: Body2Text("Before Deposit", kTextBlackColor),
             ),
           ],
         ),
@@ -84,7 +84,7 @@ Widget _buildDepositRequestDateTime(String? dateTime) {
               ),
             ),
             Container(
-              child: Body2Text("입금 신청", kTextBlackColor),
+              child: Body2Text("Deposit Request", kTextBlackColor),
             ),
           ],
         ),
@@ -117,7 +117,7 @@ Widget _buildDepositCompletionDateTime(String? dateTime) {
               ),
             ),
             Container(
-              child: Body2Text("입금 완료", kTextBlackColor),
+              child: Body2Text("Deposit Completed", kTextBlackColor),
             ),
           ],
         ),
@@ -150,7 +150,7 @@ Widget _buildDealCompletionRequestDateTime(String? dateTime) {
               ),
             ),
             Container(
-              child: Body2Text("거래 완료 신청", kTextBlackColor),
+              child: Body2Text("Request for \nTransaction Completion", kTextBlackColor),
             ),
           ],
         ),
@@ -183,7 +183,7 @@ Widget _buildDealCompletionDateTime(String? dateTime) {
               ),
             ),
             Container(
-              child: Body2Text("거래 완료", kTextBlackColor),
+              child: Body2Text("Transaction Completed", kTextBlackColor),
             ),
           ],
         ),

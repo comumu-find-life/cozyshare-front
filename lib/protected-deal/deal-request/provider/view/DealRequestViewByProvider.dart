@@ -39,7 +39,7 @@ class DealRequestViewByProvider extends StatelessWidget {
             Center(
               child: Container(
                 margin: EdgeInsets.only(top: 30.h, bottom: 50.h),
-                child: Body2Text("입금은 세입자만 할 수 있습니다.", kGrey500Color),
+                child: Body2Text("Only the tenant can make deposits", kGrey500Color),
               ),
             )
           ],

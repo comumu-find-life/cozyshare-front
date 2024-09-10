@@ -52,7 +52,8 @@ class HomeRegisterTotalController extends GetxController {
         introduce: _introduceController.text,
         bill: int.parse(_homePriceController.bill.text),
         rent: int.parse(_homePriceController.rentController.text),
-        options: _homeRegisterDetailsController.parseOptions());
+        options: _homeRegisterDetailsController.parseOptions(),
+        canParking: _homeRegisterDetailsController.canParking);
 
 
     bool response = await HomeRegisterApi().saveHomeApi(homeGeneratorRequest, _homeImageController.extractImageUrls());

@@ -11,7 +11,7 @@ import '../../../model/chat/response/DirectMessageRoomListDto.dart';
 
 class ChattingController extends GetxController {
   TextEditingController _filterController = TextEditingController();
-  List<DirectMessageRoomListDto> _chatItems = [];
+  List<DirectMessageRoomListResponse> _chatItems = [];
   late String _myUserId;
 
 
@@ -24,7 +24,7 @@ class ChattingController extends GetxController {
 
   String get myUserId => _myUserId;
 
-  List<DirectMessageRoomListDto> get chatItems => _chatItems;
+  List<DirectMessageRoomListResponse> get chatItems => _chatItems;
 
   TextEditingController get filterController => _filterController;
 }

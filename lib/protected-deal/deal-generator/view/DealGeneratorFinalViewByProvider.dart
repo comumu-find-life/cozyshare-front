@@ -39,7 +39,7 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: 20.h, left: 20.w),
-          child: Title2Text("거래 정보", kTextBlackColor),
+          child: Title2Text("Transaction Information", kTextBlackColor),
         )
       ],
     );
@@ -63,7 +63,7 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
                   await _controller.createDeal(context, _chatDetailController);
                   _chatDetailController.startProtectedDeal();
                 },
-                child: ButtonText("완료", kWhiteBackGroundColor),
+                child: ButtonText("Done", kWhiteBackGroundColor),
               ),
             )));
   }

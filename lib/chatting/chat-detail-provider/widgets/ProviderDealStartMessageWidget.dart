@@ -14,7 +14,7 @@ import '../controller/ChatProviderDetailController.dart';
 Widget ProviderDealStartMessageWidget(ChatProviderDetailController controller) {
   ProtectedDealByProviderResponse? dealResponse = controller.dealResponse;
   return Container(
-    width: 200.w,
+    width: 250.w,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(5)),
       border: Border.all(color: kGrey100Color),
@@ -24,12 +24,12 @@ Widget ProviderDealStartMessageWidget(ChatProviderDetailController controller) {
       children: [
         Padding(
           padding: EdgeInsets.only(top: 18.h, left: 13.w),
-          child: Title3Text("보증금/계약금 입금 요청", kTextBlackColor),
+          child: Title3Text("Request for Deposit Payment", kTextBlackColor),
         ),
         Padding(
 
           padding: EdgeInsets.only(top: 3.h, left: 13.w, bottom: 20.h),
-          child: Helper2Text("계약금/보증금 : ${dealResponse?.deposit} \$", kGrey400Color),
+          child: Helper2Text("Deposit : ${dealResponse?.deposit} \$", kGrey400Color),
         ),
         Center(
           child: Padding(
@@ -39,7 +39,7 @@ Widget ProviderDealStartMessageWidget(ChatProviderDetailController controller) {
                 Get.to(() => DealRequestViewByProvider(controller));
               },
               child: Container(
-                width: 170.w,
+                width: 230.w,
                 height: 35.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -47,7 +47,7 @@ Widget ProviderDealStartMessageWidget(ChatProviderDetailController controller) {
                 ),
                 child: Center(
                   child: Helper2Text(
-                    "조회 하기",
+                    "Check",
                     kDarkBlue,
                   ),
                 ),

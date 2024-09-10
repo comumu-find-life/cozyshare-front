@@ -109,6 +109,7 @@ class RegisterHomeImageWidget extends StatelessWidget {
                             File(_controller.images[index].path),
                             width: 320.w,
                             height: 260.h,
+                            fit: BoxFit.fitWidth,
                           );
                         },
                       ),

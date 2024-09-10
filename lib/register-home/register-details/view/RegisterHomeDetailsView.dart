@@ -17,6 +17,7 @@ import '../../controller/HomeRegisterTotalController.dart';
 import '../../register-introduce/view/RegisterHomeIntroduceView.dart';
 import '../controller/HomeRegisterDetailsController.dart';
 import '../widgets/HomeGenderSelect.dart';
+import '../widgets/HomeParkingSelect.dart';
 
 class RegisterHomeDetailsView extends StatelessWidget {
   HomeRegisterTotalController _controller;
@@ -37,6 +38,7 @@ class RegisterHomeDetailsView extends StatelessWidget {
             HomeTypeSelect(_controller.homeRegisterDetailsController),
             HomeGenderSelect(_controller.homeRegisterDetailsController),
             HomeRoomCountForm(_controller.homeRegisterDetailsController),
+            HomeParkingSelect(_controller.homeRegisterDetailsController),
             HomeOptionSelect(_controller.homeRegisterDetailsController),
             Container(
               height: 150.h,

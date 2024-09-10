@@ -24,24 +24,23 @@ class DepositInformationWidgetByGetter extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(left: 20.w, top: 30.h),
-          child: Title2Text("입금 계좌", kTextBlackColor),
+          child: Title2Text("Deposit Account", kTextBlackColor),
         ),
         Container(
           margin: EdgeInsets.only(left: 20.w, top: 20.h),
-          child: HintText2("아래 계좌는 Find Life 가상 계좌입니다.\n\n입금된 보증금/계약금은 거래 성사 후 집주인에게 전달됩니다.", kGrey500Color),
+          child: HintText2("The account below is a Find Life virtual account.\n\nThe deposited will be transferred to the landlord after the transaction is completed.", kGrey500Color),
 
         ),
 
         Container(
           margin: EdgeInsets.only(left: 20.w, top: 20.h),
-          child: HintText2("아래 '입금자 이름'으로 변경 후 송금을 해야 정상적으로 처리 됩니다. ", kErrorColor),
+          child: HintText2("You must change the name to the 'Depositor's Name' below before making the transfer for it to be processed correctly. ", kErrorColor),
 
         ),
         Center(
           child: Container(
             margin: EdgeInsets.only(top: 20.h),
             width: 340.w,
-            height: 120.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(7)),
               border: Border.all(color: kGrey300Color)
@@ -60,7 +59,7 @@ class DepositInformationWidgetByGetter extends StatelessWidget {
 
   Widget _buildIdInformation(BuildContext context){
     return Container(
-      margin: EdgeInsets.only(top: 20.h),
+      margin: EdgeInsets.only(top: 20.h, bottom: 20.h),
       width: 310.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,7 +67,7 @@ class DepositInformationWidgetByGetter extends StatelessWidget {
           Row(
             children: [
               Container(
-                child: Body2Text("입금자 이름", kGrey600Color),
+                child: Body2Text("Depositor's Name", kGrey600Color),
               ),
               InkWell(
                 onTap: () {
@@ -87,8 +86,9 @@ class DepositInformationWidgetByGetter extends StatelessWidget {
             ],
           ),
           Container(
-            width: 210.w,
-            child: NumberText("${dealByGetterResponse.randomDepositorName}", kTextBlackColor, 14),
+            //todo
+            child: NumberText("apple pretty", kTextBlackColor, 14),
+            // child: NumberText("${dealByGetterResponse.randomDepositorName}", kTextBlackColor, 14),
           ),
 
         ],

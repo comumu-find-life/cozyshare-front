@@ -33,17 +33,11 @@ class ChattingListView extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                InkWell(
-                  onTap: (){
-                    print(ApiUrls.DM_HISTORY);
-                  },
-                  child: Container(
-                    child: Body2Text("dasdasd", kTextBlackColor),
-                  ),
-                ),
                 Center(child: _buildSearchBar()),
-                SizedBox(
-                  height: 30.h,
+                Center(
+                  child: SizedBox(
+                    height: 30.h,
+                  ),
                 ),
                 _controller.chatItems.length == 0
                     ? EmptyChatWidget()

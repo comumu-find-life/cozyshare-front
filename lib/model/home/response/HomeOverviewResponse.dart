@@ -39,6 +39,9 @@ class HomeOverviewResponse with ClusterItem {
   });
 
   bool containCityName(String cityName) {
+    print(cityName);
+    print(this.address.toLowerCase());
+    print("----------");
     // Convert both address and cityName to lowercase for case-insensitive comparison
     return this.address.toLowerCase().contains(cityName.toLowerCase());
   }

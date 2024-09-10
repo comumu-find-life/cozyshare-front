@@ -29,7 +29,7 @@ class DealPriceWidget extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: 30.h,left: 15.w),
-          child: Title2Text("거래 정보", kTextBlackColor),
+          child: Title2Text("Transaction Information", kTextBlackColor),
         ),
         Container(
           margin: EdgeInsets.only(left: 10.w, top: 15.h,right: 10.w),
@@ -68,7 +68,7 @@ class DealPriceWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                child: Body2Text("총 요청금액", kGrey600Color),
+                child: Body2Text("Total Price", kGrey600Color),
               ),
               Container(
                 child: NumberText("${fee + deposit} \$", kTextBlackColor, 14),
@@ -88,7 +88,7 @@ class DealPriceWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Body2Text("계약금/보증금", kGrey600Color),
+            child: Body2Text("Deposit", kGrey600Color),
           ),
           Container(
             child: NumberText("${deposit} \$", kTextBlackColor, 14),
@@ -106,7 +106,7 @@ class DealPriceWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            child: Body2Text("수수료 (세입자 부담)", kGrey600Color),
+            child: Body2Text("Fee", kGrey600Color),
           ),
           Container(
             child: NumberText("${fee} \$", kTextBlackColor, 14),

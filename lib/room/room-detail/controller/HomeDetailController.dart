@@ -45,7 +45,6 @@ class HomeDetailController extends GetxController {
     } else {
       _isFavorite?.value = false;
     }
-    print(stringList);
   }
 
   void ontapFavorite(int? homeId) async {

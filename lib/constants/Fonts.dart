@@ -44,7 +44,7 @@ Widget Title1Text(String text, Color color){
 }
 
 Widget Title2Text(String text, Color color){
-  return Text("${text}", style: TextStyle(color : color, fontSize: 20.sp, fontFamily: "Title2", fontWeight: FontWeight.w800),);
+  return Text("${text}", style: TextStyle(color : color, fontSize: 19.sp, fontFamily: "Title2", fontWeight: FontWeight.w800),);
 }
 
 Widget Title3Text(String text, Color color){

@@ -23,6 +23,7 @@ class RegisterHomeIntroduceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kWhiteBackGroundColor,
       bottomSheet: _buildButton(context),
       appBar: HomeRegisterAppBar(context,0.9),
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:home_and_job/utils/ApiUrls.dart';
 
@@ -14,6 +16,9 @@ class RoomApi {
     List<HomeOverviewResponse> homes = [];
 
     var response = await apiUtils.getResponse(ApiUrls.ROOMS_ALL_URL);
+
+    // print("Dasdasd");
+    // print(utf8.decode(response.bodyBytes));
 
     if (apiUtils.isValidResponse(response)) {
       homes = List<HomeOverviewResponse>.from(
