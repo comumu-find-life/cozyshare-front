@@ -30,15 +30,16 @@ class EmailForm extends StatelessWidget {
             margin: EdgeInsets.only(top: 20.h,bottom: 20.h),
             child: FBoldText("Verify Your Email", kGrey700Color, 16),
           ),
-          _buildEmailForm(),
+          _buildEmailForm(context),
 
-          _controller.canInputCode? _buildCheckForm() : Container()
+          _controller.canInputCode? _buildCheckForm(context) : Container()
         ],
       ),
     ));
   }
 
-  Widget _buildEmailForm() {
+  Widget _buildEmailForm(BuildContext context) {
+
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,9 +90,8 @@ class EmailForm extends StatelessWidget {
                               ),
                             ),
                             InkWell(
-
                               onTap: (){
-                                _controller.sendEmail();
+                                _controller.sendEmail(context);
                               },
                               child: Container(
                                 child: Icon(Icons.send, color: kPrimaryColor,),
@@ -109,7 +109,7 @@ class EmailForm extends StatelessWidget {
     );
   }
 
-  Widget _buildCheckForm() {
+  Widget _buildCheckForm(BuildContext context) {
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -164,7 +164,7 @@ class EmailForm extends StatelessWidget {
           ),
           InkWell(
             onTap: (){
-              _controller.checkEmailCode();
+              _controller.checkEmailCode(context);
             },
             child: Container(
               margin: EdgeInsets.only(top: 20.h),

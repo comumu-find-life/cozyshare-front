@@ -7,6 +7,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/state_manager.dart';
 import 'package:home_and_job/account/login/view/MainLoginView.dart';
+import 'package:home_and_job/rest-api/account-api/AccountApi.dart';
 import 'package:home_and_job/rest-api/user-api/SignupApi.dart';
 import 'package:home_and_job/model/user/enums/SignupType.dart';
 import 'package:home_and_job/model/user/request/SignupRequest.dart';
@@ -23,6 +24,7 @@ class SignupController extends GetxController {
   Rx<bool> _checkPrivacy = false.obs;
   Rx<bool> _checkDetail = false.obs;
 
+  String email = "";
   String _selectGender = "";
   String _selectCountry = "";
   String _profileUrl = "";
@@ -65,15 +67,36 @@ class SignupController extends GetxController {
       Get.to(() => SuccessSignupView());
     } else {}
   }
+  // 이메일 검증 메서드687571
+  void checkEmailCode(BuildContext context) async{
+    if(emailCheckController.text.length != 6){
+      CustomSnackBar().show(context, "The verification code is 6 characters long.");
+    }else{
+      bool result = await AccountApi().verifySignUpCode(_emailController.text, _emailCheckController.text);
+      if(result){
+        _checkEmail.value = true;
+      }else{
+        CustomSnackBar().show(context, "Verification failed.");
+      }
+    }
 
-  // 이메일 검증 메서드
-  void checkEmailCode() {
-    _checkEmail.value = true;
+
   }
 
   // 이메일 인증코드 요청 메서드
-  void sendEmail() {
-    _canInputCode.value = true;
+  void sendEmail(BuildContext context) async{
+    if(_emailController.text.isEmpty){
+      CustomSnackBar().show(context, "Input your email");
+    }else{
+      bool result = await AccountApi().sendCheckCodeToEmail(_emailController.text);
+      if(result){
+        email = _emailController.text;
+        _canInputCode.value = true;
+      }else{
+        CustomSnackBar().show(context, "Failed to send Email");
+      }
+    }
+
   }
 
   // 비밀번호 길이 8 자리 이상

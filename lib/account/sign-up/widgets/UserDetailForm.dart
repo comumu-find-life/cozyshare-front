@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -200,7 +199,7 @@ class _UserDetailFormState extends State<UserDetailForm> {
                               items: <String>[
                                 'Male',
                                 'Female',
-                                'No preference'
+                                'AnyThing'
                               ].map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
@@ -361,12 +360,15 @@ class _UserDetailFormState extends State<UserDetailForm> {
               width: 90.w,
               height: 90.w,
               decoration: BoxDecoration(
+                border: Border.all(color: kGrey800Color),
                 shape: BoxShape.circle,
               ),
               child: ClipRRect(
+
                 borderRadius: BorderRadius.all(Radius.circular(50)),
-                child: Image.asset("assets/images/test/user.png",
-                    width: 100.w, height: 100.h, fit: BoxFit.fitWidth),
+                child: Image.asset("assets/images/common/user_icon.png",
+
+                    width: 50.w, height: 50.h, fit: BoxFit.contain),
               )),
           Positioned(
             top: 69.h,

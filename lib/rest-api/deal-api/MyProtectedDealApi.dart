@@ -7,6 +7,7 @@ import '../../utils/ApiUrls.dart';
 import '../../utils/RestApiUtils.dart';
 
 class MyProtectedDealApi {
+
   final RestApiUtils apiUtils = RestApiUtils();
 
   /**
@@ -20,7 +21,6 @@ class MyProtectedDealApi {
 
     if (response.statusCode == 200) {
       var decodedResponse = json.decode(utf8.decode(response.bodyBytes));
-
       if (decodedResponse["data"] != null) {
         List<dynamic> dataList = decodedResponse["data"];
         List<MyProtectedDealResponse> deals = dataList.map((data) {
@@ -32,9 +32,4 @@ class MyProtectedDealApi {
     }
     return null;
   }
-
-
-
-
-
 }
