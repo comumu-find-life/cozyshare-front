@@ -22,8 +22,6 @@ class HomeImageController extends GetxController {
     for(int i = 0; i<_imageList.length; i++){
       paths.add(_imageList[i].path);
     }
-
-
     return paths;
   }
 

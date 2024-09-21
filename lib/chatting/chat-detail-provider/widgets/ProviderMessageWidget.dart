@@ -83,9 +83,9 @@ class MessageBubble extends StatelessWidget {
   Widget _buildDealMessage() {
     switch (directMessageResponse.isDeal) {
       case 1:
-        return ProviderDealStartMessageWidget(controller);
+        return ProviderDealStartMessageWidget(controller.getDealById(directMessageResponse.dealId!)!, controller);
       case 2:
-        return ProviderDealDuringMessageWidget(controller);
+        return ProviderDealDuringMessageWidget(directMessageResponse.dealId!, controller.getDealById(directMessageResponse.dealId!)!,controller);
       case 3:
         return ProviderDealFinishWidget();
       default:

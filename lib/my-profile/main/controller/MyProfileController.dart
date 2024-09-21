@@ -6,7 +6,6 @@ import 'package:home_and_job/utils/DiskDatabase.dart';
 import '../../../rest-api/user-api/ProfileDetailApi.dart';
 
 class MyProfileController extends GetxController {
-  late UserProfileResponse _userProfileResponse;
 
   late UserProfileResponse userProfileResponse;
 

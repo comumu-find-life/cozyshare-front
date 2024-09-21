@@ -123,7 +123,7 @@ class ProfileWidget extends StatelessWidget {
           ),
           InkWell(
             onTap: (){
-              Get.to(() => EditProfileView());
+              Get.to(() => EditProfileView(_controller.userProfileResponse));
             },
             child: Container(
               margin: EdgeInsets.only(top: 6.h),

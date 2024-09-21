@@ -36,7 +36,7 @@ class PostHomeWidget extends StatelessWidget {
             },
             child: Container(
               width: 335.w,
-              height: 100.h,
+              height: 80.h,
               decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -64,15 +64,15 @@ class PostHomeWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              margin: EdgeInsets.only(top: 20.h),
+                              margin: EdgeInsets.only(top: 23.h),
                               child:
-                                  Body2Text("집 매물을 내놓기", kWhiteBackGroundColor),
+                                  Body1Text("Post your rooms", kWhiteBackGroundColor),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(top: 5.h),
-                              child: HelperText(
-                                  "직접 자신의 집 게시글을 올려보세요", kWhiteBackGroundColor),
-                            )
+                            // Container(
+                            //   margin: EdgeInsets.only(top: 5.h),
+                            //   child: HelperText(
+                            //       "직접 자신의 집 게시글을 올려보세요", kWhiteBackGroundColor),
+                            // )
                           ],
                         ),
                       ),

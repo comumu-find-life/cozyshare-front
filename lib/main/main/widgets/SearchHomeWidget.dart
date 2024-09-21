@@ -34,7 +34,7 @@ class SearchHomeWidget extends StatelessWidget {
             },
             child: Container(
               width: 335.w,
-              height: 100.h,
+              height: 80.h,
               decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -64,14 +64,14 @@ class SearchHomeWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              margin: EdgeInsets.only(top: 20.h),
-                              child: Body2Text("집 매물 찾아보기", kWhiteBackGroundColor),
+                              margin: EdgeInsets.only(top: 23.h),
+                              child: Body1Text("Search for rooms", kWhiteBackGroundColor),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(top: 5.h),
-                              child: HelperText(
-                                  "쉐어/렌트 가능한 매물을 찾아보세요.", kWhiteBackGroundColor),
-                            )
+                            // Container(
+                            //   margin: EdgeInsets.only(top: 5.h),
+                            //   child: HelperText(
+                            //       "쉐어/렌트 가능한 매물을 찾아보세요.", kWhiteBackGroundColor),
+                            // )
                           ],
                         ),
                       ),

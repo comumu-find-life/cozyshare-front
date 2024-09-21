@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -33,7 +34,7 @@ class ChatProviderDetailController extends GetxController {
   late int _roomId;
   late int _providerId;
   late int _getterId;
-  late ProtectedDealByProviderResponse? dealResponse;
+  late Map<int, ProtectedDealByProviderResponse> dealMap = {};
   late HomeInformationResponse _home;
   late UserProfileResponse _sender;
   late UserProfileResponse _receiver;
@@ -57,19 +58,15 @@ class ChatProviderDetailController extends GetxController {
   }
 
   /**
-   * 초기 파라미터
-   * - homeId
-   * - otherId
-   * -
+   * dealMap에서 key로 ProtectedDealByProviderResponse 조회
    */
-
-  /**
-   * (1) getter 프로필 조회
-   * (2) provider 프로필 조회
-   * (3) 집 게시글 정보 조회
-   * (4) 채팅에 포함된 안전거래 조회
-   * (5) STOMP 서버 커넥션
-   */
+  ProtectedDealByProviderResponse? getDealById(int dealId) {
+    if (dealMap.containsKey(dealId)) {
+      return dealMap[dealId];
+    } else {
+      return null;  // 해당 key가 없으면 null 반환
+    }
+  }
 
   /**
    * 안전거래 조회 메서드
@@ -80,9 +77,28 @@ class ChatProviderDetailController extends GetxController {
         providerId: int.parse(_home.providerId!),
         homeId: _home.homeId!,
         dmId: _roomId);
-    dealResponse = await ProtectedDealApi().loadProtectedDealByProvider(protectedDealFindRequest);
+    List<ProtectedDealByProviderResponse> response = await ProtectedDealApi().loadProtectedDealByProvider(protectedDealFindRequest);
+    print("-----");
+    print(response);
+    // dealMap에 정보를 넣음
+    if (response != null) {
+      dealMap = { for (var deal in response) deal.id: deal };
+    }
     return true;
   }
+
+  // 진행중인 안전거래가 하나라도 있으면 false 를 반환해야한다.
+  bool canAddDeal() {
+    // dealMap 내 모든 거래 상태가 진행 중이 아닌 경우 true 반환
+    for (var deal in dealMap.values) {
+          if(deal.dealState.isInProgressState()) {
+        return false; // 진행 중인 거래가 하나라도 있으면 false 반환
+      }
+    }
+    return true; // 진행 중인 거래가 없으면 true 반환
+  }
+
+
 
   int getGetterId() {
     if (_home.providerId == _sender.id) {
@@ -147,7 +163,7 @@ class ChatProviderDetailController extends GetxController {
       message: textEditingController.text,
       roomId: _roomId.toString(),
       isDeal: 0,
-      dealState: DealState.NONE.name,
+      dealState: DealState.NONE.name, dealId: null,
     );
     textEditingController.clear();
     stompClient.send(
@@ -157,7 +173,9 @@ class ChatProviderDetailController extends GetxController {
   }
 
   // 안전거래 시작 메서드 (only provider)
-  void startProtectedDeal() async {
+  void startProtectedDeal(int dealId) async {
+
+    print("success create DealId = " + dealId.toString());
     await loadProtectedDeal();
     var directMessageRequest = DirectMessageRequest(
       receiverId: _getterId,
@@ -168,7 +186,7 @@ class ChatProviderDetailController extends GetxController {
 
       isDeal: 1,
       dealState: DealState.BEFORE_DEPOSIT.name,
-      senderId: _providerId,
+      senderId: _providerId, dealId: dealId,
     );
 
     stompClient.send(
@@ -176,7 +194,6 @@ class ChatProviderDetailController extends GetxController {
       body: jsonEncode(directMessageRequest.toJson()),
     );
   }
-
 
   bool isProvider() {
     return _currentUser.id.toString() == _home.providerId.toString();

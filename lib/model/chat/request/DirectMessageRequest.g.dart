@@ -14,6 +14,7 @@ _$DirectMessageRequestImpl _$$DirectMessageRequestImplFromJson(
       receiverId: (json['receiverId'] as num).toInt(),
       message: json['message'] as String,
       isDeal: (json['isDeal'] as num).toInt(),
+      dealId: (json['dealId'] as num?)?.toInt(),
       dealState: json['dealState'] as String?,
     );
 
@@ -25,5 +26,6 @@ Map<String, dynamic> _$$DirectMessageRequestImplToJson(
       'receiverId': instance.receiverId,
       'message': instance.message,
       'isDeal': instance.isDeal,
+      'dealId': instance.dealId,
       'dealState': instance.dealState,
     };

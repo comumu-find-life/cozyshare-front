@@ -11,12 +11,14 @@ import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dar
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
 import '../../detail-view/view/MyHomeDetailView.dart';
+import '../../edit-home/controller/HomeEditController.dart';
+import '../controller/MyHomeListController.dart';
 
 
 class SellHomeWidget extends StatelessWidget {
   final HomeOverviewResponse home;
-
-  SellHomeWidget(this.home);
+  final MyHomeListController controller;
+  SellHomeWidget(this.home, this.controller);
 
   //todo soldout 팝업
   //AskSoldOutPopup().showDialog(_controller, context);
@@ -37,7 +39,9 @@ class SellHomeWidget extends StatelessWidget {
               bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
             ),
           ),
-          child: Row(
+          child:  Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               _buildImage(),
               Container(
@@ -47,30 +51,58 @@ class SellHomeWidget extends StatelessWidget {
                   children: [
                     _buildAddress(),
                     _buildPrice(),
-                    InkWell(
-                      onTap: (){
-
-                        Get.to(() => HomeEditView(home), transition: Transition.noTransition);
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(top: 17.h),
-                        width: 203.w,
-                        height: 35.h,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: kGrey300Color),
-                          color: kGrey100Color,
-                          borderRadius: BorderRadius.all(Radius.circular(4))
-                        ),
-                        child: Center(
-                          child: Body2Text("Edit ", kGrey700Color),
-                        ),
-                      ),
-                    )
+                    _buildButtons(controller, home.id,context),
                   ],
                 ),
               )
             ],
-          )),
+          ),),
+    );
+  }
+
+  Widget _buildButtons(MyHomeListController _controller, int homeId,BuildContext context){
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        InkWell(
+          onTap: (){
+            AskSoldOutPopup().showDialog(_controller, homeId ,context);
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 17.h),
+            width: 90.w,
+            height: 35.h,
+            decoration: BoxDecoration(
+                border: Border.all(color: kGrey300Color),
+                color: kGrey100Color,
+                borderRadius: BorderRadius.all(Radius.circular(4))
+            ),
+            child: Center(
+              child: Body2Text("Sold Out", kGrey700Color),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: (){
+
+            Get.to(() => HomeEditView(home), transition: Transition.noTransition);
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 17.h, left: 5.w),
+            width: 130.w,
+            height: 35.h,
+            decoration: BoxDecoration(
+                border: Border.all(color: kGrey300Color),
+                color: kGrey100Color,
+                borderRadius: BorderRadius.all(Radius.circular(4))
+            ),
+            child: Center(
+              child: Body2Text("Edit ", kGrey700Color),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -83,6 +115,7 @@ class SellHomeWidget extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
           Row(
             children: [
@@ -116,9 +149,9 @@ class SellHomeWidget extends StatelessWidget {
 
   Widget _buildImage() {
     return Container(
-      margin: EdgeInsets.only(left: 13.w),
-      width: 120.w,
-      height: 120.h,
+      margin: EdgeInsets.only(left: 13.w, top: 17.h),
+      width: 100.w,
+      height: 125.h,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(3.0),
           child: Image.asset(

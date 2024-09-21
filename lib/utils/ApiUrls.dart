@@ -17,11 +17,15 @@ class ApiUrls {
   static String USER_LOGIN_URL = "$ROOT_URL/users/login";
   static String USER_ID_FIND_URL = "$ROOT_URL/users/me/userId";
   static String USER_PROFILE_URL = "$ROOT_URL/users/profile";
+  static String USER_PROFILE_EDIT_URL = "$ROOT_URL/users";
+  static String USER_PROFILE_IMAGE_EDIT_URL = "$ROOT_URL/users/{userId}/image";
 
   /**
    * 집 게시글 관련 API URLS
    */
   static String ROOM_SAVE_URL = "$ROOT_URL/homes";
+  static String ROOM_IMAGE_ADD_URL = "$ROOT_URL/homes/{homeId}/image";
+  static String ROOM_IMAGE_DELETE_URL = "$ROOT_URL/homes/{homeId}/image";
   static String ROOM_STATE_CHANGE_URL = "$ROOT_URL/homes/";
   static String ROOMS_ALL_URL = "$ROOT_URL/homes/overview";
   static String ROOM_BY_ID_URL = "$ROOT_URL/homes/";
@@ -36,6 +40,9 @@ class ApiUrls {
   static String DEAL_MY_READ_URL = "$ROOT_URL/deals/users/";
   static String DEAL_PROVIDER_READ = "$ROOT_URL/deals/read/provider";
   static String DEAL_GETTER_READ = "$ROOT_URL/deals/read/getter";
+
+  static String DEAL_PROVIDER_READ_BY_ID = "$ROOT_URL/read/provider/";
+  static String DEAL_GETTER_READ_BY_ID = "$ROOT_URL/read/getter/";
   static String DEAL_REQUEST_DEPOSIT_URL = "$ROOT_URL/deals/request/deposit/";
   static String DEAL_REQUEST_FINISH_URL = "$ROOT_URL/deals/request/done/";
   static String DEAL_CANCLE_URL = "$ROOT_URL/deals/cancel/";

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,9 +13,7 @@ import '../../view/FinishRegisterHomeView.dart';
 import '../../widgets/HomeRegisterProcessBar.dart';
 
 class RegisterHomeIntroduceView extends StatelessWidget {
-
   HomeRegisterTotalController _controller;
-
 
   RegisterHomeIntroduceView(this._controller);
 
@@ -25,16 +22,14 @@ class RegisterHomeIntroduceView extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
       bottomSheet: _buildButton(context),
-      appBar: HomeRegisterAppBar(context,0.9),
-
+      appBar: HomeRegisterAppBar(context, 0.9),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               margin: EdgeInsets.only(top: 20.h, left: 20.w),
-              child:
-              Title2Text("Introduce", kTextBlackColor),
+              child: Title2Text("Introduce", kTextBlackColor),
             ),
             _buildInputIntroduce(),
           ],
@@ -48,25 +43,26 @@ class RegisterHomeIntroduceView extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 15.h),
       child: Obx(() => _controller.isAllInput
           ? InkWell(
-          onTap: () async{
-            bool response = await _controller.saveHome();
-
-            if(response){
-              Get.offAll(() => FinishRegisterHomeView(),
-                  transition: Transition.noTransition);
-            }else{
-              CustomSnackBar().show(context, "failed to upload");
-            }
-
-          },
-          child: NextButtonWidget("Next"))
+              onTap: () async {
+                _controller.isLoading.value
+                    ? null
+                    : _controller.saveHome(context);
+              },
+              child: _controller.isLoading.value
+                  ? CircularProgressIndicator(
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(kWhiteBackGroundColor),
+                    )
+                  : NextButtonWidget("Next"))
           : NotYetButtonWidget("Next")),
     );
   }
 
+  //_controller.saveHome(context);
+
   //FinishRegisterHomeView
 
-  Widget _buildInputIntroduce(){
+  Widget _buildInputIntroduce() {
     return Container(
       width: 320.w,
       height: 430.h,
@@ -89,9 +85,7 @@ class RegisterHomeIntroduceView extends StatelessWidget {
           contentPadding: EdgeInsets.only(left: 15.h, top: 6.h),
           hintText: "Input Content",
           hintStyle: TextStyle(
-              fontSize: 13.sp,
-              color: Colors.grey.shade500,
-              fontFamily: "hint"),
+              fontSize: 13.sp, color: Colors.grey.shade500, fontFamily: "hint"),
           border: InputBorder.none,
           isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
         ),

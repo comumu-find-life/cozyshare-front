@@ -11,8 +11,8 @@ import '../../../protected-deal/deal-request/getter/view/DealRequestViewByGetter
 import '../../../protected-deal/deal-request/provider/view/DealRequestViewByProvider.dart';
 import '../controller/ChatProviderDetailController.dart';
 
-Widget ProviderDealStartMessageWidget(ChatProviderDetailController controller) {
-  ProtectedDealByProviderResponse? dealResponse = controller.dealResponse;
+Widget ProviderDealStartMessageWidget(ProtectedDealByProviderResponse dealByProviderResponse,ChatProviderDetailController controller) {
+  // ProtectedDealByProviderResponse? dealResponse = controller.dealResponse;
   return Container(
     width: 250.w,
     decoration: BoxDecoration(
@@ -29,14 +29,14 @@ Widget ProviderDealStartMessageWidget(ChatProviderDetailController controller) {
         Padding(
 
           padding: EdgeInsets.only(top: 3.h, left: 13.w, bottom: 20.h),
-          child: Helper2Text("Deposit : ${dealResponse?.deposit} \$", kGrey400Color),
+          child: Helper2Text("Deposit : ${dealByProviderResponse?.deposit} \$", kGrey400Color),
         ),
         Center(
           child: Padding(
             padding: EdgeInsets.only(bottom: 15.h),
             child: InkWell(
               onTap: () {
-                Get.to(() => DealRequestViewByProvider(controller));
+                Get.to(() => DealRequestViewByProvider(dealByProviderResponse,controller));
               },
               child: Container(
                 width: 230.w,

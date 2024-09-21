@@ -16,6 +16,7 @@ class StartRegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kWhiteBackGroundColor,
       bottomSheet:_buildButton(),
       appBar: _buildAppBar(context),
       body: SingleChildScrollView(
@@ -23,15 +24,42 @@ class StartRegisterView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              margin: EdgeInsets.only(left: 20.w, top: 40.h),
-              child: FBoldText("Start to register your room", kTextBlackColor, 16),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 20.w, top: 10.h),
-              child: FBoldText("with Find Life", kPrimaryColor, 18),
+            Row(
+              children: [
+                // Container(
+                //   width: 60.w,
+                //   height: 60.h,
+                //   child: Image.asset("assets/icons/post_icon.png", fit: BoxFit.fitHeight,),
+                // ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 20.w, top: 20.h),
+                    child: FBoldText("Start to register your room", kTextBlackColor, 16),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20.w, top: 10.h),
+                    child: FBoldText("with Find Life", kPrimaryColor, 18),
+                  ),
+                ],),
+
+              ],
             ),
 
+            Container(
+              margin: EdgeInsets.only(top: 20.h, left: 20.w),
+              child: Body2Text("The listed property will be displayed for 30 days.", kGrey400Color),
+            ),
+
+            Center(
+              child: Container(
+                margin: EdgeInsets.only(left: 20.w, top: 40.h),
+                width: 230.w,
+                height: 230.h,
+                child: Image.asset("assets/images/common/home-post.png", fit: BoxFit.fitHeight,),
+              ),
+            ),
             Center(
               child: Container(
                 margin: EdgeInsets.only(top: 400.h),

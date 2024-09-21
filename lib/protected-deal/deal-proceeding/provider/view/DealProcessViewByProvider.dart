@@ -12,13 +12,14 @@ import '../../../common/DealInformationWidgetByGetter.dart';
 import '../../common/widgets/DealProcessWidget.dart';
 
 class DealProcessViewByProvider extends StatelessWidget {
+  int dealId;
   final ChatProviderDetailController _chatDetailController;
 
-  DealProcessViewByProvider(this._chatDetailController);
+  DealProcessViewByProvider(this.dealId, this._chatDetailController);
 
   @override
   Widget build(BuildContext context) {
-    final dealResponse = _chatDetailController.dealResponse;
+    final dealResponse = _chatDetailController.getDealById(dealId);
     final step = _getStep(dealResponse?.dealState);
 
     return Scaffold(
@@ -32,31 +33,35 @@ class DealProcessViewByProvider extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             // Center(child: DealProcessWidget(step)),
             Container(
-              margin: EdgeInsets.only(top: 20.h,left: 15.w),
-              child: Title2Text("거래 현황", kTextBlackColor),
+              margin: EdgeInsets.only(top: 20.h, left: 15.w),
+              child: Title2Text("Transaction Status", kTextBlackColor),
             ),
             Center(
               child: DealProcessWidget(
                 step: step,
                 dealStartDateTime: ConverterUtil()
-                    .formatKoreanDateTime(dealResponse!.dealStartDateTime),
-                depositRequestDateTime: ConverterUtil()
-                    .formatKoreanDateTime(dealResponse!.depositRequestDateTime),
-                depositCompletionDateTime: ConverterUtil().formatKoreanDateTime(
-                    dealResponse!.depositCompletionDateTime),
+                    .formatEnglishDateTime(dealResponse!.dealStartDateTime),
+                depositRequestDateTime: ConverterUtil().formatEnglishDateTime(
+                    dealResponse!.depositRequestDateTime),
+                depositCompletionDateTime: ConverterUtil()
+                    .formatEnglishDateTime(
+                        dealResponse!.depositCompletionDateTime),
                 dealCompletionRequestDateTime: ConverterUtil()
-                    .formatKoreanDateTime(
-                    dealResponse!.dealCompletionRequestDateTime),
-                dealCompletionDateTime: ConverterUtil()
-                    .formatKoreanDateTime(dealResponse!.dealCompletionDateTime),
-                dealCancellationDateTime: ConverterUtil().formatKoreanDateTime(
+                    .formatEnglishDateTime(
+                        dealResponse!.dealCompletionRequestDateTime),
+                dealCompletionDateTime: ConverterUtil().formatEnglishDateTime(
+                    dealResponse!.dealCompletionDateTime),
+                dealCancellationDateTime: ConverterUtil().formatEnglishDateTime(
                     dealResponse!.dealCancellationDateTime),
               ),
             ),
-            Center(child: DealPriceWidget(deposit: dealResponse!.deposit, fee: dealResponse.fee,)),
+            Center(
+                child: DealPriceWidget(
+              deposit: dealResponse!.deposit,
+              fee: dealResponse.fee,
+            )),
             DealAccountByProviderWidget(dealResponse)
           ],
         ),
@@ -74,6 +79,4 @@ class DealProcessViewByProvider extends StatelessWidget {
         return 3;
     }
   }
-
-
 }

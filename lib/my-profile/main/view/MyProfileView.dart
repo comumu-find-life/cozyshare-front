@@ -17,6 +17,7 @@ class MyProfileView extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
+
         body: FutureBuilder(future: controller.loadUserProfile(), builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
         return Center(
@@ -28,6 +29,7 @@ class MyProfileView extends StatelessWidget {
         );
       } else {
         return   SingleChildScrollView(
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -79,3 +81,5 @@ class MyProfileView extends StatelessWidget {
     );
   }
 }
+
+

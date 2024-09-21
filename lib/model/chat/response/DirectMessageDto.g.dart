@@ -14,6 +14,7 @@ _$DirectMessageDtoImpl _$$DirectMessageDtoImplFromJson(
       message: json['message'] as String,
       sentAt: json['sentAt'] as String?,
       isDeal: (json['isDeal'] as num).toInt(),
+      dealId: (json['dealId'] as num?)?.toInt(),
       dealState: $enumDecodeNullable(_$DealStateEnumMap, json['dealState']),
     );
 
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$DirectMessageDtoImplToJson(
       'message': instance.message,
       'sentAt': instance.sentAt,
       'isDeal': instance.isDeal,
+      'dealId': instance.dealId,
       'dealState': _$DealStateEnumMap[instance.dealState],
     };
 

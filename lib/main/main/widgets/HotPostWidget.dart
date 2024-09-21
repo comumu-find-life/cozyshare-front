@@ -21,6 +21,7 @@ class HotPlaceWidget extends StatelessWidget {
         _buildText(),
         //  _buildSelectType(),
         _buildCityList(),
+
         //controller.selectHome? _buildHotHomePost() : _buildHotJobPost()
       ],
     );
@@ -29,7 +30,7 @@ class HotPlaceWidget extends StatelessWidget {
   Widget _buildCityList() {
     return Container(
       width: 360.w,
-      height: 300.h,
+      height: 250.h,
       margin: EdgeInsets.only(top: 20.w, left: 20.w),
       child: ListView(
         scrollDirection: Axis.horizontal,
@@ -81,7 +82,7 @@ class HotPlaceWidget extends StatelessWidget {
                   child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 22.w, bottom: 255.h),
+                  margin: EdgeInsets.only(left: 22.w, bottom: 210.h),
                   child:
                       Center(child: Body1Text("Sydney", kWhiteBackGroundColor)),
                 )
@@ -129,7 +130,7 @@ class HotPlaceWidget extends StatelessWidget {
                   child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  margin: EdgeInsets.only(left: 10.w, bottom: 210.h),
                   child:
                   Center(child: Body1Text("Melbourne", kWhiteBackGroundColor)),
                 )
@@ -177,7 +178,7 @@ class HotPlaceWidget extends StatelessWidget {
                   child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  margin: EdgeInsets.only(left: 10.w, bottom: 210.h),
                   child:
                   Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
                 )
@@ -211,7 +212,7 @@ class HotPlaceWidget extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                   child: Image.asset(
-                    "assets/images/cities/brisbane.jpg",
+                    "assets/images/cities/adelaide.jpg",
                     fit: BoxFit.cover,
                   )),
             ),
@@ -225,9 +226,9 @@ class HotPlaceWidget extends StatelessWidget {
                   child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  margin: EdgeInsets.only(left: 10.w, bottom: 210.h),
                   child:
-                  Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+                  Center(child: Body1Text("Adelaide", kWhiteBackGroundColor)),
                 )
               ],
             ),
@@ -259,7 +260,7 @@ class HotPlaceWidget extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                   child: Image.asset(
-                    "assets/images/cities/brisbane.jpg",
+                    "assets/images/cities/gold_coast.jpg",
                     fit: BoxFit.cover,
                   )),
             ),
@@ -273,9 +274,9 @@ class HotPlaceWidget extends StatelessWidget {
                   child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  margin: EdgeInsets.only(left: 10.w, bottom: 210.h),
                   child:
-                  Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+                  Center(child: Body1Text("Gold Coast", kWhiteBackGroundColor)),
                 )
               ],
             ),
@@ -307,7 +308,7 @@ class HotPlaceWidget extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                   child: Image.asset(
-                    "assets/images/cities/brisbane.jpg",
+                    "assets/images/cities/perth.jpg",
                     fit: BoxFit.cover,
                   )),
             ),
@@ -321,9 +322,9 @@ class HotPlaceWidget extends StatelessWidget {
                   child: Image.asset("assets/images/common/tag_normal.png"),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10.w, bottom: 255.h),
+                  margin: EdgeInsets.only(left: 10.w, bottom: 210.h),
                   child:
-                  Center(child: Body1Text("Brisbane", kWhiteBackGroundColor)),
+                  Center(child: Body1Text("Perth", kWhiteBackGroundColor)),
                 )
               ],
             ),

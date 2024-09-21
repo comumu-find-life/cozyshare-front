@@ -5,7 +5,7 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import '../../../model/chat/response/DirectMessageDto.dart';
 import '../../chat-detail-provider/widgets/ProviderDealFinishWidget.dart';
-import '../controller/ChatProviderDetailController.dart';
+import '../controller/ChatGetterDetailController.dart';
 import 'GetterDealDuringMessageWidget.dart';
 import 'GetterDealFinishWidget.dart';
 import 'GetterDealStartMessageWidget.dart';
@@ -84,10 +84,9 @@ class MessageBubble extends StatelessWidget {
   Widget _buildDealMessage() {
     switch (directMessageResponse.isDeal) {
       case 1:
-
-        return GetterDealStartMessageWidget(controller);
+        return GetterDealStartMessageWidget(directMessageResponse.dealId!, controller);
       case 2:
-        return GetterDealDuringMessageWidget(controller);
+        return GetterDealDuringMessageWidget(directMessageResponse.dealId!, controller);
       case 3:
         return GetterDealFinishWidget();
       default:

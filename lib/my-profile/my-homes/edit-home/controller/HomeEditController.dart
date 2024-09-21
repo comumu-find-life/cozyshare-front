@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:home_and_job/model/home/enums/HomeStatus.dart';
 import 'package:home_and_job/model/home/request/HomeUpdateRequest.dart';
 import 'package:home_and_job/model/user/enums/Gender.dart';
@@ -11,6 +12,7 @@ import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditFinishVi
 import 'package:home_and_job/rest-api/home-api/MyHomeApi.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/detail-view/view/FinishView.dart';
 import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
+import 'package:home_and_job/utils/Popup.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../model/home/enums/HomeOption.dart';
@@ -31,6 +33,7 @@ class HomeEditController extends GetxController {
   RxList _homeImages = [].obs;
   RxList _addImages = [].obs;
 
+  List<String> _deleteImagesUrls = [];
   Rx<String> _homeAddress = "".obs;
   HomeAddressGeneratorRequest? _newAddress;
   TextEditingController _bondController = TextEditingController();
@@ -81,6 +84,7 @@ class HomeEditController extends GetxController {
 
   void deleteHomeImages(String path) {
     if (_homeImages.contains(path)) {
+      _deleteImagesUrls.add(path);
       _homeImages.remove(path);
     }
   }
@@ -104,29 +108,58 @@ class HomeEditController extends GetxController {
     _selectedHomeType.value = type;
   }
 
-  void updateHomeInformation() async {
-    //todo 이미지 업데이트
+  void updateHomeImage() async {}
 
-    //todo 정보 업데이트
-    var homeUpdateRequest = HomeUpdateRequest(
+  void updateHomeInformation() async {
+    if (!validateImageCount()) {
+      ToastMessage().showtoast("At least one photo of the house is required");
+    } else {
+      //todo 이미지 업데이트
+      if (_addImages.value.length >= 0) {
+        await MyHomeApi().updateHomeImages(_home.homeId!, extractImageUrls());
+      }
+      if (_deleteImagesUrls.length >= 0) {
+        await MyHomeApi().deleteHomeImages(home.homeId!, _deleteImagesUrls);
+      }
+      //todo 정보 업데이트
+      var homeUpdateRequest = createHomeUpdateRequest();
+      var response = await MyHomeApi().updateHomeInformation(homeUpdateRequest);
+      if (response) {
+        Get.to(() => HomeEditFinishView());
+      }
+    }
+  }
+
+  List<String> extractImageUrls() {
+    List<String> paths = [];
+    for (int i = 0; i < _addImages.length; i++) {
+      paths.add(addImages[i].path);
+    }
+    return paths;
+  }
+
+  bool validateImageCount() {
+    if (_homeImages.length == 0) {
+      return false;
+    }
+    return true;
+  }
+
+  // 업데이트할 집 정보를 담을 객체
+  HomeUpdateRequest createHomeUpdateRequest() {
+    return HomeUpdateRequest(
         homeId: _home.homeId,
         bathRoomCount: _home.bathRoomCount,
         dealSavable: true,
         bedroomCount: _home.bedroomCount,
         bond: int.parse(_bondController.text),
-        gender: Gender.MALE,
+        gender: _home.gender,
         type: _home.type,
-
-        introduce: introduceController.text,
+        introduce: _introduceController.text,
         bill: int.parse(_billController.text),
         rent: int.parse(_rentController.text),
         options: parseHomeTypeString(_selectedOptions),
         homeAddress: _newAddress != null ? _newAddress : null);
-    print(homeUpdateRequest.toJson());
-    var response = await MyHomeApi().updateHomeInformation(homeUpdateRequest);
-    if(response){
-      Get.to(() => HomeEditFinishView());
-    }
   }
 
   String get homeAddress => _homeAddress.value;
@@ -148,6 +181,8 @@ class HomeEditController extends GetxController {
   RxList<HomeOptionType> get selectedOptions => _selectedOptions;
 
   List get addImages => _addImages.value;
+
+  List<String> get deleteImagesUrls => _deleteImagesUrls;
 
   List get homeImages => _homeImages.value;
 }

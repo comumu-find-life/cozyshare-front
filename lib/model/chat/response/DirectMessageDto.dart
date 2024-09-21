@@ -12,6 +12,7 @@ class DirectMessageResponse with _$DirectMessageResponse {
     required String message,
     required String? sentAt,
     required int isDeal,
+    required int? dealId,
     required DealState? dealState
   }) = _DirectMessageDto;
 

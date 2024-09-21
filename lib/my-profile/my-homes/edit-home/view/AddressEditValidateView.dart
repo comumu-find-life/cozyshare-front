@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:home_and_job/model/home/response/LatLng.dart';
-import 'package:home_and_job/my-profile/my-homes/edit-home/controller/HomeEditController.dart';
 
 import '../controller/HomeAddressEditController.dart';
 
@@ -27,7 +25,6 @@ class _RoomLocationViewState extends State<AddressEditValidateView> {
   @override
   void initState() {
     super.initState();
-    //_createMarkerImageFromAsset();
   }
 
   Future<bool> _createMarkerImageFromAsset() async {
@@ -120,7 +117,7 @@ class _RoomLocationViewState extends State<AddressEditValidateView> {
           ),
           InkWell(
             onTap: (){
-              widget._controller.checkAddress();
+              widget._controller.checkAddress(widget.location!.lat, widget.location!.lng);
               Navigator.pop(context);
             },
             child: Container(

@@ -7,6 +7,7 @@ import '../../model/chat/response/DirectMessageDto.dart';
 import '../../model/chat/response/DirectMessageRoomListDto.dart';
 import '../../utils/ApiUrls.dart';
 import '../../utils/RestApiUtils.dart';
+import '../user-api/LoginApi.dart';
 
 class DmApi {
 
@@ -57,12 +58,10 @@ class DmApi {
     List<DirectMessageRoomListResponse> items = [];
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? accessToken = prefs.getString("access_token");
     var userId = await DiskDatabase().getUserId();
+    var response = await apiUtils.callGetApiWithToken(ApiUrls.DM_ROOMS + userId.toString());
 
-    var response = await apiUtils.getResponse(ApiUrls.DM_ROOMS+userId.toString(), accessToken: accessToken);
-
-
+    print(utf8.decode(response.bodyBytes));
 
     if (apiUtils.isValidResponse(response)) {
       List<dynamic> jsonResponse = apiUtils.decodeResponse(response);

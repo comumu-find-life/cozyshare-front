@@ -40,7 +40,14 @@ class MyHomeListController extends GetxController {
   void reupload(int homeId)async{
     bool response = await MyHomeApi().changeStatus(HomeStatus.FOR_SALE, homeId!);
     if(response){
-      Get.offAll(() => FinishView("Your post has been re-uploaded!", "Touch to return to the main screen."));
+      Get.offAll(() => FinishView("Your room has been Uploaded!", "Touch to return to the main screen."));
+    }
+  }
+
+  void soldOut(int homeId) async {
+    bool response = await MyHomeApi().changeStatus(HomeStatus.SOLD_OUT, homeId!);
+    if(response){
+      Get.offAll(() => FinishView("Your room has been Sold out!", "Touch to return to the main screen."));
     }
   }
 

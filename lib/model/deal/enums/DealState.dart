@@ -12,4 +12,14 @@ enum DealState {
 
   const DealState(this.description);
 
+  bool isInProgressState() {
+    return this == DealState.BEFORE_DEPOSIT ||
+        this == DealState.REQUEST_DEPOSIT ||
+        this == DealState.COMPLETE_DEPOSIT ||
+        this == DealState.REQUEST_COMPLETE_DEAL;
+  }
+
+
+
 }
+

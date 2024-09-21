@@ -15,6 +15,8 @@ _$HomeAddressGeneratorRequestImpl _$$HomeAddressGeneratorRequestImplFromJson(
       detailAddress: json['detailAddress'] as String,
       streetName: json['streetName'] as String,
       streetCode: json['streetCode'] as String,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$HomeAddressGeneratorRequestImplToJson(
@@ -26,4 +28,6 @@ Map<String, dynamic> _$$HomeAddressGeneratorRequestImplToJson(
       'detailAddress': instance.detailAddress,
       'streetName': instance.streetName,
       'streetCode': instance.streetCode,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
     };

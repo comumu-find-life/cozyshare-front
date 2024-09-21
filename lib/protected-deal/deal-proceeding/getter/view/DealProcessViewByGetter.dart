@@ -6,7 +6,7 @@ import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/utils/Converter.dart';
-import '../../../../chatting/chat-detail-getter/controller/ChatProviderDetailController.dart';
+import '../../../../chatting/chat-detail-getter/controller/ChatGetterDetailController.dart';
 import '../../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../../../../constants/Fonts.dart';
 import '../../../../model/deal/enums/DealState.dart';
@@ -18,15 +18,16 @@ import '../../common/widgets/DealProcessWidget.dart';
 import '../../common/widgets/DepositGuideWidget.dart';
 
 class DealProcessViewByGetter extends StatelessWidget {
+  final int dealId;
   final ChatGetterDetailController _chatDetailController;
   final DealProcessControllerByGetter _controller =
       DealProcessControllerByGetter();
 
-  DealProcessViewByGetter(this._chatDetailController);
+  DealProcessViewByGetter(this.dealId, this._chatDetailController);
 
   @override
   Widget build(BuildContext context) {
-    final dealResponse = _chatDetailController.dealResponse;
+    final dealResponse = _chatDetailController.getDealById(dealId);
     final step = _getStep(dealResponse?.dealState);
     //final step = _getStep(dealResponse?.dealState);
 
@@ -43,7 +44,7 @@ class DealProcessViewByGetter extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
-              onTap: (){
+              onTap: () {
                 print(step);
               },
               child: Container(
@@ -56,21 +57,26 @@ class DealProcessViewByGetter extends StatelessWidget {
                 step: step,
                 dealStartDateTime: ConverterUtil()
                     .formatEnglishDateTime(dealResponse!.dealStartDateTime),
-                depositRequestDateTime: ConverterUtil()
-                    .formatEnglishDateTime(dealResponse!.depositRequestDateTime),
-                depositCompletionDateTime: ConverterUtil().formatEnglishDateTime(
-                    dealResponse!.depositCompletionDateTime),
+                depositRequestDateTime: ConverterUtil().formatEnglishDateTime(
+                    dealResponse!.depositRequestDateTime),
+                depositCompletionDateTime: ConverterUtil()
+                    .formatEnglishDateTime(
+                        dealResponse!.depositCompletionDateTime),
                 dealCompletionRequestDateTime: ConverterUtil()
                     .formatEnglishDateTime(
                         dealResponse!.dealCompletionRequestDateTime),
-                dealCompletionDateTime: ConverterUtil()
-                    .formatEnglishDateTime(dealResponse!.dealCompletionDateTime),
+                dealCompletionDateTime: ConverterUtil().formatEnglishDateTime(
+                    dealResponse!.dealCompletionDateTime),
                 dealCancellationDateTime: ConverterUtil().formatEnglishDateTime(
                     dealResponse!.dealCancellationDateTime),
               ),
             ),
-            Center(child: DealPriceWidget(deposit: dealResponse.deposit, fee: dealResponse.fee,)),
-            DepositInformationWidgetByGetter(_chatDetailController.dealResponse!),
+            Center(
+                child: DealPriceWidget(
+              deposit: dealResponse.deposit,
+              fee: dealResponse.fee,
+            )),
+            DepositInformationWidgetByGetter(dealResponse!),
             if (step == 2) DealFinishAgreeWidget(_controller),
             SizedBox(
               height: 130.h,
@@ -109,7 +115,7 @@ class DealProcessViewByGetter extends StatelessWidget {
   // }
 
   Container _filterButton(int step, BuildContext context) {
-    switch (step){
+    switch (step) {
       case 1:
         return _buildRequestDepositButton(context);
       case 2:
@@ -150,12 +156,11 @@ class DealProcessViewByGetter extends StatelessWidget {
           shadowColor: Colors.transparent,
         ),
         onPressed: () async {
-          await ProtectedDealApi()
-              .requestDealFinish(_chatDetailController.dealResponse!.id);
+          await ProtectedDealApi().requestDealFinish(dealId);
           _chatDetailController.confirmDeal();
           Navigator.pop(context);
         },
-        child: ButtonText("거래 완료 신청", kWhiteBackGroundColor),
+        child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
       ),
     );
   }
@@ -171,8 +176,7 @@ class DealProcessViewByGetter extends StatelessWidget {
           shadowColor: Colors.transparent,
         ),
         onPressed: () async {
-          await ProtectedDealApi()
-              .requestDepositByGetter(_chatDetailController.dealResponse!.id);
+          await ProtectedDealApi().requestDepositByGetter(dealId);
           _chatDetailController.confirmDeal();
           Navigator.pop(context);
         },

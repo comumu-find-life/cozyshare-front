@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 
-import '../controller/ChatProviderDetailController.dart';
+import '../controller/ChatGetterDetailController.dart';
 
 
 class GetterInputMessageWidget extends StatefulWidget {

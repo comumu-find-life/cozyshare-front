@@ -49,11 +49,11 @@ class _BannerWidgetState extends State<BannerWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 40.h, left: 10.w),
+        margin: EdgeInsets.only(top: 10.h, left: 10.w),
         child: SizedBox(
           height: 75.h,
 
-          width: 330.w,// 배너 높이 조절
+          width: 345.w,// 배너 높이 조절
           child: PageView(
             controller: _pageController,
             onPageChanged: (int page) {
@@ -69,7 +69,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                 width: 200.w,
                 height: 100.h,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
                     color: kGrey200Color
                 ),
                 child: Center(

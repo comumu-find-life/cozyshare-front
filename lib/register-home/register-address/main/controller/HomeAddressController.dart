@@ -69,7 +69,7 @@ class HomeAddressController extends GetxController {
         detailAddress: _detailAddressController.text,
         streetName: _streetNameController.text,
         streetCode: _streetCodeController.text,
-        state: state);
+        state: state, latitude: 0, longitude: 0);
   }
 
   bool get isAllInputAddress => _isAllInputAddress.value;

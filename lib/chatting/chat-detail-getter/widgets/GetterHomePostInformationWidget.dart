@@ -9,7 +9,7 @@ import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 import '../../../protected-deal/deal-generator/view/DealGeneratorViewByProvider.dart';
-import '../controller/ChatProviderDetailController.dart';
+import '../controller/ChatGetterDetailController.dart';
 
 /**
  * 채팅방 상단에 보여줄 거래 매물 정보 위젯

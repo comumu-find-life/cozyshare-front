@@ -8,9 +8,10 @@ import 'package:get/get_navigation/get_navigation.dart';
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 import '../../../protected-deal/deal-proceeding/getter/view/DealProcessViewByGetter.dart';
-import '../controller/ChatProviderDetailController.dart';
+import '../controller/ChatGetterDetailController.dart';
 
-Widget GetterDealDuringMessageWidget(ChatGetterDetailController controller){
+Widget GetterDealDuringMessageWidget(int dealId, ChatGetterDetailController controller){
+  var dealResponse = controller.getDealById(dealId);
   return Container(
     width: 220.w,
     height: 150.h,
@@ -27,11 +28,11 @@ Widget GetterDealDuringMessageWidget(ChatGetterDetailController controller){
             child: Title3Text("Transaction in Progress", kDarkBlue)),
         Container(
           margin: EdgeInsets.only(top: 3.h, left: 13.w),
-          child: Helper2Text("State : ${controller.dealResponse!.dealState.description}", kGrey600Color),
+          child: Helper2Text("State : ${dealResponse!.dealState.description}", kGrey600Color),
         ),
         InkWell(
           onTap: (){
-            Get.to(() => DealProcessViewByGetter(controller));
+            Get.to(() => DealProcessViewByGetter(dealId, controller));
           },
           child: Center(
             child: Container(

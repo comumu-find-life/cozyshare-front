@@ -6,6 +6,8 @@ class DiskDatabase {
   static const String ACCESS_TOKEN = "access_token";
   static const String REFRESH_TOKEN = "refresh_token";
   static const String USER_ID = "user_id";
+  static const String LOGIN_ID = "login_id";
+  static const String LOGIN_PASSWORD = "login_password";
   static const String FAVORITE_HOME_IDS = "favorite_home_ids"; // 새로 추가한 상수
 
   Future<String?> getAccessToken() async {
@@ -21,6 +23,30 @@ class DiskDatabase {
   Future<String?> getUserId() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(USER_ID);
+  }
+
+  Future<String?> getLoginId() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(LOGIN_ID);
+  }
+
+  Future<String?> getLoginPassword() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(LOGIN_PASSWORD);
+  }
+
+  Future<void> setLoginId(String id) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(LOGIN_ID, id);
+    print("저장될 ID: $id");
+
+    String? a = await prefs.getString(LOGIN_ID);
+    print("저장한 ID: $a");
+  }
+
+  Future<void> setLoginPassword(String password) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(LOGIN_PASSWORD, password);
   }
 
   Future<void> setUserId(String userId) async {

@@ -60,7 +60,7 @@ class MyHomeListView extends StatelessWidget {
                                 itemBuilder: (BuildContext ctx, int idx) {
                                   return _controller.homeStatus ==
                                           HomeStatus.FOR_SALE
-                                      ? SellHomeWidget(_controller.myHomes[idx])
+                                      ? SellHomeWidget(_controller.myHomes[idx], _controller)
                                       : _controller.homeStatus ==
                                               HomeStatus.SOLD_OUT
                                           ? SoldOutHomeWidget(

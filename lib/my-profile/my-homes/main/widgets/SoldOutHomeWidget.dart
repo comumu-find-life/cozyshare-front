@@ -116,8 +116,8 @@ class SoldOutHomeWidget extends StatelessWidget {
   Widget _buildImage() {
     return Container(
       margin: EdgeInsets.only(left: 13.w),
-      width: 120.w,
-      height: 120.h,
+      width: 100.w,
+      height: 125.h,
       child: ClipRRect(
           borderRadius: BorderRadius.circular(3.0),
           child: Image.asset(

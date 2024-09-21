@@ -72,8 +72,9 @@ class HomeEditAddressView extends StatelessWidget {
     );
   }
 
+  //Collins
+
   Future<void> _navigateToRegisterHomePriceView(BuildContext context) async {
-    // 주소 유효성 검사 API 연동
     var generateHomeAddress = _controller.generateHomeAddress();
 
     _homeEditController.updateAddress(generateHomeAddress);

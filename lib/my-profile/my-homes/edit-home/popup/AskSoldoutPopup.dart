@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 
 import '../../../../constants/Fonts.dart';
-import '../controller/HomeEditController.dart';
+import '../../main/controller/MyHomeListController.dart';
 
 
 class AskSoldOutPopup {
 
-  void showDialog(HomeEditController _controller, BuildContext context) {
+  void showDialog(MyHomeListController _controller,int homeId ,BuildContext context) {
     showGeneralDialog(
         context: context,
         barrierDismissible: true,
@@ -86,7 +86,7 @@ class AskSoldOutPopup {
                                 InkWell(
                                   onTap: (){
                                     Navigator.pop(context);
-                                    _controller.soldOut();
+                                    _controller.soldOut(homeId);
                                   },
                                   child: Container(
                                     margin: EdgeInsets.only(left: 5.w),

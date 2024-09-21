@@ -12,7 +12,6 @@ class LoginApi with ChangeNotifier {
 
 
   Future<bool> login(String email, String password) async {
-    print(ApiUrls.USER_LOGIN_URL);
     Response response = await http.post(
       Uri.parse(ApiUrls.USER_LOGIN_URL),
       headers: {
@@ -27,8 +26,13 @@ class LoginApi with ChangeNotifier {
       checkUserId(accessToken);
       return true;
     }
-
     return false;
+  }
+
+  Future<bool> reLogin() async {
+    String? loginId = await DiskDatabase().getLoginId();
+    String? loginPassword = await DiskDatabase().getLoginPassword();
+    return await login(loginId!, loginPassword!);
   }
 
   void checkUserId(String accessToken) async {

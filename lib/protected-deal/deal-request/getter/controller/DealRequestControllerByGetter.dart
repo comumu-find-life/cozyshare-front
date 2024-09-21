@@ -20,5 +20,7 @@ class DealRequestControllerByGetter extends GetxController{
     return false;
   }
 
+
+
   bool get canNext => _canNext.value;
 }

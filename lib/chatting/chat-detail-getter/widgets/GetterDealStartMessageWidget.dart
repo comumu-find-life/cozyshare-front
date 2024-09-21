@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:home_and_job/chatting/chat-detail-getter/controller/ChatProviderDetailController.dart';
+import 'package:home_and_job/chatting/chat-detail-getter/controller/ChatGetterDetailController.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
 import '../../../protected-deal/deal-request/getter/view/DealRequestViewByGetter.dart';
 
-Widget GetterDealStartMessageWidget(ChatGetterDetailController controller){
-  ProtectedDealByGetterResponse? dealResponse = controller.dealResponse;
+Widget GetterDealStartMessageWidget(int dealId, ChatGetterDetailController controller){
+  ProtectedDealByGetterResponse? dealResponse = controller.getDealById(dealId);
   return Container(
     width: 250.w,
     decoration: BoxDecoration(
@@ -37,7 +37,7 @@ Widget GetterDealStartMessageWidget(ChatGetterDetailController controller){
             padding: EdgeInsets.only(bottom: 15.h),
             child: InkWell(
               onTap: () {
-                Get.to(() => DealRequestViewByGetter(controller));
+                Get.to(() => DealRequestViewByGetter(dealId, controller));
               },
               child: Container(
                 width: 230.w,

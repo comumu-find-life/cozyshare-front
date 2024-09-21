@@ -5,6 +5,7 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
+import '../../../../model/deal/response/ProtectedDealByProviderResponse.dart';
 import '../../../deal-generator/widgets/DealInformationHeaderWidget.dart';
 import '../../../common/DealInformationWidgetByGetter.dart';
 import '../widgets/DepositInformationWidgetByProvider.dart';
@@ -15,9 +16,9 @@ import '../widgets/DepositInformationWidgetByProvider.dart';
 class DealRequestViewByProvider extends StatelessWidget {
 
   ChatProviderDetailController _chatDetailController;
+  ProtectedDealByProviderResponse _dealByProviderResponse;
 
-
-  DealRequestViewByProvider(this._chatDetailController);
+  DealRequestViewByProvider(this._dealByProviderResponse,this._chatDetailController);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,10 @@ class DealRequestViewByProvider extends StatelessWidget {
             DealInformationHeaderWidget(_chatDetailController.home),
             //거래 정보
 
-            Center(child: DealPriceWidget(deposit: _chatDetailController.dealResponse!.deposit, fee: _chatDetailController.dealResponse!.fee,)),
+            Center(child: DealPriceWidget(deposit: _dealByProviderResponse!.deposit, fee: _dealByProviderResponse!.fee,)),
             //Center(child: DealInformationWidgetByGetter(_chatDetailController.dealResponse!)),
             //입금 계좌
-            DepositInformationWidgetByProvider(_chatDetailController.dealResponse!),
+            DepositInformationWidgetByProvider(_dealByProviderResponse),
             //이용약관 도으이
             Center(
               child: Container(

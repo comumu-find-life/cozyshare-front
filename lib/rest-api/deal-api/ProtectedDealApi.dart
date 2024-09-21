@@ -14,60 +14,61 @@ import '../../utils/RestApiUtils.dart';
 class ProtectedDealApi {
   final RestApiUtils apiUtils = RestApiUtils();
 
-
   /**
    * 안전거래 단일 조회 by Provider (In Chatting)
    */
-  Future<ProtectedDealByProviderResponse?> loadProtectedDealByProvider(ProtectedDealFindRequest request) async {
+  Future<List<ProtectedDealByProviderResponse>> loadProtectedDealByProvider(
+      ProtectedDealFindRequest request) async {
+    List<ProtectedDealByProviderResponse> deals = [];
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
-    final response = await http.post(
-        Uri.parse(ApiUrls.DEAL_PROVIDER_READ),
+    final response = await http.post(Uri.parse(ApiUrls.DEAL_PROVIDER_READ),
         headers: {
           'Authorization': 'Bearer $accessToken',
           'Content-Type': 'application/json',
         },
-        body: json.encode(request.toJson())
-    );
+        body: json.encode(request.toJson()));
 
-
-    if(response.statusCode == 200 && json.decode(utf8.decode(response.bodyBytes))["data"] != null){
-      return ProtectedDealByProviderResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+    if (response.statusCode == 200) {
+      deals = List<ProtectedDealByProviderResponse>.from(
+          apiUtils.decodeResponse(response).map((x) => ProtectedDealByProviderResponse.fromJson(x))
+      );
     }
-    return null;
-
+    return deals;
   }
+
+
 
   /**
    * 안전거래 단일 조회 by Getter (In Chatting)
    */
-  Future<ProtectedDealByGetterResponse?> loadProtectedDealByGetter(ProtectedDealFindRequest request) async {
+  Future<List<ProtectedDealByGetterResponse>> loadProtectedDealByGetter(
+      ProtectedDealFindRequest request) async {
+    List<ProtectedDealByGetterResponse> deals = [];
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
     print(ApiUrls.DEAL_PROVIDER_READ);
-    final response = await http.post(
-        Uri.parse(ApiUrls.DEAL_GETTER_READ),
+    final response = await http.post(Uri.parse(ApiUrls.DEAL_GETTER_READ),
         headers: {
           'Authorization': 'Bearer $accessToken',
           'Content-Type': 'application/json',
         },
-        body: json.encode(request.toJson())
-    );
+        body: json.encode(request.toJson()));
 
-
-    if(response.statusCode == 200 && json.decode(utf8.decode(response.bodyBytes))["data"] != null){
-      return ProtectedDealByGetterResponse.fromJson(json.decode(utf8.decode(response.bodyBytes))["data"]);
+    if (response.statusCode == 200) {
+      deals = List<ProtectedDealByGetterResponse>.from(
+          apiUtils.decodeResponse(response).map((x) => ProtectedDealByGetterResponse.fromJson(x))
+      );
     }
-    return null;
-
+    return deals;
   }
 
   /**
    * 안전 거래 시작 API (Provider 가 사용)
    */
-  Future<bool> startDeal(
+  Future<int?> startDeal(
       ProtectedDealGeneratorRequest dealGeneratorRequest) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
@@ -80,20 +81,21 @@ class ProtectedDealApi {
       body: json.encode(dealGeneratorRequest.toJson()),
     );
     // 서버 응답 출력
+    print("------");
     print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {
-      return true;
+      int dealId = RestApiUtils().decodeResponse(response);
+      return dealId;
     }
 
-    return false;
+    return null;
   }
 
   /**
    * 입금 신청 API (Getter 가 사용)
    */
-  Future<bool> requestDepositByGetter(
-      int dealId) async {
+  Future<bool> requestDepositByGetter(int dealId) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
     Response response = await http.post(
@@ -104,19 +106,16 @@ class ProtectedDealApi {
       },
     );
     // 서버 응답 출력
-
     if (response.statusCode == 200) {
       return true;
     }
-
     return false;
   }
 
   /**
    * 거래 완료 신청 API (GETTER 가 사용)
    */
-  Future<bool> requestDealFinish(
-      int dealId) async {
+  Future<bool> requestDealFinish(int dealId) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
     Response response = await http.patch(
@@ -135,7 +134,25 @@ class ProtectedDealApi {
     return false;
   }
 
+  /**
+   * 거래 취소 API
+   */
+  Future<bool> cancelDeal(int dealId) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String accessToken = await prefs.getString("access_token")!;
+    Response response = await http.patch(
+      Uri.parse(ApiUrls.DEAL_CANCLE_URL + dealId.toString()),
+      headers: {
+        'Authorization': 'Bearer ${accessToken}',
+        'Content-Type': 'application/json',
+      },
+    );
+    // 서버 응답 출력
 
+    if (response.statusCode == 200) {
+      return true;
+    }
 
-
+    return false;
+  }
 }

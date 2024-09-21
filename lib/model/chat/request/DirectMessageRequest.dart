@@ -13,6 +13,7 @@ class DirectMessageRequest with _$DirectMessageRequest {
     required int receiverId,
     required String message,
     required int isDeal,
+    required int? dealId,
     required String? dealState
   }) = _DirectMessageRequest;
 

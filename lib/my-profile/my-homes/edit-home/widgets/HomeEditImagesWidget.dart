@@ -23,14 +23,6 @@ class _HomeEditImagesWidgetState extends State<HomeEditImagesWidget> {
   Widget build(BuildContext context) {
     return Obx(() => Row(
           children: [
-            // InkWell(
-            //   onTap: () {
-            //     widget._controller.test();
-            //   },
-            //   child: Container(
-            //     child: Body2Text("asd", kTextBlackColor),
-            //   ),
-            // ),
             _buildCamera(),
             Container(
               width: 260.w,
@@ -38,7 +30,6 @@ class _HomeEditImagesWidgetState extends State<HomeEditImagesWidget> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: widget._controller.homeImages.length,
-                // Include the camera widget
                 itemBuilder: (context, index) {
                   return _buildImage(widget
                       ._controller.homeImages[index]); // The rest are images

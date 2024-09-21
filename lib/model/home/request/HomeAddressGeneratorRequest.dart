@@ -12,6 +12,8 @@ class HomeAddressGeneratorRequest with _$HomeAddressGeneratorRequest {
     required String detailAddress,
     required String streetName,
     required String streetCode,
+    required double? latitude,
+    required double? longitude,
   }) = _HomeAddressGeneratorRequest;
 
   factory HomeAddressGeneratorRequest.fromJson(Map<String, dynamic> json) =>

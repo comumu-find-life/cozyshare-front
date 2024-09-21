@@ -27,6 +27,8 @@ mixin _$HomeAddressGeneratorRequest {
   String get detailAddress => throw _privateConstructorUsedError;
   String get streetName => throw _privateConstructorUsedError;
   String get streetCode => throw _privateConstructorUsedError;
+  double? get latitude => throw _privateConstructorUsedError;
+  double? get longitude => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +50,9 @@ abstract class $HomeAddressGeneratorRequestCopyWith<$Res> {
       int postCode,
       String detailAddress,
       String streetName,
-      String streetCode});
+      String streetCode,
+      double? latitude,
+      double? longitude});
 }
 
 /// @nodoc
@@ -71,6 +75,8 @@ class _$HomeAddressGeneratorRequestCopyWithImpl<$Res,
     Object? detailAddress = null,
     Object? streetName = null,
     Object? streetCode = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
   }) {
     return _then(_value.copyWith(
       state: null == state
@@ -97,6 +103,14 @@ class _$HomeAddressGeneratorRequestCopyWithImpl<$Res,
           ? _value.streetCode
           : streetCode // ignore: cast_nullable_to_non_nullable
               as String,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -116,7 +130,9 @@ abstract class _$$HomeAddressGeneratorRequestImplCopyWith<$Res>
       int postCode,
       String detailAddress,
       String streetName,
-      String streetCode});
+      String streetCode,
+      double? latitude,
+      double? longitude});
 }
 
 /// @nodoc
@@ -138,6 +154,8 @@ class __$$HomeAddressGeneratorRequestImplCopyWithImpl<$Res>
     Object? detailAddress = null,
     Object? streetName = null,
     Object? streetCode = null,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
   }) {
     return _then(_$HomeAddressGeneratorRequestImpl(
       state: null == state
@@ -164,6 +182,14 @@ class __$$HomeAddressGeneratorRequestImplCopyWithImpl<$Res>
           ? _value.streetCode
           : streetCode // ignore: cast_nullable_to_non_nullable
               as String,
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -178,7 +204,9 @@ class _$HomeAddressGeneratorRequestImpl
       required this.postCode,
       required this.detailAddress,
       required this.streetName,
-      required this.streetCode});
+      required this.streetCode,
+      required this.latitude,
+      required this.longitude});
 
   factory _$HomeAddressGeneratorRequestImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -196,10 +224,14 @@ class _$HomeAddressGeneratorRequestImpl
   final String streetName;
   @override
   final String streetCode;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
 
   @override
   String toString() {
-    return 'HomeAddressGeneratorRequest(state: $state, city: $city, postCode: $postCode, detailAddress: $detailAddress, streetName: $streetName, streetCode: $streetCode)';
+    return 'HomeAddressGeneratorRequest(state: $state, city: $city, postCode: $postCode, detailAddress: $detailAddress, streetName: $streetName, streetCode: $streetCode, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -216,13 +248,17 @@ class _$HomeAddressGeneratorRequestImpl
             (identical(other.streetName, streetName) ||
                 other.streetName == streetName) &&
             (identical(other.streetCode, streetCode) ||
-                other.streetCode == streetCode));
+                other.streetCode == streetCode) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, state, city, postCode,
-      detailAddress, streetName, streetCode);
+      detailAddress, streetName, streetCode, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -247,7 +283,9 @@ abstract class _HomeAddressGeneratorRequest
       required final int postCode,
       required final String detailAddress,
       required final String streetName,
-      required final String streetCode}) = _$HomeAddressGeneratorRequestImpl;
+      required final String streetCode,
+      required final double? latitude,
+      required final double? longitude}) = _$HomeAddressGeneratorRequestImpl;
 
   factory _HomeAddressGeneratorRequest.fromJson(Map<String, dynamic> json) =
       _$HomeAddressGeneratorRequestImpl.fromJson;
@@ -264,6 +302,10 @@ abstract class _HomeAddressGeneratorRequest
   String get streetName;
   @override
   String get streetCode;
+  @override
+  double? get latitude;
+  @override
+  double? get longitude;
   @override
   @JsonKey(ignore: true)
   _$$HomeAddressGeneratorRequestImplCopyWith<_$HomeAddressGeneratorRequestImpl>

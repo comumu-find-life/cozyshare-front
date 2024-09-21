@@ -20,7 +20,7 @@ Widget HomeEditBottomWidget(HomeEditController _controller, BuildContext context
         shadowColor: Colors.transparent, // 그림자 없애기
       ),
       onPressed: () async{
-        _controller.updateHomeInformation();
+         _controller.updateHomeInformation();
       },
       child: FRegularText("Edit", kWhiteBackGroundColor, 16),
     ),

@@ -26,6 +26,7 @@ mixin _$DirectMessageResponse {
   String get message => throw _privateConstructorUsedError;
   String? get sentAt => throw _privateConstructorUsedError;
   int get isDeal => throw _privateConstructorUsedError;
+  int? get dealId => throw _privateConstructorUsedError;
   DealState? get dealState => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $DirectMessageResponseCopyWith<$Res> {
       String message,
       String? sentAt,
       int isDeal,
+      int? dealId,
       DealState? dealState});
 }
 
@@ -68,6 +70,7 @@ class _$DirectMessageResponseCopyWithImpl<$Res,
     Object? message = null,
     Object? sentAt = freezed,
     Object? isDeal = null,
+    Object? dealId = freezed,
     Object? dealState = freezed,
   }) {
     return _then(_value.copyWith(
@@ -91,6 +94,10 @@ class _$DirectMessageResponseCopyWithImpl<$Res,
           ? _value.isDeal
           : isDeal // ignore: cast_nullable_to_non_nullable
               as int,
+      dealId: freezed == dealId
+          ? _value.dealId
+          : dealId // ignore: cast_nullable_to_non_nullable
+              as int?,
       dealState: freezed == dealState
           ? _value.dealState
           : dealState // ignore: cast_nullable_to_non_nullable
@@ -113,6 +120,7 @@ abstract class _$$DirectMessageDtoImplCopyWith<$Res>
       String message,
       String? sentAt,
       int isDeal,
+      int? dealId,
       DealState? dealState});
 }
 
@@ -132,6 +140,7 @@ class __$$DirectMessageDtoImplCopyWithImpl<$Res>
     Object? message = null,
     Object? sentAt = freezed,
     Object? isDeal = null,
+    Object? dealId = freezed,
     Object? dealState = freezed,
   }) {
     return _then(_$DirectMessageDtoImpl(
@@ -155,6 +164,10 @@ class __$$DirectMessageDtoImplCopyWithImpl<$Res>
           ? _value.isDeal
           : isDeal // ignore: cast_nullable_to_non_nullable
               as int,
+      dealId: freezed == dealId
+          ? _value.dealId
+          : dealId // ignore: cast_nullable_to_non_nullable
+              as int?,
       dealState: freezed == dealState
           ? _value.dealState
           : dealState // ignore: cast_nullable_to_non_nullable
@@ -172,6 +185,7 @@ class _$DirectMessageDtoImpl implements _DirectMessageDto {
       required this.message,
       required this.sentAt,
       required this.isDeal,
+      required this.dealId,
       required this.dealState});
 
   factory _$DirectMessageDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -188,11 +202,13 @@ class _$DirectMessageDtoImpl implements _DirectMessageDto {
   @override
   final int isDeal;
   @override
+  final int? dealId;
+  @override
   final DealState? dealState;
 
   @override
   String toString() {
-    return 'DirectMessageResponse(senderId: $senderId, receiverId: $receiverId, message: $message, sentAt: $sentAt, isDeal: $isDeal, dealState: $dealState)';
+    return 'DirectMessageResponse(senderId: $senderId, receiverId: $receiverId, message: $message, sentAt: $sentAt, isDeal: $isDeal, dealId: $dealId, dealState: $dealState)';
   }
 
   @override
@@ -207,14 +223,15 @@ class _$DirectMessageDtoImpl implements _DirectMessageDto {
             (identical(other.message, message) || other.message == message) &&
             (identical(other.sentAt, sentAt) || other.sentAt == sentAt) &&
             (identical(other.isDeal, isDeal) || other.isDeal == isDeal) &&
+            (identical(other.dealId, dealId) || other.dealId == dealId) &&
             (identical(other.dealState, dealState) ||
                 other.dealState == dealState));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, senderId, receiverId, message, sentAt, isDeal, dealState);
+  int get hashCode => Object.hash(runtimeType, senderId, receiverId, message,
+      sentAt, isDeal, dealId, dealState);
 
   @JsonKey(ignore: true)
   @override
@@ -238,6 +255,7 @@ abstract class _DirectMessageDto implements DirectMessageResponse {
       required final String message,
       required final String? sentAt,
       required final int isDeal,
+      required final int? dealId,
       required final DealState? dealState}) = _$DirectMessageDtoImpl;
 
   factory _DirectMessageDto.fromJson(Map<String, dynamic> json) =
@@ -253,6 +271,8 @@ abstract class _DirectMessageDto implements DirectMessageResponse {
   String? get sentAt;
   @override
   int get isDeal;
+  @override
+  int? get dealId;
   @override
   DealState? get dealState;
   @override

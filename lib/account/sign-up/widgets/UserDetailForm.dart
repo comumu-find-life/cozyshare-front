@@ -326,7 +326,7 @@ class _UserDetailFormState extends State<UserDetailForm> {
                       shape: BoxShape.circle, color: kWhiteBackGroundColor),
                 ),
                 Positioned(
-                  top: 9.h,
+                  top: 7.h,
                   left: 9.w,
                   child: InkWell(
                     onTap: () {

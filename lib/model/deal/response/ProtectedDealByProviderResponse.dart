@@ -8,7 +8,6 @@ part 'ProtectedDealByProviderResponse.g.dart';
 class ProtectedDealByProviderResponse with _$ProtectedDealByProviderResponse {
   factory ProtectedDealByProviderResponse({
     required String account,
-
     required String accountHolder,
     required String bankName,
     required int id,

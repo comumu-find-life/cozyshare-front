@@ -60,8 +60,8 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
                   shadowColor: Colors.transparent, // 그림자 없애기
                 ),
                 onPressed: () async {
-                  await _controller.createDeal(context, _chatDetailController);
-                  _chatDetailController.startProtectedDeal();
+                  int? dealId = await _controller.createDeal(context, _chatDetailController);
+                  _chatDetailController.startProtectedDeal(dealId!);
                 },
                 child: ButtonText("Done", kWhiteBackGroundColor),
               ),

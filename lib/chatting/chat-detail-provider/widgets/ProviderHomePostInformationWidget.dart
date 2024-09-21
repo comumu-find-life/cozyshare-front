@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 
 import '../../../constants/Colors.dart';
@@ -34,9 +35,8 @@ class ProviderHomePostInformationWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-
           _buildHomeInformation(true),
-          _buildStartDeal(),
+           _controller.canAddDeal()? _buildStartDeal():Container()
         ],
       ),
     );
@@ -51,7 +51,6 @@ class ProviderHomePostInformationWidget extends StatelessWidget {
           width: 80.w,
           height: 50.h,
           decoration: BoxDecoration(
-
               color: kPrimaryColor,
               borderRadius: BorderRadius.all(Radius.circular(6))),
           margin: EdgeInsets.only(right: 10.w),

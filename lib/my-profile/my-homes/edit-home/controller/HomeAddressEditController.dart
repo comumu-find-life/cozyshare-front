@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +13,8 @@ import '../../../../search/search-address/view/SearchAddressView.dart';
 class HomeAddressEditController extends GetxController {
   Rx<String> _cityAndState = "".obs;
   Rx<bool> _isValidateAddress = false.obs;
+  double? recentLat;
+  double? recentLng;
   TextEditingController _detailAddressController = TextEditingController();
   TextEditingController _streetNameController = TextEditingController();
   TextEditingController _streetCodeController = TextEditingController();
@@ -45,7 +49,9 @@ class HomeAddressEditController extends GetxController {
     }
   }
 
-  void checkAddress() {
+  void checkAddress(double lat, double lng) {
+    recentLat = lat;
+    recentLng = lng;
     _isValidateAddress.value = true;
   }
 
@@ -66,7 +72,9 @@ class HomeAddressEditController extends GetxController {
         detailAddress: _detailAddressController.text,
         streetName: _streetNameController.text,
         streetCode: _streetCodeController.text,
-        state: state);
+        state: state,
+        latitude: recentLat == null ? 0 : recentLat,
+        longitude: recentLng == null ? 0 : recentLng);
   }
 
   bool get isAllInputAddress => _isAllInputAddress.value;

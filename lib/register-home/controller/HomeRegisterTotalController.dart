@@ -13,10 +13,13 @@ import 'package:home_and_job/register-home/register-image/controller/RegisterIma
 import 'package:home_and_job/register-home/register-price/controller/HomePriceController.dart';
 
 import '../../model/home/request/HomeGeneratorRequest.dart';
+import '../../utils/SnackBar.dart';
 import '../register-address/main/controller/HomeAddressController.dart';
 import '../register-details/controller/HomeRegisterDetailsController.dart';
+import '../view/FinishRegisterHomeView.dart';
 
 class HomeRegisterTotalController extends GetxController {
+  var isLoading = false.obs;
 
   HomeAddressController _homeAddressController = HomeAddressController();
   HomeRegisterDetailsController _homeRegisterDetailsController =
@@ -33,19 +36,18 @@ class HomeRegisterTotalController extends GetxController {
 
   Rx<bool> _isAllInput = false.obs;
 
-
-  Future<bool> saveHome() async{
-    HomeAddressGeneratorRequest generateHomeAddress =
-        _homeAddressController.generateHomeAddress();
-
+  void saveHome(BuildContext context) async {
+    isLoading.value = true;
 
     HomeGeneratorRequest homeGeneratorRequest = HomeGeneratorRequest(
-      //todo 변경
+        //todo 변경
         userIdx: 3,
         homeAddress: _homeAddressController.generateHomeAddress(),
-        bathRoomCount: int.parse(_homeRegisterDetailsController.bathRoomCountController.text),
+        bathRoomCount: int.parse(
+            _homeRegisterDetailsController.bathRoomCountController.text),
         dealSavable: true,
-        bedroomCount: int.parse(_homeRegisterDetailsController.bedRoomCountController.text),
+        bedroomCount: int.parse(
+            _homeRegisterDetailsController.bedRoomCountController.text),
         bond: int.parse(_homePriceController.bondController.text),
         gender: _homeRegisterDetailsController.extractGenderType(),
         type: _homeRegisterDetailsController.extractHomeType(),
@@ -55,10 +57,16 @@ class HomeRegisterTotalController extends GetxController {
         options: _homeRegisterDetailsController.parseOptions(),
         canParking: _homeRegisterDetailsController.canParking);
 
+    bool response = await HomeRegisterApi().saveHomeApi(
+        homeGeneratorRequest, _homeImageController.extractImageUrls());
 
-    bool response = await HomeRegisterApi().saveHomeApi(homeGeneratorRequest, _homeImageController.extractImageUrls());
-
-    return response;
+    if (response) {
+      Get.offAll(() => FinishRegisterHomeView(),
+          transition: Transition.noTransition);
+    } else {
+      CustomSnackBar().show(context, "failed to upload");
+    }
+    isLoading.value = true;
   }
 
   bool get isAllInput => _isAllInput.value;
