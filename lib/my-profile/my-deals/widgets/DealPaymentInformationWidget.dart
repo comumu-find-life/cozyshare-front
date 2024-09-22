@@ -1,11 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/model/deal/response/MyProtectedDealResponse.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 
-Widget DealPaymentInformationWidget() {
+Widget DealPaymentInformationWidget(MyProtectedDealResponse dealResponse) {
   return Container(
     width: 380.w,
     color: kWhiteBackGroundColor,
@@ -13,7 +14,7 @@ Widget DealPaymentInformationWidget() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 30.h, left: 20.w),
+          margin: EdgeInsets.only(top: 50.h, left: 20.w),
           child: FBoldText("Payment Information", kTextBlackColor, 14),
         ),
         Center(
@@ -37,7 +38,7 @@ Widget DealPaymentInformationWidget() {
                         child: FRegularText("Deposit", kGrey700Color, 14),
                       ),
                       Container(
-                        child: FBoldText("4000", kTextBlackColor, 14),
+                        child: FBoldText("${dealResponse.deposit}", kTextBlackColor, 14),
                       )
                     ],
                   ),
@@ -52,7 +53,7 @@ Widget DealPaymentInformationWidget() {
                         child: FRegularText("Fee", kGrey700Color, 14),
                       ),
                       Container(
-                        child: FBoldText("100", kTextBlackColor, 14),
+                        child: FBoldText("${dealResponse.fee}", kTextBlackColor, 14),
                       )
                     ],
                   ),
@@ -73,7 +74,7 @@ Widget DealPaymentInformationWidget() {
                         child: FRegularText("Total Price", kGrey700Color, 14),
                       ),
                       Container(
-                        child: FBoldText("4100", kTextBlackColor, 14),
+                        child: FBoldText("${dealResponse.deposit + dealResponse.fee}", kTextBlackColor, 14),
                       )
                     ],
                   ),

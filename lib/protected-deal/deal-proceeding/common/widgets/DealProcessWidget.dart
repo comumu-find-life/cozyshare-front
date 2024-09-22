@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
@@ -18,183 +19,70 @@ Widget DealProcessWidget({
   required String? dealCompletionDateTime,
   required String? dealCancellationDateTime,
 }) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-      SizedBox(
-        height: 20.h,
-      ),
-     _buildDealStartDateTime(dealStartDateTime!),
-      _buildDepositRequestDateTime(depositRequestDateTime),
-      _buildDepositCompletionDateTime(depositCompletionDateTime),
-      _buildDealCompletionRequestDateTime(dealCompletionRequestDateTime),
-      _buildDealCompletionDateTime(dealCompletionDateTime),
-      // _buildProcessBarCircle(step),
-      // _buildProcessText(step),
-    ],
-  );
-}
-
-Widget _buildDealStartDateTime(String time) {
   return Container(
-    width: 340.w,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    color: kWhiteBackGroundColor,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Container(
-              width: 35.w,
-              height: 35.h,
-              child: Icon(
-                Icons.check_circle,
-                color: kPrimaryColor,
-              ),
-            ),
-            Container(
-              child: Body2Text("Before Deposit", kTextBlackColor),
-            ),
-          ],
+        SizedBox(height: 20.h),
+        _buildProcessStep(
+          title: "Before Deposit",
+          dateTime: dealStartDateTime,
+          isCompleted: true,
         ),
-
-        Container(
-          child: Body2Text("${time}", kGrey800Color),
-        )
+        _buildProcessStep(
+          title: "Deposit Request",
+          dateTime: depositRequestDateTime,
+        ),
+        _buildProcessStep(
+          title: "Deposit Completed",
+          dateTime: depositCompletionDateTime,
+        ),
+        _buildProcessStep(
+          title: "Request for \nTransaction Completion",
+          dateTime: dealCompletionRequestDateTime,
+        ),
+        _buildProcessStep(
+          title: "Transaction Completed",
+          dateTime: dealCompletionDateTime,
+        ),
       ],
     ),
   );
 }
 
-Widget _buildDepositRequestDateTime(String? dateTime) {
-  bool isNull = dateTime == null ? true : false;
+Widget _buildProcessStep({
+  required String title,
+  required String? dateTime,
+  bool isCompleted = false,
+}) {
+  bool isNull = dateTime == null;
   return Container(
     margin: EdgeInsets.only(top: 10.h),
-    width: 340.w,
+    width: 380.w,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
             Container(
-              width: 35.w,
-              height: 35.h,
+              margin: EdgeInsets.only(left: 10.w),
               child: Icon(
                 Icons.check_circle,
                 color: isNull ? kGrey500Color : kPrimaryColor,
+                size: 30.w,
               ),
             ),
-            Container(
-              child: Body2Text("Deposit Request", kTextBlackColor),
-            ),
+            SizedBox(width: 8.w),
+            Container(child: Body2Text(title, kTextBlackColor)),
           ],
         ),
         isNull
             ? Container()
             : Container(
-                child: Body2Text("${dateTime}", kGrey800Color),
-              )
+                margin: EdgeInsets.only(right: 10.w),
+                child: Body2Text("${dateTime}", kGrey800Color)),
       ],
     ),
   );
 }
-
-Widget _buildDepositCompletionDateTime(String? dateTime) {
-  bool isNull = dateTime == null ? true : false;
-  return Container(
-    margin: EdgeInsets.only(top: 10.h),
-    width: 340.w,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 35.w,
-              height: 35.h,
-              child: Icon(
-                Icons.check_circle,
-                color: isNull ? kGrey500Color : kPrimaryColor,
-              ),
-            ),
-            Container(
-              child: Body2Text("Deposit Completed", kTextBlackColor),
-            ),
-          ],
-        ),
-        isNull
-            ? Container()
-            : Container(
-                child: Body2Text("${dateTime}", kGrey800Color),
-              )
-      ],
-    ),
-  );
-}
-
-Widget _buildDealCompletionRequestDateTime(String? dateTime) {
-  bool isNull = dateTime == null ? true : false;
-  return Container(
-    margin: EdgeInsets.only(top: 10.h),
-    width: 340.w,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 35.w,
-              height: 35.h,
-              child: Icon(
-                Icons.check_circle,
-                color: isNull ? kGrey500Color : kPrimaryColor,
-              ),
-            ),
-            Container(
-              child: Body2Text("Request for \nTransaction Completion", kTextBlackColor),
-            ),
-          ],
-        ),
-        isNull
-            ? Container()
-            : Container(
-                child: Body2Text("${dateTime}", kGrey800Color),
-              )
-      ],
-    ),
-  );
-}
-
-Widget _buildDealCompletionDateTime(String? dateTime) {
-  bool isNull = dateTime == null ? true : false;
-  return Container(
-    margin: EdgeInsets.only(top: 10.h,),
-    width: 340.w,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 35.w,
-              height: 35.h,
-              child: Icon(
-                Icons.check_circle,
-                color: isNull ? kGrey500Color : kPrimaryColor,
-              ),
-            ),
-            Container(
-              child: Body2Text("Transaction Completed", kTextBlackColor),
-            ),
-          ],
-        ),
-        isNull
-            ? Container()
-            : Container(
-                child: Body2Text("${dateTime}", kGrey800Color),
-              )
-      ],
-    ),
-  );
-}
-
-

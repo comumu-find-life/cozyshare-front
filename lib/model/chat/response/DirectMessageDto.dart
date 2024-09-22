@@ -24,7 +24,7 @@ extension DirectMessageResponseExtension on DirectMessageResponse {
   String formatDate() {
     if (sentAt == null) return '';
     final dateTime = DateTime.parse(sentAt!);
-    return '${dateTime.year} year ${dateTime.month} month ${dateTime.day} day';
+    return '${dateTime.year} . ${dateTime.month} / ${dateTime.day}';
   }
 
   String formatTime() {

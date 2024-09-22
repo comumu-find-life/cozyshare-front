@@ -46,7 +46,7 @@ class _InputMessageGetterWidget extends State<GetterInputMessageWidget> {
                       style: TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: '메시지를 입력하세요.',
+                        hintText: 'Please enter a message.',
                         hintStyle: TextStyle(color: Colors.grey[500]),
                       ),
                     ),

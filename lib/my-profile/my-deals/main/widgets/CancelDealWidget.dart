@@ -1,15 +1,12 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/model/deal/enums/DealState.dart';
-import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
+import 'package:home_and_job/model/deal/response/MyProtectedDealResponse.dart';
 import 'package:home_and_job/my-profile/my-deals/cancel-detail/DealCancelView.dart';
 import 'package:home_and_job/my-profile/my-deals/during-detail/view/DealDuringDetailView.dart';
-import 'package:home_and_job/my-profile/my-homes/edit-home/popup/AskSoldOutPopup.dart';
-import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dart';
+import 'package:home_and_job/utils/Converter.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
@@ -32,14 +29,14 @@ class CancelDealWidget extends StatelessWidget {
                 physics: BouncingScrollPhysics(),
                 itemCount: _controller.cancelDeals.length,
                 itemBuilder: (BuildContext ctx, int idx) {
-                  return _buildDealWidget();
+                  return _buildDealWidget(_controller.cancelDeals[idx]);
                 }));
   }
 
-  Widget _buildDealWidget() {
+  Widget _buildDealWidget(MyProtectedDealResponse myProtectedDealResponse) {
     return InkWell(
       onTap: () {
-        Get.to(() => DealDuringDetailView());
+        Get.to(() => DealDuringDetailView(myProtectedDealResponse));
       },
       child: Center(
         child: Container(
@@ -52,17 +49,17 @@ class CancelDealWidget extends StatelessWidget {
                 border: Border.all(color: kGrey300Color)),
             child: Column(
               children: [
-                _buildDate(),
+                _buildDate(myProtectedDealResponse),
                 Container(
                   margin: EdgeInsets.only(top: 20.h),
                   width: 330.w,
                   height: 1.h,
                   color: kGrey300Color,
                 ),
-                _buildBody(),
+                _buildBody(myProtectedDealResponse),
                 InkWell(
                   onTap: () {
-                    Get.to(() => DealCancelDetailView());
+                    Get.to(() => DealCancelDetailView(myProtectedDealResponse));
                   },
                   child: Container(
                     margin: EdgeInsets.only(top: 20.h),
@@ -83,7 +80,7 @@ class CancelDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       child: Row(
@@ -95,9 +92,8 @@ class CancelDealWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _buildState(),
-                _buildAddress(),
-                _buildPrice(),
+                _buildAddress(myProtectedDealResponse),
+                _buildPrice(myProtectedDealResponse),
               ],
             ),
           ),
@@ -130,7 +126,7 @@ class CancelDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPrice() {
+  Widget _buildPrice(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       decoration: BoxDecoration(
           border: Border(
@@ -145,7 +141,10 @@ class CancelDealWidget extends StatelessWidget {
                 margin: EdgeInsets.only(top: 15.h),
                 width: 130.w,
                 height: 20.h,
-                child: FRegularText("Deposit \$2000", kTextBlackColor, 14),
+                child: FRegularText(
+                    "Deposit \$${myProtectedDealResponse.deposit}",
+                    kTextBlackColor,
+                    14),
               ),
             ],
           ),
@@ -154,7 +153,7 @@ class CancelDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDate() {
+  Widget _buildDate(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 20.h, left: 13.w, right: 13.w),
       child: Row(
@@ -163,7 +162,10 @@ class CancelDealWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 0.h),
             width: 200.w,
-            child: FBoldText("2024.10.31", kTextBlackColor, 14),
+            child: FBoldText(
+                "${ConverterUtil().formatEnglishDateTime(myProtectedDealResponse.dealCancellationDateTime)}",
+                kTextBlackColor,
+                14),
           ),
           Container(
               // child: Icon(
@@ -176,11 +178,12 @@ class CancelDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAddress() {
+  Widget _buildAddress(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       width: 200.w,
-      child: FBoldText("Address", kTextBlackColor, 14),
+      child:
+          FBoldText("${myProtectedDealResponse.address}", kTextBlackColor, 14),
     );
   }
 

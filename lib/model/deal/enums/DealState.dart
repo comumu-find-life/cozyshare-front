@@ -19,6 +19,26 @@ enum DealState {
         this == DealState.REQUEST_COMPLETE_DEAL;
   }
 
+  int getStep() {
+    switch (this) {
+    //입금 전
+      case DealState.BEFORE_DEPOSIT:
+        return 1;
+    // 입금 신청
+      case DealState.REQUEST_DEPOSIT:
+        return 2;
+    // 입금 완료
+      case DealState.COMPLETE_DEPOSIT:
+        return 3;
+    //거래 완료 신청
+      case DealState.REQUEST_COMPLETE_DEAL:
+        return 4;
+    // 입금 완료
+      default:
+        return 5;
+    }
+  }
+
 
 
 }

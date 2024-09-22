@@ -5,15 +5,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/deal/response/MyProtectedDealResponse.dart';
 import 'package:home_and_job/my-profile/my-deals/widgets/DealPaymentInformationWidget.dart';
 import 'package:home_and_job/my-profile/my-deals/widgets/DealRoomInformationWidget.dart';
 import 'package:home_and_job/protected-deal/deal-proceeding/common/widgets/DealProcessWidget.dart';
+import 'package:home_and_job/utils/Converter.dart';
 
 /**
  * 현재 진행 중인 거래 정보 조회 View
  */
 class DealDoneDetailView extends StatelessWidget {
-  const DealDoneDetailView({super.key});
+  MyProtectedDealResponse dealResponse;
+
+  DealDoneDetailView(this.dealResponse);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +31,10 @@ class DealDoneDetailView extends StatelessWidget {
       bottomSheet: SingleChildScrollView(
         child: Column(
           children: [
+            _buildMainText(),
             _buildTimeInformation(),
-            DealPaymentInformationWidget(),
-            DealRoomInformationWidget(),
+            DealPaymentInformationWidget(dealResponse),
+            DealRoomInformationWidget(dealResponse),
             Container(
               color: kWhiteBackGroundColor,
               height: 150.h,
@@ -40,7 +45,7 @@ class DealDoneDetailView extends StatelessWidget {
     );
   }
 
-  Widget _buildTimeInformation() {
+  Widget _buildMainText() {
     return Container(
       width: 380.w,
       color: kWhiteBackGroundColor,
@@ -52,62 +57,29 @@ class DealDoneDetailView extends StatelessWidget {
               child: FBoldText("Transaction Completed", kTextBlackColor, 18)),
           Container(
               margin: EdgeInsets.only(top: 18.w, left: 20.w),
-              child: FRegularText("Thank you for using our service.", kGrey800Color, 14)),
-          Container(
-            margin: EdgeInsets.only(left: 20.w, top: 30.h),
-            width: 330.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      child: Icon(
-                        Icons.check_circle,
-                        color: kPrimaryColor,
-                        size: 25.sp,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 5.w),
-                      child: FRegularText("Deposit Time", kTextBlackColor, 15),
-                    ),
-                  ],
-                ),
-                Container(
-                  child: FBoldText("2022.10.31 / 21:32", kTextBlackColor, 14),
-                )
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 20.w, top: 30.h),
-            width: 330.w,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      child: Icon(
-                        Icons.check_circle,
-                        color: kPrimaryColor,
-                        size: 25.sp,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 5.w),
-                      child: FRegularText("Completed Time", kTextBlackColor, 14),
-                    ),
-                  ],
-                ),
-                Container(
-                  child: FBoldText("2022.10.31 / 21:32", kTextBlackColor, 14),
-                )
-              ],
-            ),
-          ),
+              child: FRegularText(
+                  "Thank you for using our service.", kGrey800Color, 14)),
         ],
+      ),
+    );
+  }
+
+  Widget _buildTimeInformation() {
+    return Center(
+      child: DealProcessWidget(
+        step: dealResponse.dealState.getStep(),
+        dealStartDateTime: ConverterUtil()
+            .formatEnglishDateTime(dealResponse!.dealStartDateTime),
+        depositRequestDateTime: ConverterUtil()
+            .formatEnglishDateTime(dealResponse!.depositRequestDateTime),
+        depositCompletionDateTime: ConverterUtil()
+            .formatEnglishDateTime(dealResponse!.depositCompletionDateTime),
+        dealCompletionRequestDateTime: ConverterUtil()
+            .formatEnglishDateTime(dealResponse!.dealCompletionRequestDateTime),
+        dealCompletionDateTime: ConverterUtil()
+            .formatEnglishDateTime(dealResponse!.dealCompletionDateTime),
+        dealCancellationDateTime: ConverterUtil()
+            .formatEnglishDateTime(dealResponse!.dealCancellationDateTime),
       ),
     );
   }

@@ -1,11 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/model/deal/response/MyProtectedDealResponse.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
 
-Widget DealRoomInformationWidget() {
+Widget DealRoomInformationWidget(MyProtectedDealResponse myProtectedDealResponse) {
   return Container(
     width: 380.w,
     color: kWhiteBackGroundColor,
@@ -45,23 +46,23 @@ Widget DealRoomInformationWidget() {
                       Container(
                         width: 170.w,
                         margin: EdgeInsets.only(top: 20.h),
-                        child: FBoldText("Addresss", kTextBlackColor, 14),
+                        child: FBoldText("${myProtectedDealResponse.address}", kTextBlackColor, 14),
                       ),
                       Container(
                         width: 170.w,
                         margin: EdgeInsets.only(top: 20.h),
-                        child: FBoldText("Rent : 5000", kTextBlackColor, 13),
+                        child: FBoldText("Rent : ${myProtectedDealResponse.rent}", kTextBlackColor, 13),
                       ),
                       Container(
                         width: 170.w,
                         margin: EdgeInsets.only(top: 20.h),
-                        child: FBoldText("Bond : 500 ", kTextBlackColor, 13),
+                        child: FBoldText("Bond : ${myProtectedDealResponse.bond} ", kTextBlackColor, 13),
                       ),
 
                       Container(
                         width: 170.w,
                         margin: EdgeInsets.only(top: 20.h),
-                        child: FBoldText("Bill : 500 ", kTextBlackColor, 13),
+                        child: FBoldText("Bill : ${myProtectedDealResponse.bond} ", kTextBlackColor, 13),
                       ),
                     ],
                   ),

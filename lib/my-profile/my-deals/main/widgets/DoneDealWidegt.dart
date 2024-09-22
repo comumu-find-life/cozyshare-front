@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +5,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
+import 'package:home_and_job/model/deal/response/MyProtectedDealResponse.dart';
 import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:home_and_job/my-profile/my-deals/done-detail/view/DealDoneDetailView.dart';
 import 'package:home_and_job/my-profile/my-deals/during-detail/view/DealDuringDetailView.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/popup/AskSoldOutPopup.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dart';
+import 'package:home_and_job/utils/Converter.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
@@ -27,20 +28,20 @@ class DoneDealWidget extends StatelessWidget {
     return _controller.doneDeals.length == 0
         ? EmptyContainer()
         : Container(
-        width: 380.w,
-        height: 710.h,
-        child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemCount: _controller.doneDeals.length,
-            itemBuilder: (BuildContext ctx, int idx) {
-              return _buildDealWidget();
-            }));
+            width: 380.w,
+            height: 710.h,
+            child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: _controller.doneDeals.length,
+                itemBuilder: (BuildContext ctx, int idx) {
+                  return _buildDealWidget(_controller.doneDeals[idx]);
+                }));
   }
 
-  Widget _buildDealWidget() {
+  Widget _buildDealWidget(MyProtectedDealResponse myProtectedDealResponse) {
     return InkWell(
       onTap: () {
-        Get.to(() => DealDoneDetailView());
+        Get.to(() => DealDoneDetailView(myProtectedDealResponse));
       },
       child: Center(
         child: Container(
@@ -53,52 +54,45 @@ class DoneDealWidget extends StatelessWidget {
                 border: Border.all(color: kGrey300Color)),
             child: Column(
               children: [
-                _buildDate(),
+                _buildDate(myProtectedDealResponse),
                 Container(
                   margin: EdgeInsets.only(top: 20.h),
                   width: 330.w,
                   height: 1.h,
                   color: kGrey300Color,
                 ),
-                _buildBody(),
-                InkWell(
-                  onTap: () {
-                    Get.to(() => DealDuringDetailView());
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(top: 20.h),
-                    width: 320.w,
-                    height: 45.h,
-                    decoration: BoxDecoration(
-                        color: kPrimaryLightColor,
-                        borderRadius: BorderRadius.all(Radius.circular(6))),
-                    child: Center(
-                      child:
-                      FBoldText("Detailed Information", kPrimaryColor, 14),
-                    ),
+                _buildBody(myProtectedDealResponse),
+                Container(
+                  margin: EdgeInsets.only(top: 20.h),
+                  width: 320.w,
+                  height: 45.h,
+                  decoration: BoxDecoration(
+                      color: kPrimaryLightColor,
+                      borderRadius: BorderRadius.all(Radius.circular(6))),
+                  child: Center(
+                    child: FBoldText("Detailed Information", kPrimaryColor, 14),
                   ),
-                )
+                ),
               ],
             )),
       ),
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       child: Row(
         children: [
-          _buildImage(),
+          _buildImage(myProtectedDealResponse),
           Container(
             margin: EdgeInsets.only(left: 10.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _buildState(),
-                _buildAddress(),
-                _buildPrice(),
+                _buildAddress(myProtectedDealResponse),
+                _buildPrice(myProtectedDealResponse),
               ],
             ),
           ),
@@ -111,8 +105,8 @@ class DoneDealWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-            //top: BorderSide(color: kGrey200Color)
-          )),
+              //top: BorderSide(color: kGrey200Color)
+              )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -122,7 +116,7 @@ class DoneDealWidget extends StatelessWidget {
                 margin: EdgeInsets.only(top: 0.h),
                 height: 20.h,
                 child:
-                FBoldText("Transaction in progress", kTextBlackColor, 13),
+                    FBoldText("Transaction in progress", kTextBlackColor, 13),
               ),
             ],
           ),
@@ -131,12 +125,12 @@ class DoneDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPrice() {
+  Widget _buildPrice(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-            //top: BorderSide(color: kGrey200Color)
-          )),
+              //top: BorderSide(color: kGrey200Color)
+              )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -146,7 +140,10 @@ class DoneDealWidget extends StatelessWidget {
                 margin: EdgeInsets.only(top: 15.h),
                 width: 130.w,
                 height: 20.h,
-                child: FRegularText("Deposit \$2000", kTextBlackColor, 14),
+                child: FRegularText(
+                    "Deposit \$${myProtectedDealResponse.deposit}",
+                    kTextBlackColor,
+                    14),
               ),
             ],
           ),
@@ -155,7 +152,7 @@ class DoneDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDate() {
+  Widget _buildDate(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 20.h, left: 13.w, right: 13.w),
       child: Row(
@@ -164,28 +161,32 @@ class DoneDealWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 0.h),
             width: 200.w,
-            child: FBoldText("2024.10.31", kTextBlackColor, 14),
+            child: FBoldText(
+                "${ConverterUtil().formatEnglishDateTime(myProtectedDealResponse.dealCompletionDateTime)}",
+                kTextBlackColor,
+                14),
           ),
           Container(
-            // child: Icon(
-            //   Icons.arrow_forward_ios,
-            //   size: 14.sp,
-            // ),
-          )
+              // child: Icon(
+              //   Icons.arrow_forward_ios,
+              //   size: 14.sp,
+              // ),
+              )
         ],
       ),
     );
   }
 
-  Widget _buildAddress() {
+  Widget _buildAddress(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       width: 200.w,
-      child: FBoldText("Address", kTextBlackColor, 14),
+      child:
+          FBoldText("${myProtectedDealResponse.address}", kTextBlackColor, 14),
     );
   }
 
-  Widget _buildImage() {
+  Widget _buildImage(MyProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(left: 13.w),
       width: 120.w,
