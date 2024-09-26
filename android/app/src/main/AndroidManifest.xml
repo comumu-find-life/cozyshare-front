@@ -8,13 +8,14 @@
 <!--    <uses-permission-->
 <!--        android:name="android.permission.READ_EXTERNAL_STORAGE"-->
 <!--        android:maxSdkVersion="32" />-->
+
     <application
         android:label="home_and_job"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDiCJBIUrDSpEKeGIWFKC01_7-fWQhM1bg" />
+            android:value="AIzaSyB3DctQyecPyfwMAyE7JdhgJzB_57ayoYw" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

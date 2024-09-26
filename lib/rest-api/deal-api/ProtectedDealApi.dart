@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
+import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -49,7 +50,6 @@ class ProtectedDealApi {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
-    print(ApiUrls.DEAL_PROVIDER_READ);
     final response = await http.post(Uri.parse(ApiUrls.DEAL_GETTER_READ),
         headers: {
           'Authorization': 'Bearer $accessToken',
@@ -81,8 +81,6 @@ class ProtectedDealApi {
       body: json.encode(dealGeneratorRequest.toJson()),
     );
     // 서버 응답 출력
-    print("------");
-    print(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 200) {
       int dealId = RestApiUtils().decodeResponse(response);
@@ -107,6 +105,20 @@ class ProtectedDealApi {
     );
     // 서버 응답 출력
     if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * 입금 신청 취소 API (Getter 가 사용)
+   */
+  Future<bool> cancelDepositByGetter(int dealId) async {
+    var accessToken = await DiskDatabase().getAccessToken();
+    
+    var response = await apiUtils.patchResponse(ApiUrls.DEAL_CANCEL_DEPOSIT_URL + dealId.toString(), accessToken: accessToken);
+
+    if(response.statusCode == 200) {
       return true;
     }
     return false;

@@ -59,8 +59,6 @@ class ChatGetterDetailController extends GetxController {
         homeId: _home.homeId!,
         dmId: _roomId);
     List<ProtectedDealByGetterResponse> response = await ProtectedDealApi().loadProtectedDealByGetter(protectedDealFindRequest);
-    print("-----");
-    print(response);
     if (response != null) {
       dealMap = { for (var deal in response) deal.id: deal };
     }
@@ -146,7 +144,6 @@ class ChatGetterDetailController extends GetxController {
       body: jsonEncode(directMessageDto.toJson()),
     );
   }
-
 
 
   // 입금 신청 메서드 (only getter)

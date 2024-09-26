@@ -13,8 +13,16 @@ class DealRequestControllerByGetter extends GetxController{
 
   Future<bool> requestDeposit(int dealId)async{
     bool response = await ProtectedDealApi().requestDepositByGetter(dealId);
-
     if(response){
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> cancelDeposit(int dealId) async {
+    bool response = await ProtectedDealApi().cancelDepositByGetter(dealId);
+
+    if(response) {
       return true;
     }
     return false;

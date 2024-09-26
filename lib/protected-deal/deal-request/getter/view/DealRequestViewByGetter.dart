@@ -77,6 +77,7 @@ class DealRequestViewByGetter extends StatelessWidget {
                   shadowColor: Colors.transparent, // 그림자 없애기
                 ),
                 onPressed: () async {
+                  await _controller.cancelDeposit(dealId);
                 },
                 child: ButtonText("Cancel", kWhiteBackGroundColor),
               ),

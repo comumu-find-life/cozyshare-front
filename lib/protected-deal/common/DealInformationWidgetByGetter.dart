@@ -27,10 +27,10 @@ class DealPriceWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: EdgeInsets.only(top: 30.h,left: 15.w),
-          child: Title2Text("Transaction Information", kTextBlackColor),
-        ),
+        // Container(
+        //   margin: EdgeInsets.only(top: 30.h,left: 15.w),
+        //   child: Title2Text("Transaction Information", kTextBlackColor),
+        // ),
         Container(
           margin: EdgeInsets.only(left: 10.w, top: 15.h,right: 10.w),
           width: 350.w,

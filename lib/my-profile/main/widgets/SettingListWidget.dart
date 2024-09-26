@@ -10,7 +10,8 @@ import 'package:home_and_job/my-profile/notice/view/NoticeView.dart';
 import 'package:home_and_job/my-profile/policies/view/PoliciesView.dart';
 import 'package:home_and_job/my-profile/question/view/QuestionView.dart';
 import 'package:home_and_job/my-profile/safe-deal-explanation/view/SafeDealExplacationView.dart';
-import '../../../register-home/register-image/view/RegisterHomeImageView.dart';
+import '../../../point/charge-point/main/view/ChargePointView.dart';
+import '../../../point/my-point/view/MyPointView.dart';
 import '../../../register-home/view/StartRegisyerView.dart';
 import '../../my-homes/main/view/MyHomeListView.dart';
 
@@ -22,7 +23,7 @@ class SettingListWidget extends StatelessWidget {
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 15.h),
-        height: 775.h,
+        height: 975.h,
         decoration: BoxDecoration(
           color: kWhiteBackGroundColor,
         ),
@@ -35,6 +36,13 @@ class SettingListWidget extends StatelessWidget {
             ),
             _buildNotice(),
             _buildDealInformation(),
+            Container(
+              margin: EdgeInsets.only(left: 15.w, top: 20.h),
+              child: FBoldText("Point", kTextBlackColor,14),
+            ),
+            _buildMyPoints(),
+            _buildChargePoint(),
+
             _buildLine(),
             Container(
               margin: EdgeInsets.only(left: 15.w, top: 20.h),
@@ -186,6 +194,80 @@ class SettingListWidget extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 5.w),
                   child: FRegularText("Notice", kTextBlackColor, 15),
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 15.w, top: 15.h),
+              child: Icon(
+                Icons.arrow_forward_ios_outlined,
+                size: 15.sp,
+                color: kDarkBlue,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMyPoints() {
+    return InkWell(
+      onTap: () {
+        Get.to(() => MyPointView());
+      },
+      child: Container(
+        width: 380.w,
+        height: 50.h,
+        margin: EdgeInsets.only(left: 10.w, top: 25.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Container(
+                  child: Icon(Icons.trending_up, size: 20.sp,),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 5.w),
+                  child: FRegularText("My Points", kTextBlackColor, 15),
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 15.w, top: 15.h),
+              child: Icon(
+                Icons.arrow_forward_ios_outlined,
+                size: 15.sp,
+                color: kDarkBlue,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChargePoint() {
+    return InkWell(
+      onTap: () {
+        Get.to(() => ChargePointView());
+      },
+      child: Container(
+        width: 380.w,
+        height: 50.h,
+        margin: EdgeInsets.only(left: 10.w, top: 25.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Container(
+                  child: Icon(Icons.paid_outlined, size: 20.sp,),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 5.w),
+                  child: FRegularText("Charge Point", kTextBlackColor, 15),
                 ),
               ],
             ),

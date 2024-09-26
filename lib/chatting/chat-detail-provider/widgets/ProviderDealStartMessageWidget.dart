@@ -5,14 +5,22 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
 
+import '../../../protected-deal/deal-deposit-cancel/provider/DealCancelDepositViewByProvider.dart';
 import '../../../protected-deal/deal-request/getter/view/DealRequestViewByGetter.dart';
 import '../../../protected-deal/deal-request/provider/view/DealRequestViewByProvider.dart';
 import '../controller/ChatProviderDetailController.dart';
 
-Widget ProviderDealStartMessageWidget(ProtectedDealByProviderResponse dealByProviderResponse,ChatProviderDetailController controller) {
+Widget ProviderDealStartMessageWidget(
+    ProtectedDealByProviderResponse dealByProviderResponse,
+    ChatProviderDetailController controller) {
   // ProtectedDealByProviderResponse? dealResponse = controller.dealResponse;
+  bool isCancelDeposit =
+      dealByProviderResponse.dealState == DealState.CANCEL_DEPOSIT
+          ? true
+          : false;
   return Container(
     width: 250.w,
     decoration: BoxDecoration(
@@ -24,19 +32,25 @@ Widget ProviderDealStartMessageWidget(ProtectedDealByProviderResponse dealByProv
       children: [
         Padding(
           padding: EdgeInsets.only(top: 18.h, left: 13.w),
-          child: Title3Text("Request for Deposit Payment", kTextBlackColor),
+          child: isCancelDeposit
+              ? Title3Text("Cancel Deposit", kTextBlackColor)
+              : Title3Text("Request for Deposit Payment", kTextBlackColor),
         ),
         Padding(
-
           padding: EdgeInsets.only(top: 3.h, left: 13.w, bottom: 20.h),
-          child: Helper2Text("Deposit : ${dealByProviderResponse?.deposit} \$", kGrey400Color),
+          child: Helper2Text(
+              "Deposit : ${dealByProviderResponse?.deposit} \$", kGrey400Color),
         ),
         Center(
           child: Padding(
             padding: EdgeInsets.only(bottom: 15.h),
             child: InkWell(
               onTap: () {
-                Get.to(() => DealRequestViewByProvider(dealByProviderResponse,controller));
+                isCancelDeposit
+                    ? Get.to(() =>
+                        DealCancelDepositViewByProvider(dealByProviderResponse))
+                    : Get.to(() => DealRequestViewByProvider(
+                        dealByProviderResponse, controller));
               },
               child: Container(
                 width: 230.w,
