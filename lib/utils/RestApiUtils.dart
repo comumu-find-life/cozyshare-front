@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../rest-api/user-api/LoginApi.dart';
 
 class RestApiUtils {
+
   Future<http.Response> callGetApiWithToken(String url) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = await DiskDatabase().getAccessToken();
@@ -81,7 +82,6 @@ class RestApiUtils {
 
   void validateToken(http.Response response) {
     var decodedResponse = json.decode(utf8.decode(response.bodyBytes));
-    print(decodedResponse['message']);
     if (decodedResponse['message'] == "Access token is invalid") {
       throw Exception("Something went wrong!");
     }

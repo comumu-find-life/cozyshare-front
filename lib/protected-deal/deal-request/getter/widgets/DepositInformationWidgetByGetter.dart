@@ -6,13 +6,14 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 
+import '../../../../model/deal/response/ProtectedDealResponse.dart';
 import '../poopup/DepositNamePopup.dart';
 
 /**
  * 가상 계좌 (Getter 만 보여줌)
  */
 class DepositInformationWidgetByGetter extends StatelessWidget {
-  ProtectedDealByGetterResponse dealByGetterResponse;
+  ProtectedDealResponse dealByGetterResponse;
 
 
   DepositInformationWidgetByGetter(this.dealByGetterResponse);

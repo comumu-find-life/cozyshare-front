@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
 
 import '../../constants/Colors.dart';
 import '../../model/deal/response/ProtectedDealResponse.dart';

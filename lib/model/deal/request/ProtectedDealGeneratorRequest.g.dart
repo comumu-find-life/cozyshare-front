@@ -14,9 +14,6 @@ _$ProtectedDealGeneratorRequestImpl
           homeId: (json['homeId'] as num).toInt(),
           dmId: (json['dmId'] as num).toInt(),
           deposit: (json['deposit'] as num).toInt(),
-          accountHolder: json['accountHolder'] as String,
-          account: json['account'] as String,
-          bankName: json['bankName'] as String,
         );
 
 Map<String, dynamic> _$$ProtectedDealGeneratorRequestImplToJson(
@@ -27,7 +24,4 @@ Map<String, dynamic> _$$ProtectedDealGeneratorRequestImplToJson(
       'homeId': instance.homeId,
       'dmId': instance.dmId,
       'deposit': instance.deposit,
-      'accountHolder': instance.accountHolder,
-      'account': instance.account,
-      'bankName': instance.bankName,
     };

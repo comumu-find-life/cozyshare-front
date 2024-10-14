@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/constants/Colors.dart';
+import 'package:home_and_job/point/paypal/view/PaypalView.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
 import '../../../constants/Fonts.dart';
 import '../../../procted-deal-guild/view/ProctedDealGuidView.dart';

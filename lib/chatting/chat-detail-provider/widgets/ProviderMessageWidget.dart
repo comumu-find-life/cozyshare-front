@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import '../../../model/chat/response/DirectMessageDto.dart';
+import '../../chat-common/widgets/DealFinishWidget.dart';
 import '../controller/ChatProviderDetailController.dart';
 import 'ProviderDealFinishWidget.dart';
 import 'ProviderDealStartMessageWidget.dart';
@@ -87,7 +88,7 @@ class MessageBubble extends StatelessWidget {
       case 2:
         return ProviderDealDuringMessageWidget(directMessageResponse.dealId!, controller.getDealById(directMessageResponse.dealId!)!,controller);
       case 3:
-        return ProviderDealFinishWidget();
+        return DealFinishWidget(controller.getDealById(directMessageResponse.dealId!)!);
       default:
         return SizedBox.shrink();
     }

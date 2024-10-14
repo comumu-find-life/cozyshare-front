@@ -2,17 +2,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
+import '../../../../model/deal/response/ProtectedDealByGetterResponse.dart';
+import '../../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../getter/poopup/DepositNamePopup.dart';
 
 /**
  * provider 가 조회할 계약금/내 계좌 정보
  */
 class DepositInformationWidgetByProvider extends StatelessWidget {
-  ProtectedDealByProviderResponse _protectedDealResponse;
+  ProtectedDealResponse _protectedDealResponse;
 
 
   DepositInformationWidgetByProvider(this._protectedDealResponse);
@@ -41,7 +42,7 @@ class DepositInformationWidgetByProvider extends StatelessWidget {
             ),
             child: Column(
               children: [
-                _buildAccount(),
+                // _buildAccount(),
                 _buildIdInformation(context),
               ],
             ),
@@ -79,31 +80,31 @@ class DepositInformationWidgetByProvider extends StatelessWidget {
               )
             ],
           ),
-          Container(
-            child: NumberText("${_protectedDealResponse.accountHolder}", kTextBlackColor, 14),
-          ),
+          // Container(
+          //   child: NumberText("${_protectedDealResponse.accountHolder}", kTextBlackColor, 14),
+          // ),
 
         ],
       ),
     );
   }
 
-  Widget _buildAccount() {
-    return Container(
-      margin: EdgeInsets.only(top: 20.h),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            child: Body2Text("Account Number", kGrey600Color),
-          ),
-          Container(
-            child: NumberText("${_protectedDealResponse.bankName}" +" " + "${_protectedDealResponse.account}", kTextBlackColor, 14),
-          ),
-
-        ],
-      ),
-    );
-  }
+  // Widget _buildAccount() {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 20.h),
+  //     width: 310.w,
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         Container(
+  //           child: Body2Text("Account Number", kGrey600Color),
+  //         ),
+  //         Container(
+  //           child: NumberText("${_protectedDealResponse.bankName}" +" " + "${_protectedDealResponse.account}", kTextBlackColor, 14),
+  //         ),
+  //
+  //       ],
+  //     ),
+  //   );
+  // }
 }

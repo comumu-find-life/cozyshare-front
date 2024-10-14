@@ -9,6 +9,7 @@ import '../../../../constants/Fonts.dart';
 import '../../../../model/deal/enums/DealState.dart';
 import '../../../../utils/Converter.dart';
 import '../../../common/DealInformationWidgetByGetter.dart';
+import '../../../common/HomeInformationByDealWidget.dart';
 import '../../common/widgets/DealProcessWidget.dart';
 
 class DealProcessViewByProvider extends StatelessWidget {
@@ -20,7 +21,7 @@ class DealProcessViewByProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dealResponse = _chatDetailController.getDealById(dealId);
-    final step = _getStep(dealResponse?.dealState);
+    final step = dealResponse?.dealState.getStep();
 
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
@@ -33,6 +34,7 @@ class DealProcessViewByProvider extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            HomeInformationByDealWidget(_chatDetailController.home.images!.first, _chatDetailController.home.address!, _chatDetailController.home.rent!, _chatDetailController.home.bond!),
             // Center(child: DealProcessWidget(step)),
             Container(
               margin: EdgeInsets.only(top: 20.h, left: 15.w),
@@ -40,43 +42,32 @@ class DealProcessViewByProvider extends StatelessWidget {
             ),
             Center(
               child: DealProcessWidget(
-                step: step,
-                dealStartDateTime: ConverterUtil()
-                    .formatEnglishDateTime(dealResponse!.dealStartDateTime),
-                depositRequestDateTime: ConverterUtil().formatEnglishDateTime(
-                    dealResponse!.depositRequestDateTime),
-                depositCompletionDateTime: ConverterUtil()
-                    .formatEnglishDateTime(
-                        dealResponse!.depositCompletionDateTime),
-                dealCompletionRequestDateTime: ConverterUtil()
-                    .formatEnglishDateTime(
-                        dealResponse!.dealCompletionRequestDateTime),
-                dealCompletionDateTime: ConverterUtil().formatEnglishDateTime(
-                    dealResponse!.dealCompletionDateTime),
-                dealCancellationDateTime: ConverterUtil().formatEnglishDateTime(
-                    dealResponse!.dealCancellationDateTime),
+                step: step!,
+                createAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.createAt),
+                startAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.startAt),
+                cancelAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.cancelAt),
+                completeAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.completeAt),
               ),
+            ),
+            SizedBox(
+              height: 30.h,
             ),
             Center(
                 child: DealPriceWidget(
               deposit: dealResponse!.deposit,
               fee: dealResponse.fee,
             )),
-            DealAccountByProviderWidget(dealResponse)
+            // Container(
+            //   width: 150.w,
+            //   child: Image.asset("assets/icons/deal_image.png"),
+            // )
           ],
         ),
       ),
     );
-  }
-
-  int _getStep(DealState? dealState) {
-    switch (dealState) {
-      case DealState.REQUEST_DEPOSIT:
-        return 1;
-      case DealState.COMPLETE_DEPOSIT:
-        return 2;
-      default:
-        return 3;
-    }
   }
 }

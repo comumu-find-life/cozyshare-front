@@ -8,6 +8,7 @@ class DiskDatabase {
   static const String USER_ID = "user_id";
   static const String LOGIN_ID = "login_id";
   static const String LOGIN_PASSWORD = "login_password";
+  static const String SECRET_KEY = "secret_key";
   static const String FAVORITE_HOME_IDS = "favorite_home_ids"; // 새로 추가한 상수
 
   Future<String?> getAccessToken() async {
@@ -35,13 +36,19 @@ class DiskDatabase {
     return prefs.getString(LOGIN_PASSWORD);
   }
 
+  Future<String?> getSecretKey() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(SECRET_KEY);
+  }
+
+  Future<void> setSecretKey(String secretKey) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(SECRET_KEY, secretKey);
+  }
+
   Future<void> setLoginId(String id) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(LOGIN_ID, id);
-    print("저장될 ID: $id");
-
-    String? a = await prefs.getString(LOGIN_ID);
-    print("저장한 ID: $a");
   }
 
   Future<void> setLoginPassword(String password) async {

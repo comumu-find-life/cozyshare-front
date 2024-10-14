@@ -3,12 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
+
+import '../../../../model/deal/response/ProtectedDealResponse.dart';
 
 
 
 class DealAccountByProviderWidget extends StatelessWidget {
-  ProtectedDealByProviderResponse dealByProviderResponse;
+  ProtectedDealResponse dealByProviderResponse;
 
 
   DealAccountByProviderWidget(this.dealByProviderResponse);
@@ -34,8 +36,7 @@ class DealAccountByProviderWidget extends StatelessWidget {
                 border: Border.all(color: kGrey200Color)),
             child: Column(
               children: [
-                _buildAccountInformation(),
-                _buildName(),
+                //_buildName(),
               ],
             ),
           ),
@@ -44,40 +45,40 @@ class DealAccountByProviderWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAccountInformation() {
-    return Container(
-      margin: EdgeInsets.only(top: 20.h),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            child: Body2Text("계좌", kGrey600Color),
-          ),
-          Container(
-            child: NumberText("${dealByProviderResponse.bankName}  ${dealByProviderResponse.account}", kTextBlackColor, 13),
-          )
-        ],
-      ),
-    );
-  }
+  // Widget _buildAccountInformation() {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 20.h),
+  //     width: 310.w,
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         Container(
+  //           child: Body2Text("계좌", kGrey600Color),
+  //         ),
+  //         Container(
+  //           child: NumberText("${dealByProviderResponse.bankName}  ${dealByProviderResponse.account}", kTextBlackColor, 13),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
 
-  Widget _buildName() {
-    return Container(
-      margin: EdgeInsets.only(top: 20.h),
-      width: 310.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            child: Body2Text("예금주", kGrey600Color),
-          ),
-          Container(
-            child: NumberText("${dealByProviderResponse.accountHolder}", kTextBlackColor, 14),
-          )
-        ],
-      ),
-    );
-  }
+  // Widget _buildName() {
+  //   return Container(
+  //     margin: EdgeInsets.only(top: 20.h),
+  //     width: 310.w,
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         Container(
+  //           child: Body2Text("예금주", kGrey600Color),
+  //         ),
+  //         Container(
+  //           child: NumberText("${dealByProviderResponse.accountHolder}", kTextBlackColor, 14),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 }

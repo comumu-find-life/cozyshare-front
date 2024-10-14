@@ -25,8 +25,12 @@ mixin _$DirectMessageApplicationRequest {
   int get receiverId => throw _privateConstructorUsedError;
   int get roomId => throw _privateConstructorUsedError;
 
+  /// Serializes this DirectMessageApplicationRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DirectMessageApplicationRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DirectMessageApplicationRequestCopyWith<DirectMessageApplicationRequest>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$DirectMessageApplicationRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DirectMessageApplicationRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,6 +105,8 @@ class __$$DirectMessageApplicationDtoImplCopyWithImpl<$Res>
       $Res Function(_$DirectMessageApplicationDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DirectMessageApplicationRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,11 +165,13 @@ class _$DirectMessageApplicationDtoImpl
             (identical(other.roomId, roomId) || other.roomId == roomId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, message, receiverId, roomId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DirectMessageApplicationRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DirectMessageApplicationDtoImplCopyWith<_$DirectMessageApplicationDtoImpl>
@@ -192,8 +202,11 @@ abstract class _DirectMessageApplicationDto
   int get receiverId;
   @override
   int get roomId;
+
+  /// Create a copy of DirectMessageApplicationRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DirectMessageApplicationDtoImplCopyWith<_$DirectMessageApplicationDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

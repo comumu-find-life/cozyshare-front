@@ -10,9 +10,13 @@ import 'package:home_and_job/my-profile/notice/view/NoticeView.dart';
 import 'package:home_and_job/my-profile/policies/view/PoliciesView.dart';
 import 'package:home_and_job/my-profile/question/view/QuestionView.dart';
 import 'package:home_and_job/my-profile/safe-deal-explanation/view/SafeDealExplacationView.dart';
+import 'package:home_and_job/point/register-account/view/RegisterAccountView.dart';
+import 'package:home_and_job/rest-api/user-api/ProfileDetailApi.dart';
+import 'package:home_and_job/utils/DiskDatabase.dart';
 import '../../../point/charge-point/main/view/ChargePointView.dart';
 import '../../../point/my-point/view/MyPointView.dart';
 import '../../../register-home/view/StartRegisyerView.dart';
+import '../../../rest-api/user-api/UserPointApi.dart';
 import '../../my-homes/main/view/MyHomeListView.dart';
 
 class SettingListWidget extends StatelessWidget {
@@ -213,8 +217,14 @@ class SettingListWidget extends StatelessWidget {
 
   Widget _buildMyPoints() {
     return InkWell(
-      onTap: () {
-        Get.to(() => MyPointView());
+      onTap: () async{
+        var userId = await DiskDatabase().getUserId();
+        var userAccount = await UserPointApi().loadUserAccount();
+        if(userAccount == null){
+          Get.to(() => RegisterAccountView());
+        }else{
+          Get.to(() => MyPointView(userAccount));
+        }
       },
       child: Container(
         width: 380.w,
@@ -250,8 +260,14 @@ class SettingListWidget extends StatelessWidget {
 
   Widget _buildChargePoint() {
     return InkWell(
-      onTap: () {
-        Get.to(() => ChargePointView());
+      onTap: () async{
+        var userId = await DiskDatabase().getUserId();
+        var userAccount = await UserPointApi().loadUserAccount();
+        if(userAccount == null){
+          Get.to(() => RegisterAccountView());
+        }else{
+          Get.to(() => ChargePointView(userAccount));
+        }
       },
       child: Container(
         width: 380.w,

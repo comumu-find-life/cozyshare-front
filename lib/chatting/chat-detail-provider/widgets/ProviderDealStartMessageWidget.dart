@@ -6,19 +6,20 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
 
+import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
+import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../../protected-deal/deal-deposit-cancel/provider/DealCancelDepositViewByProvider.dart';
 import '../../../protected-deal/deal-request/getter/view/DealRequestViewByGetter.dart';
 import '../../../protected-deal/deal-request/provider/view/DealRequestViewByProvider.dart';
 import '../controller/ChatProviderDetailController.dart';
 
 Widget ProviderDealStartMessageWidget(
-    ProtectedDealByProviderResponse dealByProviderResponse,
+    ProtectedDealResponse dealByProviderResponse,
     ChatProviderDetailController controller) {
   // ProtectedDealByProviderResponse? dealResponse = controller.dealResponse;
   bool isCancelDeposit =
-      dealByProviderResponse.dealState == DealState.CANCEL_DEPOSIT
+      dealByProviderResponse.dealState == DealState.CANCEL_BEFORE_DEAL
           ? true
           : false;
   return Container(

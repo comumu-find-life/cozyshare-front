@@ -10,9 +10,9 @@ import '../../../chatting/chat-detail-provider/controller/ChatProviderDetailCont
 
 
 class DealGeneratorController extends GetxController {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _bankController = TextEditingController();
-  TextEditingController _accountController = TextEditingController();
+//   TextEditingController _nameController = TextEditingController();
+//   TextEditingController _bankController = TextEditingController();
+//   TextEditingController _accountController = TextEditingController();
   TextEditingController _bondController = TextEditingController();
   Rx<bool> _finishAccountInformation = false.obs;
 
@@ -20,18 +20,15 @@ class DealGeneratorController extends GetxController {
   void onInit() {
     super.onInit();
     // 각 controller의 변화를 모니터링하여 업데이트 메서드를 호출합니다.
-    _nameController.addListener(update);
     _bondController.addListener(update);
-    _bankController.addListener(update);
-    _accountController.addListener(update);
+    // _nameController.addListener(update);
+    // _bankController.addListener(update);
+    // _accountController.addListener(update);
   }
 
   void updateAccountController() {
     // 모든 입력 칸이 채워졌는지 확인합니다.
-    bool allFilled = _nameController.text.isNotEmpty &&
-        _bankController.text.isNotEmpty &&
-        _bondController.text.isNotEmpty &&
-        _accountController.text.isNotEmpty;
+    bool allFilled = bondController.text.isNotEmpty;
     // _finishAccountInformation 값을 갱신합니다.
     _finishAccountInformation.value = allFilled;
   }
@@ -45,9 +42,7 @@ class DealGeneratorController extends GetxController {
             homeId: _chatController.home.homeId!,
             dmId: _chatController.roomId,
             deposit: int.parse(_bondController.text),
-            accountHolder: _nameController.text,
-            account: _accountController.text,
-            bankName:  _bankController.text);
+            );
 
     int? dealId =
         await ProtectedDealApi().startDeal(protectedDealGeneratorRequest);
@@ -65,9 +60,9 @@ class DealGeneratorController extends GetxController {
 
   TextEditingController get bondController => _bondController;
 
-  TextEditingController get nameController => _nameController;
-
-  TextEditingController get bankController => _bankController;
-
-  TextEditingController get accountController => _accountController;
+  // TextEditingController get nameController => _nameController;
+  //
+  // TextEditingController get bankController => _bankController;
+  //
+  // TextEditingController get accountController => _accountController;
 }

@@ -7,12 +7,13 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 
+import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../common/DealInformationWidgetByGetter.dart';
-import '../../deal-generator/widgets/DealInformationHeaderWidget.dart';
+import '../../common/HomeInformationByDealWidget.dart';
 import '../../deal-request/getter/widgets/DepositInformationWidgetByGetter.dart';
 
 class DealCancelDepositViewByGetter extends StatelessWidget {
-  ProtectedDealByGetterResponse dealResponse;
+  ProtectedDealResponse dealResponse;
 
 
   DealCancelDepositViewByGetter(this.dealResponse);

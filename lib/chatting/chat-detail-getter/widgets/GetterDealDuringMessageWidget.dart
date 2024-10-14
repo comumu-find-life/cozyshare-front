@@ -13,7 +13,7 @@ import '../controller/ChatGetterDetailController.dart';
 Widget GetterDealDuringMessageWidget(int dealId, ChatGetterDetailController controller){
   var dealResponse = controller.getDealById(dealId);
   return Container(
-    width: 220.w,
+    width: 230.w,
     height: 150.h,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -46,6 +46,7 @@ Widget GetterDealDuringMessageWidget(int dealId, ChatGetterDetailController cont
             ),
           ),
         )
+
       ],
     ),
   );

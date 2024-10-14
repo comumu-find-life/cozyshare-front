@@ -35,8 +35,12 @@ mixin _$HomeGeneratorRequest {
   int get rent => throw _privateConstructorUsedError;
   String get options => throw _privateConstructorUsedError;
 
+  /// Serializes this HomeGeneratorRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HomeGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HomeGeneratorRequestCopyWith<HomeGeneratorRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,6 +80,8 @@ class _$HomeGeneratorRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HomeGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,6 +155,8 @@ class _$HomeGeneratorRequestCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of HomeGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $HomeAddressGeneratorRequestCopyWith<$Res> get homeAddress {
@@ -194,6 +202,8 @@ class __$$HomeGeneratorRequestImplCopyWithImpl<$Res>
       $Res Function(_$HomeGeneratorRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HomeGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -347,7 +357,7 @@ class _$HomeGeneratorRequestImpl implements _HomeGeneratorRequest {
             (identical(other.options, options) || other.options == options));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -365,7 +375,9 @@ class _$HomeGeneratorRequestImpl implements _HomeGeneratorRequest {
       rent,
       options);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HomeGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HomeGeneratorRequestImplCopyWith<_$HomeGeneratorRequestImpl>
@@ -426,8 +438,11 @@ abstract class _HomeGeneratorRequest implements HomeGeneratorRequest {
   int get rent;
   @override
   String get options;
+
+  /// Create a copy of HomeGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeGeneratorRequestImplCopyWith<_$HomeGeneratorRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

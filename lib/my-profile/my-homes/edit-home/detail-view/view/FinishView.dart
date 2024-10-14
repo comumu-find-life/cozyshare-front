@@ -9,19 +9,22 @@ class FinishView extends StatefulWidget {
   String titleMessage;
   String subTitleMessage;
 
-
   FinishView(this.titleMessage, this.subTitleMessage);
 
   @override
   _FinishView createState() => _FinishView();
 }
 
-class _FinishView extends State<FinishView>  with TickerProviderStateMixin{
+class _FinishView extends State<FinishView> with TickerProviderStateMixin {
+  late AnimationController scaleController = AnimationController(
+      duration: const Duration(milliseconds: 1500), vsync: this);
+  late Animation<double> scaleAnimation =
+      CurvedAnimation(parent: scaleController, curve: Curves.elasticOut);
+  late AnimationController checkController = AnimationController(
+      duration: const Duration(milliseconds: 1000), vsync: this);
+  late Animation<double> checkAnimation =
+      CurvedAnimation(parent: checkController, curve: Curves.linear);
 
-  late AnimationController scaleController = AnimationController(duration: const Duration(milliseconds: 1500), vsync: this);
-  late Animation<double> scaleAnimation = CurvedAnimation(parent: scaleController, curve: Curves.elasticOut);
-  late AnimationController checkController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-  late Animation<double> checkAnimation = CurvedAnimation(parent: checkController, curve: Curves.linear);
   @override
   void initState() {
     super.initState();
@@ -35,7 +38,6 @@ class _FinishView extends State<FinishView>  with TickerProviderStateMixin{
 
   @override
   void dispose() {
-
     scaleController.dispose();
     checkController.dispose();
     super.dispose();
@@ -48,27 +50,31 @@ class _FinishView extends State<FinishView>  with TickerProviderStateMixin{
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
-
       body: InkWell(
-        onTap: (){
-          Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => MainFrameView(0)), (route) => false);
+        onTap: () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => MainFrameView(0)),
+              (route) => false);
         },
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: size.height*0.3,),
+              SizedBox(
+                height: size.height * 0.3,
+              ),
               Center(
-
                 child: Container(
-                    width: 340.w,
                     child: Title1Text("${widget.titleMessage}", kDarkBlue)),
               ),
               Container(
                 margin: EdgeInsets.only(top: 40.h, bottom: 15.h),
                 child: Body2Text("${widget.subTitleMessage}", kTextBlackColor),
               ),
-              SizedBox(height: size.height*0.03,),
+              SizedBox(
+                height: size.height * 0.03,
+              ),
               ScaleTransition(
                 scale: scaleAnimation,
                 child: Container(
@@ -83,13 +89,13 @@ class _FinishView extends State<FinishView>  with TickerProviderStateMixin{
                       axis: Axis.horizontal,
                       axisAlignment: -1,
                       child: Center(
-                          child: Icon(Icons.check, color: Colors.white, size: iconSize)
-                      )
-                  ),
+                          child: Icon(Icons.check,
+                              color: Colors.white, size: iconSize))),
                 ),
               ),
-              SizedBox(height: size.height*0.4,),
-
+              SizedBox(
+                height: size.height * 0.4,
+              ),
             ],
           ),
         ),

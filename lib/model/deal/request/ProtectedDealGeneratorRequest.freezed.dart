@@ -26,12 +26,13 @@ mixin _$ProtectedDealGeneratorRequest {
   int get homeId => throw _privateConstructorUsedError;
   int get dmId => throw _privateConstructorUsedError;
   int get deposit => throw _privateConstructorUsedError;
-  String get accountHolder => throw _privateConstructorUsedError;
-  String get account => throw _privateConstructorUsedError;
-  String get bankName => throw _privateConstructorUsedError;
 
+  /// Serializes this ProtectedDealGeneratorRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProtectedDealGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProtectedDealGeneratorRequestCopyWith<ProtectedDealGeneratorRequest>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -44,15 +45,7 @@ abstract class $ProtectedDealGeneratorRequestCopyWith<$Res> {
       _$ProtectedDealGeneratorRequestCopyWithImpl<$Res,
           ProtectedDealGeneratorRequest>;
   @useResult
-  $Res call(
-      {int getterId,
-      int providerId,
-      int homeId,
-      int dmId,
-      int deposit,
-      String accountHolder,
-      String account,
-      String bankName});
+  $Res call({int getterId, int providerId, int homeId, int dmId, int deposit});
 }
 
 /// @nodoc
@@ -66,6 +59,8 @@ class _$ProtectedDealGeneratorRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProtectedDealGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,9 +69,6 @@ class _$ProtectedDealGeneratorRequestCopyWithImpl<$Res,
     Object? homeId = null,
     Object? dmId = null,
     Object? deposit = null,
-    Object? accountHolder = null,
-    Object? account = null,
-    Object? bankName = null,
   }) {
     return _then(_value.copyWith(
       getterId: null == getterId
@@ -99,18 +91,6 @@ class _$ProtectedDealGeneratorRequestCopyWithImpl<$Res,
           ? _value.deposit
           : deposit // ignore: cast_nullable_to_non_nullable
               as int,
-      accountHolder: null == accountHolder
-          ? _value.accountHolder
-          : accountHolder // ignore: cast_nullable_to_non_nullable
-              as String,
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as String,
-      bankName: null == bankName
-          ? _value.bankName
-          : bankName // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -124,15 +104,7 @@ abstract class _$$ProtectedDealGeneratorRequestImplCopyWith<$Res>
       __$$ProtectedDealGeneratorRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int getterId,
-      int providerId,
-      int homeId,
-      int dmId,
-      int deposit,
-      String accountHolder,
-      String account,
-      String bankName});
+  $Res call({int getterId, int providerId, int homeId, int dmId, int deposit});
 }
 
 /// @nodoc
@@ -145,6 +117,8 @@ class __$$ProtectedDealGeneratorRequestImplCopyWithImpl<$Res>
       $Res Function(_$ProtectedDealGeneratorRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProtectedDealGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,9 +127,6 @@ class __$$ProtectedDealGeneratorRequestImplCopyWithImpl<$Res>
     Object? homeId = null,
     Object? dmId = null,
     Object? deposit = null,
-    Object? accountHolder = null,
-    Object? account = null,
-    Object? bankName = null,
   }) {
     return _then(_$ProtectedDealGeneratorRequestImpl(
       getterId: null == getterId
@@ -178,18 +149,6 @@ class __$$ProtectedDealGeneratorRequestImplCopyWithImpl<$Res>
           ? _value.deposit
           : deposit // ignore: cast_nullable_to_non_nullable
               as int,
-      accountHolder: null == accountHolder
-          ? _value.accountHolder
-          : accountHolder // ignore: cast_nullable_to_non_nullable
-              as String,
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as String,
-      bankName: null == bankName
-          ? _value.bankName
-          : bankName // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -203,10 +162,7 @@ class _$ProtectedDealGeneratorRequestImpl
       required this.providerId,
       required this.homeId,
       required this.dmId,
-      required this.deposit,
-      required this.accountHolder,
-      required this.account,
-      required this.bankName});
+      required this.deposit});
 
   factory _$ProtectedDealGeneratorRequestImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -222,16 +178,10 @@ class _$ProtectedDealGeneratorRequestImpl
   final int dmId;
   @override
   final int deposit;
-  @override
-  final String accountHolder;
-  @override
-  final String account;
-  @override
-  final String bankName;
 
   @override
   String toString() {
-    return 'ProtectedDealGeneratorRequest(getterId: $getterId, providerId: $providerId, homeId: $homeId, dmId: $dmId, deposit: $deposit, accountHolder: $accountHolder, account: $account, bankName: $bankName)';
+    return 'ProtectedDealGeneratorRequest(getterId: $getterId, providerId: $providerId, homeId: $homeId, dmId: $dmId, deposit: $deposit)';
   }
 
   @override
@@ -245,20 +195,17 @@ class _$ProtectedDealGeneratorRequestImpl
                 other.providerId == providerId) &&
             (identical(other.homeId, homeId) || other.homeId == homeId) &&
             (identical(other.dmId, dmId) || other.dmId == dmId) &&
-            (identical(other.deposit, deposit) || other.deposit == deposit) &&
-            (identical(other.accountHolder, accountHolder) ||
-                other.accountHolder == accountHolder) &&
-            (identical(other.account, account) || other.account == account) &&
-            (identical(other.bankName, bankName) ||
-                other.bankName == bankName));
+            (identical(other.deposit, deposit) || other.deposit == deposit));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, getterId, providerId, homeId,
-      dmId, deposit, accountHolder, account, bankName);
+  int get hashCode =>
+      Object.hash(runtimeType, getterId, providerId, homeId, dmId, deposit);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProtectedDealGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProtectedDealGeneratorRequestImplCopyWith<
@@ -281,10 +228,7 @@ abstract class _ProtectedDealGeneratorRequest
       required final int providerId,
       required final int homeId,
       required final int dmId,
-      required final int deposit,
-      required final String accountHolder,
-      required final String account,
-      required final String bankName}) = _$ProtectedDealGeneratorRequestImpl;
+      required final int deposit}) = _$ProtectedDealGeneratorRequestImpl;
 
   factory _ProtectedDealGeneratorRequest.fromJson(Map<String, dynamic> json) =
       _$ProtectedDealGeneratorRequestImpl.fromJson;
@@ -299,14 +243,11 @@ abstract class _ProtectedDealGeneratorRequest
   int get dmId;
   @override
   int get deposit;
+
+  /// Create a copy of ProtectedDealGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String get accountHolder;
-  @override
-  String get account;
-  @override
-  String get bankName;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProtectedDealGeneratorRequestImplCopyWith<
           _$ProtectedDealGeneratorRequestImpl>
       get copyWith => throw _privateConstructorUsedError;

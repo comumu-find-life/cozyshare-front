@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
+import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../../protected-deal/deal-proceeding/getter/view/DealProcessViewByGetter.dart';
 import '../../../protected-deal/deal-proceeding/provider/view/DealProcessViewByProvider.dart';
 import '../controller/ChatProviderDetailController.dart';
 
-Widget ProviderDealDuringMessageWidget(int dealId, ProtectedDealByProviderResponse dealByProviderResponse, ChatProviderDetailController controller){
+Widget ProviderDealDuringMessageWidget(int dealId, ProtectedDealResponse dealByProviderResponse, ChatProviderDetailController controller){
   return Container(
-    width: 200.w,
+    width: 230.w,
     height: 150.h,
     decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),

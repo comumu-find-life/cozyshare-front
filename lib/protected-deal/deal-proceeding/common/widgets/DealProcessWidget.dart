@@ -12,12 +12,10 @@ import 'package:home_and_job/constants/Fonts.dart';
  */
 Widget DealProcessWidget({
   required int step,
-  required String? dealStartDateTime,
-  required String? depositRequestDateTime,
-  required String? depositCompletionDateTime,
-  required String? dealCompletionRequestDateTime,
-  required String? dealCompletionDateTime,
-  required String? dealCancellationDateTime,
+  required String? createAt,
+  required String? startAt,
+  required String? cancelAt,
+  required String? completeAt,
 }) {
   return Container(
     color: kWhiteBackGroundColor,
@@ -26,26 +24,16 @@ Widget DealProcessWidget({
       children: [
         SizedBox(height: 20.h),
         _buildProcessStep(
-          title: "Before Deposit",
-          dateTime: dealStartDateTime,
+          title: "Deal Start Time",
+          dateTime: startAt,
           isCompleted: true,
         ),
         _buildProcessStep(
-          title: "Deposit Request",
-          dateTime: depositRequestDateTime,
+          title: "Deal End Time",
+          dateTime: completeAt,
         ),
-        _buildProcessStep(
-          title: "Deposit Completed",
-          dateTime: depositCompletionDateTime,
-        ),
-        _buildProcessStep(
-          title: "Request for \nTransaction Completion",
-          dateTime: dealCompletionRequestDateTime,
-        ),
-        _buildProcessStep(
-          title: "Transaction Completed",
-          dateTime: dealCompletionDateTime,
-        ),
+
+
       ],
     ),
   );
@@ -82,6 +70,8 @@ Widget _buildProcessStep({
             : Container(
                 margin: EdgeInsets.only(right: 10.w),
                 child: Body2Text("${dateTime}", kGrey800Color)),
+        
+
       ],
     ),
   );

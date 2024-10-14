@@ -5,23 +5,20 @@ import 'package:get/get.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/rest-api/deal-api/MyProtectedDealApi.dart';
 
-import '../../../../model/deal/response/MyProtectedDealResponse.dart';
+import '../../../../model/deal/response/ProtectedDealResponse.dart';
 
 class MyDealListController extends GetxController{
   RxList deals = [].obs;
-  List<MyProtectedDealResponse> duringDeals = [];
-  List<MyProtectedDealResponse> doneDeals = [];
-  List<MyProtectedDealResponse> cancelDeals = [];
-  Rx<DealState> _dealStatus = DealState.BEFORE_DEPOSIT.obs;
+  List<ProtectedDealResponse> duringDeals = [];
+  List<ProtectedDealResponse> doneDeals = [];
+  List<ProtectedDealResponse> cancelDeals = [];
+  Rx<DealState> _dealStatus = DealState.REQUEST_DEAL.obs;
 
   void ontapState(DealState state){
     _dealStatus.value = state;
-    print(duringDeals.length);
-    print(doneDeals.length);
-    print(cancelDeals.length);
     if(_dealStatus == DealState.COMPLETE_DEAL) deals.value = doneDeals;
-    if(_dealStatus == DealState.CANCEL_DEAL) deals.value = cancelDeals;
-    if(_dealStatus != DealState.BEFORE_DEPOSIT) deals.value = duringDeals;
+    if(_dealStatus == DealState.CANCEL_DURING_DEAL) deals.value = cancelDeals;
+    if(_dealStatus != DealState.COMPLETE_DEAL) deals.value = duringDeals;
   }
 
 
@@ -30,7 +27,7 @@ class MyDealListController extends GetxController{
     for(int i = 0; i<deals.length; i++) {
       if(deals[i].dealState == DealState.COMPLETE_DEAL){
         doneDeals.add(deals[i]);
-      }else if(deals[i].dealState == DealState.CANCEL_DEAL){
+      }else if(deals[i].dealState == DealState.CANCEL_DURING_DEAL){
         cancelDeals.add(deals[i]);
       }else{
         duringDeals.add(deals[i]);

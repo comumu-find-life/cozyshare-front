@@ -8,7 +8,7 @@ import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../controller/DealGeneratorController.dart';
-import '../widgets/DealInformationHeaderWidget.dart';
+import '../../common/HomeInformationByDealWidget.dart';
 import '../widgets/ProviderAccountFormWidget.dart';
 import 'DealGeneratorFinalViewByProvider.dart';
 
@@ -38,7 +38,7 @@ class DealGeneratorViewByProvider extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DealInformationHeaderWidget(_chatController.home),
+            HomeInformationByDealWidget(_chatController.home.images!.first, _chatController.home.address!, _chatController.home.rent!, _chatController.home.bond!),
             ProviderAccountFormWidget(_controller),
           ],
         ),

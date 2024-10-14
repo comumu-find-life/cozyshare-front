@@ -29,8 +29,12 @@ mixin _$DirectMessageRoomListResponse {
   String get lastMessage => throw _privateConstructorUsedError;
   DateTime get lastSendDateTime => throw _privateConstructorUsedError;
 
+  /// Serializes this DirectMessageRoomListResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DirectMessageRoomListResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DirectMessageRoomListResponseCopyWith<DirectMessageRoomListResponse>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$DirectMessageRoomListResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DirectMessageRoomListResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,6 +143,8 @@ class __$$DirectMessageRoomListDtoImplCopyWithImpl<$Res>
       $Res Function(_$DirectMessageRoomListDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DirectMessageRoomListResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -236,12 +244,14 @@ class _$DirectMessageRoomListDtoImpl implements _DirectMessageRoomListDto {
                 other.lastSendDateTime == lastSendDateTime));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, otherUserId, userNickname,
       userProfileUrl, progressHomeId, lastMessage, lastSendDateTime);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DirectMessageRoomListResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DirectMessageRoomListDtoImplCopyWith<_$DirectMessageRoomListDtoImpl>
@@ -285,8 +295,11 @@ abstract class _DirectMessageRoomListDto
   String get lastMessage;
   @override
   DateTime get lastSendDateTime;
+
+  /// Create a copy of DirectMessageRoomListResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DirectMessageRoomListDtoImplCopyWith<_$DirectMessageRoomListDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

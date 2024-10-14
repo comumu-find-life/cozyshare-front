@@ -38,7 +38,7 @@ class ChargeHeaderr extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 30.h),
-                    child: FBoldText("Current Point : 300P", kTextBlackColor, 12),
+                    child: FBoldText("Current Point : ${_controller.userAccountResponse.point}P", kTextBlackColor, 12),
                   ),
                 ],
               )

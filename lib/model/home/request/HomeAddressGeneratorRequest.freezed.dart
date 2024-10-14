@@ -30,8 +30,12 @@ mixin _$HomeAddressGeneratorRequest {
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
 
+  /// Serializes this HomeAddressGeneratorRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HomeAddressGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HomeAddressGeneratorRequestCopyWith<HomeAddressGeneratorRequest>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$HomeAddressGeneratorRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HomeAddressGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,6 +151,8 @@ class __$$HomeAddressGeneratorRequestImplCopyWithImpl<$Res>
       $Res Function(_$HomeAddressGeneratorRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HomeAddressGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -255,12 +263,14 @@ class _$HomeAddressGeneratorRequestImpl
                 other.longitude == longitude));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, city, postCode,
       detailAddress, streetName, streetCode, latitude, longitude);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HomeAddressGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HomeAddressGeneratorRequestImplCopyWith<_$HomeAddressGeneratorRequestImpl>
@@ -306,8 +316,11 @@ abstract class _HomeAddressGeneratorRequest
   double? get latitude;
   @override
   double? get longitude;
+
+  /// Create a copy of HomeAddressGeneratorRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeAddressGeneratorRequestImplCopyWith<_$HomeAddressGeneratorRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

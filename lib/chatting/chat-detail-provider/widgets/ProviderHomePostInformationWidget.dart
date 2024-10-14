@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:home_and_job/chatting/popup/RegisterAccountPopup.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 
@@ -35,16 +36,20 @@ class ProviderHomePostInformationWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+
           _buildHomeInformation(true),
-           _controller.canAddDeal()? _buildStartDeal():Container()
+           _controller.canAddDeal()? _buildStartDeal(context):Container()
         ],
       ),
     );
   }
 
-  Widget _buildStartDeal() {
+  Widget _buildStartDeal(BuildContext context) {
     return InkWell(
       onTap: () {
+        !_controller.isExistAccount?
+            RegisterAccountPopup().showDialog(context)
+            :
         Get.to(() => DealGeneratorViewByProvider(_controller));
       },
       child: Container(

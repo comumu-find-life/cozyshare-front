@@ -4,8 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/point/charge-point/main/view/ChargePointView.dart';
 
 import '../controller/MyPointController.dart';
 
@@ -50,7 +53,7 @@ class MyPointHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: FBoldText("3000", kGrey700Color, 18),
+                child: FBoldText("${_controller.userAccountResponse!.point}", kGrey700Color, 18),
               ),
               Container(
                 child: Icon(Icons.attach_money),
@@ -87,7 +90,7 @@ class MyPointHeader extends StatelessWidget {
 
           InkWell(
             onTap: (){
-
+              Get.to(() => ChargePointView(_controller.userAccountResponse!));
             },
             child: Container(
               width: 170.w,

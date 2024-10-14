@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealResponse.dart';
 import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/rest-api/user-api/ProfileDetailApi.dart';
@@ -14,25 +14,29 @@ import 'package:home_and_job/model/deal/request/ProtectedDealFindRequest.dart';
 import 'package:home_and_job/model/home/response/HomeInformationResponse.dart';
 import 'package:home_and_job/model/user/response/UserProfileResponse.dart';
 import 'package:home_and_job/rest-api/home-api/RoomApi.dart';
+import 'package:home_and_job/rest-api/user-api/UserPointApi.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 import '../../../model/chat/response/DirectMessageDto.dart';
 import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
+import '../../../model/user/response/UserAccountResponse.dart';
 
 
 class ChatGetterDetailController extends GetxController {
+  late bool _isExistAccount;
   late int _roomId;
   late int _providerId;
   late int _getterId;
-  late Map<int, ProtectedDealByGetterResponse> dealMap = {};
-  // late ProtectedDealByGetterResponse? _dealResponse;
+  late Map<int, ProtectedDealResponse> dealMap = {};
   late HomeInformationResponse _home;
   late UserProfileResponse _sender;
   late UserProfileResponse _receiver;
   late UserProfileResponse _currentUser;
+  late UserAccountResponse? userAccountResponse;
   TextEditingController textEditingController = TextEditingController();
   RxList<DirectMessageResponse> _messages = <DirectMessageResponse>[].obs;
+  Rx<bool> _isAgreeComplete = false.obs;
   late StompClient stompClient;
 
 
@@ -45,6 +49,7 @@ class ChatGetterDetailController extends GetxController {
     await loadMessages();
     await loadHomeInformation(homeId);
     await loadProtectedDeal();
+    await loadAccount();
     connectToStomp();
     return true;
   }
@@ -58,14 +63,14 @@ class ChatGetterDetailController extends GetxController {
         providerId: int.parse(_home.providerId!),
         homeId: _home.homeId!,
         dmId: _roomId);
-    List<ProtectedDealByGetterResponse> response = await ProtectedDealApi().loadProtectedDealByGetter(protectedDealFindRequest);
+    List<ProtectedDealResponse> response = await ProtectedDealApi().loadProtectedDealByGetter(protectedDealFindRequest);
     if (response != null) {
       dealMap = { for (var deal in response) deal.id: deal };
     }
     return true;
   }
 
-  ProtectedDealByGetterResponse? getDealById(int dealId) {
+  ProtectedDealResponse? getDealById(int dealId) {
     if (dealMap.containsKey(dealId)) {
       return dealMap[dealId];
     } else {
@@ -114,6 +119,10 @@ class ChatGetterDetailController extends GetxController {
     return true;
   }
 
+  loadAccount() async{
+    _isExistAccount = await UserPointApi().isExistAccount();
+  }
+
   Future<bool> loadMessages() async {
     List<DirectMessageResponse> initMessages =
     await DmApi().loadDmHistory(_sender.id, _receiver.id);
@@ -153,7 +162,7 @@ class ChatGetterDetailController extends GetxController {
       message: "DEAL MESSAGE",
       roomId: _roomId.toString(),
       isDeal: 2,
-      dealState: DealState.REQUEST_DEPOSIT.name,
+      dealState: DealState.REQUEST_DEAL.name,
       senderId: _getterId, dealId: dealId,
     );
 
@@ -166,10 +175,31 @@ class ChatGetterDetailController extends GetxController {
 
   }
 
-  // 거래 확정 요청 메서드
-  void confirmDeal() async{
+  // 거래 완료
+  void completeDeal(int dealId) async{
+    var directMessageRequest = DirectMessageRequest(
+      receiverId: _providerId,
+      message: "DEAL MESSAGE",
+      roomId: _roomId.toString(),
+      isDeal: 3,
+      dealState: DealState.REQUEST_DEAL.name,
+      senderId: _getterId, dealId: dealId,
+    );
+
+    stompClient.send(
+      destination: '/pub/chat/message',
+      body: jsonEncode(directMessageRequest.toJson()),
+    );
     await loadProtectedDeal();
   }
+
+  Future<bool?> checkUserPoint(int dealId)async{
+    userAccountResponse = await UserPointApi().loadUserAccount();
+    return userAccountResponse?.checkEnoughPoint(getDealById(dealId)!.deposit);
+
+  }
+
+
 
   bool isProvider() {
     return _currentUser.id.toString() == _home.providerId.toString();
@@ -200,4 +230,10 @@ class ChatGetterDetailController extends GetxController {
   int get roomId => _roomId;
 
   int get getterId => _getterId;
+
+  bool get isExistAccount => _isExistAccount;
+
+  Rx<bool> get isAgreeComplete => _isAgreeComplete;
+
+
 }

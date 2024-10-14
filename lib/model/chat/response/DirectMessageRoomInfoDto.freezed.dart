@@ -27,8 +27,12 @@ mixin _$DirectMessageRoomInfoDto {
   int get receiverId => throw _privateConstructorUsedError;
   String get receiverName => throw _privateConstructorUsedError;
 
+  /// Serializes this DirectMessageRoomInfoDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DirectMessageRoomInfoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DirectMessageRoomInfoDtoCopyWith<DirectMessageRoomInfoDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$DirectMessageRoomInfoDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DirectMessageRoomInfoDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,6 +125,8 @@ class __$$DirectMessageRoomInfoDtoImplCopyWithImpl<$Res>
       $Res Function(_$DirectMessageRoomInfoDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DirectMessageRoomInfoDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -198,12 +206,14 @@ class _$DirectMessageRoomInfoDtoImpl implements _DirectMessageRoomInfoDto {
                 other.receiverName == receiverName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, senderId, senderName, receiverId, receiverName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DirectMessageRoomInfoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DirectMessageRoomInfoDtoImplCopyWith<_$DirectMessageRoomInfoDtoImpl>
@@ -239,8 +249,11 @@ abstract class _DirectMessageRoomInfoDto implements DirectMessageRoomInfoDto {
   int get receiverId;
   @override
   String get receiverName;
+
+  /// Create a copy of DirectMessageRoomInfoDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DirectMessageRoomInfoDtoImplCopyWith<_$DirectMessageRoomInfoDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

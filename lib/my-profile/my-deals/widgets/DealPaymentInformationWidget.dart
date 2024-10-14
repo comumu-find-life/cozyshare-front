@@ -1,12 +1,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:home_and_job/model/deal/response/MyProtectedDealResponse.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
+import '../../../model/deal/response/ProtectedDealResponse.dart';
 
-Widget DealPaymentInformationWidget(MyProtectedDealResponse dealResponse) {
+Widget DealPaymentInformationWidget(ProtectedDealResponse dealResponse) {
   return Container(
     width: 380.w,
     color: kWhiteBackGroundColor,

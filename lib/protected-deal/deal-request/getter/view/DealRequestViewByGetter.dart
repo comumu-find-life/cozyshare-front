@@ -2,14 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
 import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
+import 'package:home_and_job/protected-deal/deal-request/getter/poopup/PointChargePopup.dart';
+import 'package:home_and_job/utils/SnackBar.dart';
 
 import '../../../../chatting/chat-detail-getter/controller/ChatGetterDetailController.dart';
 import '../../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
-import '../../../deal-generator/widgets/DealInformationHeaderWidget.dart';
+import '../../../../model/deal/response/ProtectedDealResponse.dart';
+import '../../../common/HomeInformationByDealWidget.dart';
 import '../controller/DealRequestControllerByGetter.dart';
 import '../widgets/DealRequestAgreeWidget.dart';
 import '../widgets/DepositInformationWidgetByGetter.dart';
@@ -28,18 +32,19 @@ class DealRequestViewByGetter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var dealResponse = _chatDetailController.getDealById(dealId);
-    bool _canRequestDeposit = dealResponse?.dealState ==
-            DealState.BEFORE_DEPOSIT
-        ? true
-        : false;
+    bool _canRequestDeposit =
+        dealResponse?.dealState == DealState.REQUEST_DEAL ? true : false;
     return Scaffold(
-      bottomSheet: _canRequestDeposit ? _buildStepOneButton(dealResponse!, context) : null,
-      appBar: AppBar(),
+      backgroundColor: kWhiteBackGroundColor,
+      bottomSheet: _canRequestDeposit
+          ? _buildStepOneButton(dealResponse!, context)
+          : null,
+      appBar: CommonAppBar(canBack: true, title: "", color: kWhiteBackGroundColor),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DealInformationHeaderWidget(_chatDetailController.home),
+            HomeInformationByDealWidget(_chatDetailController.home.images!.first, _chatDetailController.home.address!, _chatDetailController.home.rent!, _chatDetailController.home.bond!),
             //거래 정보
             Center(
                 child: DealPriceWidget(
@@ -47,9 +52,6 @@ class DealRequestViewByGetter extends StatelessWidget {
               fee: dealResponse!.fee,
             )),
 
-            //입금 계좌
-            DepositInformationWidgetByGetter(
-                dealResponse!),
             //이용약관 도으이
             if (_canRequestDeposit)
               DealRequestAgreeWidget(controller: _controller),
@@ -62,7 +64,8 @@ class DealRequestViewByGetter extends StatelessWidget {
     );
   }
 
-  Obx _buildStepOneButton(ProtectedDealByGetterResponse dealResponse, BuildContext context) {
+  Obx _buildStepOneButton(
+      ProtectedDealResponse dealResponse, BuildContext context) {
     return Obx(() => Container(
         color: Colors.transparent,
         child: Row(
@@ -71,13 +74,13 @@ class DealRequestViewByGetter extends StatelessWidget {
               width: 110.w,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: kBlueColor,
+                  backgroundColor: kErrorColor,
                   //padding: EdgeInsets.symmetric(vertical: 14),
                   side: BorderSide.none, // 테두리 없애기
                   shadowColor: Colors.transparent, // 그림자 없애기
                 ),
                 onPressed: () async {
-                  await _controller.cancelDeposit(dealId);
+                  // await _controller.cancelDeposit(dealId);
                 },
                 child: ButtonText("Cancel", kWhiteBackGroundColor),
               ),
@@ -95,13 +98,18 @@ class DealRequestViewByGetter extends StatelessWidget {
                 ),
                 onPressed: () async {
                   if (_controller.canNext) {
-                    await _controller
-                        .requestDeposit(dealResponse!.id);
-                    _chatDetailController.applyDeposit(dealResponse!.id);
-                    Navigator.pop(context);
+                    bool? response = await _chatDetailController.checkUserPoint(dealId);
+                    if(!response!){
+                      Pointchargepopup().showPopup(_chatDetailController.userAccountResponse!, context);
+                    }else{
+                      await _controller.acceptDeal(dealResponse!.id);
+                      _chatDetailController.applyDeposit(dealResponse!.id);
+                      Navigator.pop(context);
+                    }
+
                   }
                 },
-                child: ButtonText("Deposit Request", kWhiteBackGroundColor),
+                child: ButtonText("Acceptance", kWhiteBackGroundColor),
               ),
             ),
           ],

@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByProviderResponse.dart';
+import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/rest-api/user-api/ProfileDetailApi.dart';
@@ -18,6 +18,8 @@ import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 import '../../../model/chat/response/DirectMessageDto.dart';
+import '../../../model/deal/response/ProtectedDealResponse.dart';
+import '../../../rest-api/user-api/UserPointApi.dart';
 
 /**
  * (1) 대화 목록 불러오기
@@ -31,10 +33,11 @@ import '../../../model/chat/response/DirectMessageDto.dart';
  * (8) "거래 성사" 폼 생성
  */
 class ChatProviderDetailController extends GetxController {
+  late bool _isExistAccount;
   late int _roomId;
   late int _providerId;
   late int _getterId;
-  late Map<int, ProtectedDealByProviderResponse> dealMap = {};
+  late Map<int, ProtectedDealResponse> dealMap = {};
   late HomeInformationResponse _home;
   late UserProfileResponse _sender;
   late UserProfileResponse _receiver;
@@ -53,6 +56,7 @@ class ChatProviderDetailController extends GetxController {
     await loadMessages();
     await loadHomeInformation(homeId);
     await loadProtectedDeal();
+    await loadAccount();
     connectToStomp();
     return true;
   }
@@ -60,12 +64,17 @@ class ChatProviderDetailController extends GetxController {
   /**
    * dealMap에서 key로 ProtectedDealByProviderResponse 조회
    */
-  ProtectedDealByProviderResponse? getDealById(int dealId) {
+  ProtectedDealResponse? getDealById(int dealId) {
+
     if (dealMap.containsKey(dealId)) {
       return dealMap[dealId];
     } else {
       return null;  // 해당 key가 없으면 null 반환
     }
+  }
+
+  loadAccount() async{
+    _isExistAccount = await UserPointApi().isExistAccount();
   }
 
   /**
@@ -77,9 +86,7 @@ class ChatProviderDetailController extends GetxController {
         providerId: int.parse(_home.providerId!),
         homeId: _home.homeId!,
         dmId: _roomId);
-    List<ProtectedDealByProviderResponse> response = await ProtectedDealApi().loadProtectedDealByProvider(protectedDealFindRequest);
-    print("-----");
-    print(response);
+    List<ProtectedDealResponse> response = await ProtectedDealApi().loadProtectedDealByProvider(protectedDealFindRequest);
     // dealMap에 정보를 넣음
     if (response != null) {
       dealMap = { for (var deal in response) deal.id: deal };
@@ -175,7 +182,6 @@ class ChatProviderDetailController extends GetxController {
   // 안전거래 시작 메서드 (only provider)
   void startProtectedDeal(int dealId) async {
 
-    print("success create DealId = " + dealId.toString());
     await loadProtectedDeal();
     var directMessageRequest = DirectMessageRequest(
       receiverId: _getterId,
@@ -185,7 +191,7 @@ class ChatProviderDetailController extends GetxController {
       roomId: _roomId.toString(),
 
       isDeal: 1,
-      dealState: DealState.BEFORE_DEPOSIT.name,
+      dealState: DealState.REQUEST_DEAL.name,
       senderId: _providerId, dealId: dealId,
     );
 
@@ -224,4 +230,6 @@ class ChatProviderDetailController extends GetxController {
   int get roomId => _roomId;
 
   int get getterId => _getterId;
+
+  bool get isExistAccount => _isExistAccount;
 }

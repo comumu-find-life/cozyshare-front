@@ -8,13 +8,11 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 
-import '../../../model/deal/response/ProtectedDealByProviderResponse.dart';
+import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../common/DealInformationWidgetByGetter.dart';
-import '../../deal-generator/widgets/DealInformationHeaderWidget.dart';
-import '../../deal-request/getter/widgets/DepositInformationWidgetByGetter.dart';
 
 class DealCancelDepositViewByProvider extends StatelessWidget {
-  ProtectedDealByProviderResponse dealResponse;
+  ProtectedDealResponse dealResponse;
 
 
   DealCancelDepositViewByProvider(this.dealResponse);

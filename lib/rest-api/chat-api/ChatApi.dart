@@ -61,7 +61,7 @@ class DmApi {
     var userId = await DiskDatabase().getUserId();
     var response = await apiUtils.callGetApiWithToken(ApiUrls.DM_ROOMS + userId.toString());
 
-    print(utf8.decode(response.bodyBytes));
+
 
     if (apiUtils.isValidResponse(response)) {
       List<dynamic> jsonResponse = apiUtils.decodeResponse(response);

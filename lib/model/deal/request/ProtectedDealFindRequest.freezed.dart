@@ -26,8 +26,12 @@ mixin _$ProtectedDealFindRequest {
   int get homeId => throw _privateConstructorUsedError;
   int get dmId => throw _privateConstructorUsedError;
 
+  /// Serializes this ProtectedDealFindRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProtectedDealFindRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProtectedDealFindRequestCopyWith<ProtectedDealFindRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$ProtectedDealFindRequestCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProtectedDealFindRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -103,6 +109,8 @@ class __$$ProtectedDealFindRequestImplCopyWithImpl<$Res>
       $Res Function(_$ProtectedDealFindRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProtectedDealFindRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -171,12 +179,14 @@ class _$ProtectedDealFindRequestImpl implements _ProtectedDealFindRequest {
             (identical(other.dmId, dmId) || other.dmId == dmId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, getterId, providerId, homeId, dmId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProtectedDealFindRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProtectedDealFindRequestImplCopyWith<_$ProtectedDealFindRequestImpl>
@@ -209,8 +219,11 @@ abstract class _ProtectedDealFindRequest implements ProtectedDealFindRequest {
   int get homeId;
   @override
   int get dmId;
+
+  /// Create a copy of ProtectedDealFindRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProtectedDealFindRequestImplCopyWith<_$ProtectedDealFindRequestImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

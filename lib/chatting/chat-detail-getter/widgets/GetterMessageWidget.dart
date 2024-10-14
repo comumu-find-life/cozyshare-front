@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/model/deal/enums/DealState.dart';
 import '../../../model/chat/response/DirectMessageDto.dart';
 import '../../chat-detail-provider/widgets/ProviderDealFinishWidget.dart';
 import '../controller/ChatGetterDetailController.dart';
 import 'GetterDealDuringMessageWidget.dart';
-import 'GetterDealFinishWidget.dart';
+import '../../chat-common/widgets/DealFinishWidget.dart';
 import 'GetterDealStartMessageWidget.dart';
 
 /**
@@ -74,21 +75,24 @@ class MessageBubble extends StatelessWidget {
     required this.isMe,
   });
 
+
   @override
   Widget build(BuildContext context) {
     return directMessageResponse.isDeal != 0
-        ? _buildDealMessage()
+        ? _buildDealMessage(context)
         : _buildTextMessage(context);
   }
 
-  Widget _buildDealMessage() {
+  Widget _buildDealMessage(BuildContext context) {
     switch (directMessageResponse.isDeal) {
       case 1:
-        return GetterDealStartMessageWidget(directMessageResponse.dealId!, controller);
+        return GetterDealStartMessageWidget(
+            context, directMessageResponse.dealId!, controller);
       case 2:
-        return GetterDealDuringMessageWidget(directMessageResponse.dealId!, controller);
+        return GetterDealDuringMessageWidget(
+            directMessageResponse.dealId!, controller);
       case 3:
-        return GetterDealFinishWidget();
+        return DealFinishWidget(controller.getDealById(directMessageResponse.dealId!)!);
       default:
         return SizedBox.shrink();
     }

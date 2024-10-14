@@ -2,7 +2,9 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:home_and_job/model/user/response/UserAccountResponse.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
+import 'package:home_and_job/rest-api/user-api/UserPointApi.dart';
 
 class DealRequestControllerByGetter extends GetxController{
   Rx<bool> _canNext = false.obs;
@@ -11,8 +13,8 @@ class DealRequestControllerByGetter extends GetxController{
     _canNext.value = value!;
   }
 
-  Future<bool> requestDeposit(int dealId)async{
-    bool response = await ProtectedDealApi().requestDepositByGetter(dealId);
+  Future<bool> acceptDeal(int dealId)async{
+    bool response = await ProtectedDealApi().acceptDealByGetter(dealId);
     if(response){
       return true;
     }
@@ -27,6 +29,7 @@ class DealRequestControllerByGetter extends GetxController{
     }
     return false;
   }
+
 
 
 

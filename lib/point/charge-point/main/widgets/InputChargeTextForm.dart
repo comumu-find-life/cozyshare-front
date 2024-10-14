@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_common/get_reset.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
@@ -19,20 +21,20 @@ class InputChargeTextForm extends StatefulWidget {
 class _InputChargeTextFormState extends State<InputChargeTextForm> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 30.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.only(left: 20.w),
-            child: FBoldText("Recharge Amount", kTextBlackColor, 13),
+    return Obx(() => Container(
+          margin: EdgeInsets.only(top: 30.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 20.w),
+                child: FBoldText("Recharge Amount", kTextBlackColor, 13),
+              ),
+              _buildAmountForm(),
+              _buildChargeMethods(),
+            ],
           ),
-          _buildAmountForm(),
-          _buildChargeMethods(),
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _buildChargeMethods() {
@@ -48,9 +50,13 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
           child: Row(
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  widget._controller.onTapPaymentMethod(1);
+                },
                 child: Container(
-                  child: Icon(Icons.circle_outlined),
+                  child: widget._controller.paymentMethod.value == 1
+                      ? Icon(Icons.adjust)
+                      : Icon(Icons.circle_outlined),
                 ),
               ),
               Container(
@@ -65,9 +71,13 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
           child: Row(
             children: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  widget._controller.onTapPaymentMethod(2);
+                },
                 child: Container(
-                  child: Icon(Icons.circle_outlined),
+                  child: widget._controller.paymentMethod.value == 2
+                      ? Icon(Icons.adjust)
+                      : Icon(Icons.circle_outlined),
                 ),
               ),
               Container(
@@ -77,7 +87,6 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
             ],
           ),
         ),
-
       ],
     );
   }
@@ -113,7 +122,7 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
                       decoration: InputDecoration(
                         hintText: "Numbers only",
                         hintStyle:
-                            TextStyle(color: kGrey700Color, fontSize: 14.sp),
+                        TextStyle(color: kGrey700Color, fontSize: 14.sp),
                         border: InputBorder.none,
                         isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                       ),

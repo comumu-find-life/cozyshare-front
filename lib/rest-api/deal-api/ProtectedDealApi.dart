@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 import '../../model/deal/request/ProtectedDealFindRequest.dart';
 import '../../model/deal/request/ProtectedDealGeneratorRequest.dart';
-import '../../model/deal/response/ProtectedDealByProviderResponse.dart';
+import '../../model/deal/response/ProtectedDealGeneratorResponse.dart';
 import '../../model/deal/response/ProtectedDealResponse.dart';
 import '../../utils/ApiUrls.dart';
 import '../../utils/RestApiUtils.dart';
@@ -18,9 +18,9 @@ class ProtectedDealApi {
   /**
    * 안전거래 단일 조회 by Provider (In Chatting)
    */
-  Future<List<ProtectedDealByProviderResponse>> loadProtectedDealByProvider(
+  Future<List<ProtectedDealResponse>> loadProtectedDealByProvider(
       ProtectedDealFindRequest request) async {
-    List<ProtectedDealByProviderResponse> deals = [];
+    List<ProtectedDealResponse> deals = [];
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
@@ -31,9 +31,10 @@ class ProtectedDealApi {
         },
         body: json.encode(request.toJson()));
 
+
     if (response.statusCode == 200) {
-      deals = List<ProtectedDealByProviderResponse>.from(
-          apiUtils.decodeResponse(response).map((x) => ProtectedDealByProviderResponse.fromJson(x))
+      deals = List<ProtectedDealResponse>.from(
+          apiUtils.decodeResponse(response).map((x) => ProtectedDealResponse.fromJson(x))
       );
     }
     return deals;
@@ -44,9 +45,9 @@ class ProtectedDealApi {
   /**
    * 안전거래 단일 조회 by Getter (In Chatting)
    */
-  Future<List<ProtectedDealByGetterResponse>> loadProtectedDealByGetter(
+  Future<List<ProtectedDealResponse>> loadProtectedDealByGetter(
       ProtectedDealFindRequest request) async {
-    List<ProtectedDealByGetterResponse> deals = [];
+    List<ProtectedDealResponse> deals = [];
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
@@ -58,8 +59,8 @@ class ProtectedDealApi {
         body: json.encode(request.toJson()));
 
     if (response.statusCode == 200) {
-      deals = List<ProtectedDealByGetterResponse>.from(
-          apiUtils.decodeResponse(response).map((x) => ProtectedDealByGetterResponse.fromJson(x))
+      deals = List<ProtectedDealResponse>.from(
+          apiUtils.decodeResponse(response).map((x) => ProtectedDealResponse.fromJson(x))
       );
     }
     return deals;
@@ -83,17 +84,18 @@ class ProtectedDealApi {
     // 서버 응답 출력
 
     if (response.statusCode == 200) {
-      int dealId = RestApiUtils().decodeResponse(response);
-      return dealId;
+      ProtectedDealGeneratorResponse protectedDealGeneratorResponse = ProtectedDealGeneratorResponse.fromJson(RestApiUtils().decodeResponse(response));
+      return protectedDealGeneratorResponse.dealId;
     }
 
     return null;
   }
 
   /**
-   * 입금 신청 API (Getter 가 사용)
+   * 거래 수락 API (Getter 가 사용)
    */
-  Future<bool> requestDepositByGetter(int dealId) async {
+  Future<bool> acceptDealByGetter(int dealId) async {
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
     Response response = await http.post(
@@ -103,8 +105,14 @@ class ProtectedDealApi {
         'Content-Type': 'application/json',
       },
     );
+
     // 서버 응답 출력
     if (response.statusCode == 200) {
+      print("getter secretKey");
+      String? secretKey = apiUtils.decodeResponse(response);
+      print(secretKey);
+
+      await DiskDatabase().setSecretKey(secretKey!);
       return true;
     }
     return false;
@@ -127,17 +135,22 @@ class ProtectedDealApi {
   /**
    * 거래 완료 신청 API (GETTER 가 사용)
    */
-  Future<bool> requestDealFinish(int dealId) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String accessToken = await prefs.getString("access_token")!;
+  Future<bool> completeDeal(int dealId) async {
+    String? accessToken = await DiskDatabase().getAccessToken();
+    String? secretKey = await DiskDatabase().getSecretKey();
+
+    var url = ApiUrls.DEAL_COMPLETE_URL.replaceAll("{dealId}", dealId.toString());
+
     Response response = await http.patch(
-      Uri.parse(ApiUrls.DEAL_REQUEST_FINISH_URL + dealId.toString()),
+      Uri.parse(url),
       headers: {
         'Authorization': 'Bearer ${accessToken}',
         'Content-Type': 'application/json',
       },
+
+      body: jsonEncode(secretKey),
     );
-    // 서버 응답 출력
+
 
     if (response.statusCode == 200) {
       return true;

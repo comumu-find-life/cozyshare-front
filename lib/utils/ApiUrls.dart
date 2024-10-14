@@ -17,6 +17,9 @@ class ApiUrls {
   static String USER_LOGIN_URL = "$ROOT_URL/users/login";
   static String USER_ID_FIND_URL = "$ROOT_URL/users/me/userId";
   static String USER_PROFILE_URL = "$ROOT_URL/users/profile";
+  static String USER_ACCOUNT_URL = "$ROOT_URL/users/{userId}/account";
+  static String USER_CHARGE_POINT_URL = "$ROOT_URL/users/{userId}/point";
+  static String USER_ACCOUNT_VALIDATE_URL = "$ROOT_URL/users/{userId}/account/exist";
   static String USER_PROFILE_EDIT_URL = "$ROOT_URL/users";
   static String USER_PROFILE_IMAGE_EDIT_URL = "$ROOT_URL/users/{userId}/image";
 
@@ -38,14 +41,15 @@ class ApiUrls {
    */
   static String DEAL_START_URL = "$ROOT_URL/deals";
   static String DEAL_MY_READ_URL = "$ROOT_URL/deals/users/";
-  static String DEAL_PROVIDER_READ = "$ROOT_URL/deals/read/provider";
+  static String DEAL_PROVIDER_READ = "$ROOT_URL/deals/read/getter";
   static String DEAL_GETTER_READ = "$ROOT_URL/deals/read/getter";
 
-  static String DEAL_PROVIDER_READ_BY_ID = "$ROOT_URL/read/provider/";
+  static String DEAL_PROVIDER_READ_BY_ID = "$ROOT_URL/read/getter/";
   static String DEAL_GETTER_READ_BY_ID = "$ROOT_URL/read/getter/";
-  static String DEAL_REQUEST_DEPOSIT_URL = "$ROOT_URL/deals/request/deposit/";
+
+  static String DEAL_REQUEST_DEPOSIT_URL = "$ROOT_URL/deals/accept/";
   static String DEAL_CANCEL_DEPOSIT_URL = "$ROOT_URL/deals/cancel/deposit/";
-  static String DEAL_REQUEST_FINISH_URL = "$ROOT_URL/deals/request/done/";
+  static String DEAL_COMPLETE_URL = "$ROOT_URL/deals/{dealId}/complete";
   static String DEAL_CANCLE_URL = "$ROOT_URL/deals/cancel/";
 
   /**

@@ -59,6 +59,7 @@ class _ChatProviderDetailViewState extends State<ChatProviderDetailView> {
             backgroundColor: kBlueColor,
             body: Stack(
               children: [
+
                 Container(
                   margin: EdgeInsets.only(top: 70.h),
                   child: GestureDetector(
@@ -75,6 +76,7 @@ class _ChatProviderDetailViewState extends State<ChatProviderDetailView> {
                   ),
                 ),
                 ProviderHomePostInformationWidget(_controller),
+
               ],
             ),
           );

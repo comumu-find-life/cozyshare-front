@@ -33,14 +33,14 @@ class SelectDealTypeWidget extends StatelessWidget {
   Widget _buildDuringButton() {
     return InkWell(
       onTap: () {
-        _controller.ontapState(DealState.BEFORE_DEPOSIT);
+        _controller.ontapState(DealState.REQUEST_DEAL);
       },
       child: Container(
         width: 100.w,
         height: 45.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: _controller.dealStatus == DealState.BEFORE_DEPOSIT
+          color: _controller.dealStatus == DealState.REQUEST_DEAL
               ? kTextBlackColor
               : kWhiteBackGroundColor,
           border: Border.all(color: kGrey300Color),
@@ -48,7 +48,7 @@ class SelectDealTypeWidget extends StatelessWidget {
         child: Center(
           child: FRegularText(
               "During",
-              _controller.dealStatus == DealState.BEFORE_DEPOSIT
+              _controller.dealStatus == DealState.REQUEST_DEAL
                   ? kWhiteBackGroundColor
                   : kGrey500Color,
               14),
@@ -88,14 +88,14 @@ class SelectDealTypeWidget extends StatelessWidget {
   Widget _buildCancelButton() {
     return InkWell(
       onTap: () {
-        _controller.ontapState(DealState.CANCEL_DEAL);
+        _controller.ontapState(DealState.CANCEL_BEFORE_DEAL);
       },
       child: Container(
         width: 100.w,
         height: 45.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: _controller.dealStatus == DealState.CANCEL_DEAL
+          color: _controller.dealStatus == DealState.CANCEL_BEFORE_DEAL
               ? kTextBlackColor
               : kWhiteBackGroundColor,
           border: Border.all(color: kGrey300Color),
@@ -103,7 +103,7 @@ class SelectDealTypeWidget extends StatelessWidget {
         child: Center(
           child: FRegularText(
               "Cancel",
-              _controller.dealStatus == DealState.CANCEL_DEAL
+              _controller.dealStatus == DealState.CANCEL_BEFORE_DEAL
                   ? kWhiteBackGroundColor
                   : kGrey500Color,
               14),

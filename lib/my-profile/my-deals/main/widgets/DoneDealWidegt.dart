@@ -1,20 +1,14 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:home_and_job/model/deal/enums/DealState.dart';
-import 'package:home_and_job/model/deal/response/MyProtectedDealResponse.dart';
-import 'package:home_and_job/model/home/response/HomeOverviewResponse.dart';
 import 'package:home_and_job/my-profile/my-deals/done-detail/view/DealDoneDetailView.dart';
-import 'package:home_and_job/my-profile/my-deals/during-detail/view/DealDuringDetailView.dart';
-import 'package:home_and_job/my-profile/my-homes/edit-home/popup/AskSoldOutPopup.dart';
-import 'package:home_and_job/my-profile/my-homes/edit-home/view/HomeEditView.dart';
 import 'package:home_and_job/utils/Converter.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
+import '../../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../../main/widgets/EmptyListWidget.dart';
 import '../controller/MyDealListController.dart';
 
@@ -38,7 +32,7 @@ class DoneDealWidget extends StatelessWidget {
                 }));
   }
 
-  Widget _buildDealWidget(MyProtectedDealResponse myProtectedDealResponse) {
+  Widget _buildDealWidget(ProtectedDealResponse myProtectedDealResponse) {
     return InkWell(
       onTap: () {
         Get.to(() => DealDoneDetailView(myProtectedDealResponse));
@@ -79,7 +73,7 @@ class DoneDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(MyProtectedDealResponse myProtectedDealResponse) {
+  Widget _buildBody(ProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 20.h),
       child: Row(
@@ -125,7 +119,7 @@ class DoneDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPrice(MyProtectedDealResponse myProtectedDealResponse) {
+  Widget _buildPrice(ProtectedDealResponse myProtectedDealResponse) {
     return Container(
       decoration: BoxDecoration(
           border: Border(
@@ -152,7 +146,7 @@ class DoneDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDate(MyProtectedDealResponse myProtectedDealResponse) {
+  Widget _buildDate(ProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 20.h, left: 13.w, right: 13.w),
       child: Row(
@@ -162,7 +156,7 @@ class DoneDealWidget extends StatelessWidget {
             margin: EdgeInsets.only(top: 0.h),
             width: 200.w,
             child: FBoldText(
-                "${ConverterUtil().formatEnglishDateTime(myProtectedDealResponse.dealCompletionDateTime)}",
+                "${ConverterUtil().formatEnglishDateTime(myProtectedDealResponse.completeAt)}",
                 kTextBlackColor,
                 14),
           ),
@@ -177,7 +171,7 @@ class DoneDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAddress(MyProtectedDealResponse myProtectedDealResponse) {
+  Widget _buildAddress(ProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       width: 200.w,
@@ -186,7 +180,7 @@ class DoneDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildImage(MyProtectedDealResponse myProtectedDealResponse) {
+  Widget _buildImage(ProtectedDealResponse myProtectedDealResponse) {
     return Container(
       margin: EdgeInsets.only(left: 13.w),
       width: 120.w,

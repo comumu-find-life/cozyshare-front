@@ -29,8 +29,12 @@ mixin _$DirectMessageResponse {
   int? get dealId => throw _privateConstructorUsedError;
   DealState? get dealState => throw _privateConstructorUsedError;
 
+  /// Serializes this DirectMessageResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DirectMessageResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DirectMessageResponseCopyWith<DirectMessageResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$DirectMessageResponseCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DirectMessageResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,6 +138,8 @@ class __$$DirectMessageDtoImplCopyWithImpl<$Res>
       $Res Function(_$DirectMessageDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DirectMessageResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -228,12 +236,14 @@ class _$DirectMessageDtoImpl implements _DirectMessageDto {
                 other.dealState == dealState));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, senderId, receiverId, message,
       sentAt, isDeal, dealId, dealState);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DirectMessageResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DirectMessageDtoImplCopyWith<_$DirectMessageDtoImpl> get copyWith =>
@@ -275,8 +285,11 @@ abstract class _DirectMessageDto implements DirectMessageResponse {
   int? get dealId;
   @override
   DealState? get dealState;
+
+  /// Create a copy of DirectMessageResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DirectMessageDtoImplCopyWith<_$DirectMessageDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

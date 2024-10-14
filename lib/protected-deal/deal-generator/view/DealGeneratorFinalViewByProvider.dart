@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 
 import '../../../../constants/Colors.dart';
 import '../../../../constants/Fonts.dart';
@@ -19,7 +20,8 @@ class DealGeneratorFinalViewByProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: kWhiteBackGroundColor,
+      appBar: CommonAppBar(canBack: true, title: "", color: kWhiteBackGroundColor),
       bottomSheet: _buildStepOneButton(context),
       body: SingleChildScrollView(
         child: Column(
