@@ -14,7 +14,7 @@ import '../chat-detail-provider/view/ChatProviderDetailView.dart';
 
 class SendChatPopup {
 
-  void showDialog( BuildContext context,TextEditingController _contentController, int homeId, int receiverId) {
+  void showDialog(BuildContext context,TextEditingController _contentController, int senderId, int homeId, int receiverId) {
     showGeneralDialog(
         context: context,
         barrierDismissible: true,
@@ -94,7 +94,7 @@ class SendChatPopup {
                                 if(_contentController.text == ""){
                                   CustomSnackBar().show(context, "Type your message");
                                 }else{
-                                  DirectMessageApplicationRequest directMessageApplicationDto = DirectMessageApplicationRequest(message: _contentController.text, receiverId: receiverId, roomId: homeId);
+                                  DirectMessageApplicationRequest directMessageApplicationDto = DirectMessageApplicationRequest(message: _contentController.text, receiverId: receiverId, roomId: homeId, senderId: senderId);
                                   int response = await DmApi().sendInitDm(directMessageApplicationDto);
 
                                   if(response != -1){

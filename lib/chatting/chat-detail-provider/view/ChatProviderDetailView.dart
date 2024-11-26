@@ -49,9 +49,8 @@ class _ChatProviderDetailViewState extends State<ChatProviderDetailView> {
 
           return Container();
         } else {
-          // 채팅 화면이 로드된 후에 스크롤을 맨 아래로 이동
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            _scrollToBottom();  // 스크롤을 맨 아래로 이동
+            _scrollToBottom();
           });
 
           return Scaffold(
@@ -59,7 +58,6 @@ class _ChatProviderDetailViewState extends State<ChatProviderDetailView> {
             backgroundColor: kBlueColor,
             body: Stack(
               children: [
-
                 Container(
                   margin: EdgeInsets.only(top: 70.h),
                   child: GestureDetector(

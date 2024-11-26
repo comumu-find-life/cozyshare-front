@@ -40,14 +40,6 @@ class MyPointView extends StatelessWidget {
               return !_controller.isExistUserAccount()?RegisterAccountView():SingleChildScrollView(
                 child: Column(
                   children: [
-                    // InkWell(
-                    //   onTap: (){
-                    //     print(_controller.userAccountResponse!.chargeHistories.length);
-                    //   },
-                    //   child: Container(
-                    //     child: Body2Text("dasd", kTextBlackColor),
-                    //   ),
-                    // ),
                     MyPointHeader(_controller),
                     MyPointHistory(_controller),
                   ],

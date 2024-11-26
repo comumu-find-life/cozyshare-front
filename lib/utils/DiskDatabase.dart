@@ -76,6 +76,15 @@ class DiskDatabase {
     return prefs.getStringList(FAVORITE_HOME_IDS) ?? []; // 기본값으로 빈 리스트를 반환하도록 설정
   }
 
+  Future<void> removeAllMemory() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(ACCESS_TOKEN);
+    await prefs.remove(REFRESH_TOKEN);
+    await prefs.remove(USER_ID);
+    await prefs.remove(LOGIN_PASSWORD);
+    await prefs.remove(LOGIN_ID);
+  }
+
   Future<String?> getFavoriteHomeId(String homeId) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final List<String> homeIds = prefs.getStringList(FAVORITE_HOME_IDS) ?? [];

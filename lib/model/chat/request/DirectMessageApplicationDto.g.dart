@@ -12,6 +12,7 @@ _$DirectMessageApplicationDtoImpl _$$DirectMessageApplicationDtoImplFromJson(
       message: json['message'] as String,
       receiverId: (json['receiverId'] as num).toInt(),
       roomId: (json['roomId'] as num).toInt(),
+      senderId: (json['senderId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$DirectMessageApplicationDtoImplToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$DirectMessageApplicationDtoImplToJson(
       'message': instance.message,
       'receiverId': instance.receiverId,
       'roomId': instance.roomId,
+      'senderId': instance.senderId,
     };

@@ -18,7 +18,11 @@ class ApiUrls {
   static String USER_ID_FIND_URL = "$ROOT_URL/users/me/userId";
   static String USER_PROFILE_URL = "$ROOT_URL/users/profile";
   static String USER_ACCOUNT_URL = "$ROOT_URL/users/{userId}/account";
-  static String USER_CHARGE_POINT_URL = "$ROOT_URL/users/{userId}/point";
+
+  static String APPLY_DEPOSIT_URL = "$ROOT_URL/points/apply/deposit?price=";
+  static String APPLY_WITH_DRAW_URL = "$ROOT_URL/points/apply/with-draw?price=";
+
+
   static String USER_ACCOUNT_VALIDATE_URL = "$ROOT_URL/users/{userId}/account/exist";
   static String USER_PROFILE_EDIT_URL = "$ROOT_URL/users";
   static String USER_PROFILE_IMAGE_EDIT_URL = "$ROOT_URL/users/{userId}/image";
@@ -55,8 +59,9 @@ class ApiUrls {
   /**
    * 채팅 관련 API URLS
    */
-  static String DM_INIT_SEND_URL = "$ROOT_URL/dm";
-  static String DM_HISTORY = "http://10.0.2.2:8082/api/dm/history";
-  static String DM_ROOMS = "$ROOT_URL/dm/dm-rooms/users/";
+  static String DM_SEND_FIRST_URL = "http://10.0.2.2:8082/v1/api/direct-messages";
+  static String DM_HISTORY_URL = "http://10.0.2.2:8082/v1/api/direct-messages/history";
+  static String DM_FIND_ALL_ROOMS = "http://10.0.2.2:8082/v1/api/users/{userId}/direct-message-rooms";
+
 
 }

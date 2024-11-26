@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
+import 'package:home_and_job/point/cash-out-view/view/CashOutView.dart';
 import 'package:home_and_job/point/charge-point/main/view/ChargePointView.dart';
 
 import '../controller/MyPointController.dart';
@@ -24,15 +25,38 @@ class MyPointHeader extends StatelessWidget {
       children: [
         Container(
           width: 370.w,
-          height: 190.w,
+          height: 220.w,
           child: Column(
             children: [
               _buildMyPoint(),
+              _buildAccountInformation(),
             ],
           ),
         ),
         _buildButtons(),
       ],
+    );
+  }
+
+  Widget _buildAccountInformation(){
+    return Container(
+      margin: EdgeInsets.only(top: 20.h, bottom: 20.h),
+      color: kGrey200Color,
+      width: 400.w,
+      height: 45.h,
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: FRegularText("BSB : ${_controller.userAccountResponse!.bsb}  ", kTextBlackColor, 13),
+            ),
+            Container(
+              child: FRegularText(", Account Number : ${_controller.userAccountResponse!.accountNumber}", kTextBlackColor, 13),
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -73,7 +97,7 @@ class MyPointHeader extends StatelessWidget {
         children: [
           InkWell(
             onTap: (){
-
+              Get.to(() => CashOutView(_controller));
             },
             child: Container(
               width: 170.w,

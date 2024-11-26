@@ -21,8 +21,7 @@ class UserPointApi {
 
   Future<UserAccountResponse?> loadUserAccount() async {
     String? userId = await DiskDatabase().getUserId();
-    var url =
-        ApiUrls.USER_ACCOUNT_URL.replaceAll("{userId}", userId!);
+    var url = ApiUrls.USER_ACCOUNT_URL.replaceAll("{userId}", userId!);
     var response = await apiUtils.callGetApiWithToken(url);
 
     if (apiUtils.isValidResponse(response)) {
@@ -52,15 +51,28 @@ class UserPointApi {
     return false;
   }
 
-  Future<bool> chargePoint(int point) async {
-    var userId = await DiskDatabase().getUserId();
+
+
+  Future<bool> applyDepositByAccount(int price)async{
+    var accessToken = await DiskDatabase().getAccessToken();
+    var url = ApiUrls.APPLY_DEPOSIT_URL + price.toString();
+
+    var response = await apiUtils.postResponse(url, null, accessToken: accessToken);
+
+    if (apiUtils.isValidResponse(response)) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> applyWithDraw(int point) async {
     var accessToken = await DiskDatabase().getAccessToken();
 
-    var url =
-        ApiUrls.USER_CHARGE_POINT_URL.replaceAll("{userId}", userId.toString());
+    var url = ApiUrls.APPLY_WITH_DRAW_URL + point.toString();
 
     var response =
         await apiUtils.postResponse(url, point, accessToken: accessToken);
+
 
     if (apiUtils.isValidResponse(response)) {
       return true;

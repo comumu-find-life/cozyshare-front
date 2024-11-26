@@ -24,6 +24,7 @@ mixin _$DirectMessageApplicationRequest {
   String get message => throw _privateConstructorUsedError;
   int get receiverId => throw _privateConstructorUsedError;
   int get roomId => throw _privateConstructorUsedError;
+  int get senderId => throw _privateConstructorUsedError;
 
   /// Serializes this DirectMessageApplicationRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,7 +44,7 @@ abstract class $DirectMessageApplicationRequestCopyWith<$Res> {
       _$DirectMessageApplicationRequestCopyWithImpl<$Res,
           DirectMessageApplicationRequest>;
   @useResult
-  $Res call({String message, int receiverId, int roomId});
+  $Res call({String message, int receiverId, int roomId, int senderId});
 }
 
 /// @nodoc
@@ -65,6 +66,7 @@ class _$DirectMessageApplicationRequestCopyWithImpl<$Res,
     Object? message = null,
     Object? receiverId = null,
     Object? roomId = null,
+    Object? senderId = null,
   }) {
     return _then(_value.copyWith(
       message: null == message
@@ -79,6 +81,10 @@ class _$DirectMessageApplicationRequestCopyWithImpl<$Res,
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
               as int,
+      senderId: null == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -92,7 +98,7 @@ abstract class _$$DirectMessageApplicationDtoImplCopyWith<$Res>
       __$$DirectMessageApplicationDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, int receiverId, int roomId});
+  $Res call({String message, int receiverId, int roomId, int senderId});
 }
 
 /// @nodoc
@@ -113,6 +119,7 @@ class __$$DirectMessageApplicationDtoImplCopyWithImpl<$Res>
     Object? message = null,
     Object? receiverId = null,
     Object? roomId = null,
+    Object? senderId = null,
   }) {
     return _then(_$DirectMessageApplicationDtoImpl(
       message: null == message
@@ -127,6 +134,10 @@ class __$$DirectMessageApplicationDtoImplCopyWithImpl<$Res>
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
               as int,
+      senderId: null == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -136,7 +147,10 @@ class __$$DirectMessageApplicationDtoImplCopyWithImpl<$Res>
 class _$DirectMessageApplicationDtoImpl
     implements _DirectMessageApplicationDto {
   _$DirectMessageApplicationDtoImpl(
-      {required this.message, required this.receiverId, required this.roomId});
+      {required this.message,
+      required this.receiverId,
+      required this.roomId,
+      required this.senderId});
 
   factory _$DirectMessageApplicationDtoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -148,10 +162,12 @@ class _$DirectMessageApplicationDtoImpl
   final int receiverId;
   @override
   final int roomId;
+  @override
+  final int senderId;
 
   @override
   String toString() {
-    return 'DirectMessageApplicationRequest(message: $message, receiverId: $receiverId, roomId: $roomId)';
+    return 'DirectMessageApplicationRequest(message: $message, receiverId: $receiverId, roomId: $roomId, senderId: $senderId)';
   }
 
   @override
@@ -162,12 +178,15 @@ class _$DirectMessageApplicationDtoImpl
             (identical(other.message, message) || other.message == message) &&
             (identical(other.receiverId, receiverId) ||
                 other.receiverId == receiverId) &&
-            (identical(other.roomId, roomId) || other.roomId == roomId));
+            (identical(other.roomId, roomId) || other.roomId == roomId) &&
+            (identical(other.senderId, senderId) ||
+                other.senderId == senderId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, message, receiverId, roomId);
+  int get hashCode =>
+      Object.hash(runtimeType, message, receiverId, roomId, senderId);
 
   /// Create a copy of DirectMessageApplicationRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -191,7 +210,8 @@ abstract class _DirectMessageApplicationDto
   factory _DirectMessageApplicationDto(
       {required final String message,
       required final int receiverId,
-      required final int roomId}) = _$DirectMessageApplicationDtoImpl;
+      required final int roomId,
+      required final int senderId}) = _$DirectMessageApplicationDtoImpl;
 
   factory _DirectMessageApplicationDto.fromJson(Map<String, dynamic> json) =
       _$DirectMessageApplicationDtoImpl.fromJson;
@@ -202,6 +222,8 @@ abstract class _DirectMessageApplicationDto
   int get receiverId;
   @override
   int get roomId;
+  @override
+  int get senderId;
 
   /// Create a copy of DirectMessageApplicationRequest
   /// with the given fields replaced by the non-null parameter values.

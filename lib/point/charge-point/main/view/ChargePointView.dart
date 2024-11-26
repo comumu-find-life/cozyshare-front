@@ -63,8 +63,8 @@ class ChargePointView extends StatelessWidget {
           shadowColor: Colors.transparent,
         ),
         onPressed: () async {
-          //_controller.moveChargeView(context);
-          _controller.chargePoint(context);
+          _controller.moveChargeView(context);
+          //_controller.chargePoint(context);
         },
         child: ButtonText("Next", kWhiteBackGroundColor),
       ),

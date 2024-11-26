@@ -38,18 +38,4 @@ class ChargePointController extends GetxController{
       Get.to(() => InputBankTransferFormView(int.parse(amountController.text)));
     }
   }
-
-  void chargePoint(BuildContext context)async{
-
-    bool response = await UserPointApi().chargePoint(int.parse(amountController.text));
-
-    if(response){
-      Get.to(() => FinishView("Successful!", "Please touch the screen."));
-    }else{
-      CustomSnackBar().show(context, "Failed to charge point");
-    }
-
-
-
-  }
 }

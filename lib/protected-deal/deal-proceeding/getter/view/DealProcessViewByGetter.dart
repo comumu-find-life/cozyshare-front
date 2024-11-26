@@ -36,7 +36,7 @@ class DealProcessViewByGetter extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kWhiteBackGroundColor,
-      bottomSheet: Obx(() => _filterButton(step!, context),),
+      bottomSheet:  _filterButton(step!, context),
       appBar: CommonAppBar(
         color: kWhiteBackGroundColor,
         canBack: true,
@@ -78,7 +78,7 @@ class DealProcessViewByGetter extends StatelessWidget {
     );
   }
 
-  Container _filterButton(int step, BuildContext context) {
+  Widget _filterButton(int step, BuildContext context) {
     switch (step) {
       case 2:
         return _buildRequestCompleteRequestButton(context);
@@ -105,42 +105,42 @@ class DealProcessViewByGetter extends StatelessWidget {
     );
   }
 
-  Container _buildRequestCompleteRequestButton(BuildContext context) {
-    return _controller.canFinish
+  Obx _buildRequestCompleteRequestButton(BuildContext context) {
+    return Obx(() => _controller.canFinish
         ? Container(
-            width: double.infinity,
-            color: kPrimaryColor,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: kPrimaryColor,
-                side: BorderSide.none,
-                shadowColor: Colors.transparent,
-              ),
-              onPressed: () async {
-                var bool = await ProtectedDealApi().completeDeal(dealId);
-                if(bool){
-                  _chatDetailController.completeDeal(dealId);
-                }else{
-                  CustomSnackBar().show(context, "failed");
-                }
+      width: double.infinity,
+      color: kPrimaryColor,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kPrimaryColor,
+          side: BorderSide.none,
+          shadowColor: Colors.transparent,
+        ),
+        onPressed: () async {
+          var bool = await ProtectedDealApi().completeDeal(dealId);
+          if(bool){
+            _chatDetailController.completeDeal(dealId);
+          }else{
+            CustomSnackBar().show(context, "failed");
+          }
 
-                Navigator.pop(context);
-              },
-              child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
-            ),
-          )
+          Navigator.pop(context);
+        },
+        child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
+      ),
+    )
         : Container(
-            width: double.infinity,
-            color: kGrey200Color,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: kGrey200Color,
-                side: BorderSide.none,
-                shadowColor: Colors.transparent,
-              ),
-              onPressed: () async {},
-              child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
-            ),
-          );
+      width: double.infinity,
+      color: kGrey200Color,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kGrey200Color,
+          side: BorderSide.none,
+          shadowColor: Colors.transparent,
+        ),
+        onPressed: () async {},
+        child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
+      ),
+    ));
   }
 }

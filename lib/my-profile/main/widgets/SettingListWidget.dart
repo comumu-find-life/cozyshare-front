@@ -17,17 +17,22 @@ import '../../../point/charge-point/main/view/ChargePointView.dart';
 import '../../../point/my-point/view/MyPointView.dart';
 import '../../../register-home/view/StartRegisyerView.dart';
 import '../../../rest-api/user-api/UserPointApi.dart';
+import '../../../save-deal/view/SaveDealGuildLineView.dart';
 import '../../my-homes/main/view/MyHomeListView.dart';
+import '../controller/MyProfileController.dart';
 
 class SettingListWidget extends StatelessWidget {
-  const SettingListWidget({super.key});
+  MyProfileController _controller;
+
+
+  SettingListWidget(this._controller);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
         margin: EdgeInsets.only(top: 15.h),
-        height: 975.h,
+        height: 1135.h,
         decoration: BoxDecoration(
           color: kWhiteBackGroundColor,
         ),
@@ -68,6 +73,13 @@ class SettingListWidget extends StatelessWidget {
             _buildQuestion(),
             _buildPolices(),
             _buildCustomerSupport(),
+
+            Container(
+              margin: EdgeInsets.only(left: 15.w, top: 20.h),
+              child: FBoldText("Account", kTextBlackColor,14),
+            ),
+            _buildLogout(context),
+            _buildWithDraw(),
           ],
         ),
       ),
@@ -157,6 +169,67 @@ class SettingListWidget extends StatelessWidget {
               margin: EdgeInsets.only(right: 15.w, top: 15.h),
               child: Icon(
                 Icons.arrow_forward_ios_outlined,
+                color: kDarkBlue,
+                size: 15.sp,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLogout(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        _controller.logOut(context);
+      },
+      child: Container(
+        width: 380.w,
+        height: 50.h,
+        margin: EdgeInsets.only(left: 10.w, top: 15.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+
+            Container(
+              margin: EdgeInsets.only(left: 8.w),
+              child: FRegularText("Log Out", kTextBlackColor, 15),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 15.w, top: 15.h),
+              child: Icon(
+                Icons.logout,
+                color: kDarkBlue,
+                size: 15.sp,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWithDraw() {
+    return InkWell(
+      onTap: () {
+      },
+      child: Container(
+        width: 380.w,
+        height: 50.h,
+        margin: EdgeInsets.only(left: 10.w, top: 15.h),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+
+            Container(
+              margin: EdgeInsets.only(left: 8.w),
+              child: FRegularText("With Draw", kTextBlackColor, 15),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 15.w, top: 15.h),
+              child: Icon(
+                Icons.cancel_outlined,
                 color: kDarkBlue,
                 size: 15.sp,
               ),
@@ -304,7 +377,7 @@ class SettingListWidget extends StatelessWidget {
   Widget _buildDealInformation() {
     return InkWell(
       onTap: () {
-        Get.to(() => SafeDealExplacationView());
+        Get.to(() => SaveDealGuideLineView());
       },
       child: Container(
         width: 380.w,

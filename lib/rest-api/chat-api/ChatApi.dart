@@ -20,8 +20,10 @@ class DmApi {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String accessToken = await prefs.getString("access_token")!;
 
-    var response = await apiUtils.postResponse(ApiUrls.DM_INIT_SEND_URL, dm.toJson(), accessToken: accessToken);
+    var response = await apiUtils.postResponse(ApiUrls.DM_SEND_FIRST_URL, dm.toJson(), accessToken: accessToken);
 
+    print("dasdas");
+    print(utf8.decode(response.bodyBytes));
 
     if (apiUtils.isValidResponse(response)) {
       return apiUtils.decodeResponse(response);
@@ -39,7 +41,7 @@ class DmApi {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? accessToken = prefs.getString("access_token");
 
-    var response =await apiUtils.getResponse(ApiUrls.DM_HISTORY+ "?user1Id=${user1Id}&user2Id=${user2Id}", accessToken: accessToken);
+    var response =await apiUtils.getResponse(ApiUrls.DM_HISTORY_URL+ "?user1Id=${user1Id}&user2Id=${user2Id}", accessToken: accessToken);
 
 
     if (apiUtils.isValidResponse(response)) {
@@ -56,11 +58,9 @@ class DmApi {
    */
   Future<List<DirectMessageRoomListResponse>> loadDmList() async {
     List<DirectMessageRoomListResponse> items = [];
-
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
     var userId = await DiskDatabase().getUserId();
-    var response = await apiUtils.callGetApiWithToken(ApiUrls.DM_ROOMS + userId.toString());
-
+    String url = ApiUrls.DM_FIND_ALL_ROOMS.replaceFirst("{userId}", userId.toString());
+    var response = await apiUtils.callGetApiWithToken(url);
 
 
     if (apiUtils.isValidResponse(response)) {

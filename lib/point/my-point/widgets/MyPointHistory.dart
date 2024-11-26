@@ -93,7 +93,7 @@ class MyPointHistory extends StatelessWidget {
               Container(),
               Container(
                 margin: EdgeInsets.only(right: 15.w),
-                child: FRegularText("Complete", kTextBlackColor, 12),
+                child: FRegularText("${history.chargeType.command}", kTextBlackColor, 12),
               )
             ],
           ),

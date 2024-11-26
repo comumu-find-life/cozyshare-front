@@ -29,10 +29,12 @@ class HomeDetailController extends GetxController {
   }
 
   void sendMessage(BuildContext context) async {
+    var senderId = await DiskDatabase().getUserId();
     TextEditingController _textController = TextEditingController();
     SendChatPopup().showDialog(
         context,
         _textController,
+        int.parse(senderId!),
         homeInformationResponse!.homeId!,
         int.parse(homeInformationResponse!.providerId!));
   }

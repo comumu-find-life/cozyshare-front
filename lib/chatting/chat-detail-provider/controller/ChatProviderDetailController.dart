@@ -185,11 +185,8 @@ class ChatProviderDetailController extends GetxController {
     await loadProtectedDeal();
     var directMessageRequest = DirectMessageRequest(
       receiverId: _getterId,
-      //getter Id
       message: "DEAL MESSAGE",
-      // provider id
       roomId: _roomId.toString(),
-
       isDeal: 1,
       dealState: DealState.REQUEST_DEAL.name,
       senderId: _providerId, dealId: dealId,

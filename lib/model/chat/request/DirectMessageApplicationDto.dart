@@ -9,6 +9,7 @@ class DirectMessageApplicationRequest with _$DirectMessageApplicationRequest{
     required String message,
     required int receiverId,
     required int roomId,
+    required int senderId,
   }) = _DirectMessageApplicationDto;
 
   factory DirectMessageApplicationRequest.fromJson(Map<String, dynamic> json) =>

@@ -31,7 +31,6 @@ class ChattingListView extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Center(child: _buildSearchBar()),
                 Center(
                   child: SizedBox(
                     height: 30.h,

@@ -34,8 +34,7 @@ class MyProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProfileWidget(controller),
-              //CommonList(),
-              SettingListWidget(),
+              SettingListWidget(controller),
               Center(
                 child: Container(
                   child: Column(
