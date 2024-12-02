@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:home_and_job/account/login/google-oauth2/GoogleAuthService.dart';
 import 'package:home_and_job/rest-api/user-api/LoginApi.dart';
 import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:home_and_job/utils/SnackBar.dart';
@@ -23,6 +24,9 @@ class MainLoginController extends GetxController {
   }
 
 
+  void loginGoogle()async{
+     GoogleAuthService().signInWithGoogle();
+  }
 
 
   TextEditingController get pwController => _pwController;

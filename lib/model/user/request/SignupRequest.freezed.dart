@@ -25,7 +25,6 @@ mixin _$SignupRequest {
   String get nickname => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
   String get job => throw _privateConstructorUsedError;
   String get nationality => throw _privateConstructorUsedError;
   String get signupType => throw _privateConstructorUsedError;
@@ -52,7 +51,6 @@ abstract class $SignupRequestCopyWith<$Res> {
       String nickname,
       String phoneNumber,
       String gender,
-      String role,
       String job,
       String nationality,
       String signupType});
@@ -78,7 +76,6 @@ class _$SignupRequestCopyWithImpl<$Res, $Val extends SignupRequest>
     Object? nickname = null,
     Object? phoneNumber = null,
     Object? gender = null,
-    Object? role = null,
     Object? job = null,
     Object? nationality = null,
     Object? signupType = null,
@@ -103,10 +100,6 @@ class _$SignupRequestCopyWithImpl<$Res, $Val extends SignupRequest>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
               as String,
       job: null == job
           ? _value.job
@@ -138,7 +131,6 @@ abstract class _$$SignupRequestImplCopyWith<$Res>
       String nickname,
       String phoneNumber,
       String gender,
-      String role,
       String job,
       String nationality,
       String signupType});
@@ -162,7 +154,6 @@ class __$$SignupRequestImplCopyWithImpl<$Res>
     Object? nickname = null,
     Object? phoneNumber = null,
     Object? gender = null,
-    Object? role = null,
     Object? job = null,
     Object? nationality = null,
     Object? signupType = null,
@@ -187,10 +178,6 @@ class __$$SignupRequestImplCopyWithImpl<$Res>
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
               as String,
       job: null == job
           ? _value.job
@@ -217,7 +204,6 @@ class _$SignupRequestImpl implements _SignupRequest {
       required this.nickname,
       required this.phoneNumber,
       required this.gender,
-      required this.role,
       required this.job,
       required this.nationality,
       required this.signupType});
@@ -236,8 +222,6 @@ class _$SignupRequestImpl implements _SignupRequest {
   @override
   final String gender;
   @override
-  final String role;
-  @override
   final String job;
   @override
   final String nationality;
@@ -246,7 +230,7 @@ class _$SignupRequestImpl implements _SignupRequest {
 
   @override
   String toString() {
-    return 'SignupRequest(email: $email, password: $password, nickname: $nickname, phoneNumber: $phoneNumber, gender: $gender, role: $role, job: $job, nationality: $nationality, signupType: $signupType)';
+    return 'SignupRequest(email: $email, password: $password, nickname: $nickname, phoneNumber: $phoneNumber, gender: $gender, job: $job, nationality: $nationality, signupType: $signupType)';
   }
 
   @override
@@ -262,7 +246,6 @@ class _$SignupRequestImpl implements _SignupRequest {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.role, role) || other.role == role) &&
             (identical(other.job, job) || other.job == job) &&
             (identical(other.nationality, nationality) ||
                 other.nationality == nationality) &&
@@ -273,7 +256,7 @@ class _$SignupRequestImpl implements _SignupRequest {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, email, password, nickname,
-      phoneNumber, gender, role, job, nationality, signupType);
+      phoneNumber, gender, job, nationality, signupType);
 
   /// Create a copy of SignupRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -298,7 +281,6 @@ abstract class _SignupRequest implements SignupRequest {
       required final String nickname,
       required final String phoneNumber,
       required final String gender,
-      required final String role,
       required final String job,
       required final String nationality,
       required final String signupType}) = _$SignupRequestImpl;
@@ -316,8 +298,6 @@ abstract class _SignupRequest implements SignupRequest {
   String get phoneNumber;
   @override
   String get gender;
-  @override
-  String get role;
   @override
   String get job;
   @override

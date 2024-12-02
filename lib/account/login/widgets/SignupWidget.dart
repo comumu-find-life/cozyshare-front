@@ -18,7 +18,6 @@ class SignupWidget extends StatelessWidget {
     return Column(
       children: [
         _buildSignupText(),
-          _buildOauthIcons(),
         //_buildStartGuest(),
 
 
@@ -46,34 +45,7 @@ class SignupWidget extends StatelessWidget {
     );
   }
   
-  Widget _buildOauthIcons(){
-    return Container(
-      margin: EdgeInsets.only(top: 20.h),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.only(right: 10.w),
-            width: 55.w,
-            height: 55.h,
-            decoration: BoxDecoration(
-                color: kGrey100Color,
-                borderRadius: BorderRadius.all(Radius.circular(10))
-            ),
-          ),
 
-          Container(
-            width: 55.w,
-            height: 55.h,
-            decoration: BoxDecoration(
-                color: kGrey100Color,
-                borderRadius: BorderRadius.all(Radius.circular(10))
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildSignupText(){
     return InkWell(

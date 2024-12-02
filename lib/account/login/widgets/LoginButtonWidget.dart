@@ -18,7 +18,7 @@ class LoginButtonWidget extends StatelessWidget {
       children: [
 
         Container(
-          margin: EdgeInsets.only(top: 190.h),
+          margin: EdgeInsets.only(top: 30.h),
           width: 330.w,
           height: 50.h,
           decoration: BoxDecoration(

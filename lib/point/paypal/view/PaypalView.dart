@@ -30,6 +30,8 @@ class _PayPalPaymentState extends State<PayPalPaymentView> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onNavigationRequest: (NavigationRequest request) {
+            print("dasdasdasd");
+            print(request.url);
             if (request.url.contains('success')) {
               // 결제 성공 처리
               print("SUCCESS");
@@ -47,11 +49,12 @@ class _PayPalPaymentState extends State<PayPalPaymentView> {
     createPayment();
   }
 
+
   Future<void> createPayment() async {
     String? accessToken = await DiskDatabase().getAccessToken();
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8080/api/paypal/create'),
+      Uri.parse('http://10.0.2.2:8080/v1/api/points/charge/paypal'),
       headers: {
         'Accept': 'application/json',
         'Authorization' : 'Bearer $accessToken'
@@ -67,6 +70,7 @@ class _PayPalPaymentState extends State<PayPalPaymentView> {
     print(responseBody);  // 응답 데이터를 출력해서 확인
 
     if (response.statusCode == 200) {
+
       // 정규 표현식을 이용해 approval_url 링크 추출
       final RegExp approvalUrlRegExp = RegExp(r'href=(https:\/\/www\.sandbox\.paypal\.com\/cgi-bin\/webscr\?cmd=_express-checkout&token=[^,]+)');
       final match = approvalUrlRegExp.firstMatch(responseBody);

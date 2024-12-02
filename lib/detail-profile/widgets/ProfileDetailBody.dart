@@ -24,13 +24,7 @@ class ProfileDetailBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildLine(),
-            _buildNationality(),
 
-            _buildGender(),
-            _buildJob(),
-            //_buildSns(),
-            _buildLine(),
             _buildAboutMe(),
           ],
         ),
@@ -140,7 +134,7 @@ class ProfileDetailBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 20.h),
+          margin: EdgeInsets.only(top: 0.h),
           child: FBoldText("Introduce Myself", kTextBlackColor, 15),
         ),
         Container(

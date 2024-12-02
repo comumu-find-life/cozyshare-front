@@ -291,7 +291,6 @@ class SettingListWidget extends StatelessWidget {
   Widget _buildMyPoints() {
     return InkWell(
       onTap: () async{
-        var userId = await DiskDatabase().getUserId();
         var userAccount = await UserPointApi().loadUserAccount();
         if(userAccount == null){
           Get.to(() => RegisterAccountView());

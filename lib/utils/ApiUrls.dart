@@ -4,6 +4,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class ApiUrls {
   static String ROOT_URL = dotenv.get("ROOT_API_URL");
 
+  static String GOOGLE_AUTH_LOGIN  = "$ROOT_URL/google";
+
   /**
    * 회원가입 관련 API URLS
    */
@@ -14,6 +16,7 @@ class ApiUrls {
    * 사용자 관련 API URLS
    */
   static String USER_SIGN_UP_URL = "$ROOT_URL/users/sign-up";
+  static String USER_SIGN_UP_GOOGLE_URL = "$ROOT_URL/users/sign-up/google";
   static String USER_LOGIN_URL = "$ROOT_URL/users/login";
   static String USER_ID_FIND_URL = "$ROOT_URL/users/me/userId";
   static String USER_PROFILE_URL = "$ROOT_URL/users/profile";
@@ -52,7 +55,8 @@ class ApiUrls {
   static String DEAL_GETTER_READ_BY_ID = "$ROOT_URL/read/getter/";
 
   static String DEAL_REQUEST_DEPOSIT_URL = "$ROOT_URL/deals/accept/";
-  static String DEAL_CANCEL_DEPOSIT_URL = "$ROOT_URL/deals/cancel/deposit/";
+  static String DEALS_CANCEL_BEFORE_URL = "$ROOT_URL/deals/{dealId}/cancel/before";
+  static String DEALS_CANCEL_AFTER_URL = "$ROOT_URL/deals/{dealId}/cancel/after";
   static String DEAL_COMPLETE_URL = "$ROOT_URL/deals/{dealId}/complete";
   static String DEAL_CANCLE_URL = "$ROOT_URL/deals/cancel/";
 

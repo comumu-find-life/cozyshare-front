@@ -4,6 +4,9 @@ enum Gender {
   MALE,
   FEMALE,
   ANYTHING
+
+  //this
+
 }
 
 class GenderConverter implements JsonConverter<Gender, String> {

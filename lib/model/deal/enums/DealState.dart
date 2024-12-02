@@ -13,9 +13,15 @@ enum DealState {
 
   bool isInProgressState() {
     return this == DealState.REQUEST_DEAL ||
-        this == DealState.ACCEPT_DEAL ||
-        this == DealState.CANCEL_BEFORE_DEAL ||
-        this == DealState.CANCEL_DURING_DEAL;
+        this == DealState.ACCEPT_DEAL;
+  }
+
+  bool isDoneState() {
+    return this == DealState.COMPLETE_DEAL;
+  }
+
+  bool isCancel() {
+    return this == DealState.CANCEL_BEFORE_DEAL || this == DealState.CANCEL_DURING_DEAL;
   }
 
   int getStep() {

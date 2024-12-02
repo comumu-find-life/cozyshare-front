@@ -57,7 +57,7 @@ class SignupView extends StatelessWidget {
     switch (_controller.step) {
       case 1:
         return _buildButton(
-          onTap: _controller.checkEmail ? _controller.ontapEmailButton : null,
+          onTap: _controller.ontapEmailButton,
           isEnabled: _controller.checkEmail,
         );
       case 2:
@@ -67,7 +67,7 @@ class SignupView extends StatelessWidget {
 
       default:
         return _buildButton(
-            onTap: _controller.ontapDetailButton,
+            onTap: _controller.signupEmailAccount,
             isEnabled: _controller.checkDetail);
     }
   }

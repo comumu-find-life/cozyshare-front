@@ -44,10 +44,11 @@ class MyDealListView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                   
                       SelectDealTypeWidget(_controller),
                       if(_controller.dealStatus.isInProgressState())DuringDealWidget(_controller),
-                      if(!_controller.dealStatus.isInProgressState())DoneDealWidget(_controller),
-                      if(_controller.dealStatus == DealState.CANCEL_BEFORE_DEAL || _controller.dealStatus == DealState.CANCEL_DURING_DEAL)CancelDealWidget(_controller),
+                      if(_controller.dealStatus.isDoneState())DoneDealWidget(_controller),
+                      if(_controller.dealStatus.isCancel())CancelDealWidget(_controller),
                     ],
                   ),
                 ));

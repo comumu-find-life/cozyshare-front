@@ -20,17 +20,17 @@ class CancelDealWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.cancelDeals.length == 0
+    return Obx(() => _controller.cancelDeals.length == 0
         ? EmptyContainer()
         : Container(
-            width: 380.w,
-            height: 710.h,
-            child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: _controller.cancelDeals.length,
-                itemBuilder: (BuildContext ctx, int idx) {
-                  return _buildDealWidget(_controller.cancelDeals[idx]);
-                }));
+        width: 380.w,
+        height: 710.h,
+        child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: _controller.cancelDeals.length,
+            itemBuilder: (BuildContext ctx, int idx) {
+              return _buildDealWidget(_controller.cancelDeals[idx]);
+            })));
   }
 
   Widget _buildDealWidget(ProtectedDealResponse myProtectedDealResponse) {

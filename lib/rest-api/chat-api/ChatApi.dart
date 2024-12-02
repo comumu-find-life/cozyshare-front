@@ -45,7 +45,7 @@ class DmApi {
 
 
     if (apiUtils.isValidResponse(response)) {
-      List<dynamic> jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      List<dynamic> jsonResponse = apiUtils.decodeResponse(response);
       items = jsonResponse
           .map((json) => DirectMessageResponse.fromJson(json))
           .toList();

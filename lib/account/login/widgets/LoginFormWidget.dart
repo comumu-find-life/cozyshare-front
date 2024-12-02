@@ -7,6 +7,7 @@ import 'package:home_and_job/account/login/controller/MainLoginController.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
 import '../../../constants/Colors.dart';
+import 'LoginButtonWidget.dart';
 
 class LoginFormWidget extends StatefulWidget {
   MainLoginController _controller;
@@ -27,8 +28,8 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 200.h),
-      width: 380.w,
+      margin: EdgeInsets.only(top: 0.h),
+      width: 255.w,
       color: kWhiteBackGroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,6 +38,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
           _buildLoginForm(),
           _buildPasswordForm(),
+          LoginButtonWidget(widget._controller),
           //_buildAutoLoginCheckBox()
         ],
       ),

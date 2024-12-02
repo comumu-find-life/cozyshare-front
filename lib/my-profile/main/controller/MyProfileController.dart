@@ -12,6 +12,8 @@ class MyProfileController extends GetxController {
 
   Future<bool> loadUserProfile() async {
     String? userIdx = await DiskDatabase().getUserId();
+    print("Dasdasdas");
+    print("userIdx = " + userIdx!);
     userProfileResponse =
         (await ProfileDetailApi().loadUserProfile(int.parse(userIdx!)))!;
     return true;

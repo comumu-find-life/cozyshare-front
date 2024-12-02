@@ -11,7 +11,6 @@ class SignupRequest with _$SignupRequest {
     required String nickname,
     required String phoneNumber,
     required String gender,
-    required String role,
     required String job,
     required String nationality,
     required String signupType,

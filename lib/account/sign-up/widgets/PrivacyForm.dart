@@ -22,8 +22,6 @@ class PrivacyForm extends StatelessWidget {
       child: Column(
         children: [
           _buildMainText(),
-          _buildNameForm(),
-          //_buildEmailForm(),
           _buildPasswordForm(),
           _buildPasswordCheckForm(),
         ],

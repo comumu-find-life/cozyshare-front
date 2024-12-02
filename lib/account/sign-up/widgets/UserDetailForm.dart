@@ -46,10 +46,13 @@ class _UserDetailFormState extends State<UserDetailForm> {
       child: Column(
         children: [
           image_picked == null ? _buildNotSelectPhoto() : _buildSelectPhoto(),
+
+          _buildNameForm(),
           _buildJobForm(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               _buildGenderForm(),
               _buildNationality(),
             ],
@@ -85,8 +88,8 @@ class _UserDetailFormState extends State<UserDetailForm> {
                         child: FRegularText("Nationality", kGrey700Color, 13),
                       ),
                       Container(
-                        margin: EdgeInsets.only(
-                            top: 3.h, left: 16.w, right: 16.w),
+                        margin:
+                            EdgeInsets.only(top: 3.h, left: 16.w, right: 16.w),
                         // 힌트 텍스트와 입력란 간의 간격 조정
                         child: InkWell(
                           onTap: () {
@@ -110,12 +113,12 @@ class _UserDetailFormState extends State<UserDetailForm> {
                               context: context,
                               showPhoneCode: false, // 전화 국가 코드는 숨김
                               onSelect: (Country country) {
-
                                 setState(() {
                                   _selectedCountry = country;
                                   widget._controller.validatePrivacy();
                                 });
-                                widget._controller.selectCountry(country.toString());
+                                widget._controller
+                                    .ontapCountry(country.toString());
                                 widget._controller.validateUserDetail();
                               },
                             );
@@ -128,7 +131,8 @@ class _UserDetailFormState extends State<UserDetailForm> {
                                 Container(
                                   width: 145.w,
                                   child: Text(
-                                    _selectedCountry?.name ?? "Select Nationality",
+                                    _selectedCountry?.name ??
+                                        "Select Nationality",
                                     style: TextStyle(
                                       color: _selectedCountry == null
                                           ? kGrey300Color
@@ -157,7 +161,6 @@ class _UserDetailFormState extends State<UserDetailForm> {
     );
   }
 
-
   Widget _buildGenderForm() {
     return Center(
       child: Column(
@@ -170,7 +173,7 @@ class _UserDetailFormState extends State<UserDetailForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    height: 80.h,
+                    height: 70.h,
                     margin: EdgeInsets.only(top: 5.h),
                     decoration: BoxDecoration(
                       border: Border.all(color: kGrey500Color),
@@ -210,7 +213,7 @@ class _UserDetailFormState extends State<UserDetailForm> {
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
-                                widget._controller.selectGender(newValue!);
+                                widget._controller.ontapGender(newValue!);
                                 setState(() {
                                   _selectedGender = newValue;
                                 });
@@ -223,6 +226,63 @@ class _UserDetailFormState extends State<UserDetailForm> {
                               ),
                               style: TextStyle(
                                   color: Colors.black, fontSize: 14.sp),
+                              isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNameForm() {
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 335.w,
+            margin: EdgeInsets.only(top: 10.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                    width: 335.w,
+                    height: 76.h,
+                    margin: EdgeInsets.only(top: 5.h),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: kGrey500Color),
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 15.h, left: 15.w),
+                          child: FRegularText("Nink Name", kGrey700Color, 13),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          // 힌트 텍스트와 입력란 간의 간격 조정
+                          child: TextFormField(
+                            onChanged: (text) {
+                              widget._controller.validateUserDetail();
+                            },
+                            controller: widget._controller.nameController,
+                            style: TextStyle(color: Colors.black),
+                            // 텍스트 색상을 검정색으로 설정
+                            textAlign: TextAlign.left,
+                            // 텍스트를 왼쪽으로 정렬
+                            cursorColor: kTextBlackColor,
+                            decoration: InputDecoration(
+                              hintStyle: TextStyle(
+                                  color: kGrey700Color, fontSize: 14.sp),
+                              border: InputBorder.none,
                               isDense: true, // 덴스한 디자인을 사용하여 높이를 줄임
                             ),
                           ),
@@ -250,7 +310,7 @@ class _UserDetailFormState extends State<UserDetailForm> {
               children: [
                 Container(
                     width: 335.w,
-                    height: 86.h,
+                    height: 76.h,
                     margin: EdgeInsets.only(top: 5.h),
                     decoration: BoxDecoration(
                       border: Border.all(color: kGrey500Color),
@@ -357,17 +417,15 @@ class _UserDetailFormState extends State<UserDetailForm> {
       child: Stack(
         children: [
           Container(
-              width: 90.w,
-              height: 90.w,
+              width: 100.w,
+              height: 100.w,
               decoration: BoxDecoration(
                 border: Border.all(color: kGrey800Color),
                 shape: BoxShape.circle,
               ),
               child: ClipRRect(
-
                 borderRadius: BorderRadius.all(Radius.circular(50)),
                 child: Image.asset("assets/images/common/user_icon.png",
-
                     width: 50.w, height: 50.h, fit: BoxFit.contain),
               )),
           Positioned(

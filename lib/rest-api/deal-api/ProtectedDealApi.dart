@@ -119,13 +119,25 @@ class ProtectedDealApi {
   }
 
   /**
-   * 입금 신청 취소 API (Getter 가 사용)
+   * 입금 하기전,안전거래 취소 (Getter 가 사용)
    */
-  Future<bool> cancelDepositByGetter(int dealId) async {
+  Future<bool> cancelDealBeforeDeposit(int dealId) async {
     var accessToken = await DiskDatabase().getAccessToken();
-    
-    var response = await apiUtils.patchResponse(ApiUrls.DEAL_CANCEL_DEPOSIT_URL + dealId.toString(), accessToken: accessToken);
+    var url = ApiUrls.DEALS_CANCEL_BEFORE_URL.replaceAll("{dealId}", dealId.toString());
+    var response = await apiUtils.patchResponse(url, accessToken: accessToken);
+    if(response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
 
+  /**
+   * 입금 한 뒤,안전거래 취소 (Getter 가 사용)
+   */
+  Future<bool> cancelDealAfterDeposit(int dealId) async {
+    var accessToken = await DiskDatabase().getAccessToken();
+    var url = ApiUrls.DEALS_CANCEL_AFTER_URL.replaceAll("{dealId}", dealId.toString());
+    var response = await apiUtils.patchResponse(url, accessToken: accessToken);
     if(response.statusCode == 200) {
       return true;
     }

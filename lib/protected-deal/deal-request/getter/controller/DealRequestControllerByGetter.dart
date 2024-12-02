@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:home_and_job/model/user/response/UserAccountResponse.dart';
+import 'package:home_and_job/my-profile/my-homes/edit-home/detail-view/view/FinishView.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/rest-api/user-api/UserPointApi.dart';
 
@@ -21,13 +22,11 @@ class DealRequestControllerByGetter extends GetxController{
     return false;
   }
 
-  Future<bool> cancelDeposit(int dealId) async {
-    bool response = await ProtectedDealApi().cancelDepositByGetter(dealId);
-
+  Future<void> cancelDealBeforeDeposit(int dealId) async {
+    bool response = await ProtectedDealApi().cancelDealBeforeDeposit(dealId);
     if(response) {
-      return true;
+      Get.to(() => FinishView("Cancel Transaction", "The transaction has been canceled.\n Tap the screen to go to the main page."));
     }
-    return false;
   }
 
 

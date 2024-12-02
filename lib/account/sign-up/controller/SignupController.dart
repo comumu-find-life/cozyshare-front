@@ -7,6 +7,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/state_manager.dart';
 import 'package:home_and_job/account/login/view/MainLoginView.dart';
+import 'package:home_and_job/model/user/enums/Gender.dart';
 import 'package:home_and_job/rest-api/account-api/AccountApi.dart';
 import 'package:home_and_job/rest-api/user-api/SignupApi.dart';
 import 'package:home_and_job/model/user/enums/SignupType.dart';
@@ -23,10 +24,11 @@ class SignupController extends GetxController {
   Rx<bool> _checkEmail = false.obs;
   Rx<bool> _checkPrivacy = false.obs;
   Rx<bool> _checkDetail = false.obs;
+  // Rx<String> _selectGender = "".obs;
 
   String email = "";
-  String _selectGender = "";
-  String _selectCountry = "";
+  String selectGender = "";
+  String selectCountry = "";
   String _profileUrl = "";
 
   TextEditingController _emailController = TextEditingController();
@@ -38,26 +40,23 @@ class SignupController extends GetxController {
   TextEditingController _pwCheckController = TextEditingController();
   TextEditingController _jobController = TextEditingController();
 
-  // 이메일 검증화면 버튼
   void ontapEmailButton() {
     _step.value = 2;
   }
 
-  // 이름, 비번 검증화면 버튼
   void ontapPrivacyButton() {
     _step.value = 3;
   }
 
-  void ontapDetailButton() async {
+  void signupEmailAccount() async {
     var signupRequest = SignupRequest(
         email: _emailController.text,
         password: _pwController.text,
         nickname: _nameController.text,
         phoneNumber: "01012341234",
-        gender: 'MALE',
-        role: 'PROVIDER',
+        gender: parseGender(selectGender).name,
         job: _jobController.text,
-        nationality: _selectCountry,
+        nationality: selectCountry,
         signupType: SignupType.EMAIL.name);
 
     bool response = await SignupApi()
@@ -67,42 +66,61 @@ class SignupController extends GetxController {
       Get.to(() => SuccessSignupView());
     } else {}
   }
-  // 이메일 검증 메서드687571
-  void checkEmailCode(BuildContext context) async{
-    if(emailCheckController.text.length != 6){
-      CustomSnackBar().show(context, "The verification code is 6 characters long.");
-    }else{
-      bool result = await AccountApi().verifySignUpCode(_emailController.text, _emailCheckController.text);
-      if(result){
+
+  void signupGoogleAccount(String email) async {
+
+    var signupRequest = SignupRequest(
+        email: email,
+        password: "",
+        nickname: _nameController.text,
+        phoneNumber: "01012341234",
+        gender: parseGender(selectGender).name,
+        job: _jobController.text,
+        nationality: selectCountry,
+        signupType: SignupType.GOOGLE.name);
+
+    bool response = await SignupApi()
+        .signupGoogleApi(signupRequest, _profileUrl == "" ? null : _profileUrl);
+
+    if (response) {
+      Get.to(() => SuccessSignupView());
+    } else {}
+  }
+
+  void checkEmailCode(BuildContext context) async {
+    if (emailCheckController.text.length != 6) {
+      CustomSnackBar()
+          .show(context, "The verification code is 6 characters long.");
+    } else {
+      bool result = await AccountApi()
+          .verifySignUpCode(_emailController.text, _emailCheckController.text);
+      if (result) {
         _checkEmail.value = true;
-      }else{
+      } else {
         CustomSnackBar().show(context, "Verification failed.");
       }
     }
-
-
   }
 
   // 이메일 인증코드 요청 메서드
-  void sendEmail(BuildContext context) async{
-    if(_emailController.text.isEmpty){
+  void sendEmail(BuildContext context) async {
+    if (_emailController.text.isEmpty) {
       CustomSnackBar().show(context, "Input your email");
-    }else{
-      bool result = await AccountApi().sendCheckCodeToEmail(_emailController.text);
-      if(result){
+    } else {
+      bool result =
+          await AccountApi().sendCheckCodeToEmail(_emailController.text);
+      if (result) {
         email = _emailController.text;
         _canInputCode.value = true;
-      }else{
+      } else {
         CustomSnackBar().show(context, "Failed to send Email");
       }
     }
-
   }
 
   // 비밀번호 길이 8 자리 이상
   void validatePrivacy() {
-    if (_nameController.text.length >= 1 &&
-        _pwCheckController.text.length >= 7 &&
+    if (_pwCheckController.text.length >= 7 &&
         (_pwCheckController.text == _pwCheckController.text)) {
       _checkPrivacy.value = true;
     } else {
@@ -111,8 +129,8 @@ class SignupController extends GetxController {
   }
 
   void validateUserDetail() {
-    if (_selectGender != "" &&
-        _selectCountry != "" &&
+    if (_nameController.text.length >= 1 && selectGender != "" &&
+        selectGender != "" &&
         _jobController.text != "") {
       _checkDetail.value = true;
     } else {
@@ -120,16 +138,33 @@ class SignupController extends GetxController {
     }
   }
 
+  void setEmail(String oauthEmail){
+    email = oauthEmail;
+  }
+
   void selectImage(String path) {
     _profileUrl = path;
   }
 
-  void selectGender(String value) {
-    _selectGender = value;
+  void ontapGender(String value) {
+    selectGender = value;
   }
 
-  void selectCountry(String value) {
-    _selectCountry = value;
+  void ontapCountry(String value) {
+    selectCountry = value;
+  }
+
+   Gender parseGender(String value) {
+    switch (value.toLowerCase()) {
+      case 'male':
+        return Gender.MALE;
+      case 'female':
+        return Gender.FEMALE;
+      case 'anything':
+        return Gender.ANYTHING;
+      default:
+        throw ArgumentError('Unknown gender: $value');
+    }
   }
 
   void selectProfileImage() {}
@@ -157,4 +192,7 @@ class SignupController extends GetxController {
   TextEditingController get emailCheckController => _emailCheckController;
 
   TextEditingController get jobController => _jobController;
+
+  String get profileUrl => _profileUrl;
+
 }

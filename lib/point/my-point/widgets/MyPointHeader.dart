@@ -25,7 +25,7 @@ class MyPointHeader extends StatelessWidget {
       children: [
         Container(
           width: 370.w,
-          height: 220.w,
+          height: 250.w,
           child: Column(
             children: [
               _buildMyPoint(),
@@ -43,6 +43,7 @@ class MyPointHeader extends StatelessWidget {
       margin: EdgeInsets.only(top: 20.h, bottom: 20.h),
       color: kGrey200Color,
       width: 400.w,
+
       height: 45.h,
       child: Center(
         child: Row(

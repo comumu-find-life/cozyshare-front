@@ -9,9 +9,9 @@ import '../../../../model/deal/response/ProtectedDealResponse.dart';
 
 class MyDealListController extends GetxController{
   RxList deals = [].obs;
-  List<ProtectedDealResponse> duringDeals = [];
-  List<ProtectedDealResponse> doneDeals = [];
-  List<ProtectedDealResponse> cancelDeals = [];
+  RxList duringDeals = [].obs;
+  RxList doneDeals = [].obs;
+  RxList cancelDeals = [].obs;
   Rx<DealState> _dealStatus = DealState.REQUEST_DEAL.obs;
 
   void ontapState(DealState state){
@@ -24,17 +24,14 @@ class MyDealListController extends GetxController{
 
   Future<bool> loadInit() async{
     deals.value = (await MyProtectedDealApi().loadMyDeals())!;
-    for(int i = 0; i<deals.length; i++) {
+    for(int i = 0; i < deals.length; i++) {
       if(deals[i].dealState == DealState.COMPLETE_DEAL){
         doneDeals.add(deals[i]);
-      }else if(deals[i].dealState == DealState.CANCEL_DURING_DEAL){
+      }else if(deals[i].dealState == DealState.CANCEL_DURING_DEAL || deals[i].dealState == DealState.CANCEL_BEFORE_DEAL ){
         cancelDeals.add(deals[i]);
       }else{
         duringDeals.add(deals[i]);
       }
-      // if(deals[i].dealState == DealState.COMPLETE_DEAL) doneDeals.add(deals[i]);
-      // if(deals[i].dealState == DealState.CANCEL_DEAL) cancelDeals.add(deals[i]);
-      // if(deals[i].dealState != DealState.COMPLETE_DEAL || deals[i].dealState != DealState.CANCEL_DEAL) duringDeals.add(deals[i]);
     }
 
     return true;

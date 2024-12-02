@@ -46,7 +46,7 @@ class ProfileDetailView extends StatelessWidget {
     return AppBar(
       elevation: 0,
       centerTitle: true,
-      backgroundColor: kWhiteBackGroundColor,
+      backgroundColor: kPrimaryColor,
       automaticallyImplyLeading: false,
       title: Container(
         width: 360.w,
@@ -64,7 +64,7 @@ class ProfileDetailView extends StatelessWidget {
                   height: 19.h,
                   child: Icon(
                     Icons.arrow_back_ios,
-                    color: kTextBlackColor,
+                    color: kWhiteColor,
                   )),
             ),
             Container()

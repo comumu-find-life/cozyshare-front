@@ -21,7 +21,7 @@ class InputChargeTextForm extends StatefulWidget {
 class _InputChargeTextFormState extends State<InputChargeTextForm> {
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Container(
+    return Container(
           margin: EdgeInsets.only(top: 30.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,10 +31,10 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
                 child: FBoldText("Recharge Amount", kTextBlackColor, 13),
               ),
               _buildAmountForm(),
-              _buildChargeMethods(),
+              //_buildChargeMethods(),
             ],
           ),
-        ));
+        );
   }
 
   Widget _buildChargeMethods() {
@@ -66,27 +66,27 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
             ],
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(left: 15.w, top: 20.h),
-          child: Row(
-            children: [
-              InkWell(
-                onTap: () {
-                  widget._controller.onTapPaymentMethod(2);
-                },
-                child: Container(
-                  child: widget._controller.paymentMethod.value == 2
-                      ? Icon(Icons.adjust)
-                      : Icon(Icons.circle_outlined),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 6.w),
-                child: FRegularText("Bank Transfer", kTextBlackColor, 14),
-              )
-            ],
-          ),
-        ),
+        // Container(
+        //   margin: EdgeInsets.only(left: 15.w, top: 20.h),
+        //   child: Row(
+        //     children: [
+        //       InkWell(
+        //         onTap: () {
+        //           widget._controller.onTapPaymentMethod(2);
+        //         },
+        //         child: Container(
+        //           child: widget._controller.paymentMethod.value == 2
+        //               ? Icon(Icons.adjust)
+        //               : Icon(Icons.circle_outlined),
+        //         ),
+        //       ),
+        //       Container(
+        //         margin: EdgeInsets.only(left: 6.w),
+        //         child: FRegularText("Bank Transfer", kTextBlackColor, 14),
+        //       )
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
