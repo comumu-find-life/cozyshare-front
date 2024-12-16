@@ -9,7 +9,7 @@ import 'package:home_and_job/model/user/response/UserAccountResponse.dart';
 import 'package:home_and_job/point/charge-point/main/view/ChargePointView.dart';
 
 class Pointchargepopup {
-  void showPopup(UserAccountResponse userAccount, BuildContext context) {
+  void showPopup(double deposit, UserAccountResponse userAccount, BuildContext context) {
     showGeneralDialog(
         context: context,
         barrierDismissible: true,
@@ -21,6 +21,7 @@ class Pointchargepopup {
             Animation secondaryAnimation) {
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
+              backgroundColor: kWhiteColor,
               contentPadding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -75,7 +76,7 @@ class Pointchargepopup {
                               ),
                               InkWell(
                                 onTap: (){
-                                  Get.to(() => ChargePointView(userAccount));
+                                  Get.to(() => ChargePointView(userAccount, deposit));
                                 },
                                 child: Container(
                                   width: 120.w,

@@ -1,11 +1,13 @@
 
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/model/user/response/UserAccountResponse.dart';
 import 'package:home_and_job/my-profile/my-homes/edit-home/detail-view/view/FinishView.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/rest-api/user-api/UserPointApi.dart';
+import 'package:home_and_job/utils/SnackBar.dart';
 
 class DealRequestControllerByGetter extends GetxController{
   Rx<bool> _canNext = false.obs;
@@ -22,10 +24,12 @@ class DealRequestControllerByGetter extends GetxController{
     return false;
   }
 
-  Future<void> cancelDealBeforeDeposit(int dealId) async {
+  Future<void> cancelDealBeforeDeposit(BuildContext context, int dealId) async {
     bool response = await ProtectedDealApi().cancelDealBeforeDeposit(dealId);
     if(response) {
       Get.to(() => FinishView("Cancel Transaction", "The transaction has been canceled.\n Tap the screen to go to the main page."));
+    }else{
+      CustomSnackBar().show(context, "Server Error");
     }
   }
 

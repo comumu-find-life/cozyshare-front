@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -10,42 +11,54 @@ import '../../../chatting/chat-detail-provider/controller/ChatProviderDetailCont
 
 
 class DealGeneratorController extends GetxController {
-//   TextEditingController _nameController = TextEditingController();
-//   TextEditingController _bankController = TextEditingController();
-//   TextEditingController _accountController = TextEditingController();
   TextEditingController _bondController = TextEditingController();
   Rx<bool> _finishAccountInformation = false.obs;
+  DateTime selectDatetime = DateTime.now();
 
   @override
   void onInit() {
     super.onInit();
-    // 각 controller의 변화를 모니터링하여 업데이트 메서드를 호출합니다.
+
     _bondController.addListener(update);
-    // _nameController.addListener(update);
-    // _bankController.addListener(update);
-    // _accountController.addListener(update);
   }
 
+
+
   void updateAccountController() {
-    // 모든 입력 칸이 채워졌는지 확인합니다.
     bool allFilled = bondController.text.isNotEmpty;
-    // _finishAccountInformation 값을 갱신합니다.
-    _finishAccountInformation.value = allFilled;
+      _finishAccountInformation.value = allFilled;
+  }
+
+  // calculateFee: bondController의 값의 5%를 계산
+  int calculateFee() {
+    // bondController 값이 비어 있지 않고, 숫자 형식일 경우
+    if (_bondController.text.isNotEmpty) {
+      double bondAmount = double.tryParse(_bondController.text) ?? 0.0;
+      return (bondAmount * 0.05).toInt(); // 5% 계산 후 정수로 반환
+    }
+    return 0; // bondController에 값이 없으면 0 반환
+  }
+
+  // calculateTotalPrice: bondController 값 + calculateFee의 결과값을 더한 값 계산
+  int calculateTotalPrice() {
+    int fee = calculateFee();
+    int bondAmount = int.tryParse(_bondController.text) ?? 0;
+    return bondAmount + fee;
   }
 
   Future<int?> createDeal(
       BuildContext context, ChatProviderDetailController _chatController) async {
     ProtectedDealGeneratorRequest protectedDealGeneratorRequest =
-        ProtectedDealGeneratorRequest(
-            getterId: _chatController.receiver.id,
-            providerId: _chatController.sender.id,
-            homeId: _chatController.home.homeId!,
-            dmId: _chatController.roomId,
-            deposit: int.parse(_bondController.text),
-            );
+    ProtectedDealGeneratorRequest(
+      getterId: _chatController.receiver.id,
+      providerId: _chatController.sender.id,
+      homeId: _chatController.home.homeId!,
+      dmId: _chatController.roomId,
+      deposit: int.parse(_bondController.text), dealAt: selectDatetime,
+    );
 
     int? dealId =
-        await ProtectedDealApi().startDeal(protectedDealGeneratorRequest);
+    await ProtectedDealApi().startDeal(protectedDealGeneratorRequest);
 
     if (dealId != null) {
       Get.to(() => DealGeneratorFinishView());
@@ -59,10 +72,4 @@ class DealGeneratorController extends GetxController {
   bool get finishAccountInformation => _finishAccountInformation.value;
 
   TextEditingController get bondController => _bondController;
-
-  // TextEditingController get nameController => _nameController;
-  //
-  // TextEditingController get bankController => _bankController;
-  //
-  // TextEditingController get accountController => _accountController;
 }

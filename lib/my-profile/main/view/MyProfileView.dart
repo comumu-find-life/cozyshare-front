@@ -8,7 +8,6 @@ import 'package:home_and_job/my-profile/main/widgets/ProfileWidget.dart';
 
 import '../../../constants/Fonts.dart';
 import '../controller/MyProfileController.dart';
-import '../widgets/CommonList.dart';
 
 class MyProfileView extends StatelessWidget {
   @override
@@ -34,6 +33,7 @@ class MyProfileView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProfileWidget(controller),
+
               SettingListWidget(controller),
               Center(
                 child: Container(

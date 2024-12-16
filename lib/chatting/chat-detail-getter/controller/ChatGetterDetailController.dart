@@ -19,11 +19,11 @@ import 'package:home_and_job/utils/DiskDatabase.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 import '../../../model/chat/response/DirectMessageDto.dart';
-import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
 import '../../../model/user/response/UserAccountResponse.dart';
 
 
 class ChatGetterDetailController extends GetxController {
+
   late bool _isExistAccount;
   late int _roomId;
   late int _providerId;
@@ -63,7 +63,7 @@ class ChatGetterDetailController extends GetxController {
         providerId: int.parse(_home.providerId!),
         homeId: _home.homeId!,
         dmId: _roomId);
-    List<ProtectedDealResponse> response = await ProtectedDealApi().loadProtectedDealByGetter(protectedDealFindRequest);
+    List<ProtectedDealResponse> response = await ProtectedDealApi().loadProtectedDeal(protectedDealFindRequest);
     if (response != null) {
       dealMap = { for (var deal in response) deal.id: deal };
     }
@@ -88,7 +88,7 @@ class ChatGetterDetailController extends GetxController {
   void connectToStomp() {
     stompClient = StompClient(
       config: StompConfig(
-        url: 'ws://10.0.2.2:8082/dm/websocket',
+        url: "ws://localhost:8082/dm/websocket",
         // WebSocket 서버 엔드포인트
         onConnect: onStompConnected,
         onWebSocketError: (dynamic error) => print('WebSocket Error: $error'),
@@ -159,7 +159,7 @@ class ChatGetterDetailController extends GetxController {
   void applyDeposit(int dealId) async{
     var directMessageRequest = DirectMessageRequest(
       receiverId: _providerId,
-      message: "DEAL MESSAGE",
+      message: "In Transaction",
       roomId: _roomId.toString(),
       isDeal: 2,
       dealState: DealState.REQUEST_DEAL.name,
@@ -179,7 +179,7 @@ class ChatGetterDetailController extends GetxController {
   void completeDeal(int dealId) async{
     var directMessageRequest = DirectMessageRequest(
       receiverId: _providerId,
-      message: "DEAL MESSAGE",
+      message: "Complete Transaction",
       roomId: _roomId.toString(),
       isDeal: 3,
       dealState: DealState.REQUEST_DEAL.name,
@@ -195,9 +195,9 @@ class ChatGetterDetailController extends GetxController {
 
   Future<bool?> checkUserPoint(int dealId)async{
     userAccountResponse = await UserPointApi().loadUserAccount();
-    return userAccountResponse?.checkEnoughPoint(getDealById(dealId)!.deposit);
-
+    return userAccountResponse?.checkEnoughPoint(getDealById(dealId)!.totalPrice);
   }
+
 
 
 

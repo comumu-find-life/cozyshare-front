@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,9 +7,7 @@ import 'package:home_and_job/constants/Fonts.dart';
 import '../controller/ChargePointController.dart';
 
 class ChargeHeaderr extends StatelessWidget {
-
   ChargePointController _controller;
-
 
   ChargeHeaderr(this._controller);
 
@@ -34,11 +31,17 @@ class ChargeHeaderr extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 30.h),
-                    child: FRegularText("Recharge your points \nto safely transact homes.", kTextBlackColor, 14),
+                    child: FRegularText(
+                        "Recharge your points \nto safely transact homes.",
+                        kTextBlackColor,
+                        14),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 30.h),
-                    child: FBoldText("Current Point : ${_controller.userAccountResponse.point}P", kTextBlackColor, 12),
+                    child: FBoldText(
+                        "Current Point : ${_controller.userAccountResponse.point}P",
+                        kTextBlackColor,
+                        12),
                   ),
                 ],
               )
@@ -47,6 +50,5 @@ class ChargeHeaderr extends StatelessWidget {
         ],
       ),
     );
-    
   }
 }

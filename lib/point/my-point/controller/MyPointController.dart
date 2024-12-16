@@ -12,7 +12,6 @@ class MyPointController extends GetxController{
 
   Future<bool> loadInit(UserAccountResponse userAccount) async{
     userAccountResponse = userAccount;
-
     return true;
   }
 

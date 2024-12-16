@@ -10,7 +10,6 @@ import 'package:home_and_job/protected-deal/deal-deposit-cancel/getter/DealCance
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
-import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
 import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../../protected-deal/deal-request/getter/view/DealRequestViewByGetter.dart';
 
@@ -43,6 +42,7 @@ Widget GetterDealStartMessageWidget(
           child: Padding(
             padding: EdgeInsets.only(bottom: 15.h),
             child: InkWell(
+
               onTap: () {
                 !controller.isExistAccount
                     ? RegisterAccountPopup().showDialog(context)

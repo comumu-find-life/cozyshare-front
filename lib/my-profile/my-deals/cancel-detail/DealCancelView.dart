@@ -33,27 +33,22 @@ class DealCancelDetailView extends StatelessWidget {
       ),
       bottomSheet: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Center(
-              // child: DealProcessWidget(
-              //   step: dealResponse.dealState.getStep(),
-              //   dealStartDateTime: ConverterUtil()
-              //       .formatEnglishDateTime(dealResponse!.dealStartDateTime),
-              //   depositRequestDateTime: ConverterUtil().formatEnglishDateTime(
-              //       dealResponse!.depositRequestDateTime),
-              //   depositCompletionDateTime: ConverterUtil()
-              //       .formatEnglishDateTime(
-              //       dealResponse!.depositCompletionDateTime),
-              //   dealCompletionRequestDateTime: ConverterUtil()
-              //       .formatEnglishDateTime(
-              //       dealResponse!.dealCompletionRequestDateTime),
-              //   dealCompletionDateTime: ConverterUtil().formatEnglishDateTime(
-              //       dealResponse!.dealCompletionDateTime),
-              //   dealCancellationDateTime: ConverterUtil().formatEnglishDateTime(
-              //       dealResponse!.dealCancellationDateTime),
-              // ),
+              child: DealProcessWidget(
+                createAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.createAt),
+                startAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.startAt),
+                cancelAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.cancelAt),
+                completeAt: ConverterUtil()
+                    .formatEnglishDateTime(dealResponse!.completeAt),
+              ),
             ),
             DealPaymentInformationWidget(dealResponse),
+
             DealRoomInformationWidget(dealResponse),
             Container(
               color: kWhiteBackGroundColor,

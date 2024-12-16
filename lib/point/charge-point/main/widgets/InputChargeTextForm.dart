@@ -37,59 +37,6 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
         );
   }
 
-  Widget _buildChargeMethods() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: EdgeInsets.only(left: 15.w, top: 30.h),
-          child: FBoldText("Payment Method", kTextBlackColor, 13),
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 15.w, top: 25.h),
-          child: Row(
-            children: [
-              InkWell(
-                onTap: () {
-                  widget._controller.onTapPaymentMethod(1);
-                },
-                child: Container(
-                  child: widget._controller.paymentMethod.value == 1
-                      ? Icon(Icons.adjust)
-                      : Icon(Icons.circle_outlined),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 6.w),
-                child: FRegularText("PayPal", kTextBlackColor, 14),
-              )
-            ],
-          ),
-        ),
-        // Container(
-        //   margin: EdgeInsets.only(left: 15.w, top: 20.h),
-        //   child: Row(
-        //     children: [
-        //       InkWell(
-        //         onTap: () {
-        //           widget._controller.onTapPaymentMethod(2);
-        //         },
-        //         child: Container(
-        //           child: widget._controller.paymentMethod.value == 2
-        //               ? Icon(Icons.adjust)
-        //               : Icon(Icons.circle_outlined),
-        //         ),
-        //       ),
-        //       Container(
-        //         margin: EdgeInsets.only(left: 6.w),
-        //         child: FRegularText("Bank Transfer", kTextBlackColor, 14),
-        //       )
-        //     ],
-        //   ),
-        // ),
-      ],
-    );
-  }
 
   Widget _buildAmountForm() {
     return Center(
@@ -113,6 +60,9 @@ class _InputChargeTextFormState extends State<InputChargeTextForm> {
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                     // 힌트 텍스트와 입력란 간의 간격 조정
                     child: TextFormField(
+                      onChanged: (value) {
+                        widget._controller.updateAmount(value);
+                      },
                       controller: widget._controller.amountController,
                       style: TextStyle(color: Colors.black),
                       // 텍스트 색상을 검정색으로 설정

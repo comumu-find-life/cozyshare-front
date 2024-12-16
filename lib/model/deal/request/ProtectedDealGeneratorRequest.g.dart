@@ -14,6 +14,7 @@ _$ProtectedDealGeneratorRequestImpl
           homeId: (json['homeId'] as num).toInt(),
           dmId: (json['dmId'] as num).toInt(),
           deposit: (json['deposit'] as num).toInt(),
+          dealAt: DateTime.parse(json['dealAt'] as String),
         );
 
 Map<String, dynamic> _$$ProtectedDealGeneratorRequestImplToJson(
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$ProtectedDealGeneratorRequestImplToJson(
       'homeId': instance.homeId,
       'dmId': instance.dmId,
       'deposit': instance.deposit,
+      'dealAt': instance.dealAt.toIso8601String(),
     };

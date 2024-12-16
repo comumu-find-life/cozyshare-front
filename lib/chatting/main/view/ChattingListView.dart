@@ -51,42 +51,6 @@ class ChattingListView extends StatelessWidget {
     );
   }
 
-  Widget _buildSearchBar() {
-    return Container(
-      margin: EdgeInsets.only(top: 10.h, bottom: 0.h, left: 0.w),
-      width: 340.w,
-      height: 43.h,
-      decoration: BoxDecoration(
-          color: kPrimaryLightColor,
-          borderRadius: BorderRadius.all(Radius.circular(6))),
-      child: TextField(
-        controller: _controller.filterController,
-
-        style: TextStyle(color: Colors.black), // 입력된 텍스트의 색상을 검정색으로 변경
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 15.w, bottom: 0.w),
-          hintText: 'Search By City',
-          hintStyle:
-              TextStyle(color: kDarkBlue, fontSize: 14, fontFamily: "FRegular"),
-          border: InputBorder.none,
-          suffixIcon: IconButton(
-            icon: Icon(
-              Icons.search,
-              color: kDarkBlue,
-            ),
-            onPressed: () async {
-              //_controller.searchAddresses();
-              //await _searchAddresses(_searchController.text);
-            },
-          ),
-        ),
-        onChanged: (query) {
-          //_controller.filterAddresses(query);
-        },
-      ),
-    );
-  }
-
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: kWhiteBackGroundColor,

@@ -26,6 +26,7 @@ class MyPointHistory extends StatelessWidget {
         ),
         _controller.userAccountResponse!.chargeHistories.length == 0
             ? Container(
+
                 margin: EdgeInsets.only(top: 15.h),
                 width: 350.w,
                 height: 320.h,
@@ -37,7 +38,6 @@ class MyPointHistory extends StatelessWidget {
             : Container(
                 margin: EdgeInsets.only(top: 15.h),
                 width: 350.w,
-                height: 320.h,
                 decoration: BoxDecoration(
                     border: Border.all(color: kGrey300Color),
                     borderRadius: BorderRadius.all(Radius.circular(6))),
@@ -45,7 +45,7 @@ class MyPointHistory extends StatelessWidget {
                   margin: EdgeInsets.only(bottom: 10.h),
                   width: 380.w,
                   child: Column(
-                    children: _controller.userAccountResponse!.chargeHistories
+                    children: _controller.userAccountResponse!.chargeHistories.reversed
                         .map((history) {
                       return _buildHistoryItem(history);
                     }).toList(),

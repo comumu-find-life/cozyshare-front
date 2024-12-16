@@ -12,13 +12,13 @@ import '../../model/deal/response/ProtectedDealResponse.dart';
 class DealPriceWidget extends StatelessWidget {
   final double deposit; // 'depost' 오타 수정
   final double fee;
+  final double totalPrice;
 
   // 생성자
   DealPriceWidget({
     required this.deposit,
-    required this.fee,
+    required this.fee, required this.totalPrice,
   });
-
 
 
   @override
@@ -26,10 +26,6 @@ class DealPriceWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Container(
-        //   margin: EdgeInsets.only(top: 30.h,left: 15.w),
-        //   child: Title2Text("Transaction Information", kTextBlackColor),
-        // ),
         Container(
           margin: EdgeInsets.only(left: 10.w, top: 15.h,right: 10.w),
           width: 350.w,
@@ -70,7 +66,7 @@ class DealPriceWidget extends StatelessWidget {
                 child: Body2Text("Total Price", kGrey600Color),
               ),
               Container(
-                child: NumberText("${fee + deposit} \$", kTextBlackColor, 14),
+                child: NumberText("${totalPrice} \$", kTextBlackColor, 14),
               )
             ],
           ),
@@ -108,7 +104,7 @@ class DealPriceWidget extends StatelessWidget {
             child: Body2Text("Fee", kGrey600Color),
           ),
           Container(
-            child: NumberText("${fee} \$", kTextBlackColor, 14),
+            child: NumberText("${fee.toStringAsFixed(2)} \$", kTextBlackColor, 14),
           )
         ],
       ),

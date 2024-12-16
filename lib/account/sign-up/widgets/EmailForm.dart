@@ -24,6 +24,7 @@ class EmailForm extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 40.h),
             width: 60.w,
+
             child: Image.asset("assets/icons/email_icon.png"),
           ),
           Container(
@@ -52,7 +53,7 @@ class EmailForm extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.only(top: 20.h),
                     width: 335.w,
-                    height: 69.h,
+                    height: 60.h,
                     decoration: BoxDecoration(
                       border: Border.all(color: kGrey400Color),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -60,7 +61,6 @@ class EmailForm extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
                         Row(
                           children: [
                             Container(
@@ -122,7 +122,7 @@ class EmailForm extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.only(top: 20.h),
                     width: 245.w,
-                    height: 69.h,
+                    height: 60.h,
                     decoration: BoxDecoration(
                       border: Border.all(color: kGrey400Color),
                       borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -169,7 +169,7 @@ class EmailForm extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(top: 20.h),
               width: 80.w,
-              height: 69.h,
+              height: 60.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(6)),
                 color: kPrimaryColor

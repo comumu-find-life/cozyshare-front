@@ -5,20 +5,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
+import 'package:home_and_job/protected-deal/common/DealDateTimeWidget.dart';
+import 'package:home_and_job/protected-deal/deal-proceeding/getter/popup/AfterDepositCancelPopup.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/utils/Converter.dart';
 import 'package:home_and_job/utils/SnackBar.dart';
 import '../../../../chatting/chat-detail-getter/controller/ChatGetterDetailController.dart';
-import '../../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../../../../constants/Fonts.dart';
-import '../../../../model/deal/enums/DealState.dart';
-import '../../../../protected-deal/deal-request/getter/widgets/DepositInformationWidgetByGetter.dart';
 import '../../../common/DealInformationWidgetByGetter.dart';
 import '../../../common/HomeInformationByDealWidget.dart';
 import '../controller/DealProcessControllerByGetter.dart';
 import '../widgets/DealFinishAgreeWidget.dart';
 import '../../common/widgets/DealProcessWidget.dart';
-import '../../common/widgets/DepositGuideWidget.dart';
 
 class DealProcessViewByGetter extends StatelessWidget {
   final int dealId;
@@ -47,13 +45,13 @@ class DealProcessViewByGetter extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HomeInformationByDealWidget(_chatDetailController.home.images!.first, _chatDetailController.home.address!, _chatDetailController.home.rent!, _chatDetailController.home.bond!),
+            DealDateTimeWidget(ConverterUtil().formatEnglishDateTime(dealResponse!.dealAt)!),
             Container(
               margin: EdgeInsets.only(top: 30.h, left: 15.w),
               child: Title2Text("Transaction Status", kTextBlackColor),
             ),
             Center(
               child: DealProcessWidget(
-                step: step!,
                 createAt: ConverterUtil()
                     .formatEnglishDateTime(dealResponse!.createAt),
                 startAt: ConverterUtil()
@@ -68,7 +66,8 @@ class DealProcessViewByGetter extends StatelessWidget {
             Center(
                 child: DealPriceWidget(
               deposit: dealResponse!.deposit,
-              fee: dealResponse.fee,
+                  fee: dealResponse.fee, totalPrice: dealResponse.totalPrice,
+
             )),
             if (step == 2) DealFinishAgreeWidget(_controller),
             SizedBox(height: 100.h,)
@@ -89,58 +88,95 @@ class DealProcessViewByGetter extends StatelessWidget {
     }
   }
 
-  Container _buildNotTapButton(String text) {
-    return Container(
-      width: double.infinity,
-      color: kGrey200Color,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kGrey200Color,
-          side: BorderSide.none,
-          shadowColor: Colors.transparent,
-        ),
-        onPressed: () async {},
-        child: ButtonText("${text}", kWhiteBackGroundColor),
-      ),
-    );
+
+  Widget _buildRequestCompleteRequestButton(context){
+    return Obx(() => Container(
+        height: 70.h,
+        color: kWhiteColor,
+        child: Row(
+          children: [
+            InkWell(
+              onTap: () async {
+                AfterDepositCancelPopup().showPopup(dealId, _controller, context);
+              },
+              child: Container(
+                margin: EdgeInsets.only(left: 15.w, bottom: 10.h),
+                width: 100.w,
+                height: 45.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: kGrey200Color),
+                child:
+                Center(child: ButtonText("Cancel", kWhiteBackGroundColor)),
+              ),
+            ),
+            InkWell(
+              onTap: () async {
+                if(_controller.canFinish){
+                  var bool = await ProtectedDealApi().completeDeal(dealId);
+                  if(bool){
+                    _chatDetailController.completeDeal(dealId);
+                    Navigator.pop(context);
+                  }else{
+                    CustomSnackBar().show(context, "failed");
+                  }
+
+                }else{
+                }
+
+              },
+              child: Container(
+                  margin: EdgeInsets.only(left: 15.w, bottom: 10.h),
+                  width: 215.w,
+                  height: 45.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: _controller.canFinish ? kBlueColor : kGrey200Color,
+                  ),
+                  child: Center(
+                    child: ButtonText("Complete", kWhiteColor),
+                  )),
+            ),
+          ],
+        )));
   }
 
-  Obx _buildRequestCompleteRequestButton(BuildContext context) {
-    return Obx(() => _controller.canFinish
-        ? Container(
-      width: double.infinity,
-      color: kPrimaryColor,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kPrimaryColor,
-          side: BorderSide.none,
-          shadowColor: Colors.transparent,
-        ),
-        onPressed: () async {
-          var bool = await ProtectedDealApi().completeDeal(dealId);
-          if(bool){
-            _chatDetailController.completeDeal(dealId);
-          }else{
-            CustomSnackBar().show(context, "failed");
-          }
-
-          Navigator.pop(context);
-        },
-        child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
-      ),
-    )
-        : Container(
-      width: double.infinity,
-      color: kGrey200Color,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kGrey200Color,
-          side: BorderSide.none,
-          shadowColor: Colors.transparent,
-        ),
-        onPressed: () async {},
-        child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
-      ),
-    ));
-  }
+  // Obx _buildRequestCompleteRequestButton(BuildContext context) {
+  //   return Obx(() => _controller.canFinish
+  //       ? Container(
+  //     width: double.infinity,
+  //     color: kPrimaryColor,
+  //     child: ElevatedButton(
+  //       style: ElevatedButton.styleFrom(
+  //         backgroundColor: kPrimaryColor,
+  //         side: BorderSide.none,
+  //         shadowColor: Colors.transparent,
+  //       ),
+  //       onPressed: () async {
+  //         var bool = await ProtectedDealApi().completeDeal(dealId);
+  //         if(bool){
+  //           _chatDetailController.completeDeal(dealId);
+  //         }else{
+  //           CustomSnackBar().show(context, "failed");
+  //         }
+  //
+  //         Navigator.pop(context);
+  //       },
+  //       child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
+  //     ),
+  //   )
+  //       : Container(
+  //     width: double.infinity,
+  //     color: kGrey200Color,
+  //     child: ElevatedButton(
+  //       style: ElevatedButton.styleFrom(
+  //         backgroundColor: kGrey200Color,
+  //         side: BorderSide.none,
+  //         shadowColor: Colors.transparent,
+  //       ),
+  //       onPressed: () async {},
+  //       child: ButtonText("Transaction Complete!", kWhiteBackGroundColor),
+  //     ),
+  //   ));
+  // }
 }

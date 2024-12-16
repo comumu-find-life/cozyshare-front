@@ -7,10 +7,8 @@ import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 import 'package:home_and_job/model/deal/enums/DealState.dart';
 
-import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
 import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../../protected-deal/deal-deposit-cancel/provider/DealCancelDepositViewByProvider.dart';
-import '../../../protected-deal/deal-request/getter/view/DealRequestViewByGetter.dart';
 import '../../../protected-deal/deal-request/provider/view/DealRequestViewByProvider.dart';
 import '../controller/ChatProviderDetailController.dart';
 

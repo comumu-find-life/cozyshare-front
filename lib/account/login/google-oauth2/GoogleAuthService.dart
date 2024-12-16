@@ -25,10 +25,8 @@ class GoogleAuthService {
 
       final idToken = googleAuth.idToken;
 
-      print("idToken = " + idToken.toString());
       await LoginApi().loginGoogle(idToken);
 
-      print("---4");
     } catch (error) {
       print("Google 로그인 에러: $error");
       return null;

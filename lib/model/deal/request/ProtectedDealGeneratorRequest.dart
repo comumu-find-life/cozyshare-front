@@ -12,9 +12,7 @@ class ProtectedDealGeneratorRequest with _$ProtectedDealGeneratorRequest {
     required int homeId,
     required int dmId,
     required int deposit,
-    // required String accountHolder,
-    // required String account,
-    // required String bankName,
+    required DateTime dealAt
 
   }) = _ProtectedDealGeneratorRequest;
 

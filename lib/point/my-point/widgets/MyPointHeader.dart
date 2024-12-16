@@ -115,7 +115,7 @@ class MyPointHeader extends StatelessWidget {
 
           InkWell(
             onTap: (){
-              Get.to(() => ChargePointView(_controller.userAccountResponse!));
+              Get.to(() => ChargePointView(_controller.userAccountResponse!, null));
             },
             child: Container(
               width: 170.w,

@@ -30,6 +30,8 @@ class FinalDealInformationWidget extends StatelessWidget {
     );
   }
 
+
+
   Widget _buildTotalPrice() {
     return Column(
       children: [
@@ -49,7 +51,7 @@ class FinalDealInformationWidget extends StatelessWidget {
                 child: Body2Text("Total Price", kGrey600Color),
               ),
               Container(
-                child: NumberText("${_controller.bondController.text} \$", kTextBlackColor, 14),
+                child: NumberText("${_controller.calculateTotalPrice()} \$", kTextBlackColor, 14),
               )
             ],
           ),
@@ -87,7 +89,7 @@ class FinalDealInformationWidget extends StatelessWidget {
             child: Body2Text("Fee (paid by the tenant)", kGrey600Color),
           ),
           Container(
-            child: NumberText("Free", kTextBlackColor, 14),
+            child: NumberText("${_controller.calculateFee()} \$", kTextBlackColor, 14),
           )
         ],
       ),

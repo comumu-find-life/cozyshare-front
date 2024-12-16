@@ -42,7 +42,6 @@ class DealProcessViewByProvider extends StatelessWidget {
             ),
             Center(
               child: DealProcessWidget(
-                step: step!,
                 createAt: ConverterUtil()
                     .formatEnglishDateTime(dealResponse!.createAt),
                 startAt: ConverterUtil()
@@ -59,7 +58,7 @@ class DealProcessViewByProvider extends StatelessWidget {
             Center(
                 child: DealPriceWidget(
               deposit: dealResponse!.deposit,
-              fee: dealResponse.fee,
+              fee: dealResponse.fee, totalPrice: dealResponse.totalPrice,
             )),
             // Container(
             //   width: 150.w,

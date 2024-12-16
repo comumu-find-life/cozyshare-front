@@ -6,7 +6,6 @@ part 'ProtectedDealGeneratorResponse.g.dart';
 @freezed
 class ProtectedDealGeneratorResponse with _$ProtectedDealGeneratorResponse {
   factory ProtectedDealGeneratorResponse({
-    required String secretKey,
     required int dealId,
   }) = _ProtectedDealGeneratorResponse;
 

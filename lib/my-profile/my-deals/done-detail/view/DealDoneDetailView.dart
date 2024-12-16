@@ -69,7 +69,6 @@ class DealDoneDetailView extends StatelessWidget {
   Widget _buildTimeInformation() {
     return   Center(
       child: DealProcessWidget(
-        step: dealResponse.dealState.getStep()!,
         createAt: ConverterUtil()
             .formatEnglishDateTime(dealResponse!.createAt),
         startAt: ConverterUtil()

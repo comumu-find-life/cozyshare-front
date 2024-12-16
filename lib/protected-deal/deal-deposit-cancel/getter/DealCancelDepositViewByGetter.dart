@@ -6,12 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 
 import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../common/DealInformationWidgetByGetter.dart';
-import '../../common/HomeInformationByDealWidget.dart';
-import '../../deal-request/getter/widgets/DepositInformationWidgetByGetter.dart';
 
 class DealCancelDepositViewByGetter extends StatelessWidget {
   ProtectedDealResponse dealResponse;
@@ -34,7 +31,7 @@ class DealCancelDepositViewByGetter extends StatelessWidget {
             Center(
                 child: DealPriceWidget(
                   deposit: dealResponse!.deposit,
-                  fee: dealResponse!.fee,
+                  fee: dealResponse!.fee, totalPrice: dealResponse.totalPrice,
                 )),
 
 

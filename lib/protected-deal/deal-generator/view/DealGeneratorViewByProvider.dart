@@ -9,6 +9,7 @@ import 'package:home_and_job/constants/Fonts.dart';
 import '../../../chatting/chat-detail-provider/controller/ChatProviderDetailController.dart';
 import '../controller/DealGeneratorController.dart';
 import '../../common/HomeInformationByDealWidget.dart';
+import '../widgets/DealDateTimePickWidget.dart';
 import '../widgets/ProviderAccountFormWidget.dart';
 import 'DealGeneratorFinalViewByProvider.dart';
 
@@ -40,38 +41,41 @@ class DealGeneratorViewByProvider extends StatelessWidget {
           children: [
             HomeInformationByDealWidget(_chatController.home.images!.first, _chatController.home.address!, _chatController.home.rent!, _chatController.home.bond!),
             ProviderAccountFormWidget(_controller),
+            DealDateTimePickWidget(_controller),
           ],
         ),
       ),
     );
   }
 
-  SafeArea? _buildStepOneButton(BuildContext context) {
-    return SafeArea(
+  Widget? _buildStepOneButton(BuildContext context) {
+    return Obx(() => SafeArea(
+
       child: Padding(
           padding: EdgeInsets.only(),
           child: _controller.finishAccountInformation
               ? Container(
-                  width: double.infinity,
-                  color: kBlueColor,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kBlueColor,
-                      padding: EdgeInsets.symmetric(vertical: 14),
-                      side: BorderSide.none, // 테두리 없애기
-                      shadowColor: Colors.transparent, // 그림자 없애기
-                    ),
-                    onPressed: () {
-                      //_controller.ontapStep1Next();
-                      Get.to(
-                        () => DealGeneratorFinalViewByProvider(_controller, _chatController),
-                      );
-                    },
-                    child: ButtonText("Next", kWhiteBackGroundColor),
-                  ),
-                )
+            height: 70.h,
+            width: double.infinity,
+            color: kBlueColor,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: kBlueColor,
+                padding: EdgeInsets.symmetric(vertical: 14),
+                side: BorderSide.none, // 테두리 없애기
+                shadowColor: Colors.transparent, // 그림자 없애기
+              ),
+              onPressed: () {
+                //_controller.ontapStep1Next();
+                Get.to(
+                      () => DealGeneratorFinalViewByProvider(_controller, _chatController),
+                );
+              },
+              child: ButtonText("Next", kWhiteBackGroundColor),
+            ),
+          )
               : null),
-    );
+    ));
   }
 
   AppBar _buildAppBar() {

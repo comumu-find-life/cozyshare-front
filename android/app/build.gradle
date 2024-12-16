@@ -1,7 +1,9 @@
 plugins {
+
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+
     //id 'app_plugin_loader' // app_plugin_loader 플러그인 추가
 }
 
@@ -60,6 +62,14 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+    }
 }
 
 flutter {
@@ -67,6 +77,7 @@ flutter {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.billingclient:billing:5.1.0'
     implementation "com.android.billingclient:billing-ktx:5.1.0"

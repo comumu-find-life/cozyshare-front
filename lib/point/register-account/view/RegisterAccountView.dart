@@ -65,6 +65,7 @@ class RegisterAccountView extends StatelessWidget {
   Widget _buildButton(BuildContext context) {
     return Obx(() => _controller.canRegister.value == true
         ? Container(
+      height: 70.h,
             width: double.infinity,
             color: kPrimaryColor,
             child: ElevatedButton(
@@ -80,6 +81,7 @@ class RegisterAccountView extends StatelessWidget {
             ),
           )
         : Container(
+        height: 70.h,
             width: double.infinity,
             color: kGrey200Color,
             child: ElevatedButton(

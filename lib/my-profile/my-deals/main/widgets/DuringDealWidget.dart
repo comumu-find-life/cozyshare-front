@@ -103,29 +103,6 @@ class DuringDealWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildState() {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border(
-              //top: BorderSide(color: kGrey200Color)
-              )),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 0.h),
-                height: 20.h,
-                child:
-                    FBoldText("Transaction in progress", kTextBlackColor, 13),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildPrice(ProtectedDealResponse dealResponse) {
     return Container(
@@ -162,16 +139,9 @@ class DuringDealWidget extends StatelessWidget {
             margin: EdgeInsets.only(top: 0.h),
             width: 200.w,
             child: FBoldText(
-                "${ConverterUtil().formatEnglishDateTime(dealResponse!.startAt)}",
-                kTextBlackColor,
+                "${ConverterUtil().formatEnglishDateTime(dealResponse!.dealAt)}", kTextBlackColor,
                 14),
           ),
-          Container(
-              // child: Icon(
-              //   Icons.arrow_forward_ios,
-              //   size: 14.sp,
-              // ),
-              )
         ],
       ),
     );

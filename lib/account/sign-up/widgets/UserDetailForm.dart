@@ -118,7 +118,7 @@ class _UserDetailFormState extends State<UserDetailForm> {
                                   widget._controller.validatePrivacy();
                                 });
                                 widget._controller
-                                    .ontapCountry(country.toString());
+                                    .ontapCountry(country.name);
                                 widget._controller.validateUserDetail();
                               },
                             );

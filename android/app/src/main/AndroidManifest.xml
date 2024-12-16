@@ -14,6 +14,9 @@
         android:label="home_and_job"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+<!--        <meta-data-->
+<!--            android:name="com.google.android.gms.appid"-->
+<!--            android:value="825057163650-ji2cifl7213bck9s36tluikiqs8bkr6s.apps.googleusercontent.com" />-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB3DctQyecPyfwMAyE7JdhgJzB_57ayoYw" />
@@ -25,6 +28,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
@@ -41,6 +45,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+<!--        <activity android:name="com.paypal.sdk.payments.PayPalActivity">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+<!--                &lt;!&ndash; Custom URL Scheme &ndash;&gt;-->
+<!--                <data android:scheme="com.yourapp.paypal" android:host="paypal" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

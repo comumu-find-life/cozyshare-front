@@ -2,8 +2,8 @@ enum DealState {
   NONE("없음"),
   REQUEST_DEAL("Request Deal"), // 1
   ACCEPT_DEAL("Accept Deal"), // 2
-  CANCEL_BEFORE_DEAL("Deposit Completed"), // 3
-  CANCEL_DURING_DEAL("Request for Transaction Completion"), // 5
+  CANCEL_BEFORE_DEAL("Cancel Transaction"), // 3
+  CANCEL_DURING_DEAL("Cancel Transaction"), // 5
   COMPLETE_DEAL("Transaction Completed");
 
 

@@ -338,7 +338,7 @@ class SettingListWidget extends StatelessWidget {
         if(userAccount == null){
           Get.to(() => RegisterAccountView());
         }else{
-          Get.to(() => ChargePointView(userAccount));
+          Get.to(() => ChargePointView(userAccount, null));
         }
       },
       child: Container(

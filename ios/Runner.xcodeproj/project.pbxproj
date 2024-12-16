@@ -11,6 +11,7 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		323ED2D92CFCEE370014CEBF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 323ED2D82CFCEE370014CEBF /* GoogleService-Info.plist */; };
 		323ED2DA2CFCEE370014CEBF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 323ED2D82CFCEE370014CEBF /* GoogleService-Info.plist */; };
+		32F56D8F2CFF9F68009E3324 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F56D8E2CFF9F68009E3324 /* StoreKit.framework */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		6E09ACD5C674B38C6DCAABE8 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5CE52EEA74BF8E49B93A010 /* Pods_Runner.framework */; };
@@ -50,6 +51,10 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		30D2D1708AEC200A462E9E82 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		323ED2D82CFCEE370014CEBF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/무제 폴더 21/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		32F56D8B2CFF741D009E3324 /* RunnerProfile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerProfile.entitlements; sourceTree = "<group>"; };
+		32F56D8C2CFF7847009E3324 /* RunnerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerRelease.entitlements; sourceTree = "<group>"; };
+		32F56D8D2CFF784E009E3324 /* RunnerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerDebug.entitlements; sourceTree = "<group>"; };
+		32F56D8E2CFF9F68009E3324 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA91711961AE484EE69FADA /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E09ACD5C674B38C6DCAABE8 /* Pods_Runner.framework in Frameworks */,
+				32F56D8F2CFF9F68009E3324 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +107,7 @@
 		438DB088E9D56AA356990FA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32F56D8E2CFF9F68009E3324 /* StoreKit.framework */,
 				B5CE52EEA74BF8E49B93A010 /* Pods_Runner.framework */,
 				141EED63A12FD497CF4FF1B1 /* Pods_RunnerTests.framework */,
 			);
@@ -142,6 +149,9 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				32F56D8D2CFF784E009E3324 /* RunnerDebug.entitlements */,
+				32F56D8C2CFF7847009E3324 /* RunnerRelease.entitlements */,
+				32F56D8B2CFF741D009E3324 /* RunnerProfile.entitlements */,
 				323ED2D82CFCEE370014CEBF /* GoogleService-Info.plist */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -491,6 +501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/RunnerProfile.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = FQMU69DW9J;
 				ENABLE_BITCODE = NO;
@@ -673,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = FQMU69DW9J;
 				ENABLE_BITCODE = NO;
@@ -696,6 +708,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/RunnerRelease.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = FQMU69DW9J;
 				ENABLE_BITCODE = NO;

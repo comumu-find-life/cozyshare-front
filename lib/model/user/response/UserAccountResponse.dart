@@ -9,7 +9,7 @@ class UserAccountResponse with _$UserAccountResponse {
   const factory UserAccountResponse({
     required String bsb,
     required String accountNumber,
-    required int point,
+    required double point,
     required List<PointChargeHistoryResponse> chargeHistories,
   }) = _UserAccountResponse;
 

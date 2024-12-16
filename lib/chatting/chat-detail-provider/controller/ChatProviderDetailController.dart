@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 import 'package:home_and_job/rest-api/chat-api/ChatApi.dart';
 import 'package:home_and_job/rest-api/deal-api/ProtectedDealApi.dart';
 import 'package:home_and_job/rest-api/user-api/ProfileDetailApi.dart';
@@ -33,6 +32,8 @@ import '../../../rest-api/user-api/UserPointApi.dart';
  * (8) "거래 성사" 폼 생성
  */
 class ChatProviderDetailController extends GetxController {
+  static String WEB_SOCKET_URL = "ws://localhost:8082/dm/websocket";
+
   late bool _isExistAccount;
   late int _roomId;
   late int _providerId;
@@ -86,7 +87,7 @@ class ChatProviderDetailController extends GetxController {
         providerId: int.parse(_home.providerId!),
         homeId: _home.homeId!,
         dmId: _roomId);
-    List<ProtectedDealResponse> response = await ProtectedDealApi().loadProtectedDealByProvider(protectedDealFindRequest);
+    List<ProtectedDealResponse> response = await ProtectedDealApi().loadProtectedDeal(protectedDealFindRequest);
     // dealMap에 정보를 넣음
     if (response != null) {
       dealMap = { for (var deal in response) deal.id: deal };
@@ -117,8 +118,7 @@ class ChatProviderDetailController extends GetxController {
   void connectToStomp() {
     stompClient = StompClient(
       config: StompConfig(
-        url: 'ws://10.0.2.2:8082/dm/websocket',
-        // WebSocket 서버 엔드포인트
+        url: "ws://localhost:8082/dm/websocket",
         onConnect: onStompConnected,
         onWebSocketError: (dynamic error) => print('WebSocket Error: $error'),
         onStompError: (dynamic error) => print('Stomp Error: $error'),
@@ -179,13 +179,11 @@ class ChatProviderDetailController extends GetxController {
     );
   }
 
-  // 안전거래 시작 메서드 (only provider)
   void startProtectedDeal(int dealId) async {
-
     await loadProtectedDeal();
     var directMessageRequest = DirectMessageRequest(
       receiverId: _getterId,
-      message: "DEAL MESSAGE",
+      message: "Deposit Request",
       roomId: _roomId.toString(),
       isDeal: 1,
       dealState: DealState.REQUEST_DEAL.name,

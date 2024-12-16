@@ -18,6 +18,7 @@ class ChattingController extends GetxController {
   Future<bool> loadAllDmList() async {
     _chatItems = await DmApi().loadDmList();
     _myUserId = (await DiskDatabase().getUserId())!;
+    _chatItems.sort((a, b) => b.lastSendDateTime.compareTo(a.lastSendDateTime));
     return true;
   }
 

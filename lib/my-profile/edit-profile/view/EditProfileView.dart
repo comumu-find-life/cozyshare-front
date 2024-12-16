@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:home_and_job/account/login/view/MainLoginView.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
 
@@ -61,6 +63,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 Widget ProfileEditBottomWidget(
     EditProfileController _controller, BuildContext context) {
   return Obx(() => Container(
+    height: 70.h,
         width: double.infinity,
         color: kBlueColor,
         child: ElevatedButton(

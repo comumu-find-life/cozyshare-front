@@ -27,7 +27,7 @@ Widget HomeInformationByDealWidget( String homeImage, String address, int rent, 
           child: Center(
             child: Container(
               width: 350.w,
-              height: 160.h,
+              height: 130.h,
               decoration: BoxDecoration(
                   color: kWhiteBackGroundColor,
                 borderRadius: BorderRadius.all(Radius.circular(6)),

@@ -11,7 +11,6 @@ import 'package:home_and_job/constants/Fonts.dart';
  * step 3: 거래 완료
  */
 Widget DealProcessWidget({
-  required int step,
   required String? createAt,
   required String? startAt,
   required String? cancelAt,
@@ -28,12 +27,16 @@ Widget DealProcessWidget({
           dateTime: startAt,
           isCompleted: true,
         ),
+        cancelAt != null
+            ? _buildCancelStep(
+                title: "Cancel Time",
+                dateTime: cancelAt,
+              )
+            : Container(),
         _buildProcessStep(
           title: "Deal End Time",
           dateTime: completeAt,
         ),
-
-
       ],
     ),
   );
@@ -68,10 +71,43 @@ Widget _buildProcessStep({
         isNull
             ? Container()
             : Container(
-                margin: EdgeInsets.only(right: 10.w),
-                child: Body2Text("${dateTime}", kGrey800Color)),
-        
+            margin: EdgeInsets.only(right: 10.w),
+            child: Body2Text("${dateTime}", kGrey800Color)),
+      ],
+    ),
+  );
+}
 
+Widget _buildCancelStep({
+  required String title,
+  required String? dateTime,
+}) {
+  bool isNull = dateTime == null;
+  return Container(
+    margin: EdgeInsets.only(top: 10.h),
+    width: 380.w,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 10.w),
+              child: Icon(
+                Icons.check_circle,
+                color: kErrorColor,
+                size: 30.w,
+              ),
+            ),
+            SizedBox(width: 8.w),
+            Container(child: Body2Text(title, kTextBlackColor)),
+          ],
+        ),
+        isNull
+            ? Container()
+            : Container(
+            margin: EdgeInsets.only(right: 10.w),
+            child: Body2Text("${dateTime}", kGrey800Color)),
       ],
     ),
   );

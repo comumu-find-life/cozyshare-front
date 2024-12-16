@@ -51,7 +51,7 @@ class EditProfileController extends GetxController {
 
       if (bool) {
         Get.to(() => FinishView(
-            "Profile information has been updated.", "Please touch the screen."));
+            "Profile information \nhas been updated.", "Please touch the screen."));
       }
 
       // 로딩 상태 종료

@@ -53,17 +53,6 @@ class UserPointApi {
 
 
 
-  Future<bool> applyDepositByAccount(int price)async{
-    var accessToken = await DiskDatabase().getAccessToken();
-    var url = ApiUrls.APPLY_DEPOSIT_URL + price.toString();
-
-    var response = await apiUtils.postResponse(url, null, accessToken: accessToken);
-
-    if (apiUtils.isValidResponse(response)) {
-      return true;
-    }
-    return false;
-  }
 
   Future<bool> applyWithDraw(int point) async {
     var accessToken = await DiskDatabase().getAccessToken();

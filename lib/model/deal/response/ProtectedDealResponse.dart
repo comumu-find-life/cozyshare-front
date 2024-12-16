@@ -17,6 +17,7 @@ class ProtectedDealResponse with _$ProtectedDealResponse {
     required DateTime? startAt,
     required DateTime? cancelAt,
     required DateTime? completeAt,
+    required DateTime? dealAt,
     required String address,
     required String homeImage,
     required int rent,

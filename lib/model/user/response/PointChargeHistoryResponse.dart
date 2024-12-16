@@ -8,7 +8,7 @@ part 'PointChargeHistoryResponse.g.dart';
 @freezed
 class PointChargeHistoryResponse with _$PointChargeHistoryResponse {
   const factory PointChargeHistoryResponse({
-    required int chargeAmount,
+    required double chargeAmount,
     required DateTime chargeDate,
     required ChargeType chargeType,
   }) = _PointChargeHistoryResponse;

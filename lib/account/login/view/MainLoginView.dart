@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:home_and_job/account/login/apple-oauth2/AppleAuthService.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
 
@@ -65,11 +66,16 @@ class MainLoginView extends StatelessWidget {
             ),
           ),
 
-          Container(
-            margin: EdgeInsets.only(top: 10.h),
-            width: 255.w,
-            height: 40.h,
-            child: Image.asset("assets/icons/apple_icon.png"),
+          InkWell(
+            onTap: (){
+              AppleAuthService().signInWithApple();
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 10.h),
+              width: 255.w,
+              height: 40.h,
+              child: Image.asset("assets/icons/apple_icon.png"),
+            ),
           ),
         ],
       ),

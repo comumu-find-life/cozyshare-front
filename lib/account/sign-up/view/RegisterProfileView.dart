@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:home_and_job/common-widgets/app-bar/CommonAppbar.dart';
 import 'package:home_and_job/constants/Colors.dart';
+import 'package:home_and_job/model/user/enums/SignupType.dart';
 
 import '../../../constants/Fonts.dart';
 import '../controller/SignupController.dart';
@@ -13,7 +14,8 @@ import '../widgets/UserDetailForm.dart';
 
 class RegisterProfileView extends StatelessWidget {
   String email;
-  RegisterProfileView(this.email);
+  SignupType signupType;
+  RegisterProfileView(this.email, this.signupType);
 
   SignupController _controller = SignupController();
 
@@ -38,7 +40,7 @@ class RegisterProfileView extends StatelessWidget {
   Widget _buildButton(){
     return Obx(() => InkWell(
       onTap: (){
-        _controller.checkDetail? _controller.signupGoogleAccount(email) : print("object");
+        _controller.checkDetail? _controller.signupOAuthAccount(signupType, email) : print("object");
       },
       child: Container(
         width: 330.w,

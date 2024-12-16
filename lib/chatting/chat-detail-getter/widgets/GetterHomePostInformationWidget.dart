@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:home_and_job/reservation/reservation-generator/view/ReserveByGetterView.dart';
 import 'package:home_and_job/room/room-detail/view/RoomDetailView.dart';
 
 import '../../../constants/Colors.dart';
@@ -25,7 +26,6 @@ class GetterHomePostInformationWidget extends StatelessWidget {
     return _buildGetterWidget();
   }
 
-
   Widget _buildGetterWidget() {
     return Container(
       width: 380.w,
@@ -39,45 +39,50 @@ class GetterHomePostInformationWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildHomeInformation(false),
+          _buildHomeInformation(),
         ],
       ),
     );
   }
 
-
-  Widget _buildHomeInformation(bool isProvider) {
+  Widget _buildHomeInformation() {
     return InkWell(
       onTap: () {
         Get.to(() => RoomDetailView(_controller.home.homeId!, true));
       },
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-              margin: EdgeInsets.only(left: 10.w),
-              width: 85.w,
-              height: 60.h,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  "assets/images/test/home.png",
-                  fit: BoxFit.cover,
+          Row(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(left: 10.w),
+                  width: 65.w,
+                  height: 60.h,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      "assets/images/test/home.png",
+                      fit: BoxFit.cover,
+                    ),
+                  )),
+              Container(
+                margin: EdgeInsets.only(left: 10.w, top: 10.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 290.w,
+                      child:
+                      Body2Text("${_controller.home.address}", kTextBlackColor),
+                    ),
+                    // )
+                  ],
                 ),
-              )),
-          Container(
-            margin: EdgeInsets.only(left: 10.w, top: 10.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: isProvider ? 180.w : 230.w,
-                  child:
-                  Body2Text("${_controller.home.address}", kTextBlackColor),
-                ),
-                // )
-              ],
-            ),
+              ),
+            ],
           ),
+
         ],
       ),
     );

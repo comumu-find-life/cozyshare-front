@@ -67,7 +67,7 @@ class SignupController extends GetxController {
     } else {}
   }
 
-  void signupGoogleAccount(String email) async {
+  void signupOAuthAccount(SignupType signupType, String email) async {
 
     var signupRequest = SignupRequest(
         email: email,
@@ -77,7 +77,7 @@ class SignupController extends GetxController {
         gender: parseGender(selectGender).name,
         job: _jobController.text,
         nationality: selectCountry,
-        signupType: SignupType.GOOGLE.name);
+        signupType: signupType.name);
 
     bool response = await SignupApi()
         .signupGoogleApi(signupRequest, _profileUrl == "" ? null : _profileUrl);
@@ -102,11 +102,19 @@ class SignupController extends GetxController {
     }
   }
 
+
+
   // 이메일 인증코드 요청 메서드
   void sendEmail(BuildContext context) async {
     if (_emailController.text.isEmpty) {
       CustomSnackBar().show(context, "Input your email");
     } else {
+      bool duplicateEmail = await AccountApi().checkDuplicateEmail(_emailController.text);
+      if(!duplicateEmail){
+        CustomSnackBar().show(context, "The email already exists.");
+        return;
+      }
+
       bool result =
           await AccountApi().sendCheckCodeToEmail(_emailController.text);
       if (result) {
@@ -121,7 +129,7 @@ class SignupController extends GetxController {
   // 비밀번호 길이 8 자리 이상
   void validatePrivacy() {
     if (_pwCheckController.text.length >= 7 &&
-        (_pwCheckController.text == _pwCheckController.text)) {
+        (_pwController.text == _pwCheckController.text)) {
       _checkPrivacy.value = true;
     } else {
       _checkPrivacy.value = false;

@@ -60,6 +60,7 @@ class DmApi {
     List<DirectMessageRoomListResponse> items = [];
     var userId = await DiskDatabase().getUserId();
     String url = ApiUrls.DM_FIND_ALL_ROOMS.replaceFirst("{userId}", userId.toString());
+    print(url);
     var response = await apiUtils.callGetApiWithToken(url);
 
 

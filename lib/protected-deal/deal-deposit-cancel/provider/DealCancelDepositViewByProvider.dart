@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_and_job/constants/Colors.dart';
 import 'package:home_and_job/constants/Fonts.dart';
-import 'package:home_and_job/model/deal/response/ProtectedDealByGetterResponse.dart';
 
 import '../../../model/deal/response/ProtectedDealResponse.dart';
 import '../../common/DealInformationWidgetByGetter.dart';
@@ -21,17 +20,21 @@ class DealCancelDepositViewByProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: kWhiteColor,
+      appBar: AppBar(backgroundColor: kPrimaryColor,),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //거래 정보
+            SizedBox(
+              height: 20.h,
+            ),
             _buildMainText(),
             Center(
                 child: DealPriceWidget(
                   deposit: dealResponse!.deposit,
-                  fee: dealResponse!.fee,
+                  fee: dealResponse!.fee, totalPrice: dealResponse.totalPrice,
                 )),
 
 

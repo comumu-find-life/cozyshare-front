@@ -26,6 +26,7 @@ mixin _$ProtectedDealGeneratorRequest {
   int get homeId => throw _privateConstructorUsedError;
   int get dmId => throw _privateConstructorUsedError;
   int get deposit => throw _privateConstructorUsedError;
+  DateTime get dealAt => throw _privateConstructorUsedError;
 
   /// Serializes this ProtectedDealGeneratorRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +46,13 @@ abstract class $ProtectedDealGeneratorRequestCopyWith<$Res> {
       _$ProtectedDealGeneratorRequestCopyWithImpl<$Res,
           ProtectedDealGeneratorRequest>;
   @useResult
-  $Res call({int getterId, int providerId, int homeId, int dmId, int deposit});
+  $Res call(
+      {int getterId,
+      int providerId,
+      int homeId,
+      int dmId,
+      int deposit,
+      DateTime dealAt});
 }
 
 /// @nodoc
@@ -69,6 +76,7 @@ class _$ProtectedDealGeneratorRequestCopyWithImpl<$Res,
     Object? homeId = null,
     Object? dmId = null,
     Object? deposit = null,
+    Object? dealAt = null,
   }) {
     return _then(_value.copyWith(
       getterId: null == getterId
@@ -91,6 +99,10 @@ class _$ProtectedDealGeneratorRequestCopyWithImpl<$Res,
           ? _value.deposit
           : deposit // ignore: cast_nullable_to_non_nullable
               as int,
+      dealAt: null == dealAt
+          ? _value.dealAt
+          : dealAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -104,7 +116,13 @@ abstract class _$$ProtectedDealGeneratorRequestImplCopyWith<$Res>
       __$$ProtectedDealGeneratorRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int getterId, int providerId, int homeId, int dmId, int deposit});
+  $Res call(
+      {int getterId,
+      int providerId,
+      int homeId,
+      int dmId,
+      int deposit,
+      DateTime dealAt});
 }
 
 /// @nodoc
@@ -127,6 +145,7 @@ class __$$ProtectedDealGeneratorRequestImplCopyWithImpl<$Res>
     Object? homeId = null,
     Object? dmId = null,
     Object? deposit = null,
+    Object? dealAt = null,
   }) {
     return _then(_$ProtectedDealGeneratorRequestImpl(
       getterId: null == getterId
@@ -149,6 +168,10 @@ class __$$ProtectedDealGeneratorRequestImplCopyWithImpl<$Res>
           ? _value.deposit
           : deposit // ignore: cast_nullable_to_non_nullable
               as int,
+      dealAt: null == dealAt
+          ? _value.dealAt
+          : dealAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -162,7 +185,8 @@ class _$ProtectedDealGeneratorRequestImpl
       required this.providerId,
       required this.homeId,
       required this.dmId,
-      required this.deposit});
+      required this.deposit,
+      required this.dealAt});
 
   factory _$ProtectedDealGeneratorRequestImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -178,10 +202,12 @@ class _$ProtectedDealGeneratorRequestImpl
   final int dmId;
   @override
   final int deposit;
+  @override
+  final DateTime dealAt;
 
   @override
   String toString() {
-    return 'ProtectedDealGeneratorRequest(getterId: $getterId, providerId: $providerId, homeId: $homeId, dmId: $dmId, deposit: $deposit)';
+    return 'ProtectedDealGeneratorRequest(getterId: $getterId, providerId: $providerId, homeId: $homeId, dmId: $dmId, deposit: $deposit, dealAt: $dealAt)';
   }
 
   @override
@@ -195,13 +221,14 @@ class _$ProtectedDealGeneratorRequestImpl
                 other.providerId == providerId) &&
             (identical(other.homeId, homeId) || other.homeId == homeId) &&
             (identical(other.dmId, dmId) || other.dmId == dmId) &&
-            (identical(other.deposit, deposit) || other.deposit == deposit));
+            (identical(other.deposit, deposit) || other.deposit == deposit) &&
+            (identical(other.dealAt, dealAt) || other.dealAt == dealAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, getterId, providerId, homeId, dmId, deposit);
+  int get hashCode => Object.hash(
+      runtimeType, getterId, providerId, homeId, dmId, deposit, dealAt);
 
   /// Create a copy of ProtectedDealGeneratorRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -228,7 +255,8 @@ abstract class _ProtectedDealGeneratorRequest
       required final int providerId,
       required final int homeId,
       required final int dmId,
-      required final int deposit}) = _$ProtectedDealGeneratorRequestImpl;
+      required final int deposit,
+      required final DateTime dealAt}) = _$ProtectedDealGeneratorRequestImpl;
 
   factory _ProtectedDealGeneratorRequest.fromJson(Map<String, dynamic> json) =
       _$ProtectedDealGeneratorRequestImpl.fromJson;
@@ -243,6 +271,8 @@ abstract class _ProtectedDealGeneratorRequest
   int get dmId;
   @override
   int get deposit;
+  @override
+  DateTime get dealAt;
 
   /// Create a copy of ProtectedDealGeneratorRequest
   /// with the given fields replaced by the non-null parameter values.

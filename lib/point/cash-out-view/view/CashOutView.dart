@@ -62,6 +62,7 @@ class CashOutView extends StatelessWidget {
 
   Widget _buildButton(BuildContext context){
     return Container(
+      height: 70.h,
       width: double.infinity,
       color: kPrimaryColor,
       child: ElevatedButton(

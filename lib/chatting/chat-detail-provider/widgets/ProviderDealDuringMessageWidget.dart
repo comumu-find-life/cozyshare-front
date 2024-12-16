@@ -7,9 +7,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 
 import '../../../constants/Colors.dart';
 import '../../../constants/Fonts.dart';
-import '../../../model/deal/response/ProtectedDealByGetterResponse.dart';
 import '../../../model/deal/response/ProtectedDealResponse.dart';
-import '../../../protected-deal/deal-proceeding/getter/view/DealProcessViewByGetter.dart';
 import '../../../protected-deal/deal-proceeding/provider/view/DealProcessViewByProvider.dart';
 import '../controller/ChatProviderDetailController.dart';
 

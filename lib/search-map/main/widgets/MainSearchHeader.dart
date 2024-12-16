@@ -21,7 +21,7 @@ class MainSearchHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => Center(
           child: Container(
-            margin: EdgeInsets.only(top: 30.h),
+            margin: EdgeInsets.only(top: 50.h),
             width: 350.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
